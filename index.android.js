@@ -79,6 +79,8 @@ class AwesomeProject extends Component {
     super(props);
 
     this._onPressButton = this._onPressButton.bind(this);
+    this._pressCartButton = this._pressCartButton.bind(this);
+    this.makeCharge = this.makeCharge.bind(this);
 
     // this.const = {
       // STRIPE_USER_DATA_LOADED : 'STRIPE_USER_DATA_LOADED',
@@ -123,7 +125,6 @@ class AwesomeProject extends Component {
       if (resp.error) 
         Alert.alert( resp.error.message );
       else {
-        console.log(resp);
         newState.stripeCustomerData = resp;
       }
       
@@ -131,6 +132,14 @@ class AwesomeProject extends Component {
       
     });
 
+  }
+
+  _pressCartButton(val) {
+    this.makeCharge(val);
+  }
+
+  makeCharge(val) {
+    console.log('make charge', val);
   }
 
   render() {
@@ -177,13 +186,17 @@ class AwesomeProject extends Component {
 
       { (!this.state.stripeCustomerDataLoading) && ( this.state.stripeCustomerData === null) ?  
 
-        <TouchableNativeFeedback onPress={this._onPressButton}>
-         <View style={{width: 150, height: 100, backgroundColor: 'red', borderRadius: 5}}>
-          <Text style={{fontSize:20}}>
-            Welcome to React Native!
-          </Text>
+        (
+          <View style={{flex: 1, backgroundColor: '#ff4563', borderRadius: 20, width: 300 }}>
+            <TouchableNativeFeedback onPress={this._onPressButton} >
+              <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+                <Text style={{fontSize:20}}>
+                  Show data from stripe
+                </Text>
+              </View>
+            </TouchableNativeFeedback>
           </View>
-        </TouchableNativeFeedback>
+        )
         : null
       }
 
@@ -203,15 +216,84 @@ class AwesomeProject extends Component {
         </View>
       */}
 
-        <View style={{flex:10}}>
+        <View style={{flex:10, alignSelf: 'stretch'}}>
 
+          <View style={{flexDirection: 'row', marginTop: 20, justifyContent: 'center', alignItems: 'center'}}>
+            <Text style={{
+              fontSize: 20,
+              flex:10
+            }} >
+              Product 1 -> 5.60$
+            </Text>
+            <TouchableNativeFeedback onPress={ () => this._pressCartButton(560) }>
+              <View style={{
+                flex:1, 
+                width: 100, 
+                height: 50, 
+                backgroundColor: 'purple', 
+                borderRadius: 10, 
+                justifyContent: 'center', 
+                alignItems: 'center'
+              }} >
+                <Text style={{textAlign:'center', fontSize:20}}>BUY</Text>
+              </View>
+            </TouchableNativeFeedback>
 
-          <Text style={styles.welcome}>
-            Welcome to React Native! {'\n'}
-            I am a developer!
-          </Text>
+          </View>
+
+          <View style={{flexDirection: 'row', marginTop: 20, justifyContent: 'center', alignItems: 'center'}}>
+            <Text style={{
+              fontSize: 20,
+              flex:10,
+            }}>
+              Product 2 -> 8.00$
+            </Text>
+            <TouchableNativeFeedback onPress={ () => this._pressCartButton(800) }>
+              <View style={{
+                flex:1, 
+                width: 100,
+                height: 50,
+                backgroundColor: 'purple',
+                borderRadius: 10,
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}>
+                <Text style={{fontSize:20}}>BUY</Text>
+              </View>
+            </TouchableNativeFeedback>
+          </View>
+
+          <View style={{flexDirection: 'row', marginTop: 20, justifyContent: 'center', alignItems: 'center'}}>
+            <Text style={{
+              fontSize: 20,
+              flex:10
+            } }>
+              Product 3 -> 10.00$
+            </Text>
+            <TouchableNativeFeedback onPress={ () => this._pressCartButton(1000) }>
+               <View style={{
+                flex:1, 
+                width: 100, 
+                height: 50, 
+                backgroundColor: 'purple', 
+                borderRadius: 10,  
+                justifyContent: 'center', 
+                alignItems: 'center'
+              }}>
+                <Text style={{fontSize:20}}>BUY</Text>
+              </View>
+            </TouchableNativeFeedback>
+          </View>
 
           <StripeProfileData data={ this.state.stripeCustomerData }  />
+
+          <View style={{flex:3}} >
+
+            <Text style={styles.welcome}>
+              
+            </Text>
+
+          </View>
 
         </View>
 

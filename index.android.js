@@ -89,6 +89,7 @@ class AwesomeProject extends Component {
     // };
 
     this.state= {
+      totalPrice: 0,
       text:"",
       costumerId: 'cus_9BIrPE73rQJG67',
       // stripeCustomerDataStatus: this.const.STRIPE_USER_DATA_NOT_LOADED,
@@ -135,11 +136,22 @@ class AwesomeProject extends Component {
   }
 
   _pressCartButton(val) {
-    this.makeCharge(val);
+    this.setState({totalPrice: this.state.totalPrice + val});
+    // this.makeCharge(val);
   }
 
   makeCharge(val) {
-    console.log('make charge', val);
+    let that = this;
+    this.stripe.stripePostRequest('charges', {
+      amount: val,
+      currency: 'usd',
+      description: 'this is test charge',
+      customer: this.state.costumerId,
+    }).then(function(resp) {
+      that.setState({totalPrice: 0});
+      Alert.alert('Was paid' + val + ". Payment id -" + resp.id);
+      console.log(resp);
+    })
   }
 
   render() {
@@ -223,7 +235,7 @@ class AwesomeProject extends Component {
               fontSize: 20,
               flex:10
             }} >
-              Product 1 -> 5.60$
+              Product 1 -> 560$
             </Text>
             <TouchableNativeFeedback onPress={ () => this._pressCartButton(560) }>
               <View style={{
@@ -246,7 +258,7 @@ class AwesomeProject extends Component {
               fontSize: 20,
               flex:10,
             }}>
-              Product 2 -> 8.00$
+              Product 2 -> 800$
             </Text>
             <TouchableNativeFeedback onPress={ () => this._pressCartButton(800) }>
               <View style={{
@@ -268,7 +280,7 @@ class AwesomeProject extends Component {
               fontSize: 20,
               flex:10
             } }>
-              Product 3 -> 10.00$
+              Product 3 -> 1000$
             </Text>
             <TouchableNativeFeedback onPress={ () => this._pressCartButton(1000) }>
                <View style={{
@@ -287,11 +299,26 @@ class AwesomeProject extends Component {
 
           <StripeProfileData data={ this.state.stripeCustomerData }  />
 
-          <View style={{flex:3}} >
+          <View style={{flex:1}} >
 
-            <Text style={styles.welcome}>
-              
-            </Text>
+            <Text style={styles.welcome}>Total: ${this.state.totalPrice}</Text>
+
+            {this.state.totalPrice > 0 ? (
+              <TouchableNativeFeedback onPress={ () => this.makeCharge( this.state.totalPrice ) }>
+                 <View style={{
+                  flex:1,
+                  height: 50, 
+                  backgroundColor: '#678678', 
+                  borderRadius: 300,  
+                  justifyContent: 'center', 
+                  alignItems: 'center',
+                  alignSelf: 'stretch',
+
+                }}>
+                  <Text style={{fontSize:30}}>Pay</Text>
+                </View>
+              </TouchableNativeFeedback>
+            ) : null}
 
           </View>
 

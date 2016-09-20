@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Navigator, Text, ScrollView } from 'react-native';
+import { Navigator, Text, ScrollView, StyleSheet, View } from 'react-native';
 
 import NewProductSeller from './NewProductSeller';
 import PageList from './PageList';
+import PostProductToIG from './PostProductToIG';
 
 
 
@@ -18,7 +19,8 @@ class Switcher extends Component {
 		super(props);
 		this.routesName = {
 			NewProductSeller: () =>  (<NewProductSeller {...this.props} />),
-			PageList: () => (<PageList {...this.props} />)
+			PageList: () => (<PageList {...this.props} />),
+			PostProductToIG: () => (<PostProductToIG {...this.props} />)
 		};
 	}
 
@@ -31,9 +33,9 @@ class Switcher extends Component {
 
 
 		return (
-			<ScrollView>
+			<View style={st.scrollContent}>
 				{ route }
-			</ScrollView>
+			</View>
 		)
 	}
 
@@ -84,3 +86,10 @@ export default class Router extends Component {
 		)
 	}
 }
+
+const st = StyleSheet.create({
+	scrollContent: {
+		flex: 1,
+		backgroundColor: '#9100be',
+	}
+});

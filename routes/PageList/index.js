@@ -22,6 +22,18 @@ export default class PageList extends Component {
 					<Text style={styles.welcome}>New Product Seller</Text>
 				</TouchableHighlight>
 
+				<TouchableHighlight onPress={ () => {
+
+					this.props.navigator.push({
+						name: 'PostProductToIG',
+						index: this.props.route.index + 1
+					});
+				} } >
+					<Text style={styles.welcome}>Post Product to IG</Text>
+				</TouchableHighlight>
+
+				
+
 			</View>
 		)
 	}

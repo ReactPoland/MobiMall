@@ -14,7 +14,9 @@ import {
   TextInput,
   TouchableNativeFeedback,
   Alert,
+  Navigator
 } from 'react-native';
+import Router from './routes';
 
 //83guDkuHKD8Arfny
 
@@ -25,7 +27,44 @@ import {
 // 4111111111111111
 // 4012888888881881
 
-// paymants 
+// payments 
+
+// class TestNavigation extends Component {
+
+//   render() {
+    
+//     return (
+//       <Navigator
+//         initialRoute={{ title: 'My Initial Scene', index: 0 }}
+//         renderScene={( route, navigator ) => {
+//           return (
+//             <TextScene 
+//               title={ route.title }
+
+//               // Function to call when a new scene should be displayed           
+//               onForward={ () => {    
+//                 const nextIndex = route.index + 1;
+//                 navigator.push({
+//                   title: 'Scene ' + nextIndex,
+//                   index: nextIndex,
+//                 });
+//               }}
+
+//               // Function to call to go back to the previous scene
+//               onBack={() => {
+//                 if (route.index > 0) {
+//                   navigator.pop();
+//                 }
+//               }}
+//             />
+//           )
+//         } } 
+//       />
+//     )
+
+//   }
+
+// };
 
 
 
@@ -349,4 +388,4 @@ const styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
+AppRegistry.registerComponent('AwesomeProject', () => Router);

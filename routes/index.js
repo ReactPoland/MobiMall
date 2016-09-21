@@ -90,6 +90,6 @@ export default class Router extends Component {
 const st = StyleSheet.create({
 	scrollContent: {
 		flex: 1,
-		backgroundColor: '#9100be',
+		// backgroundColor: '#9100be',
 	}
 });

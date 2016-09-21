@@ -27,20 +27,22 @@ export default class NewProductSeller extends Component {
 	onLayout(event) {
 
 		let { width, height } = event.nativeEvent.layout;
-		let newWidth = width,
-			newHeight = height;
+		// let newWidth = width,
+			// newHeight = width;
 		
-		if ( width > height ) { // vertical
-			newWidth = height;
-			newHeight = width;
-		}
+		// if ( width > height ) { // vertical
+			// newWidth = height;
+			// newHeight = height;
+		// }
 
 		this.setState({
 			mainImageSize: {
-				width: newWidth,
-				height: newHeight,
+				width: width,
+				height: width,
 			}
-		})
+		});
+		this.refs['scrolView'].scrollTo({x: 0,y :0, animated: false});
+
 
 	}
 
@@ -48,9 +50,9 @@ export default class NewProductSeller extends Component {
 		return (
 			<View style={postStyle.container} onLayout={this.onLayout}>
 
-					<ScrollView >
+					<ScrollView ref='scrolView' >
 
-						<Image ref={'image'} source={{uri: 'https://unsplash.it/400/400?image=149'}} style={{
+						<Image source={{uri: 'https://unsplash.it/400/400?image=149'}} style={{
 							width: this.state.mainImageSize.width,
 							height: this.state.mainImageSize.height,
 						}}/>
@@ -94,7 +96,8 @@ const postStyle = StyleSheet.create({
 		fontSize: 20,
 	},
 	container: {
-		flex: 1
+		flex: 1,
+		overflow: 'hidden',
 	},
 	blockTitle: {
 		fontWeight: 'bold',

@@ -32,6 +32,27 @@ export default class PageList extends Component {
 					<Text style={styles.welcome}>Post Product to IG</Text>
 				</TouchableHighlight>
 
+				<TouchableHighlight onPress={ () => {
+
+					this.props.navigator.push({
+						name: 'ShopperProfileView',
+						index: this.props.route.index + 1
+					});
+				} } >
+					<Text style={styles.welcome}>Shopper Profile View</Text>
+				</TouchableHighlight>
+
+				<TouchableHighlight onPress={ () => {
+
+					this.props.navigator.push({
+						name: 'Login',
+						index: this.props.route.index + 1
+					});
+				} } >
+					<Text style={styles.welcome}>Login View</Text>
+				</TouchableHighlight>
+
+
 				
 
 			</View>

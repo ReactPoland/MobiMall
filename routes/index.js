@@ -4,8 +4,8 @@ import { Navigator, Text, ScrollView, StyleSheet, View } from 'react-native';
 import NewProductSeller from './NewProductSeller';
 import PageList from './PageList';
 import PostProductToIG from './PostProductToIG';
-
-
+import ShopperProfileView from './ShopperProfileView';
+import Login from './Login';
 
 
 
@@ -20,7 +20,9 @@ class Switcher extends Component {
 		this.routesName = {
 			NewProductSeller: () =>  (<NewProductSeller {...this.props} />),
 			PageList: () => (<PageList {...this.props} />),
-			PostProductToIG: () => (<PostProductToIG {...this.props} />)
+			PostProductToIG: () => (<PostProductToIG {...this.props} />),
+			ShopperProfileView: () => (<ShopperProfileView {...this.props} />),
+			Login: () => (<Login {...this.props} />),
 		};
 	}
 

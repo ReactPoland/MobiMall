@@ -103,6 +103,7 @@ export default class Router extends Component {
 				renderScene={ ( route, navigator ) => {
 
 					let routeMethods = {
+						
 						toDashboard: function() {
 							if ( !that.manager.getDataFB() ) return;
 
@@ -110,8 +111,17 @@ export default class Router extends Component {
 								name: 'Dashboard',
 								index: route.index + 1
 							});	
+						},
 
-						}
+						toSellerProfile: function() {
+							if ( !that.manager.getDataFB() ) return;
+
+							navigator.push({
+								name: 'ShopperProfileView',
+								index: route.index + 1
+							});	
+						},
+
 					};
 
 					return (

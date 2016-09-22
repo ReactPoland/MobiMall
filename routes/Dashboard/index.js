@@ -42,95 +42,85 @@ export default class Dashboard extends Component {
 	render() {
 		let that = this;
 		return (
-			<View style={loginStyle.container} onLayout={this.onLayout}>
+			<View style={dashboardStyle.container} onLayout={this.onLayout}>
 
-			<Text>This is dashboard</Text>
+				<View style={{
+					flex: 1,
+					justifyContent: 'center',
+					alignItems: 'center',
+				}} >
+					<Text style={{
+						fontSize: 20
+					}} >
+						This is dashboard
+					</Text>
+				</View>
+
+				<View style={dashboardStyle.menuStripeBlock}>
+					<Image source={require('../../assets/img/mobimall-icon.png')} style={dashboardStyle.logoMini}/>
+				
+					<View style={dashboardStyle.menuStripeContent}>
+
+						<TouchableNativeFeedback onPress={ () => {this.props.navigator.toSellerProfile(); } }>
+							<View style={dashboardStyle.iconWrap}>
+								<Image source={require('../../assets/img/ic_settings.png')} style={dashboardStyle.stripeIcon}/>
+							</View>
+						</TouchableNativeFeedback>
+
+
+						<TouchableNativeFeedback onPress={ () => {this.props.navigator.toSellerProfile(); } }>
+							<View style={dashboardStyle.iconWrap}>
+								<Image source={require('../../assets/img/ic_settings.png')} style={dashboardStyle.stripeIcon}/>
+							</View>
+						</TouchableNativeFeedback>
+
+						<TouchableNativeFeedback onPress={ () => {this.props.navigator.toSellerProfile(); } }>
+							<View style={dashboardStyle.iconWrap}>
+								<Image source={require('../../assets/img/ic_settings.png')} style={dashboardStyle.stripeIcon}/>
+							</View>
+						</TouchableNativeFeedback>
+
+					</View>
+				</View>
 
 			</View>
 		)
 	}
 }
 
-const loginStyle = StyleSheet.create({
-	logoText: {
-		color: 'white',
-		fontSize: 30,
-		fontWeight: 'bold',
+const dashboardStyle = StyleSheet.create({
+	iconWrap: {
+		marginRight: 35,
 	},
-	logo: {
+	icon: {
+		height: 40,
+		width: 40,
+	},
+	menuStripeBlock: {
+		height: 80,
+	},
+	logoMini: {
 		resizeMode: 'contain',
-		height: 150,
-		width: 150,
-	},
-	buttonVertBlock: {
-		flexDirection: 'row',
-		height: 50,
-	},
-	purpleShadow: {
-		justifyContent: 'center',
-		alignItems: 'center',
-		flex: 6,
-		backgroundColor: `rgba(133, 4, 147, 0.5)`,
-		zIndex:20,
-	},
-	bgImage: {
+		width: 60,
+		height: 60,
 		position: 'absolute',
-		left: 0,
-		right: 0,
-		top: 0,
-		bottom: 0,
+		left: 30,
 		zIndex: 10,
 	},
-	postButtonView: {
-		backgroundColor: 'black',
-		marginRight: 20,
-		marginLeft: 20,
-		marginTop: 15,
-		padding: 7,
-	},
-	buttonBlock: {
-		zIndex:20,
-	},
-	button: {
-		justifyContent: 'center',
+	menuStripeContent: {
+		flexDirection: 'row',
 		alignItems: 'center',
-		height: 50,
-		backgroundColor: `rgba(84, 70, 184, 0.7)`,
-	},
-	buttonVert: {
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: `rgba(84, 70, 184, 0.7)`,
-		flex: 1,
-	},
-	buttonText: {
-		justifyContent: 'center',
-		color: 'white',
-		fontSize: 18,
-	},
-	buttName: {
-		color: 'white',
-		textAlign: 'center',
-		fontSize: 20,
+		height: 60,
+		backgroundColor: `rgba(133, 4, 147, 0.5)`,
+		marginLeft: 60,
+		paddingLeft: 40,
 	},
 	container: {
 		flex: 1,
 		overflow: 'hidden',
 	},
-	blockTitle: {
-		fontWeight: 'bold',
-		fontSize: 15,
-		paddingTop: 5,
-		paddingBottom: 5
-	},
-	postPageImageView: {
-	},
-	postPageDescView: {
-		paddingTop: 20,
-		paddingLeft: 10,
-		paddingRight: 10,
-		paddingBottom: 20,
-		backgroundColor: 'white'
-	}
+
+
+	
 
 });

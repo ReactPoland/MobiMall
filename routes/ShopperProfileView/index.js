@@ -147,6 +147,11 @@ class Tabs extends Component {
 
 export default class ShopperProfileView extends Component {
 	render() {
+
+		let profileData = this.props.manager.getDataFB();
+
+		console.log( profileData );
+
 		return (
 			<View style={st.container}>
 
@@ -180,9 +185,10 @@ export default class ShopperProfileView extends Component {
 								<Text style={st.textInputGrey} >First name:</Text>
 								<TextInput 
 									style={st.input} 
-									placeholder={'Mens Brogue Shoe'} 
+									placeholder={'Test name'} 
 									underlineColorAndroid="#edb4ff" 
 									placeholderTextColor='#cccccc'
+									value={profileData.first_name}
 									/>
 								<Text style={st.textInputGrey} >Last name:</Text>
 								<TextInput 
@@ -190,6 +196,7 @@ export default class ShopperProfileView extends Component {
 									placeholder={'Mens Brogue Shoe'} 
 									underlineColorAndroid="#edb4ff" 
 									placeholderTextColor='#cccccc'
+									value={profileData.last_name}
 									/>
 
 								<Text style={st.textInputGrey} >Email address:</Text>

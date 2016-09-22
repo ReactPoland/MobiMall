@@ -18,6 +18,7 @@ export default class NewProductSeller extends Component {
 	constructor(prop) {
 		super(prop);
 		this.onLayout = this.onLayout.bind(this);
+		this.loginFB = this.loginFB.bind(this);
 		// this.state = {
 			// mainImageSize: {
 				// width: 360,
@@ -41,8 +42,31 @@ export default class NewProductSeller extends Component {
 
 	}
 
-	render() {
+	loginFB() {
 		let that = this;
+
+		FBLoginManager.setLoginBehavior( FBLoginManager.LoginBehaviors.Native );
+		FBLoginManager.loginWithPermissions(["email","user_friends"], function(error, data) {
+
+			if (that.props.manager.getDataFB() ) return;
+			
+			if ( error ) {
+				Alert.alert('error');
+				console.log(error);
+				return;
+			}
+			if ( ! ( data.type === 'success' ) ) {
+				Alert.alert('Bad response');
+				return;
+			}
+
+			that.props.manager.authFB && that.props.manager.authFB( JSON.parse( data.profile ) );
+		});
+	}
+
+	render() {
+
+
 		return (
 			<View style={loginStyle.container} onLayout={this.onLayout}>
 
@@ -54,25 +78,32 @@ export default class NewProductSeller extends Component {
 				</View>
 				
 				<View style={loginStyle.buttonBlock}>
+
+					<TouchableNativeFeedback onPress={ this.loginFB }>
+						<View style={loginStyle.button}>
+							<Text style={loginStyle.buttonText} >CONNECT WITH FACEBOOK</Text>
+							{/*<FBLogin
+							    ref={(fbLogin) => { this.fbLogin = fbLogin }}
+							    loginBehavior={FBLoginManager.LoginBehaviors.Native}
+							    permissions={["email","user_friends"]}
+							    onLogin={function(e) {
+							    	if ( ! ( e.type === 'success' ) ) return;
+							    	that.props.manager.authFB && that.props.manager.authFB( e.profile );
+							    	console.log(e)
+							    } }
+							    onLoginFound={function(e){console.log(e)}}
+							    onLoginNotFound={function(e){console.log(e)}}
+							    onLogout={function(e){console.log(e)}}
+							    onCancel={ function(e) { } }
+							    onError={ function(e) {
+							    	console.log(e);
+							    } }
+							    onPermissionsMissing={ function(e) { console.log(e) } }
+							  />*/}
+						</View>
+					</TouchableNativeFeedback>
+
 					
-					<View style={loginStyle.button}>
-						<Text style={loginStyle.buttonText} >CONNECT WITH FACEBOOK</Text>
-						<FBLogin
-						    ref={(fbLogin) => { this.fbLogin = fbLogin }}
-						    loginBehavior={FBLoginManager.LoginBehaviors.Native}
-						    permissions={["email","user_friends"]}
-						    onLogin={function(e){console.log(e)}}
-						    onLoginFound={function(e){console.log(e)}}
-						    onLoginNotFound={function(e){console.log(e)}}
-						    onLogout={function(e){console.log(e)}}
-						    onCancel={ function(e) {
-						    	// console.log(e);
-						    	that.props.manager.authFB && that.props.manager.authFB( true );
-						    	// that.props.navigator && that.props.navigator.toDashboard();
-						    }}
-						    onPermissionsMissing={function(e){console.log(e)}}
-						  />
-					</View>
 
 					<View style={loginStyle.buttonVertBlock}>
 

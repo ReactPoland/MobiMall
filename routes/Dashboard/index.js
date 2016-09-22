@@ -41,6 +41,8 @@ export default class Dashboard extends Component {
 
 	render() {
 		let that = this;
+		let { name:profileName } = this.props.manager.getDataFB();
+
 		return (
 			<View style={dashboardStyle.container} onLayout={this.onLayout}>
 
@@ -52,7 +54,8 @@ export default class Dashboard extends Component {
 					<Text style={{
 						fontSize: 20
 					}} >
-						This is dashboard
+						Hello { profileName }, {'\n'}
+						this is your dashboard.
 					</Text>
 				</View>
 

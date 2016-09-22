@@ -74,14 +74,11 @@ export default class Router extends Component {
 			return {
 				authFB: function( data ) {
 
-					if ( data === true ) {
+					if ( data ) {
 
 						that.setState({
-							userDataFB : {
-								name: 'User',
-								last: 'LastName'
-							}
-						})
+							userDataFB : data
+						});
 					}
 				},
 

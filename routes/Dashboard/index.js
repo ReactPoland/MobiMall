@@ -10,10 +10,8 @@ import {
 	Alert,
 	Dimensions
 } from 'react-native';
-var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
 
-
-export default class NewProductSeller extends Component {
+export default class Dashboard extends Component {
 
 	constructor(prop) {
 		super(prop);
@@ -46,48 +44,7 @@ export default class NewProductSeller extends Component {
 		return (
 			<View style={loginStyle.container} onLayout={this.onLayout}>
 
-				<Image source={{uri: 'https://unsplash.it/400/400?image=140'}} style={loginStyle.bgImage}/>
-
-				<View style={loginStyle.purpleShadow}>				
-					<Image source={require('../../assets/img/mobimall-icon.png')} style={loginStyle.logo}/>
-					<Text style={loginStyle.logoText} >MOBIMALL</Text>
-				</View>
-				
-				<View style={loginStyle.buttonBlock}>
-					
-					<View style={loginStyle.button}>
-						<Text style={loginStyle.buttonText} >CONNECT WITH FACEBOOK</Text>
-						<FBLogin
-						    ref={(fbLogin) => { this.fbLogin = fbLogin }}
-						    loginBehavior={FBLoginManager.LoginBehaviors.Native}
-						    permissions={["email","user_friends"]}
-						    onLogin={function(e){console.log(e)}}
-						    onLoginFound={function(e){console.log(e)}}
-						    onLoginNotFound={function(e){console.log(e)}}
-						    onLogout={function(e){console.log(e)}}
-						    onCancel={ function(e) {
-						    	// console.log(e);
-						    	that.props.manager.authFB && that.props.manager.authFB( true );
-						    	// that.props.navigator && that.props.navigator.toDashboard();
-						    }}
-						    onPermissionsMissing={function(e){console.log(e)}}
-						  />
-					</View>
-
-					<View style={loginStyle.buttonVertBlock}>
-
-						<View style={loginStyle.buttonVert}>
-							<Text style={loginStyle.buttonText} >LOGIN</Text>
-						</View>
-
-						<View style={loginStyle.buttonVert}>
-							<Text style={loginStyle.buttonText} >SIGN UP</Text>
-						</View>
-
-					</View>
-
-				</View>
-
+			<Text>This is dashboard</Text>
 
 			</View>
 		)

@@ -6,6 +6,7 @@ import PageList from './PageList';
 import PostProductToIG from './PostProductToIG';
 import ShopperProfileView from './ShopperProfileView';
 import Login from './Login';
+import Dashboard from './Dashboard';
 
 
 
@@ -23,11 +24,16 @@ class Switcher extends Component {
 			PostProductToIG: () => (<PostProductToIG {...this.props} />),
 			ShopperProfileView: () => (<ShopperProfileView {...this.props} />),
 			Login: () => (<Login {...this.props} />),
+			Dashboard: () => (<Dashboard {...this.props} />),
 		};
 	}
 
 	render() {
 		let { name } = this.props.route;
+
+		if ( name === 'Login' && this.props.manager.getDataFB()) {
+			name = 'Dashboard';
+		}
 
 		let route = this.routesName[ name ] ? this.routesName[ name ]() : (
 			<Text style={{color: 'red'}}>Can't found route</Text>
@@ -51,20 +57,68 @@ export default class Router extends Component {
 
 	static get defaultProps() {
 		return {
-			route: 'PageList',
+			route: 'Login',
 		}
+	}
+
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			userDataFB: null,
+		}
+		let that = this;
+
+		this.manager = (function() {
+			// var userDataFB = null;
+			return {
+				authFB: function( data ) {
+
+					if ( data === true ) {
+
+						that.setState({
+							userDataFB : {
+								name: 'User',
+								last: 'LastName'
+							}
+						})
+					}
+				},
+
+				getDataFB: function() {
+					return that.state.userDataFB;
+				},
+
+			}
+		})();
+
 	}
 
 
 	render() {
+		let that = this;
 		return (
 			<Navigator 
 				initialRoute={{ name: this.props.route, index: 0 }}
 				renderScene={ ( route, navigator ) => {
+
+					let routeMethods = {
+						toDashboard: function() {
+							if ( !that.manager.getDataFB() ) return;
+
+							navigator.push({
+								name: 'Dashboard',
+								index: route.index + 1
+							});	
+
+						}
+					};
+
 					return (
 					    <Switcher 
+					    	manager= { this.manager }
 					    	route={ route }
-					    	navigator={ navigator }
+					    	navigator={ routeMethods }
 
 						    // Function to call when a new scene should be displayed           
 						    // onForward={ () => {    

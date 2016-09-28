@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { 
-	Text, 
-	View, 
-	StyleSheet, 
+import {
+	Text,
+	View,
+	StyleSheet,
 	Image,
 	TextInput,
 	TouchableNativeFeedback,
@@ -11,6 +11,7 @@ import {
 	Dimensions
 } from 'react-native';
 var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
+import { api } from '../../utils';
 
 
 export default class NewProductSeller extends Component {
@@ -23,7 +24,7 @@ export default class NewProductSeller extends Component {
 			// mainImageSize: {
 				// width: 360,
 				// height: 360
-			// } 
+			// }
 		// }
 	}
 
@@ -49,7 +50,7 @@ export default class NewProductSeller extends Component {
 		FBLoginManager.loginWithPermissions(["email","user_friends"], function(error, data) {
 
 			if (that.props.manager.getDataFB() ) return;
-			
+
 			if ( error ) {
 				Alert.alert('error');
 				console.log(error);
@@ -61,6 +62,7 @@ export default class NewProductSeller extends Component {
 			}
 
 			that.props.manager.authFB && that.props.manager.authFB( JSON.parse( data.profile ) );
+			api.createUser(JSON.parse(data.profile));
 		});
 	}
 
@@ -72,11 +74,11 @@ export default class NewProductSeller extends Component {
 
 				<Image source={{uri: 'https://unsplash.it/400/400?image=140'}} style={loginStyle.bgImage}/>
 
-				<View style={loginStyle.purpleShadow}>				
+				<View style={loginStyle.purpleShadow}>
 					<Image source={require('../../assets/img/mobimall-icon.png')} style={loginStyle.logo}/>
 					<Text style={loginStyle.logoText} >MOBIMALL</Text>
 				</View>
-				
+
 				<View style={loginStyle.buttonBlock}>
 
 					<TouchableNativeFeedback onPress={ this.loginFB }>
@@ -103,7 +105,7 @@ export default class NewProductSeller extends Component {
 						</View>
 					</TouchableNativeFeedback>
 
-					
+
 
 					<View style={loginStyle.buttonVertBlock}>
 

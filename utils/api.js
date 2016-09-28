@@ -1,5 +1,6 @@
 import axios from 'axios';
-const host = 'http://10.0.2.2:3000';
+// const host = 'http://10.0.2.2:3000';  // localDb
+const host = 'http://testmobimall2.herokuapp.com';
 const prependHost = path => `${host ? host : ''}${path}`;
 
 const api = {

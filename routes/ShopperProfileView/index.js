@@ -13,6 +13,8 @@ import { CreditCardInput } from "react-native-credit-card-input";
 import { bindMethods } from '../../utils';
 import { api } from '../../utils';
 import Stripe from '../../stripe';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { Sae } from 'react-native-textinput-effects';
 
 class CheckboxList extends Component {
 	constructor(props) {
@@ -261,49 +263,56 @@ export default class ShopperProfileView extends Component {
 							<View style={st.contentWrap} >
 								<Text style={st.blockSubtitle} >ADD NEW PRODUCT</Text>
 
-								<Text style={st.textInputGrey} >First name:</Text>
-								<TextInput
-									style={st.input}
-									placeholder={'Test name'}
-									underlineColorAndroid="#edb4ff"
-									placeholderTextColor='#cccccc'
-									value={profileData.first_name}
-									/>
-								<Text style={st.textInputGrey} >Last name:</Text>
-								<TextInput
-									style={st.input}
-									placeholder={'Mens Brogue Shoe'}
-									underlineColorAndroid="#edb4ff"
-									placeholderTextColor='#cccccc'
-									value={profileData.last_name}
-									/>
+								<Sae
+							    label={'First name'}
+							    iconClass={FontAwesomeIcon}
+							    iconName={'pencil'}
+							    iconColor={'gray'}
+									inputStyle={st.textInput}
+							    // TextInput props
+							    autoCapitalize={'none'}
+							    autoCorrect={false}
+							  />
 
-								<Text style={st.textInputGrey} >Email address:</Text>
-								<TextInput
-									style={st.input}
-									placeholder={'Mens Brogue Shoe'}
-									underlineColorAndroid="#edb4ff"
-									placeholderTextColor='#cccccc'
-									/>
+								<Sae
+							    label={'Last name'}
+							    iconClass={FontAwesomeIcon}
+							    iconName={'pencil'}
+							    iconColor={'gray'}
+							    // TextInput props
+							    autoCapitalize={'none'}
+							    autoCorrect={false}
+							  />
 
-								<Text style={st.textInputGrey} >Phone number:</Text>
-								<TextInput
-									style={st.input}
-									placeholder={'Mens Brogue Shoe'}
-									underlineColorAndroid="#edb4ff"
-									placeholderTextColor='#cccccc'
-									/>
+								<Sae
+							    label={'Email Address'}
+							    iconClass={FontAwesomeIcon}
+							    iconName={'pencil'}
+							    iconColor={'gray'}
+							    // TextInput props
+							    autoCapitalize={'none'}
+							    autoCorrect={false}
+							  />
 
-								<Text style={st.textInput} >About</Text>
-								<View style={st.inputMultiWrap}>
-									<TextInput
-										style={st.inputMulti}
-										placeholder={'Populated by my facebook profile'}
-										multiline = {true}
-										placeholderTextColor='#b6b6b6'
-										underlineColorAndroid="transparent"
-										numberOfLines = {4} />
-								</View>
+								<Sae
+							    label={'Phone number'}
+							    iconClass={FontAwesomeIcon}
+							    iconName={'pencil'}
+							    iconColor={'gray'}
+							    // TextInput props
+							    autoCapitalize={'none'}
+							    autoCorrect={false}
+							  />
+
+								<Sae
+							    label={'Email Address'}
+							    iconClass={FontAwesomeIcon}
+							    iconName={'pencil'}
+							    iconColor={'gray'}
+							    // TextInput props
+							    autoCapitalize={'none'}
+							    autoCorrect={false}
+							  />
 							</View>
 						</View>
 						<View name={'PAYMENT'}>

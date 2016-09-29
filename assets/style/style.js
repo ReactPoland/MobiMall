@@ -47,7 +47,7 @@ export default {
 		fontWeight: 'bold',
 		fontSize: 15,
 		color: '#9100be',
-		textAlign: 'center'		
+		textAlign: 'center'
 	},
 	buttonDescription: {
 		flex: 2,
@@ -98,7 +98,7 @@ export default {
 	inputMulti: {
 		textAlignVertical: 'top',
 		alignSelf: 'stretch',
-		borderWidth: 0,	
+		borderWidth: 0,
 	},
 	inputMultiWrap: {
 		marginTop: 20,
@@ -183,7 +183,7 @@ export default {
 	checkboxPointer: {
 		height: 10,
 		width: 10,
-		borderRadius: 5, 
+		borderRadius: 5,
 		backgroundColor: '#888888',
 	},
 	chBoxCardImage: {
@@ -200,7 +200,7 @@ export default {
 	checkboxPointerChecked: {
 		height: 10,
 		width: 10,
-		borderRadius: 5, 
+		borderRadius: 5,
 		backgroundColor: '#9100be',
 	},
 	chboxCardVertContainer: {

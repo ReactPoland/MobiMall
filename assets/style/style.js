@@ -77,7 +77,7 @@ export default {
 		color: '#9100be'
 	},
 	textInputGrey: {
-		fontSize: 10,
+		fontSize: 15,
 		color: '#888888'
 	},
 	contentWrap: {

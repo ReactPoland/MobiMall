@@ -10,6 +10,10 @@ import {
 	ScrollView
 } from 'react-native';
 import { CreditCardInput } from "react-native-credit-card-input";
+import Tabs from '../../components/Tabs';
+import CardRow from '../../components/CardRow';
+import ProfileHeader from '../../components/ProfileHeader';
+import CardsManager from '../../components/CardsManager';
 import { bindMethods } from '../../utils';
 import { api } from '../../utils';
 import Stripe from '../../stripe';
@@ -33,8 +37,6 @@ class CheckboxList extends Component {
 		});
 		if (this.props.onChange) this.props.onChange(item);
 	}
-
-
 
 	render() {
 
@@ -71,193 +73,21 @@ class CheckboxList extends Component {
 	}
 }
 
-
-class Tabs extends Component {
-
-	constructor(props) {
-		super(props);
-		this.state = {
-			currentPage: 0,
-			tabTitleWidth: Math.floor(360 / 3)
-		};
-
-		this.onLayoutView = this.onLayoutView.bind(this);
-		this.selectTab = this.selectTab.bind(this);
-	}
-
-	onLayoutView(ev) {
-		let { width, height } = ev.nativeEvent.layout;
-
-		this.setState({
-			tabTitleWidth: Math.floor(width / 3)
-		});
-	}
-
-	selectTab(index) {
-		this.setState({
-			currentPage: index
-		});
-	}
-
-
-	render() {
-		let tabs = this.props.children.map( ( component, index ) =>  {
-			let textViewStyles = {
-				position: 'absolute',
-				top: 0,
-				left: 12,
-				bottom: 0,
-				right: 12,
-			};
-
-			if ( index === this.state.currentPage ) {
-				textViewStyles['borderBottomColor'] = 'white';
-				textViewStyles['borderBottomWidth'] = 3;
-				textViewStyles['borderStyle'] = 'solid';
-			}
-
-			return (
-				<TouchableNativeFeedback key={ index } onPress={() => {
-					let curIndex = index;
-					this.selectTab( curIndex );
-				}} >
-					<View style={{paddingBottom: 5}} >
-
-						<View style={textViewStyles} ></View>
-						<Text
-							style={{
-								width:this.state.tabTitleWidth,
-								fontSize: 19,
-								color: 'white',
-								textAlign: 'center',
-							}} >
-							{ component.props.name ? component.props.name : 'unnamed' }
-						</Text>
-					</View>
-				</TouchableNativeFeedback>
-			)
-		});
-
-		return (
-			<View onLayout={this.onLayoutView}>
-				<ScrollView horizontal={ true } contentContainerStyle={st.tabTitlesView}>
-					{ tabs }
-				</ScrollView>
-				{ this.props.children[this.state.currentPage] }
-			</View>
-		)
-	}
-};
-
-const DebitCard = ({ cardData }) => {
-	const { last4, brand } = cardData;
-	const visaIcon = require('../../assets/img/visa-icon.jpg');
-	const masterCardIcon = require('../../assets/img/mastercard-icon.jpg');
-	return (
-		<View style={st.cardRow}>
-			<View style={st.cardImageWrap}>
-				<Image
-					style={st.cardImage}
-					source={brand === 'Visa' ? visaIcon : masterCardIcon}
-				/>
-			</View>
-			<Text style={st.cardTextNumber}>**** {last4}</Text>
-		</View>
-	);
-}
-
 export default class ShopperProfileView extends Component {
 	constructor(props) {
 		super(props);
 		bindMethods(this);
 		this.state = {
-			cardData: null,
-			fetchingData: false,
-			cards: [],
 			profileData: this.props.manager.getDataFB()
 		};
-	}
-
-	componentDidMount () {
-		this._fetchData();
-	}
-
-	async _onCardSave() {
-		const { cardData, profileData } = this.state;
-		const { cardNumber, expMonth, expYear, cvc } = cardData;
-		if(cardData) {
-			const cardToken = await Stripe
-				.createToken(cardNumber, expMonth, expYear, cvc);
-			if(cardToken.id) {
-				const apiResp = await api.saveCard(profileData.id, cardToken.id);
-				if(!apiResp.data.error) {
-					this._fetchData();
-				}
-			}
-		}
-
-	}
-
-	_onCardInputChange (card) {
-		if(card.valid) {
-			const { number, expiry, cvc } = card.values;
-			const cardNumber = number.split(' ').join('');
-			const expMonth = expiry.split('/')[0];
-			const expYear = expiry.split('/')[1];
-			const cardData = {
-				cardNumber,
-				expMonth,
-				expYear,
-				cvc
-			}
-			this.setState({ cardData });
-		}
-	}
-
-	async _fetchData () {
-		this.setState({ fetchingData: true });
-		const response = await api.getCards(this.state.profileData.id);
-		if(response.data.error) return;
-		const cards = response.data;
-		this.setState({ fetchingData: false, cards });
-	}
-
-	_getCards () {
-		const { cards, fetchingData } = this.state;
-		if(fetchingData) return <Text>Loading data...</Text>;
-		if(cards.length < 1) return <Text>No cards added yet</Text>;
-		return cards.map((card, i) => (
-			<DebitCard cardData={card} key={i} />
-		));
 	}
 
 	render() {
 		const { profileData } = this.state;
 		return (
 			<View style={st.container}>
-
 				<ScrollView>
-
-					<View style={ st.shopTitleView } >
-						<Image source={{uri: 'https://unsplash.it/600/100?image=147'}} style={st.imgTitle}/>
-						<View style={st.shopTitleProfileBlock}>
-
-							<View style={st.shopperTitleIcon}>
-								<Image source={require('../../assets/img/ic_settings.png')} style={st.profileImgIcon}/>
-							</View>
-
-							<View style={st.shopperTitleProfile}>
-								<Image source={{uri: 'https://unsplash.it/100/100?image=158'}} style={st.shopProfileImg}/>
-								<Text style={ st.shopProfileName } >William Reid</Text>
-							</View>
-
-							<View style={st.shopperTitleIcon}>
-								<Image source={require('../../assets/img/ic_settings.png')} style={st.profileImgIcon}/>
-							</View>
-
-						</View>
-					</View>
-
+					<ProfileHeader />
 					<Tabs>
 						<View name={'PERSONAL'} >
 							<View style={st.contentWrap} >
@@ -268,7 +98,7 @@ export default class ShopperProfileView extends Component {
 							    iconClass={FontAwesomeIcon}
 							    iconName={'pencil'}
 							    iconColor={'gray'}
-									inputStyle={st.textInput}
+									inputStyle={st.textInputGrey}
 							    // TextInput props
 							    autoCapitalize={'none'}
 							    autoCorrect={false}
@@ -315,23 +145,7 @@ export default class ShopperProfileView extends Component {
 							  />
 							</View>
 						</View>
-						<View name={'PAYMENT'}>
-						<View style={st.contentWrap} >
-							<Text style={st.blockSubtitle} >MY CARDS</Text>
-							{this._getCards()}
-						</View>
-
-						<View style={st.contentWrap} >
-							<Text style={st.blockSubtitle} >NEW PAYMENT DETAILS</Text>
-							<CreditCardInput onChange={this._onCardInputChange} />
-							<TouchableNativeFeedback
-								onPress={this._onCardSave} >
-								<View style={st.purpleButtonView} >
-									<Text style={st.purpleButtonName} >SAVE CARD</Text>
-								</View>
-							</TouchableNativeFeedback>
-						</View>
-						</View>
+						<CardsManager name='PAYMENTS' fbId={this.state.profileData.id} />
 						<View name={'SHIPPING'}>
 							<View style={st.contentWrap} >
 								<Text style={st.blockSubtitle} >DEFAULT ADDRESS</Text>

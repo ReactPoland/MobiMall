@@ -62,7 +62,7 @@ export default class NewProductSeller extends Component {
 			}
 
 			that.props.manager.authFB && that.props.manager.authFB( JSON.parse( data.profile ) );
-			api.createUser(JSON.parse(data.profile));
+			api.createUser(JSON.parse(data.profile)).catch(e => console.log('e', e));
 		});
 	}
 

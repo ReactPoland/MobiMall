@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { 
-	Navigator, 
-	Text, 
-	View, 
-	TouchableHighlight, 
-	StyleSheet 
+import {
+	Navigator,
+	Text,
+	View,
+	TouchableHighlight,
+	StyleSheet
 } from 'react-native';
 
 export default class PageList extends Component {
@@ -51,10 +51,6 @@ export default class PageList extends Component {
 				} } >
 					<Text style={styles.welcome}>Login View</Text>
 				</TouchableHighlight>
-
-
-				
-
 			</View>
 		)
 	}

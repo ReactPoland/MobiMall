@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { 
-	Text, 
-	View, 
-	StyleSheet, 
+import {
+	Text,
+	View,
+	StyleSheet,
 	Image,
 	TextInput,
 	TouchableNativeFeedback,
@@ -20,7 +20,7 @@ export default class Dashboard extends Component {
 			// mainImageSize: {
 				// width: 360,
 				// height: 360
-			// } 
+			// }
 		// }
 	}
 
@@ -61,10 +61,10 @@ export default class Dashboard extends Component {
 
 				<View style={dashboardStyle.menuStripeBlock}>
 					<Image source={require('../../assets/img/mobimall-icon.png')} style={dashboardStyle.logoMini}/>
-				
+
 					<View style={dashboardStyle.menuStripeContent}>
 
-						<TouchableNativeFeedback onPress={ () => {this.props.navigator.toSellerProfile(); } }>
+						<TouchableNativeFeedback onPress={ () => {this.props.navigator.toBuyerProfile(); } }>
 							<View style={dashboardStyle.iconWrap}>
 								<Image source={require('../../assets/img/ic_settings.png')} style={dashboardStyle.stripeIcon}/>
 							</View>
@@ -77,7 +77,7 @@ export default class Dashboard extends Component {
 							</View>
 						</TouchableNativeFeedback>
 
-						<TouchableNativeFeedback onPress={ () => {this.props.navigator.toSellerProfile(); } }>
+						<TouchableNativeFeedback onPress={ () => {this.props.navigator.toBuyerProfile(); } }>
 							<View style={dashboardStyle.iconWrap}>
 								<Image source={require('../../assets/img/ic_settings.png')} style={dashboardStyle.stripeIcon}/>
 							</View>
@@ -124,6 +124,6 @@ const dashboardStyle = StyleSheet.create({
 	},
 
 
-	
+
 
 });

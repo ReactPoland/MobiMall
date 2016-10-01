@@ -7,6 +7,7 @@ import PostProductToIG from './PostProductToIG';
 import ShopperProfileView from './ShopperProfileView';
 import Login from './Login';
 import Dashboard from './Dashboard';
+import SellerProfileView from './SellerProfileView';
 
 
 
@@ -25,6 +26,7 @@ class Switcher extends Component {
 			ShopperProfileView: () => (<ShopperProfileView {...this.props} />),
 			Login: () => (<Login {...this.props} />),
 			Dashboard: () => (<Dashboard {...this.props} />),
+			SellerProfileView: () => (<SellerProfileView {...this.props} />)
 		};
 	}
 
@@ -95,40 +97,49 @@ export default class Router extends Component {
 	render() {
 		let that = this;
 		return (
-			<Navigator 
+			<Navigator
 				initialRoute={{ name: this.props.route, index: 0 }}
 				renderScene={ ( route, navigator ) => {
 
 					let routeMethods = {
-						
+
 						toDashboard: function() {
 							if ( !that.manager.getDataFB() ) return;
 
 							navigator.push({
 								name: 'Dashboard',
 								index: route.index + 1
-							});	
+							});
 						},
 
-						toSellerProfile: function() {
+						toBuyerProfile: function() {
 							if ( !that.manager.getDataFB() ) return;
 
 							navigator.push({
 								name: 'ShopperProfileView',
 								index: route.index + 1
-							});	
+							});
 						},
+
+						toSellerProfile () {
+							if ( !that.manager.getDataFB() ) return;
+
+							navigator.push({
+								name: 'SellerProfileView',
+								index: route.index + 1
+							});
+						}
 
 					};
 
 					return (
-					    <Switcher 
+					    <Switcher
 					    	manager= { this.manager }
 					    	route={ route }
 					    	navigator={ routeMethods }
 
-						    // Function to call when a new scene should be displayed           
-						    // onForward={ () => {    
+						    // Function to call when a new scene should be displayed
+						    // onForward={ () => {
 						    	// const nextIndex = route.index + 1;
 						        // navigator.push({
 						        	// title: 'Scene ' + nextIndex,

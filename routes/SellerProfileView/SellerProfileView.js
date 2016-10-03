@@ -45,6 +45,12 @@ export default class SellerProfileView extends Component {
 		this.setState({ personalData });
 	}
 
+	_onAddressesSave (addresses) {
+		api
+			.saveAddresses(this.state.fbId, addresses)
+			.catch(e => console.log(e));
+	}
+
   render () {
     return (
 			<View style={st.container}>
@@ -58,7 +64,11 @@ export default class SellerProfileView extends Component {
 						/>
 						<StoreTab name='STORE' />
 						<AccountsTab name='ACCOUNTS' fbId={this.state.fbId} />
-						<LogisticsTab name='LOGISTICS' personalData={this.state.personalData} />
+						<LogisticsTab
+							name='LOGISTICS'
+							personalData={this.state.personalData}
+							onAddressesSave={this._onAddressesSave}
+						/>
 					</Tabs>
 				</ScrollView>
 			</View>

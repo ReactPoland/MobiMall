@@ -157,11 +157,13 @@ export default class LogisticsTab extends Component {
     const { addressToEdit, addressToEditIndex } = this.state;
     if(addressToEdit) {
       addresses[addressToEditIndex] = address;
+      console.log('addr' ,address);
       this.setState({ addresses, addressToEdit: null, addressToEditIndex: false });
     } else {
       addresses.push(address);
       this.setState({ addresses });
     }
+    this.props.onAddressesSave(addresses);
   }
 
   _setAddressToEdit (i) {

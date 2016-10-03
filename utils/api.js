@@ -30,8 +30,8 @@ const api = {
     return createRequest(['users', 'updatePersonalInfo'], { fbId, user });
   },
 
-  saveAddress (fbId, address, type) {
-    return createRequest(['users', 'saveAddress'], { fbId, address, type });
+  saveAddresses (fbId, addresses) {
+    return createRequest(['users', 'saveAddresses'], { fbId, addresses });
   }
 }
 

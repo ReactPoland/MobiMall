@@ -1,6 +1,6 @@
 import axios from 'axios';
-const host = 'http://10.0.2.2:3000';  // localDb
-// const host = 'http://testmobimall2.herokuapp.com';
+// const host = 'http://10.0.2.2:3000';  // local server
+const host = 'http://testmobimall2.herokuapp.com'; // heroku server
 const createUrl = pathArray => `${host ? host : ''}/api/${pathArray.join('/')}`;
 
 const createRequest = (pathArray, data) => axios({

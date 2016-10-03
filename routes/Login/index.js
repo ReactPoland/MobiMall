@@ -48,7 +48,6 @@ export default class NewProductSeller extends Component {
 
 		FBLoginManager.setLoginBehavior( FBLoginManager.LoginBehaviors.Native );
 		FBLoginManager.loginWithPermissions(["email","user_friends"], function(error, data) {
-
 			if (that.props.manager.getDataFB() ) return;
 
 			if ( error ) {

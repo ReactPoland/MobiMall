@@ -12,6 +12,7 @@ import {
 
 import ProfileHeader from '../../components/ProfileHeader';
 import Tabs from '../../components/Tabs';
+import { api, bindMethods } from '../../utils';
 
 import PersonalTab from './PersonalTab';
 import StoreTab from './StoreTab';
@@ -21,7 +22,27 @@ import LogisticsTab from './LogisticsTab';
 export default class SellerProfileView extends Component {
 	constructor (props) {
 		super(props);
-		this.fbId = this.props.manager.getDataFB().id;
+		bindMethods(this);
+		this.state = {
+			fbId: this.props.manager.getDataFB().id,
+			personalData: {}
+		};
+	}
+
+	componentDidMount () {
+		api
+			.getPersonalInfo(this.state.fbId)
+			.then(({ data }) => this.setState({ personalData: data }))
+			.catch(e => console.log('err'));
+	}
+
+	_onPersonalInfoChange (property, event) {
+		const personalData = Object.assign({}, this.state.personalData);
+		personalData[property] = event.nativeEvent.text;
+		api
+			.updatePersonalInfo(this.state.fbId, personalData)
+			.catch(e => console.log(e));
+		this.setState({ personalData });
 	}
 
   render () {
@@ -30,10 +51,14 @@ export default class SellerProfileView extends Component {
 				<ScrollView>
           <ProfileHeader />
 					<Tabs>
-            <PersonalTab name='PERSONAL' />
+            <PersonalTab
+							name='PERSONAL'
+							personalData={this.state.personalData}
+							onPersonalInfoChange={this._onPersonalInfoChange}
+						/>
 						<StoreTab name='STORE' />
-						<AccountsTab name='ACCOUNTS' fbId={this.fbId} />
-						<LogisticsTab name='LOGISTICS' />
+						<AccountsTab name='ACCOUNTS' fbId={this.state.fbId} />
+						<LogisticsTab name='LOGISTICS' personalData={this.state.personalData} />
 					</Tabs>
 				</ScrollView>
 			</View>

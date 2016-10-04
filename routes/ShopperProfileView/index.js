@@ -161,6 +161,7 @@ export default class ShopperProfileView extends Component {
 								inputStyle={st.textInputGrey}
 							    // TextInput props
 							    autoCapitalize={'none'}
+        						onEndEditing={this.onPersonalInfoChange.bind(this, 'phone')}
 							    value={phone}
 							    autoCorrect={false}
 							  />
@@ -173,6 +174,7 @@ export default class ShopperProfileView extends Component {
 								inputStyle={st.textInputGrey}
 							    // TextInput props
 							    autoCapitalize={'none'}
+        						onEndEditing={this.onPersonalInfoChange.bind(this, 'email2')}
 							    value={email2}
 							    autoCorrect={false}
 							  />

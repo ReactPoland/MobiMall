@@ -9,8 +9,7 @@ import { Sae } from 'react-native-textinput-effects';
 import st from '../../assets/style';
 
 const PersonalTab = ({ personalData, onPersonalInfoChange }) => {
-  console.log('per', personalData)
-  const { firstName, lastName, email, email2, phone } = personalData;
+  const { firstName, lastName, email, email2, phone, about } = personalData;
   return (
     <View style={st.contentWrap} >
       <Text style={st.blockSubtitle} >PERSONAL DETAILS</Text>
@@ -73,6 +72,18 @@ const PersonalTab = ({ personalData, onPersonalInfoChange }) => {
         autoCorrect={false}
         onEndEditing={onPersonalInfoChange.bind(this, 'phone')}
         value={phone}
+      />
+
+      <Sae
+        label={'About'}
+        iconClass={FontAwesomeIcon}
+        iconName={'pencil'}
+        iconColor={'gray'}
+        inputStyle={st.textInputGrey}
+        autoCapitalize={'none'}
+        autoCorrect={false}
+        onEndEditing={onPersonalInfoChange.bind(this, 'about')}
+        value={about}
       />
 
     </View>

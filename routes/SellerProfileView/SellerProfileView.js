@@ -25,14 +25,15 @@ export default class SellerProfileView extends Component {
 		bindMethods(this);
 		this.state = {
 			fbId: this.props.manager.getDataFB().id,
-			personalData: {}
+			personalData: {},
+			bankAccountData: {}
 		};
 	}
 
 	componentDidMount () {
 		api
 			.getPersonalInfo(this.state.fbId)
-			.then(({ data }) => this.setState({ personalData: data }))
+			.then(({ data }) => this.setState({ personalData: data, bankAccountData: data.bankAccountData }))
 			.catch(e => console.log('err'));
 	}
 
@@ -51,6 +52,14 @@ export default class SellerProfileView extends Component {
 			.catch(e => console.log(e));
 	}
 
+	_onBankAccountDataChange (property, event) {
+		const bankAccountData = Object.assign({}, this.state.bankAccountData);
+		bankAccountData[property] = event.nativeEvent.text;
+		api
+			.saveBankAccountData(this.state.fbId, bankAccountData)
+			.catch(e => console.log(e));
+	}
+
   render () {
     return (
 			<View style={st.container}>
@@ -63,7 +72,12 @@ export default class SellerProfileView extends Component {
 							onPersonalInfoChange={this._onPersonalInfoChange}
 						/>
 						<StoreTab name='STORE' />
-						<AccountsTab name='ACCOUNTS' fbId={this.state.fbId} />
+						<AccountsTab
+							name='ACCOUNTS'
+							fbId={this.state.fbId}
+							onBankAccountDataChange={this._onBankAccountDataChange}
+							bankAccountData={this.state.bankAccountData}
+						/>
 						<LogisticsTab
 							name='LOGISTICS'
 							personalData={this.state.personalData}

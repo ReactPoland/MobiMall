@@ -32,6 +32,10 @@ const api = {
 
   saveAddresses (fbId, addresses) {
     return createRequest(['users', 'saveAddresses'], { fbId, addresses });
+  },
+
+  saveBankAccountData(fbId, bankAccountData) {
+    return createRequest(['users', 'bankAccountData'], { fbId, bankAccountData });
   }
 }
 

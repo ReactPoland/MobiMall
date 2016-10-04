@@ -51,19 +51,15 @@ class AddressInput extends Component {
       };
     }
 
-    this.state = {
-      ...getInitialValues(),
-      addressToEdit: null,
-      addressToEditIndex: false
-    };
-  }
-
-  _onAddressSave () {
-    this.props.onSave(this.state);
+    this.state = getInitialValues();
   }
 
   _setProperty (property, e) {
     this.setState({ [property]: e.nativeEvent.text });
+  }
+
+  _onAddressSave () {
+    this.props.onSave(this.state);
   }
 
   render () {
@@ -153,11 +149,11 @@ export default class LogisticsTab extends Component {
   }
 
   _saveAddress (address) {
+    console.log('test1');
     const addresses = this.state.addresses.slice();
     const { addressToEdit, addressToEditIndex } = this.state;
     if(addressToEdit) {
       addresses[addressToEditIndex] = address;
-      console.log('addr' ,address);
       this.setState({ addresses, addressToEdit: null, addressToEditIndex: false });
     } else {
       addresses.push(address);

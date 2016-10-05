@@ -8,6 +8,7 @@ import ShopperProfileView from './ShopperProfileView';
 import Login from './Login';
 import Dashboard from './Dashboard';
 import SellerProfileView from './SellerProfileView';
+import LoginInst from './LoginInst';
 
 
 
@@ -26,6 +27,7 @@ class Switcher extends Component {
 			ShopperProfileView: () => (<ShopperProfileView {...this.props} />),
 			Login: () => (<Login {...this.props} />),
 			Dashboard: () => (<Dashboard {...this.props} />),
+			LoginInst: () => (<LoginInst {...this.props} />),
 			SellerProfileView: () => (<SellerProfileView {...this.props} />)
 		};
 	}
@@ -33,7 +35,12 @@ class Switcher extends Component {
 	render() {
 		let { name } = this.props.route;
 
-		if ( name === 'Login' && this.props.manager.getDataFB()) {
+
+		if ( name === 'Login' && this.props.manager.getDataFB() ) {
+			name = 'LoginInst';
+		} 
+
+		if ( name === 'LoginInst' && this.props.manager.getDataInst() ) {
 			name = 'Dashboard';
 		}
 
@@ -68,6 +75,7 @@ export default class Router extends Component {
 
 		this.state = {
 			userDataFB: null,
+			userDataInst: null
 		}
 		let that = this;
 
@@ -88,6 +96,20 @@ export default class Router extends Component {
 					return that.state.userDataFB;
 				},
 
+				authInst: function( data ) {
+
+					if ( data ) {
+
+						that.setState({
+							userDataInst : data
+						});
+					}
+				},
+
+				getDataInst: function() {
+					return that.state.userDataInst;
+				},
+
 			}
 		})();
 
@@ -104,7 +126,7 @@ export default class Router extends Component {
 					let routeMethods = {
 
 						toDashboard: function() {
-							if ( !that.manager.getDataFB() ) return;
+							if ( !that.manager.getDataFB() || !that.manager.getDataInst() ) return;
 
 							navigator.push({
 								name: 'Dashboard',
@@ -113,7 +135,8 @@ export default class Router extends Component {
 						},
 
 						toBuyerProfile: function() {
-							if ( !that.manager.getDataFB() ) return;
+							if ( !that.manager.getDataFB() || !that.manager.getDataInst() ) return;
+							// if ( !that.manager.getDataFB() ) return;
 
 							navigator.push({
 								name: 'ShopperProfileView',
@@ -122,7 +145,8 @@ export default class Router extends Component {
 						},
 
 						toSellerProfile () {
-							if ( !that.manager.getDataFB() ) return;
+							if ( !that.manager.getDataFB() || !that.manager.getDataInst() ) return;
+							// if ( !that.manager.getDataFB() ) return;
 
 							navigator.push({
 								name: 'SellerProfileView',

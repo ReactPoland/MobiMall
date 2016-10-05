@@ -78,12 +78,32 @@ export default class ShopperProfileView extends Component {
 		super(props);
 		bindMethods(this);
 		this.state = {
-			profileData: this.props.manager.getDataFB()
+			fbId: this.props.manager.getDataFB().id,
+			profileData: {}
 		};
 	}
 
+	componentDidMount () {
+	api
+		.getPersonalInfo(this.state.fbId)
+		.then(({ data }) => this.setState({ profileData: data }))
+		.catch(e => console.log('err'));
+	}
+
+	onPersonalInfoChange (property, event) {
+		const profileData = Object.assign({}, this.state.profileData);
+		profileData[property] = event.nativeEvent.text;
+		api
+			.updatePersonalInfo(this.state.fbId, profileData)
+			.catch(e => console.log(e));
+		this.setState({ profileData });
+	}
+
 	render() {
-		const { profileData } = this.state;
+  		const { firstName, lastName, email, email2, phone } = this.state.profileData;
+
+  		console.log(this.state.profileData);
+
 		return (
 			<View style={st.container}>
 				<ScrollView>
@@ -98,10 +118,12 @@ export default class ShopperProfileView extends Component {
 							    iconClass={FontAwesomeIcon}
 							    iconName={'pencil'}
 							    iconColor={'gray'}
-									inputStyle={st.textInputGrey}
+								inputStyle={st.textInputGrey}
 							    // TextInput props
 							    autoCapitalize={'none'}
+							    onEndEditing={this.onPersonalInfoChange.bind( this, 'firstName' )}
 							    autoCorrect={false}
+							    value={firstName}
 							  />
 
 								<Sae
@@ -109,9 +131,13 @@ export default class ShopperProfileView extends Component {
 							    iconClass={FontAwesomeIcon}
 							    iconName={'pencil'}
 							    iconColor={'gray'}
+								inputStyle={st.textInputGrey}
+
 							    // TextInput props
 							    autoCapitalize={'none'}
 							    autoCorrect={false}
+							    onEndEditing={this.onPersonalInfoChange.bind( this, 'lastName' )}
+							    value={lastName}
 							  />
 
 								<Sae
@@ -119,9 +145,12 @@ export default class ShopperProfileView extends Component {
 							    iconClass={FontAwesomeIcon}
 							    iconName={'pencil'}
 							    iconColor={'gray'}
+								inputStyle={st.textInputGrey}
 							    // TextInput props
 							    autoCapitalize={'none'}
 							    autoCorrect={false}
+							    onEndEditing={this.onPersonalInfoChange.bind( this, 'email' )}
+							    value={email}
 							  />
 
 								<Sae
@@ -129,8 +158,11 @@ export default class ShopperProfileView extends Component {
 							    iconClass={FontAwesomeIcon}
 							    iconName={'pencil'}
 							    iconColor={'gray'}
+								inputStyle={st.textInputGrey}
 							    // TextInput props
 							    autoCapitalize={'none'}
+        						onEndEditing={this.onPersonalInfoChange.bind(this, 'phone')}
+							    value={phone}
 							    autoCorrect={false}
 							  />
 
@@ -139,13 +171,16 @@ export default class ShopperProfileView extends Component {
 							    iconClass={FontAwesomeIcon}
 							    iconName={'pencil'}
 							    iconColor={'gray'}
+								inputStyle={st.textInputGrey}
 							    // TextInput props
 							    autoCapitalize={'none'}
+        						onEndEditing={this.onPersonalInfoChange.bind(this, 'email2')}
+							    value={email2}
 							    autoCorrect={false}
 							  />
 							</View>
 						</View>
-						<CardsManager name='PAYMENTS' fbId={this.state.profileData.id} />
+						<CardsManager name='PAYMENTS' fbId={this.state.fbId} />
 						<View name={'SHIPPING'}>
 							<View style={st.contentWrap} >
 								<Text style={st.blockSubtitle} >DEFAULT ADDRESS</Text>

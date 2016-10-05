@@ -1,5 +1,5 @@
 import axios from 'axios';
-// const host = 'http://10.0.2.2:3000';  // local server
+// const host = 'http://192.168.1.244:3000';  // local server
 const host = 'http://testmobimall2.herokuapp.com'; // heroku server
 const createUrl = pathArray => `${host ? host : ''}/api/${pathArray.join('/')}`;
 
@@ -32,6 +32,10 @@ const api = {
 
   saveAddresses (fbId, addresses) {
     return createRequest(['users', 'saveAddresses'], { fbId, addresses });
+  },
+
+  loginInstagram (fbId, login, pass) {
+    return createRequest(['users', 'loginInstagram'], { fbId, login, pass });
   }
 }
 

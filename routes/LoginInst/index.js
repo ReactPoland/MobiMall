@@ -11,40 +11,47 @@ import {
 	Dimensions
 } from 'react-native';
 var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
+var RNInstagramOAuth = require('react-native-instagram-oauth');
 import { api } from '../../utils';
-
+import { Sae } from 'react-native-textinput-effects';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 export default class NewProductSeller extends Component {
 
 	constructor(prop) {
 		super(prop);
-		this.onLayout = this.onLayout.bind(this);
-		this.loginFB = this.loginInst.bind(this);
-		// this.state = {
+		this.loginInst = this.loginInst.bind(this);
+		this.onPersonalInfoChange = this.onPersonalInfoChange.bind(this);
+		this.state = {
+			instagram: {
+				login: '',
+				pass: ''
+			}
 			// mainImageSize: {
 				// width: 360,
 				// height: 360
 			// }
-		// }
-	}
-
-	onLayout(event) {
-
-		// let { width, height } = event.nativeEvent.layout;
-
-		// this.setState({
-			// mainImageSize: {
-				// width: width,
-				// height: width,
-			// }
-		// });
-		// this.refs['scrolView'].scrollTo({x: 0,y :0, animated: false});
-
-
+		}
 	}
 
 	loginInst() {
-		// let that = this;
+		let that = this;
+		let { login, pass } = this.state.instagram;
+		
+		api.loginInstagram( that.props.manager.getDataFB().id, login, pass ).then(resp => {
+			if ( resp.status !== 200 ) return;
+			if (resp.data.message) 
+				Alert.alert(resp.data.message);
+			else 
+				this.props.manager.authInst( resp.data.user );
+		})
+		.catch(err => {
+			Alert.alert(`Request error. Can't find server`);
+		});
+
+		// RNInstagramOAuth( 'c2210e89ad61429d89883206552abded', 'http://testmobimall2.herokuapp.com/redirect/', (err, access, token) => {
+			// console.log( access, token );
+		// });
 
 		// FBLoginManager.setLoginBehavior( FBLoginManager.LoginBehaviors.Native );
 		// FBLoginManager.loginWithPermissions(["email","user_friends"], function(error, data) {
@@ -63,14 +70,33 @@ export default class NewProductSeller extends Component {
 			// that.props.manager.authFB && that.props.manager.authFB( JSON.parse( data.profile ) );
 			// api.createUser(JSON.parse(data.profile)).catch(e => console.log('e', e));
 		// });
-		Alert.alert('Click');
+
+		// Alert.alert('Click');
+		
+		// this.props.manager.authInst({
+			// firstName: 'blabla',
+			// id: 123123,
+		// });
+	}
+
+	onPersonalInfoChange(prop, event) {
+
+		let newIstProfile = Object.assign({}, this.state.instagram);
+		newIstProfile[prop] = event.nativeEvent.text;
+
+		this.setState({
+			instagram: newIstProfile
+		});
+
 	}
 
 	render() {
 
+		console.log(this.state.instagram);
+
 
 		return (
-			<View style={loginStyle.container} onLayout={this.onLayout}>
+			<View style={loginStyle.container} >
 
 				<Image source={{uri: 'https://unsplash.it/400/400?image=140'}} style={loginStyle.bgImage}/>
 
@@ -80,6 +106,30 @@ export default class NewProductSeller extends Component {
 				</View>
 
 				<View style={loginStyle.buttonBlock}>
+
+				<Sae
+				  label={'Login'}
+				  iconClass={FontAwesomeIcon}
+				  iconName={'pencil'}
+				  iconColor={'white'}
+				  style={loginStyle.textInput}
+				  autoCapitalize={'none'}
+				  autoCorrect={false}
+				  onChange={this.onPersonalInfoChange.bind(this, 'login')}
+				  value={this.state.instagram.login}
+				/>
+
+				<Sae
+				  label={'Password'}
+				  iconClass={FontAwesomeIcon}
+				  iconName={'pencil'}
+				  iconColor={'white'}
+				  style={loginStyle.textInput}
+				  autoCapitalize={'none'}
+				  autoCorrect={false}
+				  onChange={this.onPersonalInfoChange.bind(this, 'pass')}
+				  value={this.state.instagram.pass}
+				/>
 
 					<TouchableNativeFeedback onPress={ this.loginInst }>
 						<View style={loginStyle.button}>
@@ -118,6 +168,9 @@ const loginStyle = StyleSheet.create({
 		color: 'white',
 		fontSize: 30,
 		fontWeight: 'bold',
+	},
+	textInput: {
+		backgroundColor: `rgba(255, 255, 255, 0.5)`,
 	},
 	logo: {
 		resizeMode: 'contain',

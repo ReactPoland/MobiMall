@@ -7,8 +7,10 @@ import {
 
 import st from '../assets/style';
 
-const AddressBox = ({ addresses, loading, onPress, mode }) => {
+const AddressBox = ({ addresses, loading, onPress, onDelete, mode }) => {
+  console.log('addre', addresses)
   const handler = index => () => onPress(index);
+  const deleteHandler = index => () => onDelete(index);
   const addressesNumber = addresses.length;
   const getContent = () => {
     if(loading) return <Text>Loading...</Text>;
@@ -36,7 +38,12 @@ const AddressBox = ({ addresses, loading, onPress, mode }) => {
               : null
             : null
           }
-          <Text style={{ paddingBottom: 5, fontSize: 15 }}>{address}, {postalCode} {city}, {country}</Text>
+          <Text style={{ paddingBottom: 5, fontSize: 15, width: 50 }}>{address}, {postalCode} {city}, {country}</Text>
+          <TouchableNativeFeedback onPress={deleteHandler(i)}>
+            <View>
+              <Text style={{ fontSize: 30 }}>&#10005;</Text>
+            </View>
+          </TouchableNativeFeedback>
         </View>
       </TouchableNativeFeedback>
     ));

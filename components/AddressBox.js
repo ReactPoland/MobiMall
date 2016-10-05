@@ -8,7 +8,7 @@ import {
 import st from '../assets/style';
 
 const AddressBox = ({ addresses, loading, onPress, mode }) => {
-  const handler = index => onPress(index);
+  const handler = index => () => onPress(index);
   const addressesNumber = addresses.length;
   const getContent = () => {
     if(loading) return <Text>Loading...</Text>;

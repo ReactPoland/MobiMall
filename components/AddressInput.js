@@ -10,16 +10,18 @@ import { Sae } from 'react-native-textinput-effects';
 
 import st from '../assets/style';
 
-const AddressInput = ({ onChange, addressToEdit }) => {
-  // const handler = prop => e => onChange(prop, e.nativeEvent.text);
-  const handler = () => console.log('asd');
+const AddressInput = ({ onChange, addressToEdit, onSave }) => {
+  const handler = prop => e => {
+    console.log('test', typeof prop);
+    onChange(prop, e.nativeEvent.text)
+  };
   const {
-    country = '',
-    address = '',
-    postalCode = '',
-    city = '',
-    bestTimeToDeliver = ''
-  } = (addressToEdit || {});
+    country,
+    address,
+    postalCode,
+    city,
+    bestTimeToDeliver
+  } = addressToEdit;
 
   return (
     <View style={st.contentWrap}>
@@ -32,7 +34,7 @@ const AddressInput = ({ onChange, addressToEdit }) => {
         inputStyle={st.textInputGrey}
         autoCapitalize={'none'}
         autoCorrect={false}
-        onChange={() => console.log('asd')}
+        onChange={handler("country")}
         value={country}
       />
 
@@ -44,7 +46,7 @@ const AddressInput = ({ onChange, addressToEdit }) => {
         inputStyle={st.textInputGrey}
         autoCapitalize={'none'}
         autoCorrect={false}
-        // onChange={handler('address')}
+        onChange={handler('address')}
         value={address}
       />
 
@@ -56,7 +58,7 @@ const AddressInput = ({ onChange, addressToEdit }) => {
         inputStyle={st.textInputGrey}
         autoCapitalize={'none'}
         autoCorrect={false}
-        // onChange={handler('postalCode')}
+        onChange={handler('postalCode')}
         value={postalCode}
       />
 
@@ -68,7 +70,7 @@ const AddressInput = ({ onChange, addressToEdit }) => {
         inputStyle={st.textInputGrey}
         autoCapitalize={'none'}
         autoCorrect={false}
-        // onChange={handler('city')}
+        onChange={handler('city')}
         value={city}
       />
 
@@ -80,12 +82,12 @@ const AddressInput = ({ onChange, addressToEdit }) => {
         inputStyle={st.textInputGrey}
         autoCapitalize={'none'}
         autoCorrect={false}
-        // onChange={handler('bestTimeToDeliver')}
+        onChange={handler('bestTimeToDeliver')}
         value={bestTimeToDeliver}
       />
 
       <TouchableNativeFeedback
-        onPress={this._onAddressSave} >
+        onPress={onSave} >
         <View style={st.purpleButtonView} >
           <Text style={st.purpleButtonName} >SAVE ADDRESS</Text>
         </View>

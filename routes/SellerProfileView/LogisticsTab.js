@@ -20,11 +20,12 @@ export default class LogisticsTab extends Component {
       addresses: [],
       addressToEdit: null,
       addressToEditIndex: false,
-      loading: true
+      newAddress: {}
     };
   }
 
   componentDidMount () {
+    this.setState({ loading: true });
     api
       .getAddresses(this.props.fbId)
       .then(({ data }) => this.setState({ addresses: data, loading: false }))
@@ -32,11 +33,26 @@ export default class LogisticsTab extends Component {
   }
 
   _setAddressToEdit (index) {
-    console.log('here');
     this.setState({
       addressToEdit: this.state.addresses[index],
       addressToEditIndex: index
     });
+  }
+
+  _onChange (prop, val) {
+    if(this.state.addressToEdit) {
+      const { addressToEdit } = this.state;
+      addressToEdit[prop] = val;
+      this.setState({ addressToEdit });
+    } else {
+      const { newAddress } = this.state;
+      newAddress[prop] = val;
+      this.setState({ newAddress });
+    }
+  }
+
+  _onSave () {
+    console.log('asd');
   }
 
   render () {
@@ -47,6 +63,11 @@ export default class LogisticsTab extends Component {
           onPress={this._setAddressToEdit}
           mode='LogisticsTab'
           loading={this.state.loading}
+        />
+        <AddressInput
+          addressToEdit={this.state.addressToEdit || this.state.newAddress}
+          onChange={this._onChange}
+          onSave={this._onSave}
         />
       </View>
     );

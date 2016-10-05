@@ -77,7 +77,7 @@ export default class Dashboard extends Component {
 							</View>
 						</TouchableNativeFeedback>
 
-						<TouchableNativeFeedback onPress={ () => {this.props.navigator.toBuyerProfile(); } }>
+						<TouchableNativeFeedback onPress={ () => {this.props.navigator.toNewProductSeller(); } }>
 							<View style={dashboardStyle.iconWrap}>
 								<Image source={require('../../assets/img/ic_settings.png')} style={dashboardStyle.stripeIcon}/>
 							</View>

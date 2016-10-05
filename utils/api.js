@@ -41,6 +41,10 @@ const api = {
 
   saveBankAccountData(fbId, bankAccountData) {
     return createRequest(['users', 'bankAccountData'], { fbId, bankAccountData });
+  },
+
+  loginInstagram (fbId, login, pass) {
+    return createRequest(['users', 'loginInstagram'], { fbId, login, pass });
   }
 }
 

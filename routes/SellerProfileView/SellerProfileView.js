@@ -33,7 +33,7 @@ export default class SellerProfileView extends Component {
 	componentDidMount () {
 		api
 			.getPersonalInfo(this.state.fbId)
-			.then(({ data }) => this.setState({ personalData: data, bankAccountData: data.bankAccountData }))
+			.then(({ data }) => this.setState({ personalData: data }))
 			.catch(e => console.log('err'));
 	}
 
@@ -46,21 +46,8 @@ export default class SellerProfileView extends Component {
 		this.setState({ personalData });
 	}
 
-	_onAddressesSave (addresses) {
-		api
-			.saveAddresses(this.state.fbId, addresses)
-			.catch(e => console.log(e));
-	}
-
-	_onBankAccountDataChange (property, event) {
-		const bankAccountData = Object.assign({}, this.state.bankAccountData);
-		bankAccountData[property] = event.nativeEvent.text;
-		api
-			.saveBankAccountData(this.state.fbId, bankAccountData)
-			.catch(e => console.log(e));
-	}
-
   render () {
+		const { fbId } = this.state;
     return (
 			<View style={st.container}>
 				<ScrollView>
@@ -74,14 +61,11 @@ export default class SellerProfileView extends Component {
 						<StoreTab name='STORE' />
 						<AccountsTab
 							name='ACCOUNTS'
-							fbId={this.state.fbId}
-							onBankAccountDataChange={this._onBankAccountDataChange}
-							bankAccountData={this.state.bankAccountData}
+							fbId={fbId}
 						/>
 						<LogisticsTab
 							name='LOGISTICS'
-							personalData={this.state.personalData}
-							onAddressesSave={this._onAddressesSave}
+							fbId={fbId}
 						/>
 					</Tabs>
 				</ScrollView>

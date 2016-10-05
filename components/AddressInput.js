@@ -1,93 +1,99 @@
 import React from 'react';
 import {
   View,
-  Text
+  Text,
+  TouchableNativeFeedback
 } from 'react-native';
+
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
 
-import st from '../../assets/style';
+import st from '../assets/style';
 
-const PersonalTab = ({ personalData, onPersonalInfoChange }) => {
-  const { firstName, lastName, email, email2, phone, about } = personalData;
+const AddressInput = ({ onChange, addressToEdit, onSave }) => {
+  const handler = prop => e => {
+    console.log('test', typeof prop);
+    onChange(prop, e.nativeEvent.text)
+  };
+  const {
+    country,
+    address,
+    postalCode,
+    city,
+    bestTimeToDeliver
+  } = addressToEdit;
+
   return (
-    <View style={st.contentWrap} >
-      <Text style={st.blockSubtitle} >PERSONAL DETAILS</Text>
-
+    <View style={st.contentWrap}>
+      <Text style={st.blockSubtitle}>{addressToEdit ? 'EDIT' : 'ADD'} ADDRESS</Text>
       <Sae
-        label={'First Name'}
+        label={'Country'}
         iconClass={FontAwesomeIcon}
         iconName={'pencil'}
         iconColor={'gray'}
         inputStyle={st.textInputGrey}
         autoCapitalize={'none'}
         autoCorrect={false}
-        onEndEditing={onPersonalInfoChange.bind(this, 'firstName')}
-        value={firstName}
+        onChange={handler("country")}
+        value={country}
       />
 
       <Sae
-        label={'Last Name'}
+        label={'Address'}
         iconClass={FontAwesomeIcon}
         iconName={'pencil'}
         iconColor={'gray'}
         inputStyle={st.textInputGrey}
         autoCapitalize={'none'}
         autoCorrect={false}
-        onEndEditing={onPersonalInfoChange.bind(this, 'lastName')}
-        value={lastName}
+        onChange={handler('address')}
+        value={address}
       />
 
       <Sae
-        label={'Email 1'}
+        label={'ZIP / Postal Code'}
         iconClass={FontAwesomeIcon}
         iconName={'pencil'}
         iconColor={'gray'}
         inputStyle={st.textInputGrey}
         autoCapitalize={'none'}
         autoCorrect={false}
-        onEndEditing={onPersonalInfoChange.bind(this, 'email')}
-        value={email}
+        onChange={handler('postalCode')}
+        value={postalCode}
       />
 
       <Sae
-        label={'Email 2'}
+        label={'City'}
         iconClass={FontAwesomeIcon}
         iconName={'pencil'}
         iconColor={'gray'}
         inputStyle={st.textInputGrey}
         autoCapitalize={'none'}
         autoCorrect={false}
-        onEndEditing={onPersonalInfoChange.bind(this, 'email2')}
-        value={email2}
+        onChange={handler('city')}
+        value={city}
       />
 
       <Sae
-        label={'Phone number'}
+        label={'Best Time of Day to Deliver'}
         iconClass={FontAwesomeIcon}
         iconName={'pencil'}
         iconColor={'gray'}
         inputStyle={st.textInputGrey}
         autoCapitalize={'none'}
         autoCorrect={false}
-        onEndEditing={onPersonalInfoChange.bind(this, 'phone')}
-        value={phone}
+        onChange={handler('bestTimeToDeliver')}
+        value={bestTimeToDeliver}
       />
 
-      <Sae
-        label={'About'}
-        iconClass={FontAwesomeIcon}
-        iconName={'pencil'}
-        iconColor={'gray'}
-        inputStyle={st.textInputGrey}
-        autoCapitalize={'none'}
-        autoCorrect={false}
-        onEndEditing={onPersonalInfoChange.bind(this, 'about')}
-        value={about}
-      />
-
+      <TouchableNativeFeedback
+        onPress={onSave} >
+        <View style={st.purpleButtonView} >
+          <Text style={st.purpleButtonName} >SAVE ADDRESS</Text>
+        </View>
+      </TouchableNativeFeedback>
     </View>
   );
 }
 
-export default PersonalTab;
+export default AddressInput;

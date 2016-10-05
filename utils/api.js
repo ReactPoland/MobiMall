@@ -1,6 +1,7 @@
 import axios from 'axios';
-// const host = 'http://192.168.1.244:3000';  // local server
-const host = 'http://testmobimall2.herokuapp.com'; // heroku server
+// const host = 'http://10.0.2.2:3000';  // local server
+// const host = 'http://testmobimall2.herokuapp.com'; // heroku server
+const host = 'http://192.168.1.101:3000' // server to use when running on physical device;
 const createUrl = pathArray => `${host ? host : ''}/api/${pathArray.join('/')}`;
 
 const createRequest = (pathArray, data) => axios({
@@ -30,8 +31,16 @@ const api = {
     return createRequest(['users', 'updatePersonalInfo'], { fbId, user });
   },
 
+  getAddresses (fbId) {
+    return createRequest(['users', 'getAddresses'], { fbId });
+  },
+
   saveAddresses (fbId, addresses) {
     return createRequest(['users', 'saveAddresses'], { fbId, addresses });
+  },
+
+  saveBankAccountData(fbId, bankAccountData) {
+    return createRequest(['users', 'bankAccountData'], { fbId, bankAccountData });
   },
 
   loginInstagram (fbId, login, pass) {

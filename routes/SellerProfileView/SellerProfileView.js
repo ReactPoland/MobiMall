@@ -25,7 +25,8 @@ export default class SellerProfileView extends Component {
 		bindMethods(this);
 		this.state = {
 			fbId: this.props.manager.getDataFB().id,
-			personalData: {}
+			personalData: {},
+			bankAccountData: {}
 		};
 	}
 
@@ -45,13 +46,8 @@ export default class SellerProfileView extends Component {
 		this.setState({ personalData });
 	}
 
-	_onAddressesSave (addresses) {
-		api
-			.saveAddresses(this.state.fbId, addresses)
-			.catch(e => console.log(e));
-	}
-
   render () {
+		const { fbId } = this.state;
     return (
 			<View style={st.container}>
 				<ScrollView>
@@ -63,11 +59,13 @@ export default class SellerProfileView extends Component {
 							onPersonalInfoChange={this._onPersonalInfoChange}
 						/>
 						<StoreTab name='STORE' />
-						<AccountsTab name='ACCOUNTS' fbId={this.state.fbId} />
+						<AccountsTab
+							name='ACCOUNTS'
+							fbId={fbId}
+						/>
 						<LogisticsTab
 							name='LOGISTICS'
-							personalData={this.state.personalData}
-							onAddressesSave={this._onAddressesSave}
+							fbId={fbId}
 						/>
 					</Tabs>
 				</ScrollView>

@@ -9,49 +9,60 @@ import { Sae } from 'react-native-textinput-effects';
 import CardsManager from '../../components/CardsManager';
 import st from '../../assets/style';
 
-const AccountsTab = ({ fbId }) => (
-  <View>
-    <View style={st.contentWrap} >
-      <Text style={st.blockSubtitle}>PAY SALE FROM MY STORE INTO</Text>
-      <Sae
-        label={'Bank Name'}
-        iconClass={FontAwesomeIcon}
-        iconName={'pencil'}
-        iconColor={'gray'}
-        inputStyle={st.textInputGrey}
-        autoCapitalize={'none'}
-        autoCorrect={false}
-      />
+const AccountsTab = ({ fbId, onBankAccountDataChange, bankAccountData }) => {
+  const { bankName = '', softCode = '', accountNumber = '', accountName = '' } = bankAccountData;
+  return (
+    <View>
+      <View style={st.contentWrap} >
+        <Text style={st.blockSubtitle}>PAY SALE FROM MY STORE INTO</Text>
+        <Sae
+          label={'Bank Name'}
+          iconClass={FontAwesomeIcon}
+          iconName={'pencil'}
+          iconColor={'gray'}
+          inputStyle={st.textInputGrey}
+          autoCapitalize={'none'}
+          autoCorrect={false}
+          onChange={onAccountDataChange.bind(this, 'bankName')}
+          value={bankName}
+        />
 
-      <Sae
-        label={'Soft Code'}
-        iconClass={FontAwesomeIcon}
-        iconName={'pencil'}
-        iconColor={'gray'}
-        autoCapitalize={'none'}
-        autoCorrect={false}
-      />
+        <Sae
+          label={'Soft Code'}
+          iconClass={FontAwesomeIcon}
+          iconName={'pencil'}
+          iconColor={'gray'}
+          autoCapitalize={'none'}
+          autoCorrect={false}
+          onChange={onAccountDataChange.bind(this, 'softCode')}
+          value={softCode}
+        />
 
-      <Sae
-        label={'Account Number'}
-        iconClass={FontAwesomeIcon}
-        iconName={'pencil'}
-        iconColor={'gray'}
-        autoCapitalize={'none'}
-        autoCorrect={false}
-      />
+        <Sae
+          label={'Account Number'}
+          iconClass={FontAwesomeIcon}
+          iconName={'pencil'}
+          iconColor={'gray'}
+          autoCapitalize={'none'}
+          autoCorrect={false}
+          onChange={onAccountDataChange.bind(this, 'accountNumber')}
+          value={accountNumber}
+        />
 
-      <Sae
-        label={'Account Name'}
-        iconClass={FontAwesomeIcon}
-        iconName={'pencil'}
-        iconColor={'gray'}
-        autoCapitalize={'none'}
-        autoCorrect={false}
-      />
+        <Sae
+          label={'Account Name'}
+          iconClass={FontAwesomeIcon}
+          iconName={'pencil'}
+          iconColor={'gray'}
+          autoCapitalize={'none'}
+          autoCorrect={false}
+          onChange={onAccountDataChange.bind(this, 'accountName')}
+          value={accountName}
+        />
+      </View>
+      <CardsManager fbId={fbId} />
     </View>
-    <CardsManager fbId={fbId} />
-  </View>
-);
+  );
+}
 
 export default AccountsTab;

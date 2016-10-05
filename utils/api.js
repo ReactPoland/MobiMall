@@ -45,6 +45,10 @@ const api = {
 
   loginInstagram (fbId, login, pass) {
     return createRequest(['users', 'loginInstagram'], { fbId, login, pass });
+  },
+
+  getBuyerAddresses (fbId) {
+    return createRequest(['users', 'getBuyerAddresses'], { fbId });
   }
 }
 

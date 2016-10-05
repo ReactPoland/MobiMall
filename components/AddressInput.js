@@ -12,7 +12,7 @@ import st from '../assets/style';
 
 const AddressInput = ({ onChange, addressToEdit, onSave, shouldDisplay, isNew }) => {
   if (!shouldDisplay) return null;
-  const handler = prop => e => onChange(prop, e.nativeEvent.text;
+  const handler = prop => e => onChange(prop, e.nativeEvent.text);
   const {
     country,
     address,

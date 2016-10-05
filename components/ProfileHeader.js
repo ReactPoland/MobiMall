@@ -6,7 +6,7 @@ import {
   Text
 } from 'react-native';
 
-const ProfileHeader = () => (
+const ProfileHeader = ({ name }) => (
   <View style={ st.shopTitleView } >
     <Image source={{uri: 'https://unsplash.it/600/100?image=147'}} style={st.imgTitle}/>
     <View style={st.shopTitleProfileBlock}>
@@ -17,7 +17,7 @@ const ProfileHeader = () => (
 
       <View style={st.shopperTitleProfile}>
         <Image source={{uri: 'https://unsplash.it/100/100?image=158'}} style={st.shopProfileImg}/>
-        <Text style={ st.shopProfileName } >William Reid</Text>
+        <Text style={ st.shopProfileName } >{name}</Text>
       </View>
 
       <View style={st.shopperTitleIcon}>

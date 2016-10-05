@@ -159,7 +159,7 @@ export default class ShopperProfileView extends Component {
 		return (
 			<View style={st.container}>
 				<ScrollView>
-					<ProfileHeader />
+					<ProfileHeader name={`${firstName} ${lastName}`} />
 					<Tabs>
 						<View name={'PERSONAL'} >
 							<View style={st.contentWrap} >

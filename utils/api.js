@@ -49,7 +49,15 @@ const api = {
 
   getBuyerAddresses (fbId) {
     return createRequest(['users', 'getBuyerAddresses'], { fbId });
-  }
+  },
+
+  saveBuyerAddresses (fbId, buyerAddresses) {
+    return createRequest(['users', 'saveBuyerAddresses'], { fbId, buyerAddresses });
+  },
+
+  deleteCard (fbId, cardId) {
+    return createRequest(['users', 'deleteCard'], { fbId, cardId });
+  } 
 }
 
 export default api;

@@ -134,13 +134,13 @@ export default class ShopperProfileView extends Component {
       const { addressToEdit, addressToEditIndex, buyerAddresses, fbId } = this.state;
       buyerAddresses[addressToEditIndex] = addressToEdit;
       api
-        .saveAddresses(fbId, buyerAddresses)
+        .saveBuyerAddresses(fbId, buyerAddresses)
         .then(() => this.setState({ addressToEdit: null }));
     } else {
-      const { newAddress, buyerAddresses } = this.state;
+      const { newAddress, buyerAddresses, fbId } = this.state;
       buyerAddresses.push(newAddress);
       api
-        .saveAddresses(fbId, buyerAddresses)
+        .saveBuyerAddresses(fbId, buyerAddresses)
         .then(() => this.setState({ newAddress: {}, buyerAddresses }));
     }
   }
@@ -149,7 +149,7 @@ export default class ShopperProfileView extends Component {
     const { buyerAddresses, fbId } = this.state;
     buyerAddresses.splice(index, 1);
     api
-      .saveAddresses(fbId, buyerAddresses)
+      .saveBuyerAddresses(fbId, buyerAddresses)
       .then(() => this.setState({ buyerAddresses }));
   }
 

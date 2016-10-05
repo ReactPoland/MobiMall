@@ -8,6 +8,7 @@ import { CreditCardInput } from "react-native-credit-card-input";
 
 import { bindMethods, api } from '../utils';
 import st from '../assets/style';
+import Stripe from '../stripe';
 
 import CardRow from './CardRow';
 
@@ -19,7 +20,8 @@ export default class CardsManager extends Component {
     this.state = {
       fetchingData: false,
       cards: [],
-      cardData: null
+      cardData: null,
+      saving: false
     };
   }
 
@@ -32,7 +34,7 @@ export default class CardsManager extends Component {
 		const response = await api.getCards(this.props.fbId);
 		if(response.data.error) return;
 		const cards = response.data;
-		this.setState({ fetchingData: false, cards });
+		this.setState({ fetchingData: false, cards, saving: false });
 	}
 
   _getCards () {
@@ -40,7 +42,7 @@ export default class CardsManager extends Component {
 		if(fetchingData) return <Text>Loading data...</Text>;
 		if(cards.length < 1) return <Text>No cards added yet</Text>;
 		return cards.map((card, i) => (
-			<CardRow cardData={card} key={i} />
+			<CardRow cardData={card} key={i} onDelete={this._onCardDelete} />
 		));
   }
 
@@ -61,6 +63,7 @@ export default class CardsManager extends Component {
 	}
 
   async _onCardSave() {
+    this.setState({ saving: true });
 		const { cardData } = this.state;
     const { fbId } = this.props;
 		const { cardNumber, expMonth, expYear, cvc } = cardData;
@@ -76,7 +79,16 @@ export default class CardsManager extends Component {
 		}
 	}
 
+  _onCardDelete (id) {
+    this.setState({ fetchingData: true });
+    api
+      .deleteCard(this.props.fbId, id)
+      .then(() => this._fetchData())
+      .catch(e => console.log('e:', e));
+  }
+
   render () {
+    const { saving } = this.state;
     return (
       <View>
         <View style={st.contentWrap}>
@@ -88,9 +100,9 @@ export default class CardsManager extends Component {
           <Text style={st.blockSubtitle} >NEW PAYMENT DETAILS</Text>
           <CreditCardInput onChange={this._onCardInputChange} />
           <TouchableNativeFeedback
-            onPress={this._onCardSave} >
-            <View style={st.purpleButtonView} >
-              <Text style={st.purpleButtonName} >SAVE CARD</Text>
+            onPress={this._onCardSave}>
+            <View style={st.purpleButtonView}>
+              <Text style={st.purpleButtonName}>{saving ? 'SAVING...' : 'SAVE CARD'}</Text>
             </View>
           </TouchableNativeFeedback>
         </View>

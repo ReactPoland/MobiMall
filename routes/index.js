@@ -12,10 +12,6 @@ import LoginInst from './LoginInst';
 
 
 
-
-
-
-
 class Switcher extends Component {
 
 	constructor(props) {
@@ -38,7 +34,7 @@ class Switcher extends Component {
 
 		if ( name === 'Login' && this.props.manager.getDataFB() ) {
 			name = 'LoginInst';
-		} 
+		}
 
 		if ( name === 'LoginInst' && this.props.manager.getDataInst() ) {
 			name = 'Dashboard';
@@ -157,27 +153,27 @@ export default class Router extends Component {
 					};
 
 					return (
-					    <Switcher
-					    	manager= { this.manager }
-					    	route={ route }
-					    	navigator={ routeMethods }
+				    <Switcher
+				    	manager= { this.manager }
+				    	route={ route }
+				    	navigator={ routeMethods }
 
-						    // Function to call when a new scene should be displayed
-						    // onForward={ () => {
-						    	// const nextIndex = route.index + 1;
-						        // navigator.push({
-						        	// title: 'Scene ' + nextIndex,
-						        	// index: nextIndex,
-						        // });
-						    // }}
+					    // Function to call when a new scene should be displayed
+					    // onForward={ () => {
+					    	// const nextIndex = route.index + 1;
+					        // navigator.push({
+					        	// title: 'Scene ' + nextIndex,
+					        	// index: nextIndex,
+					        // });
+					    // }}
 
-						    // Function to call to go back to the previous scene
-						    // onBack={() => {
-						        // if (route.index > 0) {
-						    	    // navigator.pop();
-						        // }
-						    // }}
-					    />
+					    // Function to call to go back to the previous scene
+					    // onBack={() => {
+					        // if (route.index > 0) {
+					    	    // navigator.pop();
+					        // }
+					    // }}
+				    />
 				  	)
 				} }
 			/>

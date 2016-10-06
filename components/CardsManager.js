@@ -5,13 +5,13 @@ import {
   TouchableNativeFeedback
 } from 'react-native';
 import { CreditCardInput } from "react-native-credit-card-input";
+import { Button } from 'react-native-material-design';
 
 import { bindMethods, api } from '../utils';
 import st from '../assets/style';
 import Stripe from '../stripe';
 
 import CardRow from './CardRow';
-
 
 export default class CardsManager extends Component {
   constructor (props) {
@@ -99,12 +99,7 @@ export default class CardsManager extends Component {
         <View style={st.contentWrap} >
           <Text style={st.blockSubtitle} >NEW PAYMENT DETAILS</Text>
           <CreditCardInput onChange={this._onCardInputChange} />
-          <TouchableNativeFeedback
-            onPress={this._onCardSave}>
-            <View style={st.purpleButtonView}>
-              <Text style={st.purpleButtonName}>{saving ? 'SAVING...' : 'SAVE CARD'}</Text>
-            </View>
-          </TouchableNativeFeedback>
+          <Button text="test" raised={true} />
         </View>
       </View>
     );

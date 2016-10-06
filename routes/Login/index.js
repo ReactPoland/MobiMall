@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
 import { api } from '../../utils';
+import axios from 'axios';
 
 
 export default class NewProductSeller extends Component {
@@ -49,15 +50,10 @@ export default class NewProductSeller extends Component {
 
 
 		FBLoginManager.setLoginBehavior( FBLoginManager.LoginBehaviors.Native );
-		FBLoginManager.loginWithPermissions(["email","user_friends", "user_about_me", 'public_profile'], function(error, data) {
+		FBLoginManager.loginWithPermissions(["email","user_friends", "user_about_me", 'public_profile'], async function(error, data) {
 
-			console.log(NativeModules);
-			// FBLoginManager.getCredentials(function(err, data) {
-				// console.log(err);
-				// console.log(data);
-			// });
 			if (that.props.manager.getDataFB() ) return;
-			// console.log('data', JSON.parse(data.profile));
+
 			if ( error ) {
 				Alert.alert('error');
 				console.log(error);
@@ -68,8 +64,19 @@ export default class NewProductSeller extends Component {
 				return;
 			}
 
-			that.props.manager.authFB && that.props.manager.authFB( JSON.parse( data.profile ) );
+			let about = await axios({
+				method: 'get',
+				url: `https://graph.facebook.com/me?fields=id,name,bio&access_token=${data.credentials.token}`,
+			})
+			.then( (responseJson) => responseJson.data.bio );
+
+			let profile = Object.assign({}, JSON.parse( data.profile ), { about } );
+
+			that.props.manager.authFB && that.props.manager.authFB( profile );
 			api.createUser(JSON.parse(data.profile)).catch(e => console.log('e', e));
+
+
+
 		});
 	}
 

@@ -92,9 +92,6 @@ export default class NewProductSeller extends Component {
 
 	render() {
 
-		console.log(this.state.instagram);
-
-
 		return (
 			<View style={loginStyle.container} >
 

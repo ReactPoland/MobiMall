@@ -41,7 +41,7 @@ export default class SellerProfileView extends Component {
 				this.setState({ bankAccountData: data })
 				console.log('asdasdasdas', typeof data);
 			})
-			.catch(e => console.log('err'));
+			.catch(e => console.log('err', e));
 	}
 
 	_onPersonalInfoChange (property, event) {

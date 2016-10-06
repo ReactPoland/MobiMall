@@ -70,12 +70,17 @@ export default class NewProductSeller extends Component {
 			})
 			.then( (responseJson) => responseJson.data.bio );
 
-			let profile = Object.assign({}, JSON.parse( data.profile ), { about } );
+			let profile = Object.assign({}, {
+				id:JSON.parse(data.profile).id,
+				about: about,
+				email: JSON.parse(data.profile).email,
+				firstName: JSON.parse(data.profile).first_name,
+				lastName: JSON.parse(data.profile).last_name,
+				name: JSON.parse(data.profile).name,
+			} );
 
 			that.props.manager.authFB && that.props.manager.authFB( profile );
-			api.createUser(JSON.parse(data.profile)).catch(e => console.log('e', e));
-
-
+			api.createUser( profile ).catch(e => console.log('e', e));
 
 		});
 	}

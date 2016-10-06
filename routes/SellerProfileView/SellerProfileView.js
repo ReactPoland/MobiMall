@@ -35,6 +35,13 @@ export default class SellerProfileView extends Component {
 			.getPersonalInfo(this.state.fbId)
 			.then(({ data }) => this.setState({ personalData: data }))
 			.catch(e => console.log('err'));
+		api
+			.getBankAccountData(this.state.fbId)
+			.then(({ data }) => {
+				this.setState({ bankAccountData: data })
+				console.log('asdasdasdas', typeof data);
+			})
+			.catch(e => console.log('err'));
 	}
 
 	_onPersonalInfoChange (property, event) {
@@ -46,8 +53,21 @@ export default class SellerProfileView extends Component {
 		this.setState({ personalData });
 	}
 
+	_onBankAccountDataChange (property, event) {
+		console.log('property', property);
+		console.log('event text', event.nativeEvent.text);
+		const bankAccountData = Object.assign({}, this.state.bankAccountData);
+		bankAccountData[property] = event.nativeEvent.text;
+		api
+			.saveBankAccountData(this.state.fbId, bankAccountData)
+			.catch(e => console.log(e));
+		console.log('bAD after change', bankAccountData);
+		this.setState({ bankAccountData });
+	}
+
   render () {
-		const { fbId } = this.state;
+		const { fbId, bankAccountData } = this.state;
+		console.log('data', bankAccountData);
     return (
 			<View style={st.container}>
 				<ScrollView>
@@ -62,6 +82,8 @@ export default class SellerProfileView extends Component {
 						<AccountsTab
 							name='ACCOUNTS'
 							fbId={fbId}
+							bankAccountData={bankAccountData}
+							onBankAccountDataChange={this._onBankAccountDataChange}
 						/>
 						<LogisticsTab
 							name='LOGISTICS'

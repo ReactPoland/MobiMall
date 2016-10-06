@@ -11,6 +11,7 @@ import st from '../../assets/style';
 
 const AccountsTab = ({ fbId, onBankAccountDataChange, bankAccountData }) => {
   const { bankName = '', softCode = '', accountNumber = '', accountName = '' } = bankAccountData;
+
   return (
     <View>
       <View style={st.contentWrap} >
@@ -23,7 +24,7 @@ const AccountsTab = ({ fbId, onBankAccountDataChange, bankAccountData }) => {
           inputStyle={st.textInputGrey}
           autoCapitalize={'none'}
           autoCorrect={false}
-          onChange={onAccountDataChange.bind(this, 'bankName')}
+          onEndEditing={onBankAccountDataChange.bind(this, 'bankName')}
           value={bankName}
         />
 
@@ -32,9 +33,10 @@ const AccountsTab = ({ fbId, onBankAccountDataChange, bankAccountData }) => {
           iconClass={FontAwesomeIcon}
           iconName={'pencil'}
           iconColor={'gray'}
+          inputStyle={st.textInputGrey}
           autoCapitalize={'none'}
           autoCorrect={false}
-          onChange={onAccountDataChange.bind(this, 'softCode')}
+          onEndEditing={onBankAccountDataChange.bind(this, 'softCode')}
           value={softCode}
         />
 
@@ -43,9 +45,10 @@ const AccountsTab = ({ fbId, onBankAccountDataChange, bankAccountData }) => {
           iconClass={FontAwesomeIcon}
           iconName={'pencil'}
           iconColor={'gray'}
+          inputStyle={st.textInputGrey}
           autoCapitalize={'none'}
           autoCorrect={false}
-          onChange={onAccountDataChange.bind(this, 'accountNumber')}
+          onEndEditing={onBankAccountDataChange.bind(this, 'accountNumber')}
           value={accountNumber}
         />
 
@@ -54,9 +57,10 @@ const AccountsTab = ({ fbId, onBankAccountDataChange, bankAccountData }) => {
           iconClass={FontAwesomeIcon}
           iconName={'pencil'}
           iconColor={'gray'}
+          inputStyle={st.textInputGrey}
           autoCapitalize={'none'}
           autoCorrect={false}
-          onChange={onAccountDataChange.bind(this, 'accountName')}
+          onEndEditing={onBankAccountDataChange.bind(this, 'accountName')}
           value={accountName}
         />
       </View>

@@ -99,7 +99,11 @@ export default class CardsManager extends Component {
         <View style={st.contentWrap} >
           <Text style={st.blockSubtitle} >NEW PAYMENT DETAILS</Text>
           <CreditCardInput onChange={this._onCardInputChange} />
-          <Button text="test" raised={true} />
+          <Button text={saving ? 'SAVING...' : 'SAVE CARD'} raised={true} overrides={{
+            backgroundColor: '#9100be',
+            textColor: '#ffffff'
+          }}
+          />
         </View>
       </View>
     );

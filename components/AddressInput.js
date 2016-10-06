@@ -4,6 +4,7 @@ import {
   Text,
   TouchableNativeFeedback
 } from 'react-native';
+import { Button } from 'react-native-material-design';
 
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
@@ -84,12 +85,12 @@ const AddressInput = ({ onChange, addressToEdit, onSave, shouldDisplay, isNew })
         value={bestTimeToDeliver}
       />
 
-      <TouchableNativeFeedback
-        onPress={onSave} >
-        <View style={st.purpleButtonView} >
-          <Text style={st.purpleButtonName} >SAVE ADDRESS</Text>
-        </View>
-      </TouchableNativeFeedback>
+      <Button text='SAVE ADDRESS' raised={true} overrides={{
+        backgroundColor: '#9100be',
+        textColor: '#ffffff'
+      }}
+      onPress={onSave}
+      />
     </View>
   );
 }

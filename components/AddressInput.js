@@ -10,11 +10,9 @@ import { Sae } from 'react-native-textinput-effects';
 
 import st from '../assets/style';
 
-const AddressInput = ({ onChange, addressToEdit, onSave }) => {
-  const handler = prop => e => {
-    console.log('test', typeof prop);
-    onChange(prop, e.nativeEvent.text)
-  };
+const AddressInput = ({ onChange, addressToEdit, onSave, shouldDisplay, isNew }) => {
+  if (!shouldDisplay) return null;
+  const handler = prop => e => onChange(prop, e.nativeEvent.text);
   const {
     country,
     address,
@@ -25,7 +23,7 @@ const AddressInput = ({ onChange, addressToEdit, onSave }) => {
 
   return (
     <View style={st.contentWrap}>
-      <Text style={st.blockSubtitle}>{addressToEdit ? 'EDIT' : 'ADD'} ADDRESS</Text>
+      <Text style={st.blockSubtitle}>{isNew ? 'ADD' : 'EDIT'} ADDRESS</Text>
       <Sae
         label={'Country'}
         iconClass={FontAwesomeIcon}

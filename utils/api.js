@@ -40,11 +40,27 @@ const api = {
   },
 
   saveBankAccountData(fbId, bankAccountData) {
-    return createRequest(['users', 'bankAccountData'], { fbId, bankAccountData });
+    return createRequest(['users', 'saveBankAccountData'], { fbId, bankAccountData });
   },
 
   loginInstagram (fbId, login, pass) {
     return createRequest(['users', 'loginInstagram'], { fbId, login, pass });
+  },
+
+  getBuyerAddresses (fbId) {
+    return createRequest(['users', 'getBuyerAddresses'], { fbId });
+  },
+
+  saveBuyerAddresses (fbId, buyerAddresses) {
+    return createRequest(['users', 'saveBuyerAddresses'], { fbId, buyerAddresses });
+  },
+
+  deleteCard (fbId, cardId) {
+    return createRequest(['users', 'deleteCard'], { fbId, cardId });
+  },
+
+  getBankAccountData (fbId) {
+    return createRequest(['users', 'getBankAccountData'], { fbId });
   }
 }
 

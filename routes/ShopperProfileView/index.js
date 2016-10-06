@@ -14,6 +14,8 @@ import Tabs from '../../components/Tabs';
 import CardRow from '../../components/CardRow';
 import ProfileHeader from '../../components/ProfileHeader';
 import CardsManager from '../../components/CardsManager';
+import AddressInput from '../../components/AddressInput';
+import AddressBox from '../../components/AddressBox';
 import { bindMethods } from '../../utils';
 import { api } from '../../utils';
 import Stripe from '../../stripe';
@@ -79,15 +81,24 @@ export default class ShopperProfileView extends Component {
 		bindMethods(this);
 		this.state = {
 			fbId: this.props.manager.getDataFB().id,
-			profileData: {}
+			profileData: {},
+			addressToEdit: null,
+      addressToEditIndex: false,
+      newAddress: {},
+			buyerAddresses: []
 		};
 	}
 
 	componentDidMount () {
-	api
-		.getPersonalInfo(this.state.fbId)
-		.then(({ data }) => this.setState({ profileData: data }))
-		.catch(e => console.log('err'));
+		this.setState({ loading: true });
+		api
+			.getPersonalInfo(this.state.fbId)
+			.then(({ data }) => this.setState({ profileData: data }))
+			.catch(e => console.log('err'));
+		api
+			.getBuyerAddresses(this.state.fbId)
+			.then(({ data }) => this.setState({ buyerAddresses: data, loading: false }))
+			.catch(e => console.log('e:', e));
 	}
 
 	onPersonalInfoChange (property, event) {
@@ -99,15 +110,56 @@ export default class ShopperProfileView extends Component {
 		this.setState({ profileData });
 	}
 
+	_setAddressToEdit (index) {
+    this.setState({
+      addressToEdit: this.state.buyerAddresses[index],
+      addressToEditIndex: index
+    });
+  }
+
+	_onChange (prop, val) {
+    if(this.state.addressToEdit) {
+      const { addressToEdit } = this.state;
+      addressToEdit[prop] = val;
+      this.setState({ addressToEdit });
+    } else {
+      const { newAddress } = this.state;
+      newAddress[prop] = val;
+      this.setState({ newAddress });
+    }
+  }
+
+	_onSave () {
+    if(this.state.addressToEdit) {
+      const { addressToEdit, addressToEditIndex, buyerAddresses, fbId } = this.state;
+      buyerAddresses[addressToEditIndex] = addressToEdit;
+      api
+        .saveBuyerAddresses(fbId, buyerAddresses)
+        .then(() => this.setState({ addressToEdit: null }));
+    } else {
+      const { newAddress, buyerAddresses, fbId } = this.state;
+      buyerAddresses.push(newAddress);
+      api
+        .saveBuyerAddresses(fbId, buyerAddresses)
+        .then(() => this.setState({ newAddress: {}, buyerAddresses }));
+    }
+  }
+
+	_onDelete (index) {
+    const { buyerAddresses, fbId } = this.state;
+    buyerAddresses.splice(index, 1);
+    api
+      .saveBuyerAddresses(fbId, buyerAddresses)
+      .then(() => this.setState({ buyerAddresses }));
+  }
+
 	render() {
-  		const { firstName, lastName, email, email2, phone } = this.state.profileData;
-
-  		console.log(this.state.profileData);
-
+  	const { firstName, lastName, email, email2, phone } = this.state.profileData;
+		const { buyerAddresses, addressToEdit, loading, newAddress } = this.state;
 		return (
 			<View style={st.container}>
 				<ScrollView>
-					<ProfileHeader />
+					<ProfileHeader name={`${firstName} ${lastName}`} />
 					<Tabs>
 						<View name={'PERSONAL'} >
 							<View style={st.contentWrap} >
@@ -182,77 +234,22 @@ export default class ShopperProfileView extends Component {
 						</View>
 						<CardsManager name='PAYMENTS' fbId={this.state.fbId} />
 						<View name={'SHIPPING'}>
-							<View style={st.contentWrap} >
-								<Text style={st.blockSubtitle} >DEFAULT ADDRESS</Text>
-
-								<TextInput
-									style={st.input}
-									placeholder={'Mens Brogue Shoe'}
-									underlineColorAndroid="#edb4ff"
-									placeholderTextColor='#cccccc'
-									/>
-
-								<TextInput
-									style={st.input}
-									placeholder={'Mens Brogue Shoe'}
-									underlineColorAndroid="#edb4ff"
-									placeholderTextColor='#cccccc'
-									/>
-
-							</View>
-							<View style={st.contentWrap} >
-								<Text style={st.blockSubtitle} >ADD ADDRESS</Text>
-
-								<Text style={st.textInputGrey} >Country:</Text>
-								<TextInput
-									style={st.input}
-									placeholder={'Mens Brogue Shoe'}
-									underlineColorAndroid="#edb4ff"
-									placeholderTextColor='#cccccc'
-									/>
-
-								<Text style={st.textInputGrey} >Address:</Text>
-								<TextInput
-									style={st.input}
-									placeholder={'Mens Brogue Shoe'}
-									underlineColorAndroid="#edb4ff"
-									placeholderTextColor='#cccccc'
-									/>
-
-								<Text style={st.textInputGrey} >ZIP / Postal Code:</Text>
-								<TextInput
-									style={st.input}
-									placeholder={'Mens Brogue Shoe'}
-									underlineColorAndroid="#edb4ff"
-									placeholderTextColor='#cccccc'
-									/>
-
-								<Text style={st.textInputGrey} >City:</Text>
-								<TextInput
-									style={st.input}
-									placeholder={'Mens Brogue Shoe'}
-									underlineColorAndroid="#edb4ff"
-									placeholderTextColor='#cccccc'
-									/>
-
-								<Text style={st.textInputGrey} >Best time:</Text>
-								<TextInput
-									style={st.input}
-									placeholder={'Mens Brogue Shoe'}
-									underlineColorAndroid="#edb4ff"
-									placeholderTextColor='#cccccc'
-									/>
-
-								<TouchableNativeFeedback
-									onPress={() => {
-										console.log('begin');
-									}} >
-									<View style={st.purpleButtonView} >
-										<Text style={st.purpleButtonName} >SAVE ADDRESS</Text>
-									</View>
-								</TouchableNativeFeedback>
-							</View>
+							<AddressBox
+								addresses={buyerAddresses}
+								loading={loading}
+								mode='ShippingTab'
+								onPress={this._setAddressToEdit}
+								onDelete={this._onDelete}
+							/>
+							<AddressInput
+							 shouldDisplay={true}
+							 addressToEdit={addressToEdit || newAddress}
+							 onChange={this._onChange}
+							 onSave={this._onSave}
+							 isNew={!addressToEdit}
+							/>
 						</View>
+
 						<View name={'HISTORY'}>
 							<View style={st.contentWrap} >
 								<Text>test block 4</Text>

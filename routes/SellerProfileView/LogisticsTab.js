@@ -52,7 +52,29 @@ export default class LogisticsTab extends Component {
   }
 
   _onSave () {
-    console.log('asd');
+    this.setState({ loading: true });
+    if(this.state.addressToEdit) {
+      const { addressToEdit, addressToEditIndex, addresses } = this.state;
+      addresses[addressToEditIndex] = addressToEdit;
+      api
+        .saveAddresses(this.props.fbId, addresses)
+        .then(() => this.setState({ addressToEdit: null, loading: false }));
+    } else {
+      const { newAddress, addresses } = this.state;
+      addresses.push(newAddress);
+      api
+        .saveAddresses(this.props.fbId, addresses)
+        .then(() => this.setState({ newAddress: {}, addresses, loading: false }));
+    }
+  }
+
+  _onDelete (index) {
+    this.setState({ loading: true });
+    const { addresses } = this.state;
+    addresses.splice(index, 1);
+    api
+      .saveAddresses(this.props.fbId, addresses)
+      .then(() => this.setState({ addresses, loading: false }));
   }
 
   render () {
@@ -61,6 +83,7 @@ export default class LogisticsTab extends Component {
         <AddressBox
           addresses={this.state.addresses}
           onPress={this._setAddressToEdit}
+          onDelete={this._onDelete}
           mode='LogisticsTab'
           loading={this.state.loading}
         />
@@ -68,6 +91,8 @@ export default class LogisticsTab extends Component {
           addressToEdit={this.state.addressToEdit || this.state.newAddress}
           onChange={this._onChange}
           onSave={this._onSave}
+          shouldDisplay={(this.state.addresses.length < 2 || this.state.addressToEdit)}
+          isNew={!this.state.addressToEdit}
         />
       </View>
     );

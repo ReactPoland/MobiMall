@@ -172,6 +172,7 @@ export default class ShopperProfileView extends Component {
 							    iconColor={'gray'}
 								inputStyle={st.textInputGrey}
 							    // TextInput props
+							    editable={false}
 							    autoCapitalize={'none'}
 							    onEndEditing={this.onPersonalInfoChange.bind( this, 'firstName' )}
 							    autoCorrect={false}
@@ -184,7 +185,7 @@ export default class ShopperProfileView extends Component {
 							    iconName={'pencil'}
 							    iconColor={'gray'}
 								inputStyle={st.textInputGrey}
-
+							    editable={false}
 							    // TextInput props
 							    autoCapitalize={'none'}
 							    autoCorrect={false}
@@ -198,6 +199,7 @@ export default class ShopperProfileView extends Component {
 							    iconName={'pencil'}
 							    iconColor={'gray'}
 								inputStyle={st.textInputGrey}
+							    editable={false}
 							    // TextInput props
 							    autoCapitalize={'none'}
 							    autoCorrect={false}
@@ -211,6 +213,7 @@ export default class ShopperProfileView extends Component {
 							    iconName={'pencil'}
 							    iconColor={'gray'}
 								inputStyle={st.textInputGrey}
+							    editable={false}
 							    // TextInput props
 							    autoCapitalize={'none'}
         						onEndEditing={this.onPersonalInfoChange.bind(this, 'phone')}
@@ -224,6 +227,7 @@ export default class ShopperProfileView extends Component {
 							    iconName={'pencil'}
 							    iconColor={'gray'}
 								inputStyle={st.textInputGrey}
+							    editable={false}
 							    // TextInput props
 							    autoCapitalize={'none'}
         						onEndEditing={this.onPersonalInfoChange.bind(this, 'email2')}

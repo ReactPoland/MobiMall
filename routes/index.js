@@ -33,12 +33,12 @@ class Switcher extends Component {
 
 
 		if ( name === 'Login' && this.props.manager.getDataFB() ) {
-			name = 'LoginInst';
-		}
-
-		if ( name === 'LoginInst' && this.props.manager.getDataInst() ) {
 			name = 'Dashboard';
 		}
+
+		// if ( name === 'LoginInst' && this.props.manager.getDataInst() ) {
+			// name = 'Dashboard';
+		// }
 
 		let route = this.routesName[ name ] ? this.routesName[ name ]() : (
 			<Text style={{color: 'red'}}>Can't found route</Text>
@@ -122,7 +122,8 @@ export default class Router extends Component {
 					let routeMethods = {
 
 						toDashboard: function() {
-							if ( !that.manager.getDataFB() || !that.manager.getDataInst() ) return;
+							// if ( !that.manager.getDataFB() || !that.manager.getDataInst() ) return;
+							if ( !that.manager.getDataFB() ) return;
 
 							navigator.push({
 								name: 'Dashboard',
@@ -131,8 +132,8 @@ export default class Router extends Component {
 						},
 
 						toBuyerProfile: function() {
-							if ( !that.manager.getDataFB() || !that.manager.getDataInst() ) return;
-							// if ( !that.manager.getDataFB() ) return;
+							// if ( !that.manager.getDataFB() || !that.manager.getDataInst() ) return;
+							if ( !that.manager.getDataFB() ) return;
 
 							navigator.push({
 								name: 'ShopperProfileView',
@@ -140,9 +141,17 @@ export default class Router extends Component {
 							});
 						},
 
+						toPostProductToIG: function(data) {
+							navigator.push({
+								name: 'PostProductToIG',
+								index: route.index + 1,
+								data,
+							});
+						},
+
 						toSellerProfile () {
-							if ( !that.manager.getDataFB() || !that.manager.getDataInst() ) return;
-							// if ( !that.manager.getDataFB() ) return;
+							// if ( !that.manager.getDataFB() || !that.manager.getDataInst() ) return;
+							if ( !that.manager.getDataFB() ) return;
 
 							navigator.push({
 								name: 'SellerProfileView',
@@ -151,13 +160,14 @@ export default class Router extends Component {
 						},
 
 						toNewProductSeller () {
-							if ( !that.manager.getDataFB() || !that.manager.getDataInst() ) return;
+							// if ( !that.manager.getDataFB() || !that.manager.getDataInst() ) return;
+							if ( !that.manager.getDataFB() ) return;
 
 							navigator.push({
 								name: 'NewProductSeller',
 								index: route.index + 1
 							});
-							
+
 						}
 
 					};

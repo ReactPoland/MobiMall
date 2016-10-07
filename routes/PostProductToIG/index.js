@@ -47,6 +47,11 @@ export default class NewProductSeller extends Component {
 	}
 
 	render() {
+
+		let { data:product } = this.props.route;
+
+
+
 		return (
 			<View style={postStyle.container} onLayout={this.onLayout}>
 
@@ -58,12 +63,13 @@ export default class NewProductSeller extends Component {
 						}}/>
 							
 						<View style={postStyle.postPageDescView} >
-							<Text style={postStyle.blockTitle} >ADD NEW PRODUCT</Text>
+							<Text style={postStyle.blockTitle} >{ product.productName }</Text>
 							
 
 							<Text style={postStyle.textInput} >
-							_MM_28qt9ue_xP653_{'\n'}Nike hyperAdapt {'\n'}Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book
-							_MM_28qt9ue_xP653_{'\n'}Nike hyperAdapt {'\n'}Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book
+							{ product.id }{'\n'}
+							{ product.category }{'\n'}
+							{ product.description }
 							</Text>
 
 							<TouchableNativeFeedback

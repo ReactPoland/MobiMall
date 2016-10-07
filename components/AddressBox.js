@@ -43,7 +43,7 @@ const AddressBox = ({ addresses, loading, onPress, onDelete, mode }) => {
               <Text style={{ paddingBottom: 5, fontSize: 15, flex: 1 }}>{address}, {postalCode} {city}, {country}</Text>
             </View>
             <TouchableNativeFeedback onPress={deleteHandler(i)}>
-              <View style={{ width: 30, position: 'absolute', right: 0 }}>
+              <View style={{ width: 30, position: 'absolute', right: 0, alignItems: 'center', flexDirection: 'column' }}>
                 <Text style={{ fontSize: 30 }}>&#10005;</Text>
               </View>
             </TouchableNativeFeedback>

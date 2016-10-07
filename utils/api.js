@@ -1,7 +1,7 @@
 import axios from 'axios';
 // const host = 'http://10.0.2.2:3000';  // local server
-// const host = 'http://testmobimall2.herokuapp.com'; // heroku server
-const host = 'http://192.168.1.101:3000' // server to use when running on physical device;
+const host = 'http://testmobimall2.herokuapp.com'; // heroku server
+// const host = 'http://192.168.1.244:3000' // server to use when running on physical device;
 const createUrl = pathArray => `${host ? host : ''}/api/${pathArray.join('/')}`;
 
 const createRequest = (pathArray, data) => axios({
@@ -57,6 +57,10 @@ const api = {
 
   deleteCard (fbId, cardId) {
     return createRequest(['users', 'deleteCard'], { fbId, cardId });
+  },
+
+  checkNewProduct (fbId, productInfo) {
+    return createRequest(['users', 'checkNewProduct'], { fbId, productInfo });
   },
 
   getBankAccountData (fbId) {

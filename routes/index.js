@@ -145,6 +145,14 @@ export default class Router extends Component {
 							});
 						},
 
+						toPostProductToIG: function(data) {
+							navigator.push({
+								name: 'PostProductToIG',
+								index: route.index + 1,
+								data,
+							});	
+						},
+
 						toSellerProfile () {
 							// if ( !that.manager.getDataFB() || !that.manager.getDataInst() ) return;
 							if ( !that.manager.getDataFB() ) return;

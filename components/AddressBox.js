@@ -32,18 +32,20 @@ const AddressBox = ({ addresses, loading, onPress, onDelete, mode }) => {
             ? i === 0
               ? (
                 <Text style={st.blockSubtitle} >
-                  Default Address
+                  DEFAULT ADDRESS
                 </Text>
               )
               : null
             : null
           }
           <View style={{ flexDirection: 'row', position: 'relative' }}>
-            <View style={{ borderBottomColor: '#D3D3D3', borderBottomWidth: 1, marginRight: 30, flex: 1 }}>
-              <Text style={{ paddingBottom: 5, fontSize: 15, flex: 1 }}>{address}, {postalCode} {city}, {country}</Text>
+            <View style={{ borderBottomColor: '#D3D3D3', borderBottomWidth: 1, marginRight: 30, flex: 1, marginLeft: 5 }}>
+              <View style={{ marginRight: 50 }}>
+                <Text style={{ paddingBottom: 5, fontSize: 15, flex: 1 }}>{address}, {postalCode} {city}, {country}</Text>
+              </View>
             </View>
             <TouchableNativeFeedback onPress={deleteHandler(i)}>
-              <View style={{ width: 30, position: 'absolute', right: 0, alignItems: 'center', flexDirection: 'column' }}>
+              <View style={{ width: 30, position: 'absolute', right: 0, alignItems: 'center', flexDirection: 'column', top: -10 }}>
                 <Text style={{ fontSize: 30 }}>&#10005;</Text>
               </View>
             </TouchableNativeFeedback>

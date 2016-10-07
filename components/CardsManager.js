@@ -92,20 +92,24 @@ export default class CardsManager extends Component {
     return (
       <View>
         <Card>
-          <Text style={st.blockSubtitle} >MY CARDS</Text>
-          {this._getCards()}
+          <Card.Body>
+            <Text style={st.blockSubtitle} >MY CARDS</Text>
+            {this._getCards()}
+          </Card.Body>
         </Card>
 
         <Card >
-          <Text style={st.blockSubtitle} >NEW PAYMENT DETAILS</Text>
-          <CreditCardInput onChange={this._onCardInputChange} />
-          <Button text={saving ? 'SAVING...' : 'SAVE CARD'}
-            raised={true}
-            overrides={{
-            backgroundColor: '#9100be',
-            textColor: '#ffffff' }}
-            onPress={this._onCardSave}
-          />
+          <Card.Body>
+            <Text style={st.blockSubtitle} >NEW PAYMENT DETAILS</Text>
+            <CreditCardInput onChange={this._onCardInputChange} />
+            <Button text={saving ? 'SAVING...' : 'SAVE CARD'}
+              raised={true}
+              overrides={{
+              backgroundColor: '#9100be',
+              textColor: '#ffffff' }}
+              onPress={this._onCardSave}
+            />
+          </Card.Body>
         </Card>
       </View>
     );

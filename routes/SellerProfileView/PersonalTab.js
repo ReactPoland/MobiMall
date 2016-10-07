@@ -15,7 +15,6 @@ const PersonalTab = ({ personalData, onPersonalInfoChange }) => {
     <Card >
       <Card.Body>
         <Text style={st.blockSubtitle} >PERSONAL DETAILS</Text>
-
         <Sae
           label={'First Name'}
           iconClass={FontAwesomeIcon}
@@ -23,6 +22,7 @@ const PersonalTab = ({ personalData, onPersonalInfoChange }) => {
           iconColor={'gray'}
           inputStyle={st.textInputGrey}
           autoCapitalize={'none'}
+          editable={false}
           autoCorrect={false}
           onEndEditing={onPersonalInfoChange.bind(this, 'firstName')}
           value={firstName}
@@ -35,6 +35,7 @@ const PersonalTab = ({ personalData, onPersonalInfoChange }) => {
           iconColor={'gray'}
           inputStyle={st.textInputGrey}
           autoCapitalize={'none'}
+          editable={false}
           autoCorrect={false}
           onEndEditing={onPersonalInfoChange.bind(this, 'lastName')}
           value={lastName}
@@ -47,6 +48,7 @@ const PersonalTab = ({ personalData, onPersonalInfoChange }) => {
           iconColor={'gray'}
           inputStyle={st.textInputGrey}
           autoCapitalize={'none'}
+          editable={false}
           autoCorrect={false}
           onEndEditing={onPersonalInfoChange.bind(this, 'email')}
           value={email}
@@ -59,6 +61,7 @@ const PersonalTab = ({ personalData, onPersonalInfoChange }) => {
           iconColor={'gray'}
           inputStyle={st.textInputGrey}
           autoCapitalize={'none'}
+          editable={false}
           autoCorrect={false}
           onEndEditing={onPersonalInfoChange.bind(this, 'email2')}
           value={email2}
@@ -72,6 +75,7 @@ const PersonalTab = ({ personalData, onPersonalInfoChange }) => {
           inputStyle={st.textInputGrey}
           autoCapitalize={'none'}
           autoCorrect={false}
+          editable={false}
           onEndEditing={onPersonalInfoChange.bind(this, 'phone')}
           value={phone}
         />

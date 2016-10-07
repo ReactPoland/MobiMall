@@ -85,10 +85,11 @@ const AddressInput = ({ onChange, addressToEdit, onSave, shouldDisplay, isNew })
         value={bestTimeToDeliver}
       />
 
-      <Button text='SAVE ADDRESS' raised={true} overrides={{
+      <Button text='SAVE ADDRESS'
+        raised={true}
+        overrides={{
         backgroundColor: '#9100be',
-        textColor: '#ffffff'
-      }}
+        textColor: '#ffffff' }}
       onPress={onSave}
       />
     </Card>

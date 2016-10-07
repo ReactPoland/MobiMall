@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
+import { Card } from 'react-native-material-design';
 
 import CardsManager from '../../components/CardsManager';
 import st from '../../assets/style';
@@ -14,7 +15,7 @@ const AccountsTab = ({ fbId, onBankAccountDataChange, bankAccountData }) => {
 
   return (
     <View>
-      <View style={st.contentWrap} >
+      <Card >
         <Text style={st.blockSubtitle}>PAY SALE FROM MY STORE INTO</Text>
         <Sae
           label={'Bank Name'}
@@ -63,7 +64,7 @@ const AccountsTab = ({ fbId, onBankAccountDataChange, bankAccountData }) => {
           onEndEditing={onBankAccountDataChange.bind(this, 'accountName')}
           value={accountName}
         />
-      </View>
+      </Card>
       <CardsManager fbId={fbId} />
     </View>
   );

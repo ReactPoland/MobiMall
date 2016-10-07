@@ -5,13 +5,14 @@ import {
 } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
+import { Card } from 'react-native-material-design';
 
 import st from '../../assets/style';
 
 const PersonalTab = ({ personalData, onPersonalInfoChange }) => {
   const { firstName, lastName, email, email2, phone, about } = personalData;
   return (
-    <View style={st.contentWrap} >
+    <Card >
       <Text style={st.blockSubtitle} >PERSONAL DETAILS</Text>
 
       <Sae
@@ -86,7 +87,7 @@ const PersonalTab = ({ personalData, onPersonalInfoChange }) => {
         value={about}
       />
 
-    </View>
+    </Card>
   );
 }
 

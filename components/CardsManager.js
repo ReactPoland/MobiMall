@@ -5,7 +5,7 @@ import {
   TouchableNativeFeedback
 } from 'react-native';
 import { CreditCardInput } from "react-native-credit-card-input";
-import { Button } from 'react-native-material-design';
+import { Button, Card } from 'react-native-material-design';
 
 import { bindMethods, api } from '../utils';
 import st from '../assets/style';
@@ -91,12 +91,12 @@ export default class CardsManager extends Component {
     const { saving } = this.state;
     return (
       <View>
-        <View style={st.contentWrap}>
+        <Card>
           <Text style={st.blockSubtitle} >MY CARDS</Text>
           {this._getCards()}
-        </View>
+        </Card>
 
-        <View style={st.contentWrap} >
+        <Card >
           <Text style={st.blockSubtitle} >NEW PAYMENT DETAILS</Text>
           <CreditCardInput onChange={this._onCardInputChange} />
           <Button text={saving ? 'SAVING...' : 'SAVE CARD'} raised={true} overrides={{
@@ -104,7 +104,7 @@ export default class CardsManager extends Component {
             textColor: '#ffffff'
           }}
           />
-        </View>
+        </Card>
       </View>
     );
   }

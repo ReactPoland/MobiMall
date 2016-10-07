@@ -4,11 +4,11 @@ import {
   Text,
   TouchableNativeFeedback
 } from 'react-native';
+import { Card } from 'react-native-material-design';
 
 import st from '../assets/style';
 
 const AddressBox = ({ addresses, loading, onPress, onDelete, mode }) => {
-  console.log('addre', addresses)
   const handler = index => () => onPress(index);
   const deleteHandler = index => () => onDelete(index);
   const addressesNumber = addresses.length;
@@ -52,9 +52,9 @@ const AddressBox = ({ addresses, loading, onPress, onDelete, mode }) => {
   }
 
   return (
-    <View style={st.contentWrap}>
+    <Card>
       {getContent()}
-    </View>
+    </Card>
   );
 }
 

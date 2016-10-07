@@ -4,7 +4,7 @@ import {
   Text,
   TouchableNativeFeedback
 } from 'react-native';
-import { Button } from 'react-native-material-design';
+import { Button, Card } from 'react-native-material-design';
 
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
@@ -23,7 +23,7 @@ const AddressInput = ({ onChange, addressToEdit, onSave, shouldDisplay, isNew })
   } = addressToEdit;
 
   return (
-    <View style={st.contentWrap}>
+    <Card>
       <Text style={st.blockSubtitle}>{isNew ? 'ADD' : 'EDIT'} ADDRESS</Text>
       <Sae
         label={'Country'}
@@ -91,7 +91,7 @@ const AddressInput = ({ onChange, addressToEdit, onSave, shouldDisplay, isNew })
       }}
       onPress={onSave}
       />
-    </View>
+    </Card>
   );
 }
 

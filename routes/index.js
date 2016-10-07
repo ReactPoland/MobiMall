@@ -148,6 +148,16 @@ export default class Router extends Component {
 								name: 'SellerProfileView',
 								index: route.index + 1
 							});
+						},
+
+						toNewProductSeller () {
+							if ( !that.manager.getDataFB() || !that.manager.getDataInst() ) return;
+
+							navigator.push({
+								name: 'NewProductSeller',
+								index: route.index + 1
+							});
+							
 						}
 
 					};

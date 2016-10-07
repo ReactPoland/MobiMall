@@ -100,7 +100,7 @@ export default class ShopperProfileView extends Component {
   }
 
 	render() {
-  	const { firstName, lastName, email, email2, phone } = this.state.profileData;
+  	const { firstName, lastName, email, email2, phone, about } = this.state.profileData;
 		const { buyerAddresses, addressToEdit, loading, newAddress } = this.state;
 		return (
 			<View style={st.container}>
@@ -176,6 +176,19 @@ export default class ShopperProfileView extends Component {
 							    value={email2}
 							    autoCorrect={false}
 							  />
+
+							  <Sae
+							    label={'About'}
+							    iconClass={FontAwesomeIcon}
+							    iconName={'pencil'}
+							    iconColor={'gray'}
+							    inputStyle={st.textInputGrey}
+							    autoCapitalize={'none'}
+							    autoCorrect={false}
+							    onEndEditing={this.onPersonalInfoChange.bind(this, 'about')}
+							    value={about}
+							  />
+
 							</Card>
 						</View>
 						<CardsManager name='PAYMENTS' fbId={this.state.fbId} />

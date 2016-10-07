@@ -12,10 +12,6 @@ import LoginInst from './LoginInst';
 
 
 
-
-
-
-
 class Switcher extends Component {
 
 	constructor(props) {
@@ -150,7 +146,7 @@ export default class Router extends Component {
 								name: 'PostProductToIG',
 								index: route.index + 1,
 								data,
-							});	
+							});
 						},
 
 						toSellerProfile () {
@@ -171,33 +167,33 @@ export default class Router extends Component {
 								name: 'NewProductSeller',
 								index: route.index + 1
 							});
-							
+
 						}
 
 					};
 
 					return (
-					    <Switcher
-					    	manager= { this.manager }
-					    	route={ route }
-					    	navigator={ routeMethods }
+				    <Switcher
+				    	manager= { this.manager }
+				    	route={ route }
+				    	navigator={ routeMethods }
 
-						    // Function to call when a new scene should be displayed
-						    // onForward={ () => {
-						    	// const nextIndex = route.index + 1;
-						        // navigator.push({
-						        	// title: 'Scene ' + nextIndex,
-						        	// index: nextIndex,
-						        // });
-						    // }}
+					    // Function to call when a new scene should be displayed
+					    // onForward={ () => {
+					    	// const nextIndex = route.index + 1;
+					        // navigator.push({
+					        	// title: 'Scene ' + nextIndex,
+					        	// index: nextIndex,
+					        // });
+					    // }}
 
-						    // Function to call to go back to the previous scene
-						    // onBack={() => {
-						        // if (route.index > 0) {
-						    	    // navigator.pop();
-						        // }
-						    // }}
-					    />
+					    // Function to call to go back to the previous scene
+					    // onBack={() => {
+					        // if (route.index > 0) {
+					    	    // navigator.pop();
+					        // }
+					    // }}
+				    />
 				  	)
 				} }
 			/>

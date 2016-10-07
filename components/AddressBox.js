@@ -4,11 +4,11 @@ import {
   Text,
   TouchableNativeFeedback
 } from 'react-native';
+import { Card } from 'react-native-material-design';
 
 import st from '../assets/style';
 
 const AddressBox = ({ addresses, loading, onPress, onDelete, mode }) => {
-  console.log('addre', addresses)
   const handler = index => () => onPress(index);
   const deleteHandler = index => () => onDelete(index);
   const addressesNumber = addresses.length;
@@ -17,12 +17,12 @@ const AddressBox = ({ addresses, loading, onPress, onDelete, mode }) => {
     if(addressesNumber === 0) return <Text>No address added yet!</Text>;
     if(addressesNumber > 0) return addresses.map(({ address, postalCode, city, country }, i) => (
       <TouchableNativeFeedback onPress={handler(i)} key={i}>
-        <View style={{ borderBottomColor: '#D3D3D3', borderBottomWidth: 1 }}>
+        <View>
           {
             mode === 'LogisticsTab'
             ? (
-              <Text style={{ fontSize: 10, color: '#9100be', paddingTop: 5 }} >
-                {i === 0 ? 'Primary Address' : 'Secondary Address'}
+              <Text style={st.blockSubtitle} >
+                {i === 0 ? 'PRIMARY BUSSINESS ADDRESS' : 'SECONDARY ADDRESS'}
               </Text>
             )
             : null
@@ -31,17 +31,19 @@ const AddressBox = ({ addresses, loading, onPress, onDelete, mode }) => {
             mode === 'ShippingTab'
             ? i === 0
               ? (
-                <Text style={{ fontSize: 10, color: '#9100be', paddingTop: 5 }} >
+                <Text style={st.blockSubtitle} >
                   Default Address
                 </Text>
               )
               : null
             : null
           }
-          <View style={{ flexDirection: 'row' }}>
-            <Text style={{ paddingBottom: 5, fontSize: 15, flex: 1 }}>{address}, {postalCode} {city}, {country}</Text>
+          <View style={{ flexDirection: 'row', position: 'relative' }}>
+            <View style={{ borderBottomColor: '#D3D3D3', borderBottomWidth: 1, marginRight: 30, flex: 1 }}>
+              <Text style={{ paddingBottom: 5, fontSize: 15, flex: 1 }}>{address}, {postalCode} {city}, {country}</Text>
+            </View>
             <TouchableNativeFeedback onPress={deleteHandler(i)}>
-              <View>
+              <View style={{ width: 30, position: 'absolute', right: 0, alignItems: 'center', flexDirection: 'column' }}>
                 <Text style={{ fontSize: 30 }}>&#10005;</Text>
               </View>
             </TouchableNativeFeedback>
@@ -52,9 +54,11 @@ const AddressBox = ({ addresses, loading, onPress, onDelete, mode }) => {
   }
 
   return (
-    <View style={st.contentWrap}>
-      {getContent()}
-    </View>
+    <Card>
+      <Card.Body>
+        {getContent()}
+      </Card.Body>
+    </Card>
   );
 }
 

@@ -5,8 +5,6 @@ import {
 	View,
 	StyleSheet,
 	Image,
-	TextInput,
-	TouchableNativeFeedback,
 	ScrollView
 } from 'react-native';
 import { CreditCardInput } from "react-native-credit-card-input";
@@ -21,59 +19,7 @@ import { api } from '../../utils';
 import Stripe from '../../stripe';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
-
-class CheckboxList extends Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			currPosition: 0
-		};
-
-		this.selectCheck = this.selectCheck.bind(this);
-	}
-
-	selectCheck(item) {
-		this.setState({
-			currPosition: item
-		});
-		if (this.props.onChange) this.props.onChange(item);
-	}
-
-	render() {
-
-		let items = this.props.children.map((component, i) => {
-			let pointerStyle = st.checkboxPointer;
-
-			if ( i === this.state.currPosition ) pointerStyle = st.checkboxPointerChecked;
-
-			return (
-				<TouchableNativeFeedback
-					key={ i }
-					onPress={() => {
-						let curIndex = i;
-						this.selectCheck( curIndex );
-					}} >
-						<View style={ st.chboxCardWrap }>
-							{ component }
-
-							<View >
-								<View style={pointerStyle} ></View>
-							</View>
-						</View>
-
-				</TouchableNativeFeedback>
-			);
-		});
-
-
-		return (
-			<View style={st.chboxCardVertContainer}>
-				{ items }
-			</View>
-		);
-	}
-}
+import { Card } from 'react-native-material-design';
 
 export default class ShopperProfileView extends Component {
 	constructor(props) {
@@ -162,7 +108,7 @@ export default class ShopperProfileView extends Component {
 					<ProfileHeader name={`${firstName} ${lastName}`} />
 					<Tabs>
 						<View name={'PERSONAL'} >
-							<View style={st.contentWrap} >
+							<Card>
 								<Text style={st.blockSubtitle} >ADD NEW PRODUCT</Text>
 
 								<Sae
@@ -247,7 +193,7 @@ export default class ShopperProfileView extends Component {
 							    value={about}
 							  />
 
-							</View>
+							</Card>
 						</View>
 						<CardsManager name='PAYMENTS' fbId={this.state.fbId} />
 						<View name={'SHIPPING'}>
@@ -268,14 +214,14 @@ export default class ShopperProfileView extends Component {
 						</View>
 
 						<View name={'HISTORY'}>
-							<View style={st.contentWrap} >
+							<Card >
 								<Text>test block 4</Text>
-							</View>
+							</Card>
 						</View>
 					</Tabs>
 
 
-					{/*<View style={st.contentWrap}>
+					{/*<Card>
 						<Text style={st.blockTitle} >ADD NEW PRODUCT</Text>
 
 
@@ -308,7 +254,7 @@ export default class ShopperProfileView extends Component {
 						</View>
 					</View>
 
-					<View style={st.contentWrap}>
+					<Card>
 						<View style={st.lineView}>
 							<Text style={st.buttonDescription} >ADD PRODUCT IMAGE</Text>
 							<TouchableNativeFeedback

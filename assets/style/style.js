@@ -64,7 +64,7 @@ export default {
 		fontSize: 11,
 		color: '#9100be',
 		textAlign: 'left',
-		marginTop: -8,
+		marginTop: 8,
 		marginBottom: 10,
 	},
 	lineView: {

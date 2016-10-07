@@ -69,6 +69,7 @@ export default class NewProductSeller extends Component {
 				url: `https://graph.facebook.com/me?fields=id,name,bio&access_token=${data.credentials.token}`,
 			})
 			.then( (responseJson) => responseJson.data.bio );
+			console.log('test', JSON.parse(data.profile))
 
 			let profile = Object.assign({}, {
 				id:JSON.parse(data.profile).id,
@@ -77,6 +78,7 @@ export default class NewProductSeller extends Component {
 				firstName: JSON.parse(data.profile).first_name,
 				lastName: JSON.parse(data.profile).last_name,
 				name: JSON.parse(data.profile).name,
+				profileImgUri: JSON.parse(data.profile).picture.data.url
 			} );
 
 			that.props.manager.authFB && that.props.manager.authFB( profile );

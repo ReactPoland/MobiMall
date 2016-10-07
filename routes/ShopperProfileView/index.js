@@ -109,12 +109,17 @@ export default class ShopperProfileView extends Component {
   }
 
 	render() {
-  	const { firstName, lastName, email, email2, phone, about } = this.state.profileData;
+  	const { phone, about } = this.state.profileData;
 		const { buyerAddresses, addressToEdit, loading, newAddress, saving } = this.state;
+		const fbData = this.props.manager.getDataFB();
+		const { name, id, firstName, lastName, email } = fbData;
 		return (
 			<View style={st.container}>
 				<ScrollView>
-					<ProfileHeader name={`${firstName || ''} ${lastName || ''}`} />
+					<ProfileHeader
+						name={name}
+						fbId={id}
+					/>
 					<Tabs>
 						<View name={'PERSONAL'} >
 							<Card>

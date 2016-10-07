@@ -26,7 +26,8 @@ export default class SellerProfileView extends Component {
 		this.state = {
 			fbId: this.props.manager.getDataFB().id,
 			personalData: {},
-			bankAccountData: {}
+			bankAccountData: {},
+			saving: false
 		};
 	}
 
@@ -39,7 +40,6 @@ export default class SellerProfileView extends Component {
 			.getBankAccountData(this.state.fbId)
 			.then(({ data }) => {
 				this.setState({ bankAccountData: data })
-				console.log('asdasdasdas', typeof data);
 			})
 			.catch(e => console.log('err', e));
 	}
@@ -47,9 +47,6 @@ export default class SellerProfileView extends Component {
 	_onPersonalInfoChange (property, event) {
 		const personalData = Object.assign({}, this.state.personalData);
 		personalData[property] = event.nativeEvent.text;
-		api
-			.updatePersonalInfo(this.state.fbId, personalData)
-			.catch(e => console.log(e));
 		this.setState({ personalData });
 	}
 
@@ -65,18 +62,35 @@ export default class SellerProfileView extends Component {
 		this.setState({ bankAccountData });
 	}
 
+	_onPersonalInfoSave () {
+		const { profileData } = this.state;
+		this.setState({ saving: true });
+		api
+			.updatePersonalInfo(this.state.fbId, profileData)
+			.then(() => this.setState({ saving: false }))
+			.catch(e => console.log(e));
+	}
+
   render () {
-		const { fbId, bankAccountData } = this.state;
-		console.log('data', bankAccountData);
+		const { fbId, bankAccountData, saving } = this.state;
+		const { firstName } = this.state.personalData;
+		const { name } = this.props.manager.getDataFB();
+		console.log()
     return (
 			<View style={st.container}>
 				<ScrollView>
-          <ProfileHeader />
+          <ProfileHeader
+						name={name}
+						fbId={fbId}
+					/>
 					<Tabs>
             <PersonalTab
 							name='PERSONAL'
 							personalData={this.state.personalData}
+							fbData={this.props.manager.getDataFB()}
 							onPersonalInfoChange={this._onPersonalInfoChange}
+							saving={saving}
+							onSave={this._onPersonalInfoSave}
 						/>
 						<StoreTab name='STORE' />
 						<AccountsTab

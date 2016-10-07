@@ -6,11 +6,13 @@ import {
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
 import { Card } from 'react-native-material-design';
+import PurpleButton from '../../components/PurpleButton';
 
 import st from '../../assets/style';
 
-const PersonalTab = ({ personalData, onPersonalInfoChange }) => {
-  const { firstName, lastName, email, email2, phone, about } = personalData;
+const PersonalTab = ({ personalData, onPersonalInfoChange, saving, onSave, fbData }) => {
+  const { email2, phone, about } = personalData;
+  const { firstName, lastName, email } = fbData;
   return (
     <Card >
       <Card.Body>
@@ -24,7 +26,6 @@ const PersonalTab = ({ personalData, onPersonalInfoChange }) => {
           autoCapitalize={'none'}
           editable={false}
           autoCorrect={false}
-          onEndEditing={onPersonalInfoChange.bind(this, 'firstName')}
           value={firstName}
         />
 
@@ -37,7 +38,6 @@ const PersonalTab = ({ personalData, onPersonalInfoChange }) => {
           autoCapitalize={'none'}
           editable={false}
           autoCorrect={false}
-          onEndEditing={onPersonalInfoChange.bind(this, 'lastName')}
           value={lastName}
         />
 
@@ -50,7 +50,6 @@ const PersonalTab = ({ personalData, onPersonalInfoChange }) => {
           autoCapitalize={'none'}
           editable={false}
           autoCorrect={false}
-          onEndEditing={onPersonalInfoChange.bind(this, 'email')}
           value={email}
         />
 
@@ -90,7 +89,11 @@ const PersonalTab = ({ personalData, onPersonalInfoChange }) => {
           autoCorrect={false}
           onEndEditing={onPersonalInfoChange.bind(this, 'about')}
           value={about}
+          multiline={true}
+          numberOfLines={4}
         />
+
+        <PurpleButton text={saving ? 'SAVING...' : 'SAVE'} onPress={onSave} />
       </Card.Body>
     </Card>
   );

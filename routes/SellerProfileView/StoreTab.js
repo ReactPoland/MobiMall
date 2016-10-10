@@ -11,15 +11,17 @@ import st from '../../assets/style';
 
 const StoreTab = () => (
   <Card >
-    <Sae
-      label={'Company Name'}
-      iconClass={FontAwesomeIcon}
-      iconName={'pencil'}
-      iconColor={'gray'}
-      inputStyle={st.textInputGrey}
-      autoCapitalize={'none'}
-      autoCorrect={false}
-    />
+    <Card.Body>
+      <Sae
+        label={'Company Name'}
+        iconClass={FontAwesomeIcon}
+        iconName={'pencil'}
+        iconColor={'gray'}
+        inputStyle={st.textInputGrey}
+        autoCapitalize={'none'}
+        autoCorrect={false}
+      />
+    </Card.Body>
   </Card>
 );
 

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  TouchableNativeFeedback
+  TouchableNativeFeedback,
+  Alert
 } from 'react-native';
 import { CreditCardInput } from "react-native-credit-card-input";
 import { Button, Card, Subheader } from 'react-native-material-design';
@@ -69,7 +70,8 @@ export default class CardsManager extends Component {
 		const { cardNumber, expMonth, expYear, cvc } = cardData;
 		if(cardData) {
 			const cardToken = await Stripe
-				.createToken(cardNumber, expMonth, expYear, cvc);
+				.createToken(cardNumber, expMonth, expYear, cvc)
+        .catch(() => Alert.alert('Error', 'Cannot save the card, check the data and try again!'));
 			if(cardToken.id) {
 				const apiResp = await api.saveCard(fbId, cardToken.id);
 				if(!apiResp.data.error) {
@@ -92,20 +94,24 @@ export default class CardsManager extends Component {
     return (
       <View>
         <Card>
-          <Text style={st.blockSubtitle} >MY CARDS</Text>
-          {this._getCards()}
+          <Card.Body>
+            <Text style={st.blockSubtitle} >MY CARDS</Text>
+            {this._getCards()}
+          </Card.Body>
         </Card>
 
         <Card >
-          <Text style={st.blockSubtitle} >NEW PAYMENT DETAILS</Text>
-          <CreditCardInput onChange={this._onCardInputChange} />
-          <Button text={saving ? 'SAVING...' : 'SAVE CARD'}
-            raised={true}
-            overrides={{
-            backgroundColor: '#9100be',
-            textColor: '#ffffff' }}
-            onPress={this._onCardSave}
-          />
+          <Card.Body>
+            <Text style={st.blockSubtitle} >NEW PAYMENT DETAILS</Text>
+            <CreditCardInput onChange={this._onCardInputChange} />
+            <Button text={saving ? 'SAVING...' : 'SAVE CARD'}
+              raised={true}
+              overrides={{
+              backgroundColor: '#9100be',
+              textColor: '#ffffff' }}
+              onPress={this._onCardSave}
+            />
+          </Card.Body>
         </Card>
       </View>
     );

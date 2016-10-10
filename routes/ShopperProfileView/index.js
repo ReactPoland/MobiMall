@@ -5,7 +5,8 @@ import {
 	View,
 	StyleSheet,
 	Image,
-	ScrollView
+	ScrollView,
+	TextInput
 } from 'react-native';
 import { CreditCardInput } from "react-native-credit-card-input";
 import Tabs from '../../components/Tabs';
@@ -20,6 +21,7 @@ import Stripe from '../../stripe';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
 import { Card } from 'react-native-material-design';
+import PurpleButton from '../../components/PurpleButton';
 
 export default class ShopperProfileView extends Component {
 	constructor(props) {
@@ -31,7 +33,8 @@ export default class ShopperProfileView extends Component {
 			addressToEdit: null,
       addressToEditIndex: false,
       newAddress: {},
-			buyerAddresses: []
+			buyerAddresses: [],
+			saving: false
 		};
 	}
 
@@ -50,10 +53,16 @@ export default class ShopperProfileView extends Component {
 	onPersonalInfoChange (property, event) {
 		const profileData = Object.assign({}, this.state.profileData);
 		profileData[property] = event.nativeEvent.text;
+		this.setState({ profileData });
+	}
+
+	onPersonalInfoSave () {
+		const { profileData } = this.state;
+		this.setState({ saving: true });
 		api
 			.updatePersonalInfo(this.state.fbId, profileData)
+			.then(() => this.setState({ saving: false }))
 			.catch(e => console.log(e));
-		this.setState({ profileData });
 	}
 
 	_setAddressToEdit (index) {
@@ -100,102 +109,95 @@ export default class ShopperProfileView extends Component {
   }
 
 	render() {
-  	const { firstName, lastName, email, email2, phone, about } = this.state.profileData;
-		const { buyerAddresses, addressToEdit, loading, newAddress } = this.state;
+  	const { phone, about } = this.state.profileData;
+		const { buyerAddresses, addressToEdit, loading, newAddress, saving } = this.state;
+		const fbData = this.props.manager.getDataFB();
+		const { name, id, firstName, lastName, email } = fbData;
 		return (
 			<View style={st.container}>
 				<ScrollView>
-					<ProfileHeader name={`${firstName} ${lastName}`} />
+					<ProfileHeader
+						name={name}
+						fbId={id}
+					/>
 					<Tabs>
 						<View name={'PERSONAL'} >
 							<Card>
-								<Text style={st.blockSubtitle} >ADD NEW PRODUCT</Text>
+								<Card.Body>
+									<Text style={st.blockSubtitle} >PERSONAL DETAILS</Text>
 
-								<Sae
-							    label={'First name'}
-							    iconClass={FontAwesomeIcon}
-							    iconName={'pencil'}
-							    iconColor={'gray'}
-								inputStyle={st.textInputGrey}
-							    // TextInput props
-							    editable={false}
-							    autoCapitalize={'none'}
-							    onEndEditing={this.onPersonalInfoChange.bind( this, 'firstName' )}
-							    autoCorrect={false}
-							    value={firstName}
-							  />
+									<Sae
+								    label={'First name'}
+								    iconClass={FontAwesomeIcon}
+								    iconName={'pencil'}
+								    iconColor={'gray'}
+										inputStyle={st.textInputGrey}
+								    // TextInput props
+								    autoCapitalize={'none'}
+								    autoCorrect={false}
+								    value={firstName}
+										editable={false}
+								  />
 
-								<Sae
-							    label={'Last name'}
-							    iconClass={FontAwesomeIcon}
-							    iconName={'pencil'}
-							    iconColor={'gray'}
-								inputStyle={st.textInputGrey}
-							    editable={false}
-							    // TextInput props
-							    autoCapitalize={'none'}
-							    autoCorrect={false}
-							    onEndEditing={this.onPersonalInfoChange.bind( this, 'lastName' )}
-							    value={lastName}
-							  />
+									<Sae
+								    label={'Last name'}
+								    iconClass={FontAwesomeIcon}
+								    iconName={'pencil'}
+								    iconColor={'gray'}
+										inputStyle={st.textInputGrey}
 
-								<Sae
-							    label={'Email Address'}
-							    iconClass={FontAwesomeIcon}
-							    iconName={'pencil'}
-							    iconColor={'gray'}
-								inputStyle={st.textInputGrey}
-							    editable={false}
-							    // TextInput props
-							    autoCapitalize={'none'}
-							    autoCorrect={false}
-							    onEndEditing={this.onPersonalInfoChange.bind( this, 'email' )}
-							    value={email}
-							  />
+								    // TextInput props
+								    autoCapitalize={'none'}
+								    autoCorrect={false}
+								    value={lastName}
+										editable={false}
+								  />
 
-								<Sae
-							    label={'Phone number'}
-							    iconClass={FontAwesomeIcon}
-							    iconName={'pencil'}
-							    iconColor={'gray'}
-								inputStyle={st.textInputGrey}
-							    editable={false}
-							    // TextInput props
-							    autoCapitalize={'none'}
-        						onEndEditing={this.onPersonalInfoChange.bind(this, 'phone')}
-							    value={phone}
-							    autoCorrect={false}
-							  />
+									<Sae
+								    label={'Email Address'}
+								    iconClass={FontAwesomeIcon}
+								    iconName={'pencil'}
+								    iconColor={'gray'}
+										inputStyle={st.textInputGrey}
+								    // TextInput props
+								    autoCapitalize={'none'}
+								    autoCorrect={false}
+								    value={email}
+										editable={false}
+								  />
 
-								<Sae
-							    label={'Email Address'}
-							    iconClass={FontAwesomeIcon}
-							    iconName={'pencil'}
-							    iconColor={'gray'}
-								inputStyle={st.textInputGrey}
-							    editable={false}
-							    // TextInput props
-							    autoCapitalize={'none'}
-        						onEndEditing={this.onPersonalInfoChange.bind(this, 'email2')}
-							    value={email2}
-							    autoCorrect={false}
-							  />
+									<Sae
+								    label={'Phone number'}
+								    iconClass={FontAwesomeIcon}
+								    iconName={'pencil'}
+								    iconColor={'gray'}
+										inputStyle={st.textInputGrey}
+								    // TextInput props
+								    autoCapitalize={'none'}
+	        					onEndEditing={this.onPersonalInfoChange.bind(this, 'phone')}
+								    value={phone}
+								    autoCorrect={false}
+								  />
 
-							  <Sae
-							    label={'About'}
-							    iconClass={FontAwesomeIcon}
-							    iconName={'pencil'}
-							    iconColor={'gray'}
-							    inputStyle={st.textInputGrey}
-							    autoCapitalize={'none'}
-							    autoCorrect={false}
-							    onEndEditing={this.onPersonalInfoChange.bind(this, 'about')}
-							    value={about}
-							  />
+								  <Sae
+								    label={'About'}
+								    iconClass={FontAwesomeIcon}
+								    iconName={'pencil'}
+								    iconColor={'gray'}
+								    inputStyle={st.textInputGrey}
+								    autoCapitalize={'none'}
+								    autoCorrect={false}
+								    onEndEditing={this.onPersonalInfoChange.bind(this, 'about')}
+								    value={about}
+										multiline={true}
+										numberOfLines={4}
+								  />
 
+									<PurpleButton text={saving ? 'SAVING...' : 'SAVE'} onPress={this.onPersonalInfoSave} />
+								</Card.Body>
 							</Card>
 						</View>
-						<CardsManager name='PAYMENTS' fbId={this.state.fbId} />
+						<CardsManager name='PAYMENT' fbId={this.state.fbId} />
 						<View name={'SHIPPING'}>
 							<AddressBox
 								addresses={buyerAddresses}
@@ -215,7 +217,9 @@ export default class ShopperProfileView extends Component {
 
 						<View name={'HISTORY'}>
 							<Card >
-								<Text>test block 4</Text>
+								<Card.Body>
+									<Text>test block 4</Text>
+								</Card.Body>
 							</Card>
 						</View>
 					</Tabs>

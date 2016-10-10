@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import st from '../../assets/style';
-import { 
-	Text, 
-	View, 
-	StyleSheet, 
+import {
+	Text,
+	View,
+	StyleSheet,
 	Image,
 	TextInput,
 	Alert,
@@ -11,6 +11,7 @@ import {
 	ScrollView
 } from 'react-native';
 import { bindMethods, api } from '../../utils';
+import { Card } from 'react-native-material-design';
 
 export default class NewProductSeller extends Component {
 
@@ -92,11 +93,12 @@ export default class NewProductSeller extends Component {
 			<View style={st.container}>
 
 				<ScrollView>
-				
+
 					<View style={ st.titleView } >
 						<Image source={{uri: 'https://unsplash.it/600/100?image=147'}} style={st.imgTitle}/>
 						<Text style={ st.titleText } >SHOP NAME</Text>
 					</View>
+<<<<<<< HEAD
 						
 					<View style={st.contentWrap}>
 						<Text style={st.blockTitle} >ADD NEW PRODUCT</Text>
@@ -137,18 +139,77 @@ export default class NewProductSeller extends Component {
 								numberOfLines = {4} />
 						</View>
 					</View>
+=======
+>>>>>>> e33c36d96847e0e3f77925dc0324a93374f91ab8
 
-					<View style={st.contentWrap}>
-						<View style={st.lineView}>
-							<Text style={st.buttonDescription} >ADD PRODUCT IMAGE</Text>
+					<Card>
+						<Card.Body>
+							<Text style={st.blockTitle} >ADD NEW PRODUCT</Text>
+
+
+							<Text style={st.textInput} >Product name</Text>
+							<TextInput
+								style={st.input}
+								onEndEditing={ this.changeProductData.bind(this, 'productName') }
+								placeholder={'Mens Brogue Shoe'}
+								underlineColorAndroid="#edb4ff"
+								placeholderTextColor='#cccccc'
+								value={ productName }
+								/>
+
+							<Text style={st.textInput} >Category</Text>
+
+							<TextInput
+								style={st.input}
+								onEndEditing={ this.changeProductData.bind(this, 'category') }
+								placeholder={'Shoes'}
+								placeholderTextColor='#cccccc'
+								value={ category }
+								underlineColorAndroid="#edb4ff"
+								/>
+
+							<Text style={st.textInput} >Description</Text>
+
+							<View style={st.inputMultiWrap}>
+								<TextInput
+									style={st.inputMulti}
+									onEndEditing={ this.changeProductData.bind(this, 'description') }
+									placeholder={'Populated by my facebook profile'}
+									multiline = {true}
+									placeholderTextColor='#b6b6b6'
+									underlineColorAndroid="transparent"
+									value={ description }
+									numberOfLines = {4} />
+							</View>
+						</Card.Body>
+					</Card>
+
+					<Card>
+						<Card.Body>
+							<View style={st.lineView}>
+								<Text style={st.buttonDescription} >ADD PRODUCT IMAGE</Text>
+								<TouchableNativeFeedback
+									onPress={() => {
+										console.log('begin');
+									}} >
+									<View style={st.squareBorderButton} >
+										<Text style={st.buttName} >IMAGE ICON BUTTON</Text>
+									</View>
+								</TouchableNativeFeedback>
+							</View>
+						</Card.Body>
+
+					</Card>
+
+					<Card>
+						<Card.Body>
 							<TouchableNativeFeedback
-								onPress={() => {
-									console.log('begin');
-								}} > 
-								<View style={st.squareBorderButton} >
-									<Text style={st.buttName} >IMAGE ICON BUTTON</Text>
-								</View>
+							  onPress={this.onSendProduct} >
+							  <View style={st.purpleButtonView} >
+							    <Text style={st.purpleButtonName} >SAVE ADDRESS</Text>
+							  </View>
 							</TouchableNativeFeedback>
+<<<<<<< HEAD
 						</View>
 
 					</View>
@@ -212,6 +273,10 @@ export default class NewProductSeller extends Component {
 						  </View>
 						</TouchableNativeFeedback>
 					</View>
+=======
+						</Card.Body>
+					</Card>
+>>>>>>> e33c36d96847e0e3f77925dc0324a93374f91ab8
 
 
 				</ScrollView>

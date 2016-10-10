@@ -6,7 +6,7 @@ import {
   Text
 } from 'react-native';
 
-const ProfileHeader = ({ name }) => (
+const ProfileHeader = ({ name, fbId }) => (
   <View style={ st.shopTitleView } >
     <Image source={{uri: 'https://unsplash.it/600/100?image=147'}} style={st.imgTitle}/>
     <View style={st.shopTitleProfileBlock}>
@@ -16,7 +16,7 @@ const ProfileHeader = ({ name }) => (
       </View>
 
       <View style={st.shopperTitleProfile}>
-        <Image source={{uri: 'https://unsplash.it/100/100?image=158'}} style={st.shopProfileImg}/>
+        <Image source={{uri: `http://graph.facebook.com/${fbId}/picture?type=large` }} style={st.shopProfileImg}/>
         <Text style={ st.shopProfileName } >{name}</Text>
       </View>
 

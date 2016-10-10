@@ -8,16 +8,22 @@ import {
 	TextInput,
 	Alert,
 	TouchableNativeFeedback,
-	ScrollView
+	ScrollView,
+	Platform
 } from 'react-native';
 import { bindMethods, api } from '../../utils';
 import { Card } from 'react-native-material-design';
+var ImagePicker = require('react-native-image-picker');
+
 
 export default class NewProductSeller extends Component {
 
 	constructor(props) {
 		super(props);
 		bindMethods(this);
+
+
+
 		// let formdata = new FormData();
 		// formdata.append("product[name]", 'test')
 		// formdata.append("product[price]", 10)
@@ -47,24 +53,19 @@ export default class NewProductSeller extends Component {
 	}
 
 	onSendProduct() {
-		// Alert.alert( JSON.stringify( this.state.productData ) );
+		// api.checkNewProduct( this.props.manager.getDataFB().id, this.state.productData ).then( ({ data }) => {
 
-		api.checkNewProduct( this.props.manager.getDataFB().id, this.state.productData ).then( ({ data }) => {
+		// 	if ( data.status === 'ok' ) {
+		// 		this.props.navigator.toPostProductToIG( data.productInfo );
+		// 	}
+		// 	else {
+		// 		Alert.alert( data.mess );
+		// 	}
 
-			if ( data.status === 'ok' ) {
-				this.props.navigator.toPostProductToIG( data.productInfo );
-				// Alert.alert('SHOWING POST VIEW');
-			}
-			else {
-				Alert.alert( data.mess );
-			}
-
-		})
-		.catch((err) => {
-			Alert.alert(err.message);
-		})
-
-		// console.log('Send into server');
+		// })
+		// .catch((err) => {
+		// 	Alert.alert(err.message);
+		// })
 	}
 
 	changeProductData(prop, event) {
@@ -87,7 +88,10 @@ export default class NewProductSeller extends Component {
 			reatilPrice,
 			costPrice,
 			vat,
-			supplier } = this.state;
+			supplier } = this.state.productData;
+
+
+		
 			
 		return (
 			<View style={st.container}>
@@ -147,10 +151,53 @@ export default class NewProductSeller extends Component {
 								<Text style={st.buttonDescription} >ADD PRODUCT IMAGE</Text>
 								<TouchableNativeFeedback
 									onPress={() => {
-										console.log('begin');
+
+										const options = {
+											title: 'Select Avatar',
+											customButtons: [
+										    	{
+										    		name: 'fb', 
+										    		title: 'Choose Photo from Facebook'
+										    	},
+										  	],
+										  	storageOptions: {
+										    	skipBackup: true,
+										    	path: 'images'
+										  	}
+										};
+
+										ImagePicker.showImagePicker(options, (response) => {
+											console.log('Response = ', response);
+
+										  if (response.didCancel) {
+										    console.log('User cancelled image picker');
+										  }
+										  else if (response.error) {
+										    console.log('ImagePicker Error: ', response.error);
+										  }
+										  else if (response.customButton) {
+										    console.log('User tapped custom button: ', response.customButton);
+										  }
+										  else {
+										    // You can display the image using either data...
+										    const source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true, name:response.fileName };
+
+										    // or a reference to the platform specific asset location
+										    if (Platform.OS === 'ios') {
+										      const source = {uri: response.uri.replace('file://', ''), isStatic: true, name:response.fileName };
+										    } else {
+										      const source = {uri: response.uri, isStatic: true, name:response.fileName  };
+										    }
+
+										    this.setState({
+										      avatarSource: source
+										    });
+										  }
+										});
+
 									}} >
 									<View style={st.squareBorderButton} >
-										<Text style={st.buttName} >IMAGE ICON BUTTON</Text>
+										<Text style={st.buttName} >{ (this.state.avatarSource && this.state.avatarSource.name) ? this.state.avatarSource.name : `IMAGE ICON BUTTON` }</Text>
 									</View>
 								</TouchableNativeFeedback>
 							</View>

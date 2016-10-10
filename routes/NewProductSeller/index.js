@@ -53,19 +53,19 @@ export default class NewProductSeller extends Component {
 	}
 
 	onSendProduct() {
-		// api.checkNewProduct( this.props.manager.getDataFB().id, this.state.productData ).then( ({ data }) => {
+		api.checkNewProduct( this.props.manager.getDataFB().id, this.state.productData ).then( ({ data }) => {
 
-		// 	if ( data.status === 'ok' ) {
-		// 		this.props.navigator.toPostProductToIG( data.productInfo );
-		// 	}
-		// 	else {
-		// 		Alert.alert( data.mess );
-		// 	}
+			if ( data.status === 'ok' ) {
+				this.props.navigator.toPostProductToIG( data.productInfo );
+			}
+			else {
+				Alert.alert( data.mess );
+			}
 
-		// })
-		// .catch((err) => {
-		// 	Alert.alert(err.message);
-		// })
+		})
+		.catch((err) => {
+			Alert.alert(err.message);
+		})
 	}
 
 	changeProductData(prop, event) {

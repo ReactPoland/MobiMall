@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  TouchableNativeFeedback
+  TouchableNativeFeedback,
+  Alert
 } from 'react-native';
 import { CreditCardInput } from "react-native-credit-card-input";
 import { Button, Card, Subheader } from 'react-native-material-design';
@@ -69,7 +70,8 @@ export default class CardsManager extends Component {
 		const { cardNumber, expMonth, expYear, cvc } = cardData;
 		if(cardData) {
 			const cardToken = await Stripe
-				.createToken(cardNumber, expMonth, expYear, cvc);
+				.createToken(cardNumber, expMonth, expYear, cvc)
+        .catch(() => Alert.alert('Error', 'Cannot save the card, check the data and try again!'));
 			if(cardToken.id) {
 				const apiResp = await api.saveCard(fbId, cardToken.id);
 				if(!apiResp.data.error) {

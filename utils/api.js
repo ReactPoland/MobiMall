@@ -63,6 +63,10 @@ const api = {
     return createRequest(['users', 'checkNewProduct'], { fbId, productInfo });
   },
 
+  addNewProduct (fbId, productInfo) {
+    return createRequest(['users', 'addNewProduct'], { fbId, productInfo });
+  },
+
   getBankAccountData (fbId) {
     return createRequest(['users', 'getBankAccountData'], { fbId });
   }

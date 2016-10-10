@@ -17,6 +17,27 @@ export default class NewProductSeller extends Component {
 	constructor(props) {
 		super(props);
 		bindMethods(this);
+		// let formdata = new FormData();
+		// formdata.append("product[name]", 'test')
+		// formdata.append("product[price]", 10)
+		// formdata.append("product[category_ids][]", 2)
+		// formdata.append("product[description]", '12dsadadsa')
+		// formdata.append("product[images_attributes[0][file]]", {uri: '/Pictures/alpha_amalfi_coast.jpg', name: 'image.jpg', type: 'multipart/form-data'})
+		// // console.log( formdata );
+
+		// fetch('http://192.168.1.244:3000/api/addNewProduct',{
+		// 	method: 'post',
+		// 	headers: {
+		//     	'Content-Type': 'multipart/form-data',
+		// 	},
+		// 	body: formdata
+		// })
+		// .then(response => {
+		// 	console.log("image uploaded")
+		// })
+		// .catch(err => {
+		// 	console.log(err)
+		// });
 
 		this.state = {
 			productData: {}
@@ -37,7 +58,10 @@ export default class NewProductSeller extends Component {
 				Alert.alert( data.mess );
 			}
 
-		});
+		})
+		.catch((err) => {
+			Alert.alert(err.message);
+		})
 
 		// console.log('Send into server');
 	}
@@ -54,7 +78,16 @@ export default class NewProductSeller extends Component {
 
 
 	render() {
-		const { productName, category, description } = this.state;
+		const { 
+			productName, 
+			category, 
+			description, 
+			quantity,
+			reatilPrice,
+			costPrice,
+			vat,
+			supplier } = this.state;
+			
 		return (
 			<View style={st.container}>
 
@@ -72,7 +105,7 @@ export default class NewProductSeller extends Component {
 						<Text style={st.textInput} >Product name</Text>
 						<TextInput 
 							style={st.input}
-							onEndEditing={ this.changeProductData.bind(this, 'productName') }
+							onChange={ this.changeProductData.bind(this, 'productName') }
 							placeholder={'Mens Brogue Shoe'} 
 							underlineColorAndroid="#edb4ff" 
 							placeholderTextColor='#cccccc'
@@ -83,7 +116,7 @@ export default class NewProductSeller extends Component {
 						
 						<TextInput 
 							style={st.input} 
-							onEndEditing={ this.changeProductData.bind(this, 'category') }
+							onChange={ this.changeProductData.bind(this, 'category') }
 							placeholder={'Shoes'} 
 							placeholderTextColor='#cccccc'
 							value={ category }
@@ -95,7 +128,7 @@ export default class NewProductSeller extends Component {
 						<View style={st.inputMultiWrap}>
 							<TextInput 
 								style={st.inputMulti} 
-								onEndEditing={ this.changeProductData.bind(this, 'description') }
+								onChange={ this.changeProductData.bind(this, 'description') }
 								placeholder={'Populated by my facebook profile'} 
 								multiline = {true} 
 								placeholderTextColor='#b6b6b6'
@@ -121,10 +154,61 @@ export default class NewProductSeller extends Component {
 					</View>
 
 					<View style={st.contentWrap}>
+
+						<Text style={st.textInput} >Quantity in Stock</Text>
+						
+						<TextInput 
+							style={st.input}
+							onChange={ this.changeProductData.bind(this, 'quantity') }
+							placeholder={'456'} 
+							underlineColorAndroid="#edb4ff" 
+							placeholderTextColor='#cccccc'
+							value={ quantity } />
+
+						<Text style={st.textInput} >Retail Price $</Text>
+						
+						<TextInput 
+							style={st.input}
+							onChange={ this.changeProductData.bind(this, 'reatilPrice') }
+							placeholder={'89'} 
+							underlineColorAndroid="#edb4ff" 
+							placeholderTextColor='#cccccc'
+							value={ reatilPrice } />
+
+						<Text style={st.textInput} >Cost Price $</Text>
+						
+						<TextInput 
+							style={st.input}
+							onChange={ this.changeProductData.bind(this, 'costPrice') }
+							placeholder={'56'} 
+							underlineColorAndroid="#edb4ff" 
+							placeholderTextColor='#cccccc'
+							value={ costPrice } />
+
+						<Text style={st.textInput} >VAT %</Text>
+						
+						<TextInput 
+							style={st.input}
+							onChange={ this.changeProductData.bind(this, 'vat') }
+							placeholder={'4.5'} 
+							underlineColorAndroid="#edb4ff" 
+							placeholderTextColor='#cccccc'
+							value={ vat } />
+
+						<Text style={st.textInput} >Supplier</Text>
+						
+						<TextInput 
+							style={st.input}
+							onChange={ this.changeProductData.bind(this, 'supplier') }
+							placeholder={'Bescot Shoes'} 
+							underlineColorAndroid="#edb4ff" 
+							placeholderTextColor='#cccccc'
+							value={ supplier } />
+					
 						<TouchableNativeFeedback
 						  onPress={this.onSendProduct} >
 						  <View style={st.purpleButtonView} >
-						    <Text style={st.purpleButtonName} >SAVE ADDRESS</Text>
+						    <Text style={st.purpleButtonName} >SAVE PRODUCT</Text>
 						  </View>
 						</TouchableNativeFeedback>
 					</View>

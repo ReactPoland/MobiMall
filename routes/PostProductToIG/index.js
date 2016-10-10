@@ -10,6 +10,7 @@ import {
 	Alert,
 	Dimensions
 } from 'react-native';
+import { bindMethods, api } from '../../utils';
 
 export default class NewProductSeller extends Component {
 
@@ -22,6 +23,8 @@ export default class NewProductSeller extends Component {
 				height: 360
 			} 
 		}
+
+		console.log(FormData);
 	}
 
 	onLayout(event) {
@@ -49,6 +52,8 @@ export default class NewProductSeller extends Component {
 	render() {
 
 		let { data:product } = this.props.route;
+		const { navigator } = this.props;
+
 
 
 
@@ -64,17 +69,35 @@ export default class NewProductSeller extends Component {
 							
 						<View style={postStyle.postPageDescView} >
 							<Text style={postStyle.blockTitle} >{ product.productName }</Text>
-							
 
 							<Text style={postStyle.textInput} >
-							{ product.id }{'\n'}
-							{ product.category }{'\n'}
-							{ product.description }
+								{ product.id }{'\n'}
+								Category:{ product.category }{'\n'}
+								{ product.description }{'\n'}{'\n'}
+								Quantity:{ product.quantity }{'\n'}
+								Retail Price:{ product.reatilPrice }{'\n'}
+								Cost Price:{ product.costPrice }{'\n'}
+								Vat:{ product.vat }{'\n'}
+								Supplier:{ product.supplier }{'\n'}
+
+
 							</Text>
 
 							<TouchableNativeFeedback
 								onPress={() => {
-									console.log('begin');
+
+									api
+										.addNewProduct(this.props.manager.getDataFB().id, product)
+										.then( ({data}) => { 
+											if (data.status && data.status === 'ok' ){
+												Alert.alert("Done"); 
+												navigator.toDashboard();
+												return;
+											}
+											Alert.alert('error');
+											console.log(data);
+										})
+										.catch( (err) => {Alert.alert(err.message); } );
 								}} > 
 								<View style={postStyle.postButtonView} >
 									<Text style={postStyle.buttName} >POST TO INSTAGRAM</Text>

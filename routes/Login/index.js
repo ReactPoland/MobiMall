@@ -96,8 +96,10 @@ export default class NewProductSeller extends Component {
 				<Image source={{uri: 'https://unsplash.it/400/400?image=140'}} style={loginStyle.bgImage}/>
 
 				<View style={loginStyle.purpleShadow}>
-					<Image source={require('../../assets/img/mobimall-icon.png')} style={loginStyle.logo}/>
-					<Text style={loginStyle.logoText} >MOBIMALL</Text>
+					<View style={loginStyle.logoWrap}>
+						<Image source={require('../../assets/img/mobimall-icon.png')} style={loginStyle.logo}/>
+						<Text style={loginStyle.logoText} >MOBIMALL</Text>
+					</View>
 				</View>
 
 				<View style={loginStyle.buttonBlock}>
@@ -128,17 +130,17 @@ export default class NewProductSeller extends Component {
 
 
 
-					<View style={loginStyle.buttonVertBlock}>
+					{/*<View style={loginStyle.buttonVertBlock}>
 
 						<View style={loginStyle.buttonVert}>
 							<Text style={loginStyle.buttonText} >LOGIN</Text>
 						</View>
 
-						<View style={loginStyle.buttonVert}>
+					</View>*/}
+
+						<View style={loginStyle.button}>
 							<Text style={loginStyle.buttonText} >SIGN UP</Text>
 						</View>
-
-					</View>
 
 				</View>
 
@@ -164,11 +166,16 @@ const loginStyle = StyleSheet.create({
 		height: 50,
 	},
 	purpleShadow: {
-		justifyContent: 'center',
 		alignItems: 'center',
 		flex: 6,
-		backgroundColor: `rgba(133, 4, 147, 0.5)`,
+		// backgroundColor: `rgba(133, 4, 147, 0.5)`,
 		zIndex:20,
+	},
+	logoWrap: {
+		// borderColor: `white`,
+		// borderStyle: 'solid',
+		// borderWidth: 1,
+		paddingTop: 50
 	},
 	bgImage: {
 		position: 'absolute',
@@ -186,6 +193,9 @@ const loginStyle = StyleSheet.create({
 		padding: 7,
 	},
 	buttonBlock: {
+		paddingLeft: 35,
+		paddingRight: 35,
+		marginBottom: 15,
 		zIndex:20,
 	},
 	button: {
@@ -193,6 +203,7 @@ const loginStyle = StyleSheet.create({
 		alignItems: 'center',
 		height: 50,
 		backgroundColor: `rgba(84, 70, 184, 0.7)`,
+		marginBottom: 10,
 	},
 	buttonVert: {
 		justifyContent: 'center',

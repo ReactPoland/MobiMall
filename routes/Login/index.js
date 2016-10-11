@@ -12,6 +12,7 @@ import {
 	NativeModules
 } from 'react-native';
 var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
+import Video from 'react-native-video';
 import { api } from '../../utils';
 import axios from 'axios';
 
@@ -89,18 +90,34 @@ export default class NewProductSeller extends Component {
 
 	render() {
 
+		console.log(Video);
+
 
 		return (
 			<View style={loginStyle.container} onLayout={this.onLayout}>
 
-				<Image source={{uri: 'https://unsplash.it/400/400?image=140'}} style={loginStyle.bgImage}/>
+				<Video source={require("../../assets/loginbackground.mp4") }   // Can be a URL or a local file.
+				       rate={1.0}                     // 0 is paused, 1 is normal.
+				       volume={1.0}                   // 0 is muted, 1 is normal.
+				       muted={false}                  // Mutes the audio entirely.
+				       paused={false}                 // Pauses playback entirely.
+				       resizeMode="cover"             // Fill the whole screen at aspect ratio.
+				       repeat={true}                  // Repeat forever.
+				       playInBackground={false}       // Audio continues to play when app entering background.
+				       playWhenInactive={false}       // [iOS] Video continues to play when control or notification center are shown.
+				       progressUpdateInterval={250.0} // [iOS] Interval to fire onProgress (default to ~250ms)
+				       style={loginStyle.backgroundVideo} />
 
 				<View style={loginStyle.purpleShadow}>
 					<View style={loginStyle.logoWrap}>
 						<Image source={require('../../assets/img/mobimall-icon.png')} style={loginStyle.logo}/>
 						<Text style={loginStyle.logoText} >MOBIMALL</Text>
 					</View>
-				</View>
+
+					{/*https://video-fra3-1.xx.fbcdn.net/v/t42.4659-2/14495702_916960405076035_385499260713435136_n.mp4?oh=c1a63d2be4e961155ec8d047a24fbf43&oe=57FD25A3*/}
+
+
+					</View>
 
 				<View style={loginStyle.buttonBlock}>
 
@@ -155,6 +172,13 @@ const loginStyle = StyleSheet.create({
 		color: 'white',
 		fontSize: 30,
 		fontWeight: 'bold',
+	},
+	backgroundVideo: {
+    	position: 'absolute',
+    	top: 0,
+    	left: 0,
+    	bottom: 0,
+    	right: 0,
 	},
 	logo: {
 		resizeMode: 'contain',

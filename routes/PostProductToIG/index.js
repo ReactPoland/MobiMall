@@ -23,8 +23,6 @@ export default class NewProductSeller extends Component {
 				height: 360
 			} 
 		}
-
-		console.log(FormData);
 	}
 
 	onLayout(event) {

@@ -9,6 +9,7 @@ import Login from './Login';
 import Dashboard from './Dashboard';
 import SellerProfileView from './SellerProfileView';
 import LoginInst from './LoginInst';
+import SignUp from './SignUp';
 
 
 
@@ -24,7 +25,8 @@ class Switcher extends Component {
 			Login: () => (<Login {...this.props} />),
 			Dashboard: () => (<Dashboard {...this.props} />),
 			LoginInst: () => (<LoginInst {...this.props} />),
-			SellerProfileView: () => (<SellerProfileView {...this.props} />)
+			SellerProfileView: () => (<SellerProfileView {...this.props} />),
+			SignUp: () => (<SignUp {...this.props} />)
 		};
 	}
 
@@ -127,6 +129,13 @@ export default class Router extends Component {
 
 							navigator.push({
 								name: 'Dashboard',
+								index: route.index + 1
+							});
+						},
+
+						toSignUp: function() {
+							navigator.push({
+								name: 'SignUp',
 								index: route.index + 1
 							});
 						},

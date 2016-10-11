@@ -155,9 +155,11 @@ export default class NewProductSeller extends Component {
 
 					</View>*/}
 
+					<TouchableNativeFeedback onPress={ () => { this.props.navigator.toSignUp(); } }>
 						<View style={loginStyle.button}>
 							<Text style={loginStyle.buttonText} >SIGN UP</Text>
 						</View>
+					</TouchableNativeFeedback>
 
 				</View>
 

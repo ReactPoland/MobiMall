@@ -44,10 +44,10 @@ export default class SignUp extends Component {
 				<ScrollView>
 
 
-					<View >
+					<View style={signUpStyle.headerBlock}>
 						<TouchableNativeFeedback onPress={ () => { this.props.navigator.toLogin() } }>
-							<View >
-								<Text>cancel</Text>
+							<View style={signUpStyle.cancelButton} >
+								<Text style={signUpStyle.cancelButtonText}>cancel</Text>
 							</View>
 						</TouchableNativeFeedback>
 
@@ -70,6 +70,19 @@ export default class SignUp extends Component {
 }
 
 const signUpStyle = StyleSheet.create({
+	cancelButton: {
+		position: 'absolute',
+		left: 10,
+		top: 10,
+	},
+	cancelButtonText: {
+		fontSize: 23,
+		fontWeight: `bold`,
+	},
+	headerBlock: {
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
 	container: {
 		flex: 1,
 		backgroundColor: `white`,
@@ -85,8 +98,8 @@ const signUpStyle = StyleSheet.create({
 	},
 	logo: {
 		resizeMode: 'contain',
-		height: 50,
-		width: 50,
+		height: 80,
+		width: 80,
 	}
 
 });

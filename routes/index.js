@@ -10,6 +10,7 @@ import Dashboard from './Dashboard';
 import SellerProfileView from './SellerProfileView';
 import LoginInst from './LoginInst';
 import SignUp from './SignUp';
+import DashboardSeller from './DashboardSeller';
 
 
 
@@ -26,6 +27,7 @@ class Switcher extends Component {
 			Dashboard: () => (<Dashboard {...this.props} />),
 			LoginInst: () => (<LoginInst {...this.props} />),
 			SellerProfileView: () => (<SellerProfileView {...this.props} />),
+			DashboardSeller: () => (<DashboardSeller {...this.props} />),
 			SignUp: () => (<SignUp {...this.props} />)
 		};
 	}
@@ -183,7 +185,16 @@ export default class Router extends Component {
 								name: 'Login',
 								index: route.index + 1
 							});
-						}
+						},
+
+						toDashboardSeller () {
+							if ( !that.manager.getDataFB() ) return;
+
+							navigator.push({
+								name: 'DashboardSeller',
+								index: route.index + 1
+							});
+						} 
 
 					};
 

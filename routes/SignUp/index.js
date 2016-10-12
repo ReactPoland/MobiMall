@@ -28,6 +28,7 @@ const SaeInput = ( { label } ) => (
     iconColor="#777"
     labelStyle={ signUpStyle.saeLabelStyle }
     inputStyle={ signUpStyle.saeInputStyle }
+    iconSize={10}
   />
 );
 

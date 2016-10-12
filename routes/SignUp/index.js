@@ -115,15 +115,15 @@ export default class SignUp extends Component {
 
 					<View style={signUpStyle.rememberBlock}>
 
-						<View style={{flex: 1}} >
+						<View style={signUpStyle.rememberTextWrap} >
 							<Text style={signUpStyle.rememberText}>Remember Me</Text>
 						</View>
 						
-						<View style={{flex: 3}}>
+						<View style={signUpStyle.checkBoxBlock} >
 							<CheckBox
-							  label='Label'
-							  checked={fields.rememberMe}
-							  onChange={ (checked) => this.changeField.call(this, 'rememberMe', checked ) }
+								label=" "
+								checked={fields.rememberMe}
+							    onChange={ (checked) => this.changeField.call(this, 'rememberMe', checked ) }
 							/>
 						</View>
 
@@ -152,6 +152,9 @@ const signUpStyle = StyleSheet.create({
 		left: 10,
 		top: 10,
 	},
+	checkBoxBlock: {
+		justifyContent: 'flex-end',
+	},
 	createAccBlock: {
 		marginBottom: 35,
 		marginLeft: 10,
@@ -163,16 +166,23 @@ const signUpStyle = StyleSheet.create({
 		fontSize: 25,
 	},
 	creatAccButtBg: {
-		justifyContent: 'center',
 		alignItems: 'center',
+		justifyContent: 'center',
 		backgroundColor: '#777',
 		height:50, 
 	},
+	rememberTextWrap: {
+		
+		justifyContent: 'flex-end',
+		marginRight: 15,
+	},
 	rememberBlock: {
+		marginTop: 20,
 		flexDirection: 'row'
 	},
 	rememberText: {
-		color: 'purple'
+		fontSize: 25,
+		color: 'purple',
 	},
 	cancelButtonText: {
 		fontSize: 23,

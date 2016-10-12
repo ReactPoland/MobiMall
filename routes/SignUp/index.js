@@ -42,6 +42,18 @@ export default class SignUp extends Component {
 		return (
 			<View style={signUpStyle.container} >
 				<ScrollView>
+
+
+					<View >
+						<TouchableNativeFeedback onPress={ () => { this.props.navigator.toLogin() } }>
+							<View >
+								<Text>cancel</Text>
+							</View>
+						</TouchableNativeFeedback>
+
+						<Image source={require('../../assets/img/mobimall-icon.png')} style={signUpStyle.logo}/>
+					</View>
+
 					<SaeInput label="First name" />
 					<SaeInput label="Last name" />
 					<SaeInput label="Date of Birth" />
@@ -70,6 +82,11 @@ const signUpStyle = StyleSheet.create({
 	saeInputStyle: {
 		fontFamily: 'Roboto',
 		color: 'black'
+	},
+	logo: {
+		resizeMode: 'contain',
+		height: 50,
+		width: 50,
 	}
 
 });

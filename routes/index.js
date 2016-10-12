@@ -176,7 +176,13 @@ export default class Router extends Component {
 								name: 'NewProductSeller',
 								index: route.index + 1
 							});
+						},
 
+						toLogin() {
+							navigator.push({
+								name: 'Login',
+								index: route.index + 1
+							});
 						}
 
 					};

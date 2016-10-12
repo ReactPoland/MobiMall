@@ -96,7 +96,7 @@ export default class NewProductSeller extends Component {
 		return (
 			<View style={loginStyle.container} onLayout={this.onLayout}>
 
-				<Video source={require("../../assets/loginbackground.mp4") }   // Can be a URL or a local file.
+				<Video source={ {uri: 'http://testmobimall2.herokuapp.com/loginbackground.mp4'  } }   // Can be a URL or a local file.
 				       rate={1.0}                     // 0 is paused, 1 is normal.
 				       volume={1.0}                   // 0 is muted, 1 is normal.
 				       muted={false}                  // Mutes the audio entirely.

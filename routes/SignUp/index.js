@@ -14,6 +14,8 @@ import {
 import { bindMethods } from '../../utils';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
+import CheckBox from 'react-native-checkbox';
+ 
 
 const SaeInput = ( { label } ) => (
   <Sae
@@ -34,10 +36,26 @@ export default class SignUp extends Component {
 	constructor(prop) {
 		super(prop);
 		bindMethods(this);
+
+		this.state = {
+			fields: {}
+		}
+	}
+
+	changeField(fieldName, val) {
+
+		let newFields = Object.assign({}, this.state.fields );
+		newFields[fieldName] = val;
+		this.setState( { fields:newFields } );
 	}
 
 
 	render() {
+
+		const { fields } = this.state;
+
+		console.log( fields );
+
 
 		return (
 			<View style={signUpStyle.container} >
@@ -54,14 +72,20 @@ export default class SignUp extends Component {
 						<Image source={require('../../assets/img/mobimall-icon.png')} style={signUpStyle.logo}/>
 					</View>
 
-					<SaeInput label="First name" />
-					<SaeInput label="Last name" />
-					<SaeInput label="Date of Birth" />
-					<SaeInput label="Email" />
-					<SaeInput label="Phone" />
-					<SaeInput label="Username" />
-					<SaeInput label="Password" />
-					<SaeInput label="Verify Password" />
+					<CheckBox
+					  label='Label'
+					  checked={fields.rememberMe}
+					  onChange={ (checked) => this.changeField.call(this, 'rememberMe', checked ) }
+					/>
+
+					<SaeInput label="First name" value={fields.firstName} onChange={ (e) => this.changeField.call( this, 'firstName', e.nativeEvent.text ) } />
+					<SaeInput label="Last name"  value={fields.lastName} onChange={ (e) => this.changeField.call( this, 'lastName', e.nativeEvent.text ) } />
+					<SaeInput label="Date of Birth" value={fields.dateBirth} onChange={ (e) => this.changeField.call( this, 'dateBirth', e.nativeEvent.text ) } />
+					<SaeInput label="Email" value={fields.email} onChange={ (e) => this.changeField.call( this, 'email', e.nativeEvent.text ) } />
+					<SaeInput label="Phone" value={fields.phone} onChange={ (e) => this.changeField.call( this, 'phone', e.nativeEvent.text ) } />
+					<SaeInput label="Username" value={fields.username} onChange={ (e) => this.changeField.call( this, 'username', e.nativeEvent.text ) } />
+					<SaeInput label="Password" value={fields.password} onChange={ (e) => this.changeField.call( this, 'password', e.nativeEvent.text ) } />
+					<SaeInput label="Verify Password" value={fields.verifyPassword} onChange={ (e) => this.changeField.call( this, 'verifyPassword', e.nativeEvent.text ) } />
 					
 				</ScrollView>
 			</View>

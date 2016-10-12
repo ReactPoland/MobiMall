@@ -90,8 +90,6 @@ export default class NewProductSeller extends Component {
 
 	render() {
 
-		console.log(Video);
-
 
 		return (
 			<View style={loginStyle.container} onLayout={this.onLayout}>

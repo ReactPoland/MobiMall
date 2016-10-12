@@ -154,13 +154,13 @@ const signUpStyle = StyleSheet.create({
 	},
 	createAccBlock: {
 		marginBottom: 35,
-		marginLeft: 30,
-		marginRight: 30,
-		marginTop: 20,
+		marginLeft: 10,
+		marginRight: 10,
+		marginTop: 15,
 	},
 	creatAccButtText: {
 		color: '#fff',
-		fontSize: 23,
+		fontSize: 25,
 	},
 	creatAccButtBg: {
 		justifyContent: 'center',

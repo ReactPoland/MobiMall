@@ -15,7 +15,7 @@ import { bindMethods } from '../../utils';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
 import CheckBox from 'react-native-checkbox';
- 
+ import { Button } from 'react-native-material-design';
 
 const SaeInput = ( { label } ) => (
   <Sae
@@ -59,7 +59,7 @@ export default class SignUp extends Component {
 
 		return (
 			<View style={signUpStyle.container} >
-				<ScrollView>
+				<ScrollView style={signUpStyle.scrollContainer}>
 
 
 					<View style={signUpStyle.headerBlock}>
@@ -72,20 +72,73 @@ export default class SignUp extends Component {
 						<Image source={require('../../assets/img/mobimall-icon.png')} style={signUpStyle.logo}/>
 					</View>
 
-					<CheckBox
-					  label='Label'
-					  checked={fields.rememberMe}
-					  onChange={ (checked) => this.changeField.call(this, 'rememberMe', checked ) }
-					/>
 
-					<SaeInput label="First name" value={fields.firstName} onChange={ (e) => this.changeField.call( this, 'firstName', e.nativeEvent.text ) } />
-					<SaeInput label="Last name"  value={fields.lastName} onChange={ (e) => this.changeField.call( this, 'lastName', e.nativeEvent.text ) } />
-					<SaeInput label="Date of Birth" value={fields.dateBirth} onChange={ (e) => this.changeField.call( this, 'dateBirth', e.nativeEvent.text ) } />
-					<SaeInput label="Email" value={fields.email} onChange={ (e) => this.changeField.call( this, 'email', e.nativeEvent.text ) } />
-					<SaeInput label="Phone" value={fields.phone} onChange={ (e) => this.changeField.call( this, 'phone', e.nativeEvent.text ) } />
-					<SaeInput label="Username" value={fields.username} onChange={ (e) => this.changeField.call( this, 'username', e.nativeEvent.text ) } />
-					<SaeInput label="Password" value={fields.password} onChange={ (e) => this.changeField.call( this, 'password', e.nativeEvent.text ) } />
-					<SaeInput label="Verify Password" value={fields.verifyPassword} onChange={ (e) => this.changeField.call( this, 'verifyPassword', e.nativeEvent.text ) } />
+					<SaeInput 
+						label="First name" 
+						value={fields.firstName} 
+						onChange={ (e) => this.changeField.call( this, 'firstName', e.nativeEvent.text ) } />
+					
+					<SaeInput 
+						label="Last name"  
+						value={fields.lastName} 
+						onChange={ (e) => this.changeField.call( this, 'lastName', e.nativeEvent.text ) } />
+					
+					<SaeInput 
+						label="Date of Birth" 
+						value={fields.dateBirth} 
+						onChange={ (e) => this.changeField.call( this, 'dateBirth', e.nativeEvent.text ) } />
+					
+					<SaeInput 
+						label="Email" 
+						value={fields.email} 
+						onChange={ (e) => this.changeField.call( this, 'email', e.nativeEvent.text ) } />
+					
+					<SaeInput 
+						label="Phone" 
+						value={fields.phone} 
+						onChange={ (e) => this.changeField.call( this, 'phone', e.nativeEvent.text ) } />
+					
+					<SaeInput 
+						label="Username" 
+						value={fields.username} 
+						onChange={ (e) => this.changeField.call( this, 'username', e.nativeEvent.text ) } />
+					
+					<SaeInput 
+						label="Password" 
+						value={fields.password} 
+						onChange={ (e) => this.changeField.call( this, 'password', e.nativeEvent.text ) } />
+					
+					<SaeInput 
+						label="Verify Password" 
+						value={fields.verifyPassword} 
+						onChange={ (e) => this.changeField.call( this, 'verifyPassword', e.nativeEvent.text ) } />
+
+					<View style={signUpStyle.rememberBlock}>
+
+						<View style={{flex: 1}} >
+							<Text style={signUpStyle.rememberText}>Remember Me</Text>
+						</View>
+						
+						<View style={{flex: 3}}>
+							<CheckBox
+							  label='Label'
+							  checked={fields.rememberMe}
+							  onChange={ (checked) => this.changeField.call(this, 'rememberMe', checked ) }
+							/>
+						</View>
+
+					</View>
+
+					<View style={signUpStyle.createAccBlock}>
+
+						<TouchableNativeFeedback onPress={ () => Alert.alert('click handler') } >
+							<View style={signUpStyle.creatAccButtBg}>
+								<Text style={ signUpStyle.creatAccButtText } >Create Account</Text>
+							</View>
+						</TouchableNativeFeedback>
+
+					</View>
+
 					
 				</ScrollView>
 			</View>
@@ -98,6 +151,28 @@ const signUpStyle = StyleSheet.create({
 		position: 'absolute',
 		left: 10,
 		top: 10,
+	},
+	createAccBlock: {
+		marginBottom: 35,
+		marginLeft: 30,
+		marginRight: 30,
+		marginTop: 20,
+	},
+	creatAccButtText: {
+		color: '#fff',
+		fontSize: 23,
+	},
+	creatAccButtBg: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: '#777',
+		height:50, 
+	},
+	rememberBlock: {
+		flexDirection: 'row'
+	},
+	rememberText: {
+		color: 'purple'
 	},
 	cancelButtonText: {
 		fontSize: 23,
@@ -124,6 +199,10 @@ const signUpStyle = StyleSheet.create({
 		resizeMode: 'contain',
 		height: 80,
 		width: 80,
+	},
+	scrollContainer: {
+		paddingLeft: 20,
+		paddingRight: 20,		
 	}
 
 });

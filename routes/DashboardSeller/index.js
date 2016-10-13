@@ -51,9 +51,7 @@ export default class DashboardSeller extends Component {
 							</View>
 
 						</TouchableNativeFeedback>
-
 					);
-					
 				})}
 			</View>
 		);
@@ -68,9 +66,27 @@ export default class DashboardSeller extends Component {
 			<View style={dashSellerStyle.container} >
 				<ScrollView>
 
+				
 				<View style={dashSellerStyle.topbar}>
-					<Text>HOME</Text>
+					<TouchableNativeFeedback onPress={ () => { this.props.navigator.toBack() } } >
+						<View style={dashSellerStyle.buttBack} >
+							<Text style={{textAlign: 'center'}} >BACK</Text>
+						</View>
+					</TouchableNativeFeedback>
+
+					<View style={ dashSellerStyle.title } >
+						<Text style={ dashSellerStyle.topbarText } >HOME</Text>
+					</View>
+
+					<TouchableNativeFeedback onPress={ () => { Alert.alert('opening basket handler') } } >
+						<View style={dashSellerStyle.buttBack} >
+							<Text style={{textAlign: 'center'}} >BASK</Text>
+						</View>
+					</TouchableNativeFeedback>
+
 				</View>
+
+
 
 				<View style={ dashSellerStyle.shopTitleView } >
 					<View style={dashSellerStyle.shopTitleProfileBlock}>
@@ -296,6 +312,20 @@ export default class DashboardSeller extends Component {
 }
 
 const dashSellerStyle = StyleSheet.create({
+	topbarText: {
+		textAlign: 'center',
+		fontWeight: '100',
+		fontSize: 24,
+		color: 'purple',
+	},
+	buttBack: {
+		justifyContent: 'center',
+		flex: 1,
+	},
+	title: {
+		justifyContent: 'center',
+		flex: 3,
+	},
 	shopTitleProfileBlock: {
 		flexDirection: 'row',
 		flex: 1,
@@ -322,8 +352,10 @@ const dashSellerStyle = StyleSheet.create({
 		left: 0,
 	},
 	topbar: {
+		flexDirection: 'row',
 		height: 50,
 		borderBottomWidth: 1,
+		justifyContent: 'center',
 	},
 	likeProdPriceRow: {
 		paddingLeft: 7,

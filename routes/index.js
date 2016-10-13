@@ -194,7 +194,13 @@ export default class Router extends Component {
 								name: 'DashboardSeller',
 								index: route.index + 1
 							});
-						} 
+						},
+
+						toBack () {
+							if (route.index > 0) {
+						    	navigator.pop();
+							}
+						}
 
 					};
 

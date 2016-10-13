@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { bindMethods } from '../../utils';
 import st from '../../assets/style';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 
 export default class DashboardSeller extends Component {
@@ -47,7 +48,11 @@ export default class DashboardSeller extends Component {
 						<TouchableNativeFeedback onPress={ () => { let currKey = i; this.setState({activeTab: currKey}) } } key={i} >
 							
 							<View style={dashSellerStyle.tabItem} >
-								<Text style={ styleObj } >{ item }</Text>
+								<FontAwesomeIcon
+									name="pencil"
+									style={ styleObj }>
+									
+								</FontAwesomeIcon>
 							</View>
 
 						</TouchableNativeFeedback>
@@ -70,7 +75,9 @@ export default class DashboardSeller extends Component {
 				<View style={dashSellerStyle.topbar}>
 					<TouchableNativeFeedback onPress={ () => { this.props.navigator.toBack() } } >
 						<View style={dashSellerStyle.buttBack} >
-							<Text style={{textAlign: 'center'}} >BACK</Text>
+						<FontAwesomeIcon
+							name="angle-left"
+							style={ { textAlign: 'center', fontSize: 20 } } />
 						</View>
 					</TouchableNativeFeedback>
 
@@ -80,7 +87,10 @@ export default class DashboardSeller extends Component {
 
 					<TouchableNativeFeedback onPress={ () => { Alert.alert('opening basket handler') } } >
 						<View style={dashSellerStyle.buttBack} >
-							<Text style={{textAlign: 'center'}} >BASK</Text>
+							<FontAwesomeIcon
+								name="shopping-basket"
+								style={ { textAlign: 'center', fontSize: 20 } } />
+							
 						</View>
 					</TouchableNativeFeedback>
 

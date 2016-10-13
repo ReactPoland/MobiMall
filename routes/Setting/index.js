@@ -13,24 +13,7 @@ import {
 } from 'react-native';
 import { bindMethods } from '../../utils';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import { Sae } from 'react-native-textinput-effects';
-import CheckBox from 'react-native-checkbox';
- import { Button } from 'react-native-material-design';
-
-const SaeInput = ( { label } ) => (
-  <Sae
-    label={label}
-    iconClass={FontAwesomeIcon}
-    iconName={'pencil'}
-    iconColor={'white'}
-    autoCapitalize={'none'}
-    autoCorrect={false}
-    iconColor="#777"
-    labelStyle={ signUpStyle.saeLabelStyle }
-    inputStyle={ signUpStyle.saeInputStyle }
-    iconSize={10}
-  />
-);
+import SettingsList from 'react-native-settings-list';
 
 export default class Setting extends Component {
 
@@ -56,87 +39,62 @@ export default class Setting extends Component {
 		const { fields } = this.state;
 
 		return (
-			<View style={signUpStyle.container} >
-				<ScrollView style={signUpStyle.scrollContainer}>
-
-
-					<View style={signUpStyle.headerBlock}>
-						<TouchableNativeFeedback onPress={ () => { this.props.navigator.toLogin() } }>
-							<View style={signUpStyle.cancelButton} >
-								<Text style={signUpStyle.cancelButtonText}>cancel</Text>
-							</View>
-						</TouchableNativeFeedback>
-
-						<Image source={require('../../assets/img/mobimall-icon.png')} style={signUpStyle.logo}/>
+			<View style={setting.container} >
+				<ScrollView style={setting.scrollContainer}>
+					
+					<View style={{borderBottomWidth:1, backgroundColor:'#263238',borderColor:'#c8c7cc'}}>
+					  <Text style={{color:'white',marginTop:15,marginBottom:15, marginLeft:15,fontWeight:'bold',fontSize:20}}>Options</Text>
 					</View>
 
+					<SettingsList borderColor='#d6d5d9' defaultItemSize={50} >
+					<SettingsList.Header headerText='Settings' headerStyle={{marginTop:20}}/>
 
-					<SaeInput 
-						label="First name" 
-						value={fields.firstName} 
-						onChange={ (e) => this.changeField.call( this, 'firstName', e.nativeEvent.text ) } />
-					
-					<SaeInput 
-						label="Last name"  
-						value={fields.lastName} 
-						onChange={ (e) => this.changeField.call( this, 'lastName', e.nativeEvent.text ) } />
-					
-					<SaeInput 
-						label="Date of Birth" 
-						value={fields.dateBirth} 
-						onChange={ (e) => this.changeField.call( this, 'dateBirth', e.nativeEvent.text ) } />
-					
-					<SaeInput 
-						label="Email" 
-						value={fields.email} 
-						onChange={ (e) => this.changeField.call( this, 'email', e.nativeEvent.text ) } />
-					
-					<SaeInput 
-						label="Phone" 
-						value={fields.phone} 
-						onChange={ (e) => this.changeField.call( this, 'phone', e.nativeEvent.text ) } />
-					
-					<SaeInput 
-						label="Username" 
-						value={fields.username} 
-						onChange={ (e) => this.changeField.call( this, 'username', e.nativeEvent.text ) } />
-					
-					<SaeInput 
-						label="Password" 
-						value={fields.password} 
-						onChange={ (e) => this.changeField.call( this, 'password', e.nativeEvent.text ) } />
-					
-					<SaeInput 
-						label="Verify Password" 
-						value={fields.verifyPassword} 
-						onChange={ (e) => this.changeField.call( this, 'verifyPassword', e.nativeEvent.text ) } />
+		            {/*<SettingsList.Item
+		              icon={
+		                <View style={setting.imageStyle}>
+		                  <Image style={{alignSelf:'center',height:22, width:22}} source={ { uri: 'https://unsplash.it/30/30?image=45' } }/>
+		                </View>
+		              }
+		              hasNavArrow={false}
+		              itemWidth={70}
+		              titleStyle={{color:'black', fontSize: 16}}
+		              title='Data usage'
+		            />*/}
 
-					<View style={signUpStyle.rememberBlock}>
+		            <SettingsList.Item
+	                    hasNavArrow={false}
+	                    switchState={true}
+	                    hasSwitch={true}
+	                    title='Buyer/Seller'
+	                    switchOnValueChange={(ev) => { Alert.alert('switch') }}
+	                    />
 
-						<View style={signUpStyle.rememberTextWrap} >
-							<Text style={signUpStyle.rememberText}>Remember Me</Text>
-						</View>
-						
-						<View style={signUpStyle.checkBoxBlock} >
-							<CheckBox
-								label=" "
-								checked={fields.rememberMe}
-							    onChange={ (checked) => this.changeField.call(this, 'rememberMe', checked ) }
-							/>
-						</View>
+	                <SettingsList.Item hasNavArrow={false} title="Upgrade Account" />
+	                <SettingsList.Item hasNavArrow={false} title="Verify Account" />
+	                <SettingsList.Item hasNavArrow={false} title="Change Password" />
+	                <SettingsList.Item hasNavArrow={false} title="Language" />
+	                <SettingsList.Item hasNavArrow={false} title="Change Country" />
+	                <SettingsList.Item hasNavArrow={false} title="Push Notifications" />
+	                <SettingsList.Item hasNavArrow={false} title="Invite Friends" />
+	                <SettingsList.Item hasNavArrow={false} title="App Updates" />
 
-					</View>
+					<SettingsList.Header headerStyle={{marginTop:50}}/>
 
-					<View style={signUpStyle.createAccBlock}>
+	                <SettingsList.Item hasNavArrow={false} title="Sign Out" />
+	                <SettingsList.Item hasNavArrow={false} title="Sign Out of all accounts" />
 
-						<TouchableNativeFeedback onPress={ () => Alert.alert('click handler') } >
-							<View style={signUpStyle.creatAccButtBg}>
-								<Text style={ signUpStyle.creatAccButtText } >Create Account</Text>
-							</View>
-						</TouchableNativeFeedback>
 
-					</View>
+					<SettingsList.Header headerText='Support' headerStyle={{marginTop:50}}/>
+	                <SettingsList.Item hasNavArrow={false} title="Help & About" />
+	                <SettingsList.Item hasNavArrow={false} title="Dispute Resolution" />
+	                <SettingsList.Item hasNavArrow={false} title="Report a Problem" />
 
+					<SettingsList.Header headerText='About' headerStyle={{marginTop:50}}/>
+					<SettingsList.Item hasNavArrow={false} title="Contact Us" />
+					<SettingsList.Item hasNavArrow={false} title="Privacy Policy" />
+					<SettingsList.Item hasNavArrow={false} title="Terms & Conditions" />
+
+					</SettingsList>
 					
 				</ScrollView>
 			</View>
@@ -144,73 +102,23 @@ export default class Setting extends Component {
 	}
 }
 
-const signUpStyle = StyleSheet.create({
-	cancelButton: {
-		position: 'absolute',
-		left: 10,
-		top: 10,
-	},
-	checkBoxBlock: {
-		justifyContent: 'flex-end',
-	},
-	createAccBlock: {
-		marginBottom: 35,
-		marginLeft: 10,
-		marginRight: 10,
-		marginTop: 15,
-	},
-	creatAccButtText: {
-		color: '#fff',
-		fontSize: 25,
-	},
-	creatAccButtBg: {
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#777',
-		height:50, 
-	},
-	rememberTextWrap: {
-		
-		justifyContent: 'flex-end',
-		marginRight: 15,
-	},
-	rememberBlock: {
-		marginTop: 20,
-		flexDirection: 'row'
-	},
-	rememberText: {
-		fontSize: 25,
-		color: 'purple',
-	},
-	cancelButtonText: {
-		fontSize: 23,
-		fontWeight: `bold`,
-	},
-	headerBlock: {
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
+const setting = StyleSheet.create({
+	
 	container: {
 		flex: 1,
 		backgroundColor: `white`,
 	},
-	saeLabelStyle: {
-		fontFamily: 'Roboto',
-		fontWeight: 'normal',
-		color: '#777'
-	},
-	saeInputStyle: {
-		fontFamily: 'Roboto',
-		color: 'black'
-	},
-	logo: {
-		resizeMode: 'contain',
-		height: 80,
-		width: 80,
+	imageStyle:{
+	    marginLeft:15,
+	    marginRight:20,
+	    alignSelf:'center',
+	    width:20,
+	    height:24,
+	    justifyContent:'center'
 	},
 	scrollContainer: {
-		paddingLeft: 20,
-		paddingRight: 20,		
+		// paddingLeft: 20,
+		// paddingRight: 20,		
 	}
 
 });

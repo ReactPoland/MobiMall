@@ -47,7 +47,7 @@ export default class Dashboard extends Component {
 			<View style={dashboardStyle.container} onLayout={this.onLayout}>
 
 				<TouchableNativeFeedback onPress={ () => {this.props.navigator.toDashboardSeller(); } }>
-					<View style={{backgroundColor: 'yellow', marginTop: 15, marginLeft: 15, borderColor: 'red', borderWidth: 2, borderStyle: 'solid' }} >
+					<View style={{backgroundColor: 'yellow', marginTop: 15, marginLeft: 15, marginRight: 15, borderColor: 'red', borderWidth: 2, borderStyle: 'solid', padding: 10 }} >
 						<Text style={{fontSize: 20}} > DASHBOARD SELLER</Text>
 					</View>
 				</TouchableNativeFeedback>

@@ -179,7 +179,7 @@ export default class DashboardSeller extends Component {
 							</Text>
 						</View>
 	
-						<View style={dashSellerStyle.featuredBlock}>
+						<View style={dashSellerStyle.featuredImgBlock}>
 							<Image source={{uri: `https://unsplash.it/250/250?image=39` }} style={dashSellerStyle.featuredImg}/>
 						</View>
 
@@ -192,15 +192,51 @@ export default class DashboardSeller extends Component {
 						<Text style={dashSellerStyle.blockName}>WE THOUGHT YOU MIGHT LIKE</Text>
 					</View>
 
-					<View style={dashSellerStyle.featuredRow} >
-						<View style={dashSellerStyle.featuredBlock}>
-							<Text style={dashSellerStyle.featuredDesc}>
-								Your Style Guide to Winter Clothes Shopping with the founder of @mm_ShopBop
-							</Text>
+					<View style={dashSellerStyle.likeProductList } >
+
+						<View style={dashSellerStyle.likeProductItem}>
+							<Image source={{uri: `https://unsplash.it/100/100?image=40` }} style={dashSellerStyle.likeProductImg}/>
+							<View style={dashSellerStyle.likeProductDescBlock}>
+								<Text style={dashSellerStyle.likeProdName}>Boost Band Black Portable Charger Wristband Phone...</Text>
+
+								<View  style={dashSellerStyle.likeProdPriceRow} >
+									<View style={dashSellerStyle.likeProdDollIconView} >
+										<Text style={dashSellerStyle.likeProdDollarIcon}>$</Text>
+									</View>
+		
+									<Text>29.99</Text>
+								</View>
+							</View>
 						</View>
-				
-						<View style={dashSellerStyle.featuredBlock}>
-							<Image source={{uri: `https://unsplash.it/250/250?image=39` }} style={dashSellerStyle.featuredImg}/>
+
+						<View style={dashSellerStyle.likeProductItem}>
+							<Image source={{uri: `https://unsplash.it/100/100?image=41` }} style={dashSellerStyle.likeProductImg}/>
+							<View style={dashSellerStyle.likeProductDescBlock}>
+								<Text style={dashSellerStyle.likeProdName}>Stella 7-speed Internally-geared Luxury Step-through Bicycle...</Text>
+
+								<View  style={dashSellerStyle.likeProdPriceRow} >
+									<View style={dashSellerStyle.likeProdDollIconView} >
+										<Text style={dashSellerStyle.likeProdDollarIcon}>$</Text>
+									</View>
+						
+									<Text>1,049.00</Text>
+								</View>
+							</View>
+						</View>
+
+						<View style={dashSellerStyle.likeProductItem}>
+							<Image source={{uri: `https://unsplash.it/100/100?image=42` }} style={dashSellerStyle.likeProductImg}/>
+							<View style={dashSellerStyle.likeProductDescBlock}>
+								<Text style={dashSellerStyle.likeProdName}>Nomader BPA Free Collapsible Sports Water Bottle - Foldable...</Text>
+
+								<View  style={dashSellerStyle.likeProdPriceRow} >
+									<View style={dashSellerStyle.likeProdDollIconView} >
+										<Text style={dashSellerStyle.likeProdDollarIcon}>$</Text>
+									</View>
+						
+									<Text>16.95</Text>
+								</View>
+							</View>
 						</View>
 
 					</View>
@@ -218,9 +254,53 @@ export default class DashboardSeller extends Component {
 }
 
 const dashSellerStyle = StyleSheet.create({
+	likeProdDollIconView: {
+		position: 'absolute',
+		top: -2,
+		left: 0,
+
+	},
+	likeProdPriceRow: {
+		paddingLeft: 7,
+	},
+	likeProdDollarIcon: {
+		fontSize: 11,
+	},
+	likeProdName: {
+		fontWeight: '500',
+		color: 'black',
+		fontSize: 16,
+	},
+	likeProductDescBlock: {
+		flex: 1,
+		paddingLeft: 10,
+	},
+	likeProductImg: {
+		height: 80,
+		width: 80,
+		resizeMode: 'cover',
+	},
+	likeProductList: {
+		paddingHorizontal: 8,
+		borderWidth: 0.5,
+		borderColor: '#aaa',
+	},
+	likeProductItem: {
+		paddingTop: 8,
+		flex: 1,
+		flexDirection: 'row',
+	},
 	featuredBlock: {
 		flex: 1,
 		height: 180,
+		borderWidth: 0.5,
+		borderColor: '#aaa',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	featuredImgBlock: {
+		height: 180,
+		width: 180,
 		borderWidth: 0.5,
 		borderColor: '#aaa',
 		alignItems: 'center',

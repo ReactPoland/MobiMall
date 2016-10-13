@@ -22,8 +22,41 @@ export default class DashboardSeller extends Component {
 		bindMethods(this);
 
 		this.state = {
-			fields: {}
+			fields: {},
+			activeTab: 0,
 		}
+	}
+
+	renderTabHeaders(activeNum) {
+
+		var tabs = [ 'IC1', 'IC2', 'IC3'];
+
+		return (
+			<View style={dashSellerStyle.tabList}>
+				{tabs.map((item, i) => {
+					let styleObj = {
+						textAlign: 'center', 
+						fontSize: 23,
+						padding: 5,
+					};
+					if ( i === activeNum ) {
+						styleObj.color = "purple";
+					}
+
+					return (
+						<TouchableNativeFeedback onPress={ () => { let currKey = i; this.setState({activeTab: currKey}) } } key={i} >
+							
+							<View style={dashSellerStyle.tabItem} >
+								<Text style={ styleObj } >{ item }</Text>
+							</View>
+
+						</TouchableNativeFeedback>
+
+					);
+					
+				})}
+			</View>
+		);
 	}
 
 	render() {
@@ -36,11 +69,11 @@ export default class DashboardSeller extends Component {
 				<ScrollView>
 
 				<View style={dashSellerStyle.topbar}>
-
+					<Text>HOME</Text>
 				</View>
 
 				<View style={ dashSellerStyle.shopTitleView } >
-					<View style={st.shopTitleProfileBlock}>
+					<View style={dashSellerStyle.shopTitleProfileBlock}>
 
 					    <View style={dashSellerStyle.shopperImgProfile}>
 					    	<Image source={{uri: `http://graph.facebook.com/298288423897442/picture?type=large` }} style={st.shopProfileImg}/>
@@ -75,177 +108,184 @@ export default class DashboardSeller extends Component {
 				  	</View>
 				</View>
 
-				<View style={dashSellerStyle.contentRow} >
-					
-					<View>
-						<Text style={dashSellerStyle.blockName}>DEAL OF THE DAY</Text>
-					</View>
+				{ this.renderTabHeaders(this.state.activeTab) }
 
-					<View style={dashSellerStyle.dealDay} >
-					   	<Image source={{uri: `https://unsplash.it/600/200?image=232` }} style={dashSellerStyle.dealDayImg}/>
+				<View style={dashSellerStyle.tabContent} >
 
-					   	<View style={dashSellerStyle.dealDayContent} >
-					   		<Text style={ { color: 'white', fontSize: 18 } } >AN ICON REMASTERED</Text>
-					   		<Text style={ { color: 'white',  fontSize: 12 } } >THE BEATS BY DR DRE STUDIO 2 OVER-EAR HEADPHONES</Text>
+					<View style={dashSellerStyle.contentRow} >
+						
+						<View>
+							<Text style={dashSellerStyle.blockName}>DEAL OF THE DAY</Text>
+						</View>
 
-							<TouchableNativeFeedback onPress={ () => { Alert.alert('buy now') } }>
+						<View style={dashSellerStyle.dealDay} >
+						   	<Image source={{uri: `https://unsplash.it/600/200?image=232` }} style={dashSellerStyle.dealDayImg}/>
 
-						   		<View style={ dashSellerStyle.dealDayButtonRow } >
-							   		<View style={ dashSellerStyle.dealDayButton } >
-							   			<Text style={ { color: 'white', fontSize: 10 } } >BUY NOW 20% OFF</Text>
+						   	<View style={dashSellerStyle.dealDayContent} >
+						   		<Text style={ { color: 'white', fontSize: 18 } } >AN ICON REMASTERED</Text>
+						   		<Text style={ { color: 'white',  fontSize: 12 } } >THE BEATS BY DR DRE STUDIO 2 OVER-EAR HEADPHONES</Text>
+
+								<TouchableNativeFeedback onPress={ () => { Alert.alert('buy now') } }>
+
+							   		<View style={ dashSellerStyle.dealDayButtonRow } >
+								   		<View style={ dashSellerStyle.dealDayButton } >
+								   			<Text style={ { color: 'white', fontSize: 10 } } >BUY NOW 20% OFF</Text>
+								   		</View>
 							   		</View>
-						   		</View>
-							
-							</TouchableNativeFeedback>
+								
+								</TouchableNativeFeedback>
 
-					   	</View>
+						   	</View>
+						</View>
+
 					</View>
 
-				</View>
 
-
-				<View style={dashSellerStyle.contentRow}>
-					
-					<View>
-						<Text style={dashSellerStyle.blockName}>BEST SELLERS</Text>
-					</View>
-
-					<View style={dashSellerStyle.productList}>
-
-						<ScrollView horizontal={true}>
-
-							
-							<View style={dashSellerStyle.productItem} >
-							   		<Image source={{uri: `https://unsplash.it/150/150?image=25` }} style={dashSellerStyle.productImg}/>
-								<View style={dashSellerStyle.productDesc} >
-									<View>
-										<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
-									</View>
-									<Text style= { dashSellerStyle.productPrice } >$299.00</Text>
-								</View>
-							</View>
-
-							<View style={dashSellerStyle.productItem} >
-							   		<Image source={{uri: `https://unsplash.it/150/150?image=26` }} style={dashSellerStyle.productImg}/>
-								<View style={dashSellerStyle.productDesc} >
-									<View>
-										<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
-									</View>
-									<Text style= { dashSellerStyle.productPrice } >$199.00</Text>
-								</View>
-							</View>
-
-							<View style={dashSellerStyle.productItem} >
-							   		<Image source={{uri: `https://unsplash.it/150/150?image=27` }} style={dashSellerStyle.productImg}/>
-								<View style={dashSellerStyle.productDesc} >
-									<View>
-										<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
-									</View>
-									<Text style= { dashSellerStyle.productPrice } >$399.00</Text>
-								</View>
-							</View>
-
-							<View style={dashSellerStyle.productItem} >
-							   		<Image source={{uri: `https://unsplash.it/150/150?image=28` }} style={dashSellerStyle.productImg}/>
-								<View style={dashSellerStyle.productDesc} >
-									<View>
-										<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
-									</View>
-									<Text style= { dashSellerStyle.productPrice } >$299.00</Text>
-								</View>
-							</View>
-
-							<View style={dashSellerStyle.productItem} >
-							   		<Image source={{uri: `https://unsplash.it/150/150?image=29` }} style={dashSellerStyle.productImg}/>
-								<View style={dashSellerStyle.productDesc} >
-									<View>
-										<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
-									</View>
-									<Text style= { dashSellerStyle.productPrice } >$299.00</Text>
-								</View>
-							</View>
-
+					<View style={dashSellerStyle.contentRow}>
 						
-						</ScrollView>
-
-					</View>
-				</View>
-
-				<View style={dashSellerStyle.contentRow}>
-					<View>
-						<Text style={dashSellerStyle.blockName}>FEATURED STORE</Text>
-					</View>
-
-					<View style={dashSellerStyle.featuredRow} >
-						<View style={dashSellerStyle.featuredBlock}>
-							<Text style={dashSellerStyle.featuredDesc}>
-								Your Style Guide to Winter Clothes Shopping with the founder of @mm_ShopBop
-							</Text>
-						</View>
-	
-						<View style={dashSellerStyle.featuredImgBlock}>
-							<Image source={{uri: `https://unsplash.it/250/250?image=39` }} style={dashSellerStyle.featuredImg}/>
+						<View>
+							<Text style={dashSellerStyle.blockName}>BEST SELLERS</Text>
 						</View>
 
-					</View>
-				</View>
+						<View style={dashSellerStyle.productList}>
 
+							<ScrollView horizontal={true}>
 
-				<View style={dashSellerStyle.contentRow}>
-					<View>
-						<Text style={dashSellerStyle.blockName}>WE THOUGHT YOU MIGHT LIKE</Text>
-					</View>
-
-					<View style={dashSellerStyle.likeProductList } >
-
-						<View style={dashSellerStyle.likeProductItem}>
-							<Image source={{uri: `https://unsplash.it/100/100?image=40` }} style={dashSellerStyle.likeProductImg}/>
-							<View style={dashSellerStyle.likeProductDescBlock}>
-								<Text style={dashSellerStyle.likeProdName}>Boost Band Black Portable Charger Wristband Phone...</Text>
-
-								<View  style={dashSellerStyle.likeProdPriceRow} >
-									<View style={dashSellerStyle.likeProdDollIconView} >
-										<Text style={dashSellerStyle.likeProdDollarIcon}>$</Text>
+								
+								<View style={dashSellerStyle.productItem} >
+								   		<Image source={{uri: `https://unsplash.it/150/150?image=25` }} style={dashSellerStyle.productImg}/>
+									<View style={dashSellerStyle.productDesc} >
+										<View>
+											<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
+										</View>
+										<Text style= { dashSellerStyle.productPrice } >$299.00</Text>
 									</View>
+								</View>
+
+								<View style={dashSellerStyle.productItem} >
+								   		<Image source={{uri: `https://unsplash.it/150/150?image=26` }} style={dashSellerStyle.productImg}/>
+									<View style={dashSellerStyle.productDesc} >
+										<View>
+											<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
+										</View>
+										<Text style= { dashSellerStyle.productPrice } >$199.00</Text>
+									</View>
+								</View>
+
+								<View style={dashSellerStyle.productItem} >
+								   		<Image source={{uri: `https://unsplash.it/150/150?image=27` }} style={dashSellerStyle.productImg}/>
+									<View style={dashSellerStyle.productDesc} >
+										<View>
+											<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
+										</View>
+										<Text style= { dashSellerStyle.productPrice } >$399.00</Text>
+									</View>
+								</View>
+
+								<View style={dashSellerStyle.productItem} >
+								   		<Image source={{uri: `https://unsplash.it/150/150?image=28` }} style={dashSellerStyle.productImg}/>
+									<View style={dashSellerStyle.productDesc} >
+										<View>
+											<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
+										</View>
+										<Text style= { dashSellerStyle.productPrice } >$299.00</Text>
+									</View>
+								</View>
+
+								<View style={dashSellerStyle.productItem} >
+								   		<Image source={{uri: `https://unsplash.it/150/150?image=29` }} style={dashSellerStyle.productImg}/>
+									<View style={dashSellerStyle.productDesc} >
+										<View>
+											<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
+										</View>
+										<Text style= { dashSellerStyle.productPrice } >$299.00</Text>
+									</View>
+								</View>
+
+							
+							</ScrollView>
+
+						</View>
+					</View>
+
+					<View style={dashSellerStyle.contentRow}>
+						<View>
+							<Text style={dashSellerStyle.blockName}>FEATURED STORE</Text>
+						</View>
+
+						<View style={dashSellerStyle.featuredRow} >
+							<View style={dashSellerStyle.featuredBlock}>
+								<Text style={dashSellerStyle.featuredDesc}>
+									Your Style Guide to Winter Clothes Shopping with the founder of @mm_ShopBop
+								</Text>
+							</View>
 		
-									<Text>29.99</Text>
-								</View>
+							<View style={dashSellerStyle.featuredImgBlock}>
+								<Image source={{uri: `https://unsplash.it/250/250?image=39` }} style={dashSellerStyle.featuredImg}/>
 							</View>
+
+						</View>
+					</View>
+
+
+					<View style={dashSellerStyle.contentRow}>
+						<View>
+							<Text style={dashSellerStyle.blockName}>WE THOUGHT YOU MIGHT LIKE</Text>
 						</View>
 
-						<View style={dashSellerStyle.likeProductItem}>
-							<Image source={{uri: `https://unsplash.it/100/100?image=41` }} style={dashSellerStyle.likeProductImg}/>
-							<View style={dashSellerStyle.likeProductDescBlock}>
-								<Text style={dashSellerStyle.likeProdName}>Stella 7-speed Internally-geared Luxury Step-through Bicycle...</Text>
+						<View style={dashSellerStyle.likeProductList } >
 
-								<View  style={dashSellerStyle.likeProdPriceRow} >
-									<View style={dashSellerStyle.likeProdDollIconView} >
-										<Text style={dashSellerStyle.likeProdDollarIcon}>$</Text>
+							<View style={dashSellerStyle.likeProductItem}>
+								<Image source={{uri: `https://unsplash.it/100/100?image=40` }} style={dashSellerStyle.likeProductImg}/>
+								<View style={dashSellerStyle.likeProductDescBlock}>
+									<Text style={dashSellerStyle.likeProdName}>Boost Band Black Portable Charger Wristband Phone...</Text>
+
+									<View  style={dashSellerStyle.likeProdPriceRow} >
+										<View style={dashSellerStyle.likeProdDollIconView} >
+											<Text style={dashSellerStyle.likeProdDollarIcon}>$</Text>
+										</View>
+			
+										<Text>29.99</Text>
 									</View>
-						
-									<Text>1,049.00</Text>
 								</View>
 							</View>
-						</View>
 
-						<View style={dashSellerStyle.likeProductItem}>
-							<Image source={{uri: `https://unsplash.it/100/100?image=42` }} style={dashSellerStyle.likeProductImg}/>
-							<View style={dashSellerStyle.likeProductDescBlock}>
-								<Text style={dashSellerStyle.likeProdName}>Nomader BPA Free Collapsible Sports Water Bottle - Foldable...</Text>
+							<View style={dashSellerStyle.likeProductItem}>
+								<Image source={{uri: `https://unsplash.it/100/100?image=41` }} style={dashSellerStyle.likeProductImg}/>
+								<View style={dashSellerStyle.likeProductDescBlock}>
+									<Text style={dashSellerStyle.likeProdName}>Stella 7-speed Internally-geared Luxury Step-through Bicycle...</Text>
 
-								<View  style={dashSellerStyle.likeProdPriceRow} >
-									<View style={dashSellerStyle.likeProdDollIconView} >
-										<Text style={dashSellerStyle.likeProdDollarIcon}>$</Text>
+									<View  style={dashSellerStyle.likeProdPriceRow} >
+										<View style={dashSellerStyle.likeProdDollIconView} >
+											<Text style={dashSellerStyle.likeProdDollarIcon}>$</Text>
+										</View>
+							
+										<Text>1,049.00</Text>
 									</View>
-						
-									<Text>16.95</Text>
 								</View>
 							</View>
+
+							<View style={dashSellerStyle.likeProductItem}>
+								<Image source={{uri: `https://unsplash.it/100/100?image=42` }} style={dashSellerStyle.likeProductImg}/>
+								<View style={dashSellerStyle.likeProductDescBlock}>
+									<Text style={dashSellerStyle.likeProdName}>Nomader BPA Free Collapsible Sports Water Bottle - Foldable...</Text>
+
+									<View  style={dashSellerStyle.likeProdPriceRow} >
+										<View style={dashSellerStyle.likeProdDollIconView} >
+											<Text style={dashSellerStyle.likeProdDollarIcon}>$</Text>
+										</View>
+							
+										<Text>16.95</Text>
+									</View>
+								</View>
+							</View>
+
 						</View>
 
 					</View>
 
 				</View>
+
 
 
 					
@@ -256,6 +296,26 @@ export default class DashboardSeller extends Component {
 }
 
 const dashSellerStyle = StyleSheet.create({
+	shopTitleProfileBlock: {
+		flexDirection: 'row',
+		flex: 1,
+		zIndex: 20,
+		marginTop: 10,
+		marginBottom: 10,
+	},
+	tabList: {
+		borderBottomWidth: 0.5,
+		borderTopWidth: 0.5,
+		borderColor: '#aaa',
+		flexDirection: 'row',
+	},
+	tabItem: {
+		flex: 2,
+	},
+	tabItemCenter: {
+		flex: 3,
+	},
+
 	likeProdDollIconView: {
 		position: 'absolute',
 		top: -2,

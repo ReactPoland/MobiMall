@@ -35,6 +35,10 @@ export default class DashboardSeller extends Component {
 			<View style={dashSellerStyle.container} >
 				<ScrollView>
 
+				<View style={dashSellerStyle.topbar}>
+
+				</View>
+
 				<View style={ dashSellerStyle.shopTitleView } >
 					<View style={st.shopTitleProfileBlock}>
 
@@ -241,9 +245,7 @@ export default class DashboardSeller extends Component {
 
 					</View>
 
-
 				</View>
-
 
 
 					
@@ -258,7 +260,10 @@ const dashSellerStyle = StyleSheet.create({
 		position: 'absolute',
 		top: -2,
 		left: 0,
-
+	},
+	topbar: {
+		height: 50,
+		borderBottomWidth: 1,
 	},
 	likeProdPriceRow: {
 		paddingLeft: 7,

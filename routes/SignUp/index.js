@@ -15,7 +15,7 @@ import { bindMethods } from '../../utils';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
 import CheckBox from 'react-native-checkbox';
- import { Button } from 'react-native-material-design';
+ import { Button, RadioButton, RadioButtonGroup } from 'react-native-material-design';
 
 const SaeInput = ( { label } ) => (
   <Sae
@@ -74,6 +74,7 @@ export default class SignUp extends Component {
 					</View>
 
 
+
 					<SaeInput 
 						label="First name" 
 						value={fields.firstName} 
@@ -88,6 +89,11 @@ export default class SignUp extends Component {
 						label="Date of Birth" 
 						value={fields.dateBirth} 
 						onChange={ (e) => this.changeField.call( this, 'dateBirth', e.nativeEvent.text ) } />
+					
+					<View style={{flexDirection: 'row'}} >
+						<RadioButton value={'male'} onSelect={ (ev) => this.changeField.call( this, 'sex', ev ) } checked={ fields.sex && fields.sex == 'male' } label="Male" />
+						<RadioButton value={'female'} onSelect={ (ev) => this.changeField.call( this, 'sex', ev ) } checked={ fields.sex && fields.sex == 'female' } label="Female" />
+					</View>
 					
 					<SaeInput 
 						label="Email" 

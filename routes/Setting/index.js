@@ -32,7 +32,7 @@ const SaeInput = ( { label } ) => (
   />
 );
 
-export default class SignUp extends Component {
+export default class Setting extends Component {
 
 	constructor(prop) {
 		super(prop);
@@ -55,16 +55,13 @@ export default class SignUp extends Component {
 
 		const { fields } = this.state;
 
-		console.log( fields );
-
-
 		return (
 			<View style={signUpStyle.container} >
 				<ScrollView style={signUpStyle.scrollContainer}>
 
 
 					<View style={signUpStyle.headerBlock}>
-						<TouchableNativeFeedback onPress={ () => { this.props.navigator.toBack() } }>
+						<TouchableNativeFeedback onPress={ () => { this.props.navigator.toLogin() } }>
 							<View style={signUpStyle.cancelButton} >
 								<Text style={signUpStyle.cancelButtonText}>cancel</Text>
 							</View>

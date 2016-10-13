@@ -11,6 +11,7 @@ import SellerProfileView from './SellerProfileView';
 import LoginInst from './LoginInst';
 import SignUp from './SignUp';
 import DashboardSeller from './DashboardSeller';
+import Setting from './Setting';
 
 
 
@@ -28,7 +29,8 @@ class Switcher extends Component {
 			LoginInst: () => (<LoginInst {...this.props} />),
 			SellerProfileView: () => (<SellerProfileView {...this.props} />),
 			DashboardSeller: () => (<DashboardSeller {...this.props} />),
-			SignUp: () => (<SignUp {...this.props} />)
+			SignUp: () => (<SignUp {...this.props} />),
+			Setting: () => (<Setting {...this.props} />),
 		};
 	}
 
@@ -200,7 +202,16 @@ export default class Router extends Component {
 							if (route.index > 0) {
 						    	navigator.pop();
 							}
-						}
+						},
+
+						toSetting () {
+							if ( !that.manager.getDataFB() ) return;
+
+							navigator.push({
+								name: 'Setting',
+								index: route.index + 1
+							});
+						},
 
 					};
 

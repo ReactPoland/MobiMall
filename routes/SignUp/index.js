@@ -183,7 +183,7 @@ const signUpStyle = StyleSheet.create({
 	},
 	rememberTextWrap: {
 		
-		justifyContent: 'flex-end',
+		justifyContent: 'center',
 		marginRight: 15,
 	},
 	rememberBlock: {
@@ -191,12 +191,13 @@ const signUpStyle = StyleSheet.create({
 		flexDirection: 'row'
 	},
 	rememberText: {
-		fontSize: 25,
+		fontSize: 14,
 		color: 'purple',
 	},
 	cancelButtonText: {
-		fontSize: 23,
-		fontWeight: `bold`,
+		color: 'purple',
+		marginTop: 10,
+		fontSize: 14,
 	},
 	headerBlock: {
 		alignItems: 'center',

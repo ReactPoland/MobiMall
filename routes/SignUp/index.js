@@ -29,6 +29,9 @@ const SaeInput = ( { label } ) => (
     labelStyle={ signUpStyle.saeLabelStyle }
     inputStyle={ signUpStyle.saeInputStyle }
     iconSize={10}
+    lineSize={1}
+    lineColor={'#eee'}
+    isBottomBorder={false}
   />
 );
 

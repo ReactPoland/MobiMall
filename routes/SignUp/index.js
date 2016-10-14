@@ -159,8 +159,8 @@ export default class SignUp extends Component {
 const signUpStyle = StyleSheet.create({
 	cancelButton: {
 		position: 'absolute',
-		left: 10,
-		top: 10,
+		left: 0,
+		top: 30,
 	},
 	checkBoxBlock: {
 		justifyContent: 'flex-end',
@@ -196,7 +196,6 @@ const signUpStyle = StyleSheet.create({
 	},
 	cancelButtonText: {
 		color: 'purple',
-		marginTop: 10,
 		fontSize: 14,
 	},
 	headerBlock: {
@@ -217,9 +216,10 @@ const signUpStyle = StyleSheet.create({
 		color: 'black'
 	},
 	logo: {
+		marginTop: 15,
 		resizeMode: 'contain',
-		height: 80,
-		width: 80,
+		height: 70,
+		width: 70,
 	},
 	scrollContainer: {
 		paddingLeft: 20,

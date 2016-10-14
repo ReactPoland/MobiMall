@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navigator, Text, ScrollView, StyleSheet, View } from 'react-native';
+import { Navigator, Text, ScrollView, StyleSheet, View, UIManager } from 'react-native';
 
 import NewProductSeller from './NewProductSeller';
 import PageList from './PageList';
@@ -12,7 +12,9 @@ import LoginInst from './LoginInst';
 import SignUp from './SignUp';
 import DashboardSeller from './DashboardSeller';
 import Setting from './Setting';
+import ThemeUi from '../components/ThemeUi';
 
+import { COLOR, ThemeProvider } from 'react-native-material-ui';
 
 
 class Switcher extends Component {
@@ -20,17 +22,17 @@ class Switcher extends Component {
 	constructor(props) {
 		super(props);
 		this.routesName = {
-			NewProductSeller: () =>  (<NewProductSeller {...this.props} />),
-			PageList: () => (<PageList {...this.props} />),
-			PostProductToIG: () => (<PostProductToIG {...this.props} />),
-			ShopperProfileView: () => (<ShopperProfileView {...this.props} />),
+			NewProductSeller: () =>  (<ThemeUi><NewProductSeller {...this.props} /></ThemeUi>),
+			PageList: () => (<ThemeUi><PageList {...this.props} /></ThemeUi>),
+			PostProductToIG: () => (<ThemeUi><PostProductToIG {...this.props} /></ThemeUi>),
+			ShopperProfileView: () => (<ThemeUi><ShopperProfileView {...this.props} /></ThemeUi>),
 			Login: () => (<Login {...this.props} />),
-			Dashboard: () => (<Dashboard {...this.props} />),
-			LoginInst: () => (<LoginInst {...this.props} />),
-			SellerProfileView: () => (<SellerProfileView {...this.props} />),
-			DashboardSeller: () => (<DashboardSeller {...this.props} />),
+			Dashboard: () => (<ThemeUi><Dashboard {...this.props} /></ThemeUi>),
+			LoginInst: () => (<ThemeUi><LoginInst {...this.props} /></ThemeUi>),
+			SellerProfileView: () => (<ThemeUi><SellerProfileView {...this.props} /></ThemeUi>),
+			DashboardSeller: () => (<ThemeUi><DashboardSeller {...this.props} /></ThemeUi>),
 			SignUp: () => (<SignUp {...this.props} />),
-			Setting: () => (<Setting {...this.props} />),
+			Setting: () => (<ThemeUi><Setting {...this.props} /></ThemeUi>),
 		};
 	}
 
@@ -115,7 +117,10 @@ export default class Router extends Component {
 			}
 		})();
 
+		
+
 	}
+
 
 
 	render() {

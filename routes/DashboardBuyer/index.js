@@ -14,7 +14,7 @@ import {
 import { bindMethods } from '../../utils';
 import st from '../../assets/style';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-
+import BuyerProfileHeader from '../../components/BuyerProfileHeader'
 
 export default class DashboardBuyer extends Component {
 
@@ -134,17 +134,7 @@ export default class DashboardBuyer extends Component {
 				  	</View>*/}
 
 
-					<View style={dashSellerStyle.dealDay} >
-					   	<Image source={{uri: `https://unsplash.it/600/200?image=231` }} style={dashSellerStyle.dealDayImg}/>
-
-					   	<View style={dashSellerStyle.profileContent}>
-						   	<View style={dashSellerStyle.profileBgBlock}>
-						   		<Text style={{color: 'white', textAlign: 'center', fontSize: 26, fontStyle: 'italic', fontWeight: '600'}}>@SNEAKERHEAVEN</Text>
-						   		<Text style={{color: 'white', textAlign: 'center', fontSize: 18, fontStyle: 'italic'}}>5K FOLLOWERS</Text>
-						   	</View>
-					   	</View>
-
-					</View>
+					<BuyerProfileHeader />
 
 					{ this.renderTabHeaders(this.state.activeTab) }
 
@@ -331,20 +321,6 @@ export default class DashboardBuyer extends Component {
 }
 
 const dashSellerStyle = StyleSheet.create({
-	profileBgBlock: {
-		backgroundColor: 'rgba(0, 0, 0, 0.6)',
-		alignItems: 'center',
-		justifyContent: 'center',
-		paddingVertical:4,
-		paddingHorizontal: 7,
-
-	},
-	profileContent: {
-		zIndex: 20,
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
 	topbarText: {
 		textAlign: 'center',
 		fontWeight: '100',

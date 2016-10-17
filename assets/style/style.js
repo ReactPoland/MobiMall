@@ -31,7 +31,7 @@ export default {
 		flex: 1,
 		justifyContent: 'center',
 		// alignItems: 'center',
-		backgroundColor: '#9100be',
+		backgroundColor: '#eee',
 	},
 	squareBorderButton: {
 		marginRight: 15,

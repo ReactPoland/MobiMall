@@ -78,6 +78,7 @@ export default class NewProductSeller extends Component {
 
 const loginStyle = StyleSheet.create({
 	container: {
+		backgroundColor: '#eee',
 		flex: 1,
 		overflow: 'hidden',
 	},

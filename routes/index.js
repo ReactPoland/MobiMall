@@ -13,6 +13,7 @@ import SignUp from './SignUp';
 import DashboardBuyer from './DashboardBuyer';
 import Setting from './Setting';
 import ThemeUi from '../components/ThemeUi';
+import DashboardSeller from './DashboardSeller';
 
 import { COLOR, ThemeProvider } from 'react-native-material-ui';
 
@@ -31,6 +32,7 @@ class Switcher extends Component {
 			LoginInst: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><LoginInst {...props} /></ThemeUi>),
 			SellerProfileView: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><SellerProfileView {...props} /></ThemeUi>),
 			DashboardBuyer: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><DashboardBuyer {...props} /></ThemeUi>),
+			DashboardSeller: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><DashboardSeller {...props} /></ThemeUi>),
 			SignUp: (props) => (<SignUp {...props} />),
 			Setting: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><Setting {...props} /></ThemeUi>),
 		};
@@ -200,6 +202,15 @@ export default class Router extends Component {
 
 							navigator.push({
 								name: 'DashboardBuyer',
+								index: route.index + 1
+							});
+						},
+
+						toDashboardSeller () {
+							if ( !that.manager.getDataFB() ) return;
+
+							navigator.push({
+								name: 'DashboardSeller',
 								index: route.index + 1
 							});
 						},

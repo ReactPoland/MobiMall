@@ -10,7 +10,7 @@ import Dashboard from './Dashboard';
 import SellerProfileView from './SellerProfileView';
 import LoginInst from './LoginInst';
 import SignUp from './SignUp';
-import DashboardSeller from './DashboardSeller';
+import DashboardBuyer from './DashboardBuyer';
 import Setting from './Setting';
 import ThemeUi from '../components/ThemeUi';
 
@@ -30,7 +30,7 @@ class Switcher extends Component {
 			Dashboard: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><Dashboard {...props} /></ThemeUi>),
 			LoginInst: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><LoginInst {...props} /></ThemeUi>),
 			SellerProfileView: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><SellerProfileView {...props} /></ThemeUi>),
-			DashboardSeller: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><DashboardSeller {...props} /></ThemeUi>),
+			DashboardBuyer: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><DashboardBuyer {...props} /></ThemeUi>),
 			SignUp: (props) => (<SignUp {...props} />),
 			Setting: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><Setting {...props} /></ThemeUi>),
 		};
@@ -48,8 +48,6 @@ class Switcher extends Component {
 		// if ( name === 'LoginInst' && this.props.manager.getDataInst() ) {
 			// name = 'Dashboard';
 		// }
-
-		console.log(this.props);
 
 		let route = this.routesName[ name ] ? this.routesName[ name ](this.props) : (
 			<Text style={{color: 'red'}}>Can't found route</Text>
@@ -197,11 +195,11 @@ export default class Router extends Component {
 							});
 						},
 
-						toDashboardSeller () {
+						toDashboardBuyer () {
 							if ( !that.manager.getDataFB() ) return;
 
 							navigator.push({
-								name: 'DashboardSeller',
+								name: 'DashboardBuyer',
 								index: route.index + 1
 							});
 						},

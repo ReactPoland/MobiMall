@@ -22,17 +22,17 @@ class Switcher extends Component {
 	constructor(props) {
 		super(props);
 		this.routesName = {
-			NewProductSeller: () =>  (<ThemeUi route={this.props.route} navigator={this.props.navigator} ><NewProductSeller {...this.props} /></ThemeUi>),
-			PageList: () => (<ThemeUi route={this.props.route} navigator={this.props.navigator} ><PageList {...this.props} /></ThemeUi>),
-			PostProductToIG: () => (<ThemeUi route={this.props.route} navigator={this.props.navigator} ><PostProductToIG {...this.props} /></ThemeUi>),
-			ShopperProfileView: () => (<ThemeUi route={this.props.route} navigator={this.props.navigator} ><ShopperProfileView {...this.props} /></ThemeUi>),
-			Login: () => (<Login {...this.props} />),
-			Dashboard: () => (<ThemeUi route={this.props.route} navigator={this.props.navigator} ><Dashboard {...this.props} /></ThemeUi>),
-			LoginInst: () => (<ThemeUi route={this.props.route} navigator={this.props.navigator} ><LoginInst {...this.props} /></ThemeUi>),
-			SellerProfileView: () => (<ThemeUi route={this.props.route} navigator={this.props.navigator} ><SellerProfileView {...this.props} /></ThemeUi>),
-			DashboardSeller: () => (<ThemeUi route={this.props.route} navigator={this.props.navigator} ><DashboardSeller {...this.props} /></ThemeUi>),
-			SignUp: () => (<SignUp {...this.props} />),
-			Setting: () => (<ThemeUi route={this.props.route} navigator={this.props.navigator} ><Setting {...this.props} /></ThemeUi>),
+			NewProductSeller: (props) =>  (<ThemeUi route={props.route} navigator={props.navigator} ><NewProductSeller {...props} /></ThemeUi>),
+			PageList: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><PageList {...props} /></ThemeUi>),
+			PostProductToIG: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><PostProductToIG {...props} /></ThemeUi>),
+			ShopperProfileView: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><ShopperProfileView {...props} /></ThemeUi>),
+			Login: (props) => (<Login {...props} />),
+			Dashboard: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><Dashboard {...props} /></ThemeUi>),
+			LoginInst: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><LoginInst {...props} /></ThemeUi>),
+			SellerProfileView: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><SellerProfileView {...props} /></ThemeUi>),
+			DashboardSeller: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><DashboardSeller {...props} /></ThemeUi>),
+			SignUp: (props) => (<SignUp {...props} />),
+			Setting: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><Setting {...props} /></ThemeUi>),
 		};
 	}
 
@@ -41,14 +41,17 @@ class Switcher extends Component {
 
 
 		if ( name === 'Login' && this.props.manager.getDataFB() ) {
-			name = 'Dashboard';
+			this.props.route.name = name = 'Dashboard';
+
 		}
 
 		// if ( name === 'LoginInst' && this.props.manager.getDataInst() ) {
 			// name = 'Dashboard';
 		// }
 
-		let route = this.routesName[ name ] ? this.routesName[ name ]() : (
+		console.log(this.props);
+
+		let route = this.routesName[ name ] ? this.routesName[ name ](this.props) : (
 			<Text style={{color: 'red'}}>Can't found route</Text>
 		);
 

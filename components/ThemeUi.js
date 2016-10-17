@@ -73,15 +73,24 @@ export default class ThemeUi extends Component {
         <ThemeProvider uiTheme={ this.uiTheme } >
           <View style={ { flex: 1 } }>
             <Toolbar 
-              leftElement={this.props.route.index ? "arrow-back" : ""}
+              leftElement="arrow-back"
               onLeftElementPress={this.backClickHandler}
-
+              centerElement={this.props.route.name.toUpperCase()}
+              rightElement="arrow-back"
               style={{
                 container: {
                   backgroundColor: 'white',
                 },
                 leftElement: {
-                  color: 'black'
+                  color: this.props.route.index ? 'black' : 'white',
+                },
+                titleText: {
+                  color: 'purple',
+                  textAlign: 'center',
+                  paddingRight: 24,
+                  fontWeight: '100',
+                },
+                rightElement: {
                 }
               }}
             />

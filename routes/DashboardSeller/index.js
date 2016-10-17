@@ -72,7 +72,7 @@ export default class DashboardSeller extends Component {
 				<ScrollView>
 
 				
-				<View style={dashSellerStyle.topbar}>
+				{/*<View style={dashSellerStyle.topbar}>
 					<TouchableNativeFeedback onPress={ () => { this.props.navigator.toBack() } } >
 						<View style={dashSellerStyle.buttBack} >
 						<FontAwesomeIcon
@@ -94,7 +94,7 @@ export default class DashboardSeller extends Component {
 						</View>
 					</TouchableNativeFeedback>
 
-				</View>
+				</View> */}
 
 
 

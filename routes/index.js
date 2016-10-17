@@ -14,6 +14,7 @@ import DashboardBuyer from './DashboardBuyer';
 import Setting from './Setting';
 import ThemeUi from '../components/ThemeUi';
 import DashboardSeller from './DashboardSeller';
+import ProfileChanging from './ProfileChanging';
 
 import { COLOR, ThemeProvider } from 'react-native-material-ui';
 
@@ -33,6 +34,7 @@ class Switcher extends Component {
 			SellerProfileView: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><SellerProfileView {...props} /></ThemeUi>),
 			DashboardBuyer: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><DashboardBuyer {...props} /></ThemeUi>),
 			DashboardSeller: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><DashboardSeller {...props} /></ThemeUi>),
+			ProfileChanging: (props) => (<ProfileChanging {...props} />),
 			SignUp: (props) => (<SignUp {...props} />),
 			Setting: (props) => (<ThemeUi route={props.route} navigator={props.navigator} ><Setting {...props} /></ThemeUi>),
 		};
@@ -43,7 +45,7 @@ class Switcher extends Component {
 
 
 		if ( name === 'Login' && this.props.manager.getDataFB() ) {
-			this.props.route.name = name = 'Dashboard';
+			this.props.route.name = name = 'ProfileChanging';
 
 		}
 
@@ -229,6 +231,15 @@ export default class Router extends Component {
 								index: route.index + 1
 							});
 						},
+
+						toProfileChanging () {
+							if ( !that.manager.getDataFB() ) return;
+
+							navigator.push({
+								name: 'ProfileChanging',
+								index: route.index + 1
+							});	
+						}
 
 					};
 

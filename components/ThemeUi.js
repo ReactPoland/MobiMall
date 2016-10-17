@@ -5,10 +5,11 @@ import {
   Text,
   DrawerLayoutAndroid
 } from 'react-native';
-import { COLOR, ThemeProvider, ActionButton } from 'react-native-material-ui';
+import { COLOR, ThemeProvider, ActionButton, Toolbar } from 'react-native-material-ui';
 // import { Drawer } from 'react-native-material-design';
 import { Avatar, Drawer, Divider, COLOR as cc, TYPO } from 'react-native-material-design';
 import Setting from '../routes/Setting'
+import { bindMethods } from '../utils'
 
 
 export default class ThemeUi extends Component {
@@ -20,6 +21,7 @@ export default class ThemeUi extends Component {
       drawer: null,
       navigator: null
     };
+    bindMethods(this);
     
     this.uiTheme = {
         palette: {
@@ -44,10 +46,16 @@ export default class ThemeUi extends Component {
     this.setState({drawer});
   }
 
+  backClickHandler() {
+    if (this.props.route.index <= 0 ) return;
+    this.props.navigator.toBack();
+  };
+
   render() {
+
+    const emptyFunc = () => { };
     const { drawer, navigator } = this.state;
     const navView = React.createElement(Setting);
-
 
 
     return (
@@ -64,6 +72,19 @@ export default class ThemeUi extends Component {
 
         <ThemeProvider uiTheme={ this.uiTheme } >
           <View style={ { flex: 1 } }>
+            <Toolbar 
+              leftElement={this.props.route.index ? "arrow-back" : ""}
+              onLeftElementPress={this.backClickHandler}
+
+              style={{
+                container: {
+                  backgroundColor: 'white',
+                },
+                leftElement: {
+                  color: 'black'
+                }
+              }}
+            />
 
           
 

@@ -22,17 +22,17 @@ class Switcher extends Component {
 	constructor(props) {
 		super(props);
 		this.routesName = {
-			NewProductSeller: () =>  (<ThemeUi><NewProductSeller {...this.props} /></ThemeUi>),
-			PageList: () => (<ThemeUi><PageList {...this.props} /></ThemeUi>),
-			PostProductToIG: () => (<ThemeUi><PostProductToIG {...this.props} /></ThemeUi>),
-			ShopperProfileView: () => (<ThemeUi><ShopperProfileView {...this.props} /></ThemeUi>),
+			NewProductSeller: () =>  (<ThemeUi route={this.props.route} navigator={this.props.navigator} ><NewProductSeller {...this.props} /></ThemeUi>),
+			PageList: () => (<ThemeUi route={this.props.route} navigator={this.props.navigator} ><PageList {...this.props} /></ThemeUi>),
+			PostProductToIG: () => (<ThemeUi route={this.props.route} navigator={this.props.navigator} ><PostProductToIG {...this.props} /></ThemeUi>),
+			ShopperProfileView: () => (<ThemeUi route={this.props.route} navigator={this.props.navigator} ><ShopperProfileView {...this.props} /></ThemeUi>),
 			Login: () => (<Login {...this.props} />),
-			Dashboard: () => (<ThemeUi><Dashboard {...this.props} /></ThemeUi>),
-			LoginInst: () => (<ThemeUi><LoginInst {...this.props} /></ThemeUi>),
-			SellerProfileView: () => (<ThemeUi><SellerProfileView {...this.props} /></ThemeUi>),
-			DashboardSeller: () => (<ThemeUi><DashboardSeller {...this.props} /></ThemeUi>),
+			Dashboard: () => (<ThemeUi route={this.props.route} navigator={this.props.navigator} ><Dashboard {...this.props} /></ThemeUi>),
+			LoginInst: () => (<ThemeUi route={this.props.route} navigator={this.props.navigator} ><LoginInst {...this.props} /></ThemeUi>),
+			SellerProfileView: () => (<ThemeUi route={this.props.route} navigator={this.props.navigator} ><SellerProfileView {...this.props} /></ThemeUi>),
+			DashboardSeller: () => (<ThemeUi route={this.props.route} navigator={this.props.navigator} ><DashboardSeller {...this.props} /></ThemeUi>),
 			SignUp: () => (<SignUp {...this.props} />),
-			Setting: () => (<ThemeUi><Setting {...this.props} /></ThemeUi>),
+			Setting: () => (<ThemeUi route={this.props.route} navigator={this.props.navigator} ><Setting {...this.props} /></ThemeUi>),
 		};
 	}
 

@@ -101,7 +101,15 @@ export default class ThemeUi extends Component {
            
             { this.props.children }
             <ActionButton 
-              actions={ [ 'email', 'phone', 'sms', 'favorite' ] }
+              actions={ [ {
+                source: require( '../assets/img/homer-simpson.svg' ),
+              }, {
+                source: require( '../assets/img/homer-simpson.svg' ),
+              }, {
+                source: require( '../assets/img/homer-simpson.svg' ),
+              }, {
+                source: require( '../assets/img/homer-simpson.svg' ),
+              } ] }
               transition='toolbar'
               onPress={(action) => { } }
                />

@@ -22,6 +22,7 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
 import { Card } from 'react-native-material-design';
 import PurpleButton from '../../components/PurpleButton';
+import BuyerProfileHeader from '../../components/BuyerProfileHeader';
 
 export default class ShopperProfileView extends Component {
 	constructor(props) {
@@ -116,10 +117,9 @@ export default class ShopperProfileView extends Component {
 		return (
 			<View style={st.container}>
 				<ScrollView>
-					<ProfileHeader
-						name={name}
-						fbId={id}
-					/>
+					
+					<BuyerProfileHeader />
+
 					<Tabs>
 						<View name={'PERSONAL'} >
 							<Card>

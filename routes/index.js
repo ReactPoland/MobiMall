@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navigator, Text, ScrollView, StyleSheet, View, UIManager } from 'react-native';
+import { Navigator, Text, ScrollView, StyleSheet, View, BackAndroid } from 'react-native';
 
 import NewProductSeller from './NewProductSeller';
 import PageList from './PageList';
@@ -121,10 +121,13 @@ export default class Router extends Component {
 
 			}
 		})();
-
-		
-
 	}
+
+	componentDidMount() {
+		BackAndroid.addEventListener('hardwareBackPress', function() {
+			return true;
+		});
+	}	
 
 
 

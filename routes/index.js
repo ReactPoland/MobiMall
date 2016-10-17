@@ -79,6 +79,11 @@ export default class Router extends Component {
 		}
 	}
 
+	static configureScene(route) {
+		// console.log( Navigator.SceneConfigs );
+	    return route.animationType || Navigator.SceneConfigs.FadeAndroid;
+	}
+
 	constructor(props) {
 		super(props);
 
@@ -135,6 +140,7 @@ export default class Router extends Component {
 		let that = this;
 		return (
 			<Navigator
+                configureScene={Router.configureScene}
 				initialRoute={{ name: this.props.route, index: 0 }}
 				renderScene={ ( route, navigator ) => {
 

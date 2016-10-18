@@ -3,7 +3,8 @@ import {
   View,
   UIManager,
   Text,
-  DrawerLayoutAndroid
+  DrawerLayoutAndroid,
+  Alert
 } from 'react-native';
 import { COLOR, ThemeProvider, ActionButton, Toolbar } from 'react-native-material-ui';
 // import { Drawer } from 'react-native-material-design';
@@ -81,6 +82,26 @@ export default class ThemeUi extends Component {
     this.props.navigator.toBack();
   };
 
+  actionButtonClickHandler(name) {
+
+    switch( name ) {
+      case "wallet" :
+        this.props.navigator.toBuyerProfile();
+        break;
+      case "news" :
+        this.props.navigator.toSellerProfile();
+        break;
+      case "heart" :
+        this.props.navigator.toNewProductSeller();
+
+        break;
+      case "backarrow" :
+        this.props.navigator.toBack();
+        break;
+    };
+
+  }
+
   render() {
 
     const emptyFunc = () => { };
@@ -132,17 +153,23 @@ export default class ThemeUi extends Component {
             { this.props.children }
             <ActionButton 
               actions={ [ {
-                source: this.renderIcon('dashboard'),
-              }, {
                 source: this.renderIcon('wallet'),
+                name: 'wallet'
               }, {
-                source: this.renderIcon('orders'),
+                source: this.renderIcon('news'),
+                name: 'news'
               }, {
-                source: this.renderIcon('store'),
+                source: this.renderIcon('heart'),
+                name: 'heart'
+              }, {
+                source: this.renderIcon('backarrow'),
+                name: 'backarrow'
+              }, {
+                source: this.renderIcon('search'),
+                name: 'search'
               } ] }
               transition='toolbar'
-              onPress={(action) => { } }
-               />
+              onPress={ ( action ) => { if (action && action.name) this.actionButtonClickHandler(action.name) } } />
           </View>
         </ThemeProvider>
 

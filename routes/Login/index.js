@@ -93,7 +93,20 @@ export default class NewProductSeller extends Component {
 		return (
 			<View style={loginStyle.container} onLayout={this.onLayout}>
 
-				<Video source={ {uri: 'http://testmobimall2.herokuapp.com/loginbackground.mp4'  } }   // Can be a URL or a local file.
+			<Image 
+				source={ { uri: 'http://bestanimations.com/Animals/Birds/Penguins/Penguin-cartoon-animation.gif' } }
+				style={{
+					position: 'absolute',
+					top: 0,
+					left: 0,
+					bottom: 0,
+					right: 0,
+					zIndex: 10,
+					resizeMode: 'cover'
+				}}
+			/>
+
+				{/*<Video source={ {uri: 'http://testmobimall2.herokuapp.com/loginbackground.mp4'  } }   // Can be a URL or a local file.
 				       rate={1.0}                     // 0 is paused, 1 is normal.
 				       volume={1.0}                   // 0 is muted, 1 is normal.
 				       muted={false}                  // Mutes the audio entirely.
@@ -103,7 +116,7 @@ export default class NewProductSeller extends Component {
 				       playInBackground={false}       // Audio continues to play when app entering background.
 				       playWhenInactive={false}       // [iOS] Video continues to play when control or notification center are shown.
 				       progressUpdateInterval={250.0} // [iOS] Interval to fire onProgress (default to ~250ms)
-				       style={loginStyle.backgroundVideo} />
+				       style={loginStyle.backgroundVideo} />*/}
 
 				<View style={loginStyle.purpleShadow}>
 					<View style={loginStyle.logoWrap}>

@@ -102,13 +102,13 @@ export default class ThemeUi extends Component {
             { this.props.children }
             <ActionButton 
               actions={ [ {
-                source: require( '../assets/img/homer-simpson.svg' ),
+                source: { uri: "http://testmobimall2.herokuapp.com/homer-simpson.svg" },
               }, {
-                source: require( '../assets/img/homer-simpson.svg' ),
+                source: { uri: "http://testmobimall2.herokuapp.com/homer-simpson.svg" },
               }, {
-                source: require( '../assets/img/homer-simpson.svg' ),
+                source: { uri: "http://testmobimall2.herokuapp.com/homer-simpson.svg" },
               }, {
-                source: require( '../assets/img/homer-simpson.svg' ),
+                source: { uri: "http://testmobimall2.herokuapp.com/homer-simpson.svg" },
               } ] }
               transition='toolbar'
               onPress={(action) => { } }

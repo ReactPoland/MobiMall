@@ -213,6 +213,7 @@ export default class Router extends Component {
 
 							navigator.push({
 								name: 'DashboardBuyer',
+								title: 'Home',
 								index: route.index + 1
 							});
 						},
@@ -222,6 +223,7 @@ export default class Router extends Component {
 
 							navigator.push({
 								name: 'DashboardSeller',
+								title: 'Home',
 								index: route.index + 1
 							});
 						},

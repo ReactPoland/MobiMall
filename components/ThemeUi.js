@@ -83,7 +83,7 @@ export default class ThemeUi extends Component {
             <Toolbar 
               leftElement="arrow-back"
               onLeftElementPress={this.backClickHandler}
-              centerElement={this.props.route.name.toUpperCase()}
+              centerElement={this.props.route.title ? this.props.route.title.toUpperCase() : this.props.route.name.toUpperCase()}
               rightElement="arrow-back"
               style={{
                 container: {

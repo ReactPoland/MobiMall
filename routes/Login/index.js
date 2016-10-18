@@ -89,7 +89,6 @@ export default class NewProductSeller extends Component {
 
 	render() {
 
-
 		return (
 			<View style={loginStyle.container} onLayout={this.onLayout}>
 
@@ -103,8 +102,7 @@ export default class NewProductSeller extends Component {
 					right: 0,
 					zIndex: 10,
 					resizeMode: 'cover'
-				}}
-			/>
+				}} />
 
 				{/*<Video source={ {uri: 'http://testmobimall2.herokuapp.com/loginbackground.mp4'  } }   // Can be a URL or a local file.
 				       rate={1.0}                     // 0 is paused, 1 is normal.
@@ -120,8 +118,8 @@ export default class NewProductSeller extends Component {
 
 				<View style={loginStyle.purpleShadow}>
 					<View style={loginStyle.logoWrap}>
-						<Image source={require('../../assets/img/mobimall-icon.png')} style={loginStyle.logo}/>
-						<Text style={loginStyle.logoText} >MOBIMALL</Text>
+							<Image source={require('../../assets/img/mobimall-icon.png')} style={loginStyle.logo}/>						
+							<Text style={loginStyle.logoText} >MOBIMALL</Text>
 					</View>
 
 					{/*https://video-fra3-1.xx.fbcdn.net/v/t42.4659-2/14495702_916960405076035_385499260713435136_n.mp4?oh=c1a63d2be4e961155ec8d047a24fbf43&oe=57FD25A3*/}

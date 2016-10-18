@@ -10,6 +10,7 @@ import { COLOR, ThemeProvider, ActionButton, Toolbar } from 'react-native-materi
 import { Avatar, Drawer, Divider, COLOR as cc, TYPO } from 'react-native-material-design';
 import Setting from '../routes/Setting'
 import { bindMethods } from '../utils'
+import { createIconSet } from 'react-native-vector-icons';
 
 
 export default class ThemeUi extends Component {
@@ -23,8 +24,6 @@ export default class ThemeUi extends Component {
     };
     bindMethods(this);
 
-    console.log(COLOR);
-    
     this.uiTheme = {
         palette: {
             primaryColor: COLOR.green500,
@@ -42,7 +41,30 @@ export default class ThemeUi extends Component {
         }
     };
 
+    this.iconsMap = {
+      wallet    :59651,
+      news      :59652,
+      coupon    :59653,
+      backarrow :59671,
+      search    :59672,
+      heart     :59673,
+      orders    :59674,
+      dashboard :59675,
+      home      :59648,
+      cart      :59676,
+      store     :59677,
+      order     :59679
+    };
+
+    this.Icon = createIconSet(this.iconsMap, 'icomoon' );
+
   }
+
+  renderIcon(source) {
+    const Icon = this.Icon;
+    return <Icon size={30} name={source} />
+  }
+
 
 
 
@@ -110,13 +132,13 @@ export default class ThemeUi extends Component {
             { this.props.children }
             <ActionButton 
               actions={ [ {
-                source: { uri: "http://testmobimall2.herokuapp.com/homer-simpson.svg" },
+                source: this.renderIcon('dashboard'),
               }, {
-                source: { uri: "http://testmobimall2.herokuapp.com/homer-simpson.svg" },
+                source: this.renderIcon('wallet'),
               }, {
-                source: { uri: "http://testmobimall2.herokuapp.com/homer-simpson.svg" },
+                source: this.renderIcon('orders'),
               }, {
-                source: { uri: "http://testmobimall2.herokuapp.com/homer-simpson.svg" },
+                source: this.renderIcon('store'),
               } ] }
               transition='toolbar'
               onPress={(action) => { } }

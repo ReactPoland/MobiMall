@@ -22,16 +22,24 @@ export default class ThemeUi extends Component {
       navigator: null
     };
     bindMethods(this);
+
+    console.log(COLOR);
     
     this.uiTheme = {
         palette: {
             primaryColor: COLOR.green500,
+            accentColor: COLOR.white,
         },
         toolbar: {
             container: {
                 height: 50,
             },
         },
+        actionButton: {
+          icon: {
+            color: 'black',
+          }
+        }
     };
 
   }

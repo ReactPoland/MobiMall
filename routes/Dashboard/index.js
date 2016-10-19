@@ -10,6 +10,7 @@ import {
 	Alert,
 	Dimensions
 } from 'react-native';
+import routes from '../routes'
 
 export default class Dashboard extends Component {
 
@@ -46,19 +47,19 @@ export default class Dashboard extends Component {
 		return (
 			<View style={dashboardStyle.container} onLayout={this.onLayout}>
 
-				<TouchableNativeFeedback onPress={ () => {this.props.navigator.toDashboardSeller(); } }>
+				<TouchableNativeFeedback onPress={ () => {this.props.navigator.push(routes.dashboardSeller); } }>
 					<View style={{backgroundColor: 'yellow', marginTop: 15, marginLeft: 15, marginRight: 15, borderColor: 'red', borderWidth: 2, borderStyle: 'solid', padding: 10 }} >
 						<Text style={{fontSize: 20}} >DASHBOARD SELLER</Text>
 					</View>
 				</TouchableNativeFeedback>
 
-				<TouchableNativeFeedback onPress={ () => {this.props.navigator.toDashboardBuyer(); } }>
+				<TouchableNativeFeedback onPress={ () => {this.props.navigator.push(routes.dashboardBuyer); } }>
 					<View style={{backgroundColor: 'yellow', marginTop: 15, marginLeft: 15, marginRight: 15, borderColor: 'red', borderWidth: 2, borderStyle: 'solid', padding: 10 }} >
 						<Text style={{fontSize: 20}} >DASHBOARD BUYER</Text>
 					</View>
 				</TouchableNativeFeedback>
 
-				<TouchableNativeFeedback onPress={ () => {this.props.navigator.toSetting(); } }>
+				<TouchableNativeFeedback onPress={ () => {this.props.navigator.push(routes.setting); } }>
 					<View style={{backgroundColor: 'yellow', marginTop: 15, marginLeft: 15, marginRight: 15, borderColor: 'red', borderWidth: 2, borderStyle: 'solid', padding: 10 }} >
 						<Text style={{fontSize: 20}} >SETTING</Text>
 					</View>
@@ -83,20 +84,20 @@ export default class Dashboard extends Component {
 
 					<View style={dashboardStyle.menuStripeContent}>
 
-						<TouchableNativeFeedback onPress={ () => {this.props.navigator.toBuyerProfile(); } }>
+						<TouchableNativeFeedback onPress={ () => {this.props.navigator.push( routes.shopperProfileView ); } }>
 							<View style={dashboardStyle.iconWrap}>
 								<Image source={require('../../assets/img/ic_settings.png')} style={dashboardStyle.stripeIcon}/>
 							</View>
 						</TouchableNativeFeedback>
 
 
-						<TouchableNativeFeedback onPress={ () => {this.props.navigator.toSellerProfile(); } }>
+						<TouchableNativeFeedback onPress={ () => {this.props.navigator.push( routes.sellerProfileView ); } }>
 							<View style={dashboardStyle.iconWrap}>
 								<Image source={require('../../assets/img/ic_settings.png')} style={dashboardStyle.stripeIcon}/>
 							</View>
 						</TouchableNativeFeedback>
 
-						<TouchableNativeFeedback onPress={ () => {this.props.navigator.toNewProductSeller(); } }>
+						<TouchableNativeFeedback onPress={ () => {this.props.navigator.push( routes.newProduct ); } }>
 							<View style={dashboardStyle.iconWrap}>
 								<Image source={require('../../assets/img/ic_settings.png')} style={dashboardStyle.stripeIcon}/>
 							</View>

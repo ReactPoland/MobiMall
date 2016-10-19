@@ -71,7 +71,41 @@ export default class DashboardSeller extends Component {
 			<View style={dashSellerStyle.container} >
 				<ScrollView>
 				
-					<BuyerProfileHeader />
+					<View style={ dashSellerStyle.shopTitleView } >
+						<View style={dashSellerStyle.shopTitleProfileBlock}>
+
+						    <View style={dashSellerStyle.shopperImgProfile}>
+						    	<Image source={{uri: `http://graph.facebook.com/298288423897442/picture?type=large` }} style={st.shopProfileImg}/>
+						    	<Text style={ dashSellerStyle.shopperName } >FirstName LastName</Text>
+						    </View>
+
+						    <View style={dashSellerStyle.shopperPropsProfile} >
+							    <View style={dashSellerStyle.alignCenter} >
+							    	<Text style={dashSellerStyle.textPropValue } >106</Text>
+							    </View>
+							    
+						    	<Text style={dashSellerStyle.textPropDesc} >Items Bought</Text>
+						    </View>
+
+						    <View style={dashSellerStyle.shopperPropsProfile} >
+							    <View style={dashSellerStyle.alignCenter} >
+							    	<Text style={dashSellerStyle.textPropValue } >47</Text>
+							    </View>
+							    
+							    <Text style={dashSellerStyle.textPropDesc} >Items Bought</Text>
+						    </View>
+
+					        <View style={dashSellerStyle.shopperPropsProfile} >
+							    <View style={dashSellerStyle.alignCenter} >
+					    	    	<Text style={dashSellerStyle.textPropValue } >23</Text>
+							    </View>
+					    	    
+					    	    <Text style={dashSellerStyle.textPropDesc} >Items Bought</Text>
+					        </View>
+
+
+					  	</View>
+				  	</View>
 
 					{ this.renderTabHeaders(this.state.activeTab) }
 
@@ -216,4 +250,42 @@ const dashSellerStyle = StyleSheet.create({
 		flex: 1,
 		backgroundColor: `white`,
 	},
+	shopTitleView: {
+		justifyContent: 'center',
+		paddingHorizontal: 10,
+	},
+	shopTitleProfileBlock: {
+		flexDirection: 'row',
+		flex: 1,
+		zIndex: 20,
+		marginTop: 10,
+		marginBottom: 10,
+	},
+	shopperImgProfile: {
+		flex: 3,
+		alignItems: 'center',
+	},
+	shopperName: {
+		textAlign: 'center',
+		color: 'black',
+	},
+	shopProfileImg: {
+
+	},
+	shopperPropsProfile: {
+		flex: 2,
+		alignItems: 'center',
+	},
+	alignCenter: {
+		alignItems: 'center',
+	},
+	textPropValue: {
+		color: 'black',
+		fontSize: 20,
+	},
+	textPropDesc: {
+		textAlign: 'center',
+		color: 'black',
+	},
+
 });

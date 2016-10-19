@@ -15,9 +15,9 @@ var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
 import Video from 'react-native-video';
 import { api } from '../../utils';
 import axios from 'axios';
+import routes from '../routes'
 
-
-export default class NewProductSeller extends Component {
+export default class Login extends Component {
 
 	constructor(prop) {
 		super(prop);
@@ -82,7 +82,9 @@ export default class NewProductSeller extends Component {
 			} );
 
 			that.props.manager.authFB && that.props.manager.authFB( profile );
-			api.createUser( profile ).catch(e => console.log('e', e));
+			api.createUser( profile ).then(() => {
+				that.props.navigator.push( routes.profileChanging );
+			}).catch(e => console.log('e', e));
 
 		});
 	}
@@ -163,7 +165,7 @@ export default class NewProductSeller extends Component {
 
 					</View>*/}
 
-					<TouchableNativeFeedback onPress={ () => { this.props.navigator.toSignUp(); } }>
+					<TouchableNativeFeedback onPress={ () => { this.props.navigator.push( routes.signUp ); } }>
 						<View style={loginStyle.button}>
 							<Text style={loginStyle.buttonText} >SIGN UP</Text>
 						</View>

@@ -12,6 +12,7 @@ import { Avatar, Drawer, Divider, COLOR as cc, TYPO } from 'react-native-materia
 import Setting from '../routes/Setting'
 import { bindMethods } from '../utils'
 import { createIconSet } from 'react-native-vector-icons';
+import routes from '../routes/routes'
 
 
 export default class ThemeUi extends Component {
@@ -78,25 +79,23 @@ export default class ThemeUi extends Component {
   }
 
   backClickHandler() {
-    if (this.props.route.index <= 0 ) return;
-    this.props.navigator.toBack();
+    this.props.navigator.pop();
   };
 
   actionButtonClickHandler(name) {
 
     switch( name ) {
       case "wallet" :
-        this.props.navigator.toBuyerProfile();
+        this.props.navigator.push( routes.shopperProfileView );
         break;
       case "news" :
-        this.props.navigator.toSellerProfile();
+        this.props.navigator.push( routes.sellerProfileView );
         break;
       case "heart" :
-        this.props.navigator.toNewProductSeller();
-
+        this.props.navigator.push( routes.newProduct );
         break;
       case "backarrow" :
-        this.props.navigator.toBack();
+        this.props.navigator.pop();
         break;
     };
 
@@ -126,14 +125,14 @@ export default class ThemeUi extends Component {
             <Toolbar 
               leftElement="arrow-back"
               onLeftElementPress={this.backClickHandler}
-              centerElement={this.props.route.title ? this.props.route.title.toUpperCase() : this.props.route.name.toUpperCase()}
+              centerElement={this.props.route.title ? this.props.route.title.toUpperCase() : "None" }
               rightElement="arrow-back"
               style={{
                 container: {
                   backgroundColor: 'white',
                 },
                 leftElement: {
-                  color: this.props.route.index ? 'black' : 'white',
+                  color: 'black',
                 },
                 titleText: {
                   color: 'purple',

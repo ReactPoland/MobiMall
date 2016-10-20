@@ -11,6 +11,7 @@ import {
 	Dimensions
 } from 'react-native';
 import { bindMethods, api } from '../../utils';
+import routes from '../routes'
 
 export default class NewProductSeller extends Component {
 
@@ -49,7 +50,7 @@ export default class NewProductSeller extends Component {
 
 	render() {
 
-		let { data:product } = this.props.route;
+		let product = this.props.manager.getPostProductData();
 		const { navigator } = this.props;
 
 
@@ -88,12 +89,13 @@ export default class NewProductSeller extends Component {
 										.addNewProduct(this.props.manager.getDataFB().id, product)
 										.then( ({data}) => { 
 											if (data.status && data.status === 'ok' ){
-												Alert.alert("Done"); 
-												navigator.toDashboard();
+												Alert.alert("Done!"); 
+												navigator.popToRoute( routes.dashboardSeller );
+												// navigator.push( routes.dashboardSeller );
 												return;
 											}
-											Alert.alert('error');
-											console.log(data);
+
+											Alert.alert(data.mess);
 										})
 										.catch( (err) => {Alert.alert(err.message); } );
 								}} > 

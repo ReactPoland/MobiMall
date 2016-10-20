@@ -35,6 +35,7 @@ export default routes = {
 	shopperProfileView: {
 		Page: ShopperProfileView,
 		themeUi: true,
+		title: 'Profile',
 	}, 
 	dashboard: {
 		Page: Dashboard,
@@ -43,13 +44,16 @@ export default routes = {
 	sellerProfileView: {
 		Page: SellerProfileView,
 		themeUi: true,
+		title: 'Profile',
 	},
 	dashboardBuyer: {
 		Page: DashboardBuyer,
+		title: 'Home',
 		themeUi: true,
 	},
 	dashboardSeller: {
 		Page: DashboardSeller,
+		title: 'Home',
 		themeUi: true,
 	},
 	profileChanging: {

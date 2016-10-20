@@ -15,6 +15,18 @@ import { bindMethods } from '../../utils';
 import st from '../../assets/style';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import BuyerProfileHeader from '../../components/BuyerProfileHeader'
+import TabIcons from '../../components/TabIcons'
+
+
+class Switcher extends Component {
+
+
+	render() {
+		let { active } = this.props;
+
+		return ( this.props.children[active] );
+	}
+}
 
 export default class DashboardSeller extends Component {
 
@@ -28,37 +40,9 @@ export default class DashboardSeller extends Component {
 		}
 	}
 
-	renderTabHeaders(activeNum) {
-
-		var tabs = [ 'IC1', 'IC2' ];
-
-		return (
-			<View style={dashSellerStyle.tabList}>
-				{tabs.map((item, i) => {
-					let styleObj = {
-						textAlign: 'center', 
-						fontSize: 23,
-						padding: 5,
-					};
-					if ( i === activeNum ) {
-						styleObj.color = "purple";
-					}
-
-					return (
-						<TouchableNativeFeedback onPress={ () => { let currKey = i; this.setState({activeTab: currKey}) } } key={i} >
-							
-							<View style={dashSellerStyle.tabItem} >
-								<FontAwesomeIcon
-									name="pencil"
-									style={ styleObj }>
-									
-								</FontAwesomeIcon>
-							</View>
-
-						</TouchableNativeFeedback>
-					);
-				})}
-			</View>
+	renderTabBody( bodyArr ) {
+		return ( 
+			bodyArr[ this.state.activeTab ] 
 		);
 	}
 
@@ -107,101 +91,163 @@ export default class DashboardSeller extends Component {
 					  	</View>
 				  	</View>
 
-					{ this.renderTabHeaders(this.state.activeTab) }
 
-					<View style={dashSellerStyle.contentRow} >
+					<TabIcons active={this.state.activeTab }>
+						<View style={dashSellerStyle.contentRow} icon={ <FontAwesomeIcon 
+								name="pencil" 
+								style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } }/> } 
 
-						<View style={dashSellerStyle.prodListRow}>
-							<View style={dashSellerStyle.prodBlock}>
-								<View style={dashSellerStyle.prodItem}>
-								   	<Image source={{uri: `https://unsplash.it/250/200?image=30` }} style={dashSellerStyle.productImg}/>
+							iconActive={ <FontAwesomeIcon 
+								name="pencil" 
+								style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } } /> } >
+
+							<View style={dashSellerStyle.prodListRow}>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/250/200?image=30` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/200/150?image=31` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/150/100?image=32` }} style={dashSellerStyle.productImg}/>
+									</View>
 								</View>
 							</View>
-							<View style={dashSellerStyle.prodBlock}>
-								<View style={dashSellerStyle.prodItem}>
-								   	<Image source={{uri: `https://unsplash.it/200/150?image=31` }} style={dashSellerStyle.productImg}/>
+
+							<View style={dashSellerStyle.prodListRow}>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/250/100?image=33` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/250/150?image=34` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/100/100?image=35` }} style={dashSellerStyle.productImg}/>
+									</View>
 								</View>
 							</View>
-							<View style={dashSellerStyle.prodBlock}>
-								<View style={dashSellerStyle.prodItem}>
-								   	<Image source={{uri: `https://unsplash.it/150/100?image=32` }} style={dashSellerStyle.productImg}/>
+
+							<View style={dashSellerStyle.prodListRow}>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/250/50?image=36` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/200/150?image=37` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/150/100?image=38` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+							</View>
+
+							<View style={dashSellerStyle.prodListRow}>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/250/200?image=39` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/200/150?image=40` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/150/100?image=41` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+							</View>
+
+							<View style={dashSellerStyle.prodListRow}>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/250/200?image=30` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/200/150?image=31` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/150/100?image=32` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+							</View>
+
+						</View>
+
+						<View style={dashSellerStyle.contentRow} icon={ <FontAwesomeIcon 
+								name="pencil" 
+								style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } }/> } 
+
+							iconActive={ <FontAwesomeIcon 
+								name="pencil" 
+								style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } } /> } >
+							<View style={dashSellerStyle.prodListRow}>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/250/200?image=30` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/200/150?image=31` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/150/100?image=32` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+							</View>
+
+							<View style={dashSellerStyle.prodListRow}>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/250/200?image=30` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/200/150?image=31` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `https://unsplash.it/150/100?image=32` }} style={dashSellerStyle.productImg}/>
+									</View>
 								</View>
 							</View>
 						</View>
 
-						<View style={dashSellerStyle.prodListRow}>
-							<View style={dashSellerStyle.prodBlock}>
-								<View style={dashSellerStyle.prodItem}>
-								   	<Image source={{uri: `https://unsplash.it/250/100?image=33` }} style={dashSellerStyle.productImg}/>
-								</View>
-							</View>
-							<View style={dashSellerStyle.prodBlock}>
-								<View style={dashSellerStyle.prodItem}>
-								   	<Image source={{uri: `https://unsplash.it/250/150?image=34` }} style={dashSellerStyle.productImg}/>
-								</View>
-							</View>
-							<View style={dashSellerStyle.prodBlock}>
-								<View style={dashSellerStyle.prodItem}>
-								   	<Image source={{uri: `https://unsplash.it/100/100?image=35` }} style={dashSellerStyle.productImg}/>
-								</View>
-							</View>
+						<View  icon={ <FontAwesomeIcon 
+								name="pencil" 
+								style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } }/> } 
+
+							iconActive={ <FontAwesomeIcon 
+								name="pencil" 
+								style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } } /> } >
+							<Text>tab 3</Text>
 						</View>
 
-						<View style={dashSellerStyle.prodListRow}>
-							<View style={dashSellerStyle.prodBlock}>
-								<View style={dashSellerStyle.prodItem}>
-								   	<Image source={{uri: `https://unsplash.it/250/50?image=36` }} style={dashSellerStyle.productImg}/>
-								</View>
-							</View>
-							<View style={dashSellerStyle.prodBlock}>
-								<View style={dashSellerStyle.prodItem}>
-								   	<Image source={{uri: `https://unsplash.it/200/150?image=37` }} style={dashSellerStyle.productImg}/>
-								</View>
-							</View>
-							<View style={dashSellerStyle.prodBlock}>
-								<View style={dashSellerStyle.prodItem}>
-								   	<Image source={{uri: `https://unsplash.it/150/100?image=38` }} style={dashSellerStyle.productImg}/>
-								</View>
-							</View>
-						</View>
-
-						<View style={dashSellerStyle.prodListRow}>
-							<View style={dashSellerStyle.prodBlock}>
-								<View style={dashSellerStyle.prodItem}>
-								   	<Image source={{uri: `https://unsplash.it/250/200?image=39` }} style={dashSellerStyle.productImg}/>
-								</View>
-							</View>
-							<View style={dashSellerStyle.prodBlock}>
-								<View style={dashSellerStyle.prodItem}>
-								   	<Image source={{uri: `https://unsplash.it/200/150?image=40` }} style={dashSellerStyle.productImg}/>
-								</View>
-							</View>
-							<View style={dashSellerStyle.prodBlock}>
-								<View style={dashSellerStyle.prodItem}>
-								   	<Image source={{uri: `https://unsplash.it/150/100?image=41` }} style={dashSellerStyle.productImg}/>
-								</View>
-							</View>
-						</View>
-
-						<View style={dashSellerStyle.prodListRow}>
-							<View style={dashSellerStyle.prodBlock}>
-								<View style={dashSellerStyle.prodItem}>
-								   	<Image source={{uri: `https://unsplash.it/250/200?image=30` }} style={dashSellerStyle.productImg}/>
-								</View>
-							</View>
-							<View style={dashSellerStyle.prodBlock}>
-								<View style={dashSellerStyle.prodItem}>
-								   	<Image source={{uri: `https://unsplash.it/200/150?image=31` }} style={dashSellerStyle.productImg}/>
-								</View>
-							</View>
-							<View style={dashSellerStyle.prodBlock}>
-								<View style={dashSellerStyle.prodItem}>
-								   	<Image source={{uri: `https://unsplash.it/150/100?image=32` }} style={dashSellerStyle.productImg}/>
-								</View>
-							</View>
-						</View>
-
-					</View>
+					</TabIcons>
 					
 				</ScrollView>
 			</View>

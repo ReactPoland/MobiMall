@@ -14,6 +14,7 @@ import {
 import { bindMethods, api } from '../../utils';
 import { Card } from 'react-native-material-design';
 var ImagePicker = require('react-native-image-picker');
+import routes from '../routes'
 
 
 export default class NewProductSeller extends Component {
@@ -30,27 +31,27 @@ export default class NewProductSeller extends Component {
 
 	onSendProduct() {
 
-		let formdata = new FormData();
-		formdata.append("product[name]", 'test')
-		formdata.append("product[price]", 10)
-		formdata.append("product[category_ids][]", 2)
-		formdata.append("product[description]", '12dsadadsa')
-		formdata.append("product[images_attributes[0][file]]", {uri: this.state.productData.img, type: 'multipart/form-data'})
+		// let formdata = new FormData();
+		// formdata.append("product[name]", 'test')
+		// formdata.append("product[price]", 10)
+		// formdata.append("product[category_ids][]", 2)
+		// formdata.append("product[description]", '12dsadadsa')
+		// formdata.append("product[images_attributes[0][file]]", {uri: this.state.productData.img, type: 'multipart/form-data'})
 
-		fetch('http://192.168.1.244:3000/api/users/checkNewProduct',{
-			method: 'post',
-			headers: {
-		    	'Content-Type': 'multipart/form-data',
-			},
-			body: formdata
-		})
-		.then(response => {
-			console.log(response);
-			console.log("image uploaded")
-		})
-		.catch(err => {
-			console.log(err)
-		});
+		// fetch('http://192.168.1.244:3000/api/users/checkNewProduct',{
+			// method: 'post',
+			// headers: {
+		    	// 'Content-Type': 'multipart/form-data',
+			// },
+			// body: formdata
+		// })
+		// .then(response => {
+			// console.log(response);
+			// console.log("image uploaded")
+		// })
+		// .catch(err => {
+			// console.log(err)
+		// });
 
 
 		// var data = new FormData();
@@ -58,19 +59,20 @@ export default class NewProductSeller extends Component {
         // data.append('file', this.state.productData.img);
 
 
-		// api.checkNewProduct( this.props.manager.getDataFB().id, data ).then( ({ data }) => {
+		api.checkNewProduct( this.props.manager.getDataFB().id, this.state.productData ).then( ({ data }) => {
 
-		// 	if ( data.status === 'ok' ) {
-		// 		this.props.navigator.toPostProductToIG( data.productInfo );
-		// 	}
-		// 	else {
-		// 		Alert.alert( data.mess );
-		// 	}
+			if ( data.status === 'ok' ) {
+				this.props.manager.setPostProductData( data.productInfo );
+				this.props.navigator.push( routes.postProductToIG );
+			}
+			else {
+				Alert.alert( data.mess );
+			}
 
-		// })
-		// .catch((err) => {
-		// 	Alert.alert(err.message);
-		// })
+		})
+		.catch((err) => {
+			Alert.alert(err.message);
+		})
 	}
 
 	changeProductData(prop, event) {

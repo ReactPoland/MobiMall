@@ -26,6 +26,7 @@ const manager = ( function () {
 
 	let userDataFB = null;
 	let userDataInst = null;
+	let productData = null;
 
 	return({
 		authFB: function( data ) {
@@ -52,6 +53,14 @@ const manager = ( function () {
 
 		getDataInst: function() {
 			return userDataInst;
+		},
+
+		setPostProductData: function(prodData) {
+			productData = prodData;
+		},
+
+		getPostProductData: function() {
+			return productData;
 		}
 	})
 })();

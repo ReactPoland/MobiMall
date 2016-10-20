@@ -18,52 +18,64 @@ export default routes = {
 	login: {
 		Page: Login,
 		title: 'login',
+		key: 'login',
 	},
 	newProduct: {
 		Page: NewProductSeller,
 		title: 'New product',
 		themeUi: true,
+		key: 'newproduct',
 	}, 
 	pageList: {
 		Page: PageList,
+		key: 'pagelist',
 	},
 	postProductToIG: {
 		Page: PostProductToIG,
 		title: "Post product to Instagram",
 		themeUi: true,
+		key: 'posttoig',
 	}, 
 	shopperProfileView: {
 		Page: ShopperProfileView,
 		themeUi: true,
 		title: 'Profile',
+		key: 'posttoig',
 	}, 
 	dashboard: {
 		Page: Dashboard,
 		themeUi: true,
+		key: 'dashboard',
 	},
 	sellerProfileView: {
 		Page: SellerProfileView,
 		themeUi: true,
 		title: 'Profile',
+		key: 'sellerprofileview',
 	},
 	dashboardBuyer: {
 		Page: DashboardBuyer,
 		title: 'Home',
 		themeUi: true,
+		key: 'dashboardbuyer',
 	},
 	dashboardSeller: {
 		Page: DashboardSeller,
 		title: 'Home',
 		themeUi: true,
+		key: 'dashboardseller',
 	},
 	profileChanging: {
 		Page: ProfileChanging,
+		key: 'profilechanging',
 	},
 	signUp: {
 		Page: SignUp,
+		key: 'signup',
 	},
 	setting: {
-		Page: Setting
+		Page: Setting,
+		key: 'setting',
 	}
 
 

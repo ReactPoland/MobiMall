@@ -84,15 +84,27 @@ export default class ThemeUi extends Component {
 
   actionButtonClickHandler(name) {
 
+    let isExsistRouteInStack = (route) => {
+      return this.props.navigator.getCurrentRoutes().some(item => item.key === route.key );
+    } 
+
+
     switch( name ) {
       case "wallet" :
-        this.props.navigator.push( routes.shopperProfileView );
+        isExsistRouteInStack( routes.shopperProfileView ) ? 
+          this.props.navigator.popToRoute( routes.shopperProfileView ) : this.props.navigator.push( routes.shopperProfileView );
         break;
       case "news" :
-        this.props.navigator.push( routes.sellerProfileView );
+
+      isExsistRouteInStack( routes.sellerProfileView ) ? 
+        this.props.navigator.popToRoute( routes.sellerProfileView ) : this.props.navigator.push( routes.sellerProfileView );
+      
         break;
       case "heart" :
-        this.props.navigator.push( routes.newProduct );
+
+      isExsistRouteInStack( routes.newProduct ) ? 
+        this.props.navigator.popToRoute( routes.newProduct ) : this.props.navigator.push( routes.newProduct );
+
         break;
       case "backarrow" :
         this.props.navigator.pop();

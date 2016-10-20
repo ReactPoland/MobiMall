@@ -18,6 +18,7 @@ import PersonalTab from './PersonalTab';
 import StoreTab from './StoreTab';
 import AccountsTab from './AccountsTab';
 import LogisticsTab from './LogisticsTab';
+import SellerProfileHeader from '../../components/SellerProfileHeader'
 
 export default class SellerProfileView extends Component {
 	constructor (props) {
@@ -79,12 +80,15 @@ export default class SellerProfileView extends Component {
     return (
 			<View style={st.container}>
 				<ScrollView>
-          <ProfileHeader
+				
+					<SellerProfileHeader />
+
+          {/*<ProfileHeader
 						name={name}
 						fbId={fbId}
-					/>
+					/>*/}
 					<Tabs>
-            <PersonalTab
+            			<PersonalTab
 							name='PERSONAL'
 							personalData={this.state.personalData}
 							fbData={this.props.manager.getDataFB()}

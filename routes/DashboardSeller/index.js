@@ -14,7 +14,7 @@ import {
 import { bindMethods } from '../../utils';
 import st from '../../assets/style';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import BuyerProfileHeader from '../../components/BuyerProfileHeader'
+import SellerProfileHeader from '../../components/SellerProfileHeader'
 import TabIcons from '../../components/TabIcons'
 
 
@@ -54,43 +54,8 @@ export default class DashboardSeller extends Component {
 		return (
 			<View style={dashSellerStyle.container} >
 				<ScrollView>
-				
-					<View style={ dashSellerStyle.shopTitleView } >
-						<View style={dashSellerStyle.shopTitleProfileBlock}>
 
-						    <View style={dashSellerStyle.shopperImgProfile}>
-						    	<Image source={{uri: `http://graph.facebook.com/298288423897442/picture?type=large` }} style={st.shopProfileImg}/>
-						    	<Text style={ dashSellerStyle.shopperName } >FirstName LastName</Text>
-						    </View>
-
-						    <View style={dashSellerStyle.shopperPropsProfile} >
-							    <View style={dashSellerStyle.alignCenter} >
-							    	<Text style={dashSellerStyle.textPropValue } >106</Text>
-							    </View>
-							    
-						    	<Text style={dashSellerStyle.textPropDesc} >Items Bought</Text>
-						    </View>
-
-						    <View style={dashSellerStyle.shopperPropsProfile} >
-							    <View style={dashSellerStyle.alignCenter} >
-							    	<Text style={dashSellerStyle.textPropValue } >47</Text>
-							    </View>
-							    
-							    <Text style={dashSellerStyle.textPropDesc} >Items Bought</Text>
-						    </View>
-
-					        <View style={dashSellerStyle.shopperPropsProfile} >
-							    <View style={dashSellerStyle.alignCenter} >
-					    	    	<Text style={dashSellerStyle.textPropValue } >23</Text>
-							    </View>
-					    	    
-					    	    <Text style={dashSellerStyle.textPropDesc} >Items Bought</Text>
-					        </View>
-
-
-					  	</View>
-				  	</View>
-
+					<SellerProfileHeader />
 
 					<TabIcons active={this.state.activeTab }>
 						<View style={dashSellerStyle.contentRow} icon={ <FontAwesomeIcon 

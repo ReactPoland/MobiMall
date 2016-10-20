@@ -9,49 +9,85 @@ import {
 const BuyerProfileHeader = ( ) => {
 
 	return (
-		<View style={st.profileView} >
-		   	<Image source={{uri: `https://unsplash.it/600/200?image=231` }} style={st.dealDayImg}/>
+			<View style={ st.shopTitleView } >
+				<View style={st.shopTitleProfileBlock}>
 
-		   	<View style={st.profileContent}>
-			   	<View style={st.profileBgBlock}>
-			   		<Text style={{color: 'white', textAlign: 'center', fontSize: 26, fontStyle: 'italic', fontWeight: '600'}}>@SNEAKERHEAVEN</Text>
-			   		<Text style={{color: 'white', textAlign: 'center', fontSize: 18, fontStyle: 'italic'}}>5K FOLLOWERS</Text>
-			   	</View>
-		   	</View>
+				    <View style={st.shopperImgProfile}>
+				    	<Image source={{uri: `http://graph.facebook.com/298288423897442/picture?type=large` }} style={st.shopProfileImg}/>
+				    	<Text style={ st.shopperName } >FirstName LastName</Text>
+				    </View>
 
-		</View>
+				    <View style={st.shopperPropsProfile} >
+					    <View style={st.alignCenter} >
+					    	<Text style={st.textPropValue } >106</Text>
+					    </View>
+					    
+				    	<Text style={st.textPropDesc} >Items Bought</Text>
+				    </View>
+
+				    <View style={st.shopperPropsProfile} >
+					    <View style={st.alignCenter} >
+					    	<Text style={st.textPropValue } >47</Text>
+					    </View>
+					    
+					    <Text style={st.textPropDesc} >Items Bought</Text>
+				    </View>
+
+			        <View style={st.shopperPropsProfile} >
+					    <View style={st.alignCenter} >
+			    	    	<Text style={st.textPropValue } >23</Text>
+					    </View>
+			    	    
+			    	    <Text style={st.textPropDesc} >Items Bought</Text>
+			        </View>
+
+
+			  	</View>
+		  	</View>
 	);
 };
 
 
 const st = StyleSheet.create({
-	profileBgBlock: {
-		backgroundColor: 'rgba(0, 0, 0, 0.6)',
-		alignItems: 'center',
+	shopTitleView: {
 		justifyContent: 'center',
-		paddingVertical:4,
-		paddingHorizontal: 7,
-
+		paddingHorizontal: 10,
 	},
-	profileView: {
-		height: 180,
+	textPropValue: {
+		color: 'black',
+		fontSize: 20,
 	},
-	profileContent: {
+	alignCenter: {
+		alignItems: 'center',
+	},
+	shopTitleProfileBlock: {
+		flexDirection: 'row',
+		flex: 1,
 		zIndex: 20,
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
+		marginTop: 10,
+		marginBottom: 10,
 	},
-	dealDayImg: {
-		zIndex: 10,
-		flex: 1,
-    	resizeMode: 'cover',
-    	top: 0,
-    	left: 0,
-    	right: 0,
-    	bottom: 0,
-    	position: 'absolute',
-    },
+	textPropDesc: {
+		textAlign: 'center',
+		color: 'black',
+	},
+	shopProfileImg: {
+		height: 90,
+		width: 90,
+		borderRadius: 45,
+	},
+	shopperImgProfile: {
+		flex: 3,
+		alignItems: 'center',
+	},
+	shopperName: {
+		textAlign: 'center',
+		color: 'black',
+	},
+	shopperPropsProfile: {
+		flex: 2,
+		alignItems: 'center',
+	},
 });
 
 

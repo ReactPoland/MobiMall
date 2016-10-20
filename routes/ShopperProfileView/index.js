@@ -24,6 +24,7 @@ import { Card } from 'react-native-material-design';
 import PurpleButton from '../../components/PurpleButton';
 import BuyerProfileHeader from '../../components/BuyerProfileHeader';
 
+
 export default class ShopperProfileView extends Component {
 	constructor(props) {
 		super(props);
@@ -117,9 +118,9 @@ export default class ShopperProfileView extends Component {
 		return (
 			<View style={st.container}>
 				<ScrollView>
+				  	
+				  	<BuyerProfileHeader />
 					
-					<BuyerProfileHeader />
-
 					<Tabs>
 						<View name={'PERSONAL'} >
 							<Card>

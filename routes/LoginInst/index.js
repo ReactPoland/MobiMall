@@ -104,7 +104,7 @@ export default class NewProductSeller extends Component {
 
 				<View style={loginStyle.buttonBlock}>
 
-				<Sae
+				<TextInput
 				  label={'Login'}
 				  iconClass={FontAwesomeIcon}
 				  iconName={'pencil'}
@@ -116,7 +116,7 @@ export default class NewProductSeller extends Component {
 				  value={this.state.instagram.login}
 				/>
 
-				<Sae
+				<TextInput
 				  label={'Password'}
 				  iconClass={FontAwesomeIcon}
 				  iconName={'pencil'}

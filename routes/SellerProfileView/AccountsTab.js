@@ -18,48 +18,48 @@ const AccountsTab = ({ fbId, onBankAccountDataChange, bankAccountData }) => {
       <Card >
         <Card.Body>
           <Text style={st.blockSubtitle}>PAY SALE FROM MY STORE INTO</Text>
-          <Sae
+          <TextInput
             label={'Bank Name'}
             iconClass={FontAwesomeIcon}
             iconName={'pencil'}
             iconColor={'gray'}
-            inputStyle={st.textInputGrey}
+            inputStyle={st.input}
             autoCapitalize={'none'}
             autoCorrect={false}
             onEndEditing={onBankAccountDataChange.bind(this, 'bankName')}
             value={bankName}
           />
 
-          <Sae
+          <TextInput
             label={'Soft Code'}
             iconClass={FontAwesomeIcon}
             iconName={'pencil'}
             iconColor={'gray'}
-            inputStyle={st.textInputGrey}
+            inputStyle={st.input}
             autoCapitalize={'none'}
             autoCorrect={false}
             onEndEditing={onBankAccountDataChange.bind(this, 'softCode')}
             value={softCode}
           />
 
-          <Sae
+          <TextInput
             label={'Account Number'}
             iconClass={FontAwesomeIcon}
             iconName={'pencil'}
             iconColor={'gray'}
-            inputStyle={st.textInputGrey}
+            inputStyle={st.input}
             autoCapitalize={'none'}
             autoCorrect={false}
             onEndEditing={onBankAccountDataChange.bind(this, 'accountNumber')}
             value={accountNumber}
           />
 
-          <Sae
+          <TextInput
             label={'Account Name'}
             iconClass={FontAwesomeIcon}
             iconName={'pencil'}
             iconColor={'gray'}
-            inputStyle={st.textInputGrey}
+            inputStyle={st.input}
             autoCapitalize={'none'}
             autoCorrect={false}
             onEndEditing={onBankAccountDataChange.bind(this, 'accountName')}

@@ -127,12 +127,12 @@ export default class ShopperProfileView extends Component {
 								<Card.Body>
 									<Text style={st.blockSubtitle} >PERSONAL DETAILS</Text>
 
-									<Sae
+									<TextInput
 								    label={'First name'}
 								    iconClass={FontAwesomeIcon}
 								    iconName={'pencil'}
 								    iconColor={'gray'}
-										inputStyle={st.textInputGrey}
+										inputStyle={st.input}
 								    // TextInput props
 								    autoCapitalize={'none'}
 								    autoCorrect={false}
@@ -140,12 +140,12 @@ export default class ShopperProfileView extends Component {
 										editable={false}
 								  />
 
-									<Sae
+									<TextInput
 								    label={'Last name'}
 								    iconClass={FontAwesomeIcon}
 								    iconName={'pencil'}
 								    iconColor={'gray'}
-										inputStyle={st.textInputGrey}
+										inputStyle={st.input}
 
 								    // TextInput props
 								    autoCapitalize={'none'}
@@ -154,12 +154,12 @@ export default class ShopperProfileView extends Component {
 										editable={false}
 								  />
 
-									<Sae
+									<TextInput
 								    label={'Email Address'}
 								    iconClass={FontAwesomeIcon}
 								    iconName={'pencil'}
 								    iconColor={'gray'}
-										inputStyle={st.textInputGrey}
+										inputStyle={st.input}
 								    // TextInput props
 								    autoCapitalize={'none'}
 								    autoCorrect={false}
@@ -167,12 +167,12 @@ export default class ShopperProfileView extends Component {
 										editable={false}
 								  />
 
-									<Sae
+									<TextInput
 								    label={'Phone number'}
 								    iconClass={FontAwesomeIcon}
 								    iconName={'pencil'}
 								    iconColor={'gray'}
-										inputStyle={st.textInputGrey}
+										inputStyle={st.input}
 								    // TextInput props
 								    autoCapitalize={'none'}
 	        					onEndEditing={this.onPersonalInfoChange.bind(this, 'phone')}
@@ -180,12 +180,12 @@ export default class ShopperProfileView extends Component {
 								    autoCorrect={false}
 								  />
 
-								  <Sae
+								  <TextInput
 								    label={'About'}
 								    iconClass={FontAwesomeIcon}
 								    iconName={'pencil'}
 								    iconColor={'gray'}
-								    inputStyle={st.textInputGrey}
+								    inputStyle={st.input}
 								    autoCapitalize={'none'}
 								    autoCorrect={false}
 								    onEndEditing={this.onPersonalInfoChange.bind(this, 'about')}

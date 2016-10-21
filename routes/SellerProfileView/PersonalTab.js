@@ -1,7 +1,8 @@
 import React from 'react';
 import {
   View,
-  Text
+  Text,
+  TextInput
 } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
@@ -17,48 +18,48 @@ const PersonalTab = ({ personalData, onPersonalInfoChange, saving, onSave, fbDat
     <Card >
       <Card.Body>
         <Text style={st.blockSubtitle} >PERSONAL DETAILS</Text>
-        <Sae
+        <TextInput
           label={'First Name'}
           iconClass={FontAwesomeIcon}
           iconName={'pencil'}
           iconColor={'gray'}
-          inputStyle={st.textInputGrey}
+          inputStyle={st.input}
           autoCapitalize={'none'}
           editable={false}
           autoCorrect={false}
           value={firstName}
         />
 
-        <Sae
+        <TextInput
           label={'Last Name'}
           iconClass={FontAwesomeIcon}
           iconName={'pencil'}
           iconColor={'gray'}
-          inputStyle={st.textInputGrey}
+          inputStyle={st.input}
           autoCapitalize={'none'}
           editable={false}
           autoCorrect={false}
           value={lastName}
         />
 
-        <Sae
+        <TextInput
           label={'Email 1'}
           iconClass={FontAwesomeIcon}
           iconName={'pencil'}
           iconColor={'gray'}
-          inputStyle={st.textInputGrey}
+          inputStyle={st.input}
           autoCapitalize={'none'}
           editable={false}
           autoCorrect={false}
           value={email}
         />
 
-        <Sae
+        <TextInput
           label={'Email 2'}
           iconClass={FontAwesomeIcon}
           iconName={'pencil'}
           iconColor={'gray'}
-          inputStyle={st.textInputGrey}
+          inputStyle={st.input}
           autoCapitalize={'none'}
           editable={false}
           autoCorrect={false}
@@ -66,12 +67,12 @@ const PersonalTab = ({ personalData, onPersonalInfoChange, saving, onSave, fbDat
           value={email2}
         />
 
-        <Sae
+        <TextInput
           label={'Phone number'}
           iconClass={FontAwesomeIcon}
           iconName={'pencil'}
           iconColor={'gray'}
-          inputStyle={st.textInputGrey}
+          inputStyle={st.input}
           autoCapitalize={'none'}
           autoCorrect={false}
           editable={false}
@@ -79,12 +80,12 @@ const PersonalTab = ({ personalData, onPersonalInfoChange, saving, onSave, fbDat
           value={phone}
         />
 
-        <Sae
+        <TextInput
           label={'About'}
           iconClass={FontAwesomeIcon}
           iconName={'pencil'}
           iconColor={'gray'}
-          inputStyle={st.textInputGrey}
+          inputStyle={st.input}
           autoCapitalize={'none'}
           autoCorrect={false}
           onEndEditing={onPersonalInfoChange.bind(this, 'about')}

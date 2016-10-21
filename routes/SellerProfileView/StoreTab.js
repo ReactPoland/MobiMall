@@ -1,7 +1,8 @@
 import React from 'react';
 import {
   View,
-  Text
+  Text,
+  TextInput
 } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
@@ -12,12 +13,12 @@ import st from '../../assets/style';
 const StoreTab = () => (
   <Card >
     <Card.Body>
-      <Sae
+      <TextInput
         label={'Company Name'}
         iconClass={FontAwesomeIcon}
         iconName={'pencil'}
         iconColor={'gray'}
-        inputStyle={st.textInputGrey}
+        inputStyle={st.input}
         autoCapitalize={'none'}
         autoCorrect={false}
       />

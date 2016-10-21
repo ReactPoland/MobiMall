@@ -2,7 +2,8 @@ import React from 'react';
 import {
   View,
   Text,
-  TouchableNativeFeedback
+  TouchableNativeFeedback,
+  TextInput
 } from 'react-native';
 import { Button, Card } from 'react-native-material-design';
 
@@ -26,62 +27,62 @@ const AddressInput = ({ onChange, addressToEdit, onSave, shouldDisplay, isNew })
     <Card>
       <Card.Body>
         <Text style={st.blockSubtitle}>{isNew ? 'ADD' : 'EDIT'} ADDRESS</Text>
-        <Sae
+        <TextInput
           label={'Country'}
           labelStyle={{ fontSize: 15 }}
           style={{ height: 20 }}
           iconClass={FontAwesomeIcon}
           iconName={'pencil'}
           iconColor={'gray'}
-          inputStyle={st.textInputGrey}
+          inputStyle={st.input}
           autoCapitalize={'none'}
           autoCorrect={false}
           onChange={handler("country")}
           value={country}
         />
 
-        <Sae
+        <TextInput
           label={'Address'}
           iconClass={FontAwesomeIcon}
           iconName={'pencil'}
           iconColor={'gray'}
-          inputStyle={st.textInputGrey}
+          inputStyle={st.input}
           autoCapitalize={'none'}
           autoCorrect={false}
           onChange={handler('address')}
           value={address}
         />
 
-        <Sae
+        <TextInput
           label={'ZIP / Postal Code'}
           iconClass={FontAwesomeIcon}
           iconName={'pencil'}
           iconColor={'gray'}
-          inputStyle={st.textInputGrey}
+          inputStyle={st.input}
           autoCapitalize={'none'}
           autoCorrect={false}
           onChange={handler('postalCode')}
           value={postalCode}
         />
 
-        <Sae
+        <TextInput
           label={'City'}
           iconClass={FontAwesomeIcon}
           iconName={'pencil'}
           iconColor={'gray'}
-          inputStyle={st.textInputGrey}
+          inputStyle={st.input}
           autoCapitalize={'none'}
           autoCorrect={false}
           onChange={handler('city')}
           value={city}
         />
 
-        <Sae
+        <TextInput
           label={'Best Time of Day to Deliver'}
           iconClass={FontAwesomeIcon}
           iconName={'pencil'}
           iconColor={'gray'}
-          inputStyle={st.textInputGrey}
+          inputStyle={st.input}
           autoCapitalize={'none'}
           autoCorrect={false}
           onChange={handler('bestTimeToDeliver')}

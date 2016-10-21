@@ -18,7 +18,7 @@ import CheckBox from 'react-native-checkbox';
  import { Button, RadioButton, RadioButtonGroup } from 'react-native-material-design';
 
 const SaeInput = ( { label } ) => (
-  <Sae
+  <TextInput
     label={label}
     iconClass={FontAwesomeIcon}
     iconName={'pencil'}

@@ -69,7 +69,7 @@ const manager = ( function () {
 export default class Router extends Component {
 
 	static configureScene(route) {
-	    return route.animationType || Navigator.SceneConfigs.FadeAndroid;
+	    return route.animationType || Navigator.SceneConfigs.FloatFromBottom;
 	}
 
 	constructor(props) {

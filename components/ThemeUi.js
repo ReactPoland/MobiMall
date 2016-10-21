@@ -92,23 +92,28 @@ export default class ThemeUi extends Component {
     switch( name ) {
       case "wallet" :
         isExsistRouteInStack( routes.shopperProfileView ) ? 
-          this.props.navigator.popToRoute( routes.shopperProfileView ) : this.props.navigator.push( routes.shopperProfileView );
+        this.props.navigator.popToRoute( routes.shopperProfileView ) : this.props.navigator.push( routes.shopperProfileView );
         break;
+    
       case "news" :
-
-      isExsistRouteInStack( routes.sellerProfileView ) ? 
+        isExsistRouteInStack( routes.sellerProfileView ) ? 
         this.props.navigator.popToRoute( routes.sellerProfileView ) : this.props.navigator.push( routes.sellerProfileView );
-      
         break;
+
       case "heart" :
-
-      isExsistRouteInStack( routes.newProduct ) ? 
+        isExsistRouteInStack( routes.newProduct ) ? 
         this.props.navigator.popToRoute( routes.newProduct ) : this.props.navigator.push( routes.newProduct );
-
         break;
+
+      case "search" :
+        isExsistRouteInStack( routes.dashboardBuyer ) ? 
+        this.props.navigator.popToRoute( routes.dashboardBuyer ) : this.props.navigator.push( routes.dashboardBuyer );
+        break;
+
       case "backarrow" :
         this.props.navigator.pop();
         break;
+
     };
 
   }

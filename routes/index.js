@@ -20,7 +20,8 @@ import Fog from '../components/Fog';
 import { COLOR, ThemeProvider } from 'react-native-material-ui';
 
 import routes from './routes';
-
+import PushNotification from '../components/PushNotification'
+PushNotification({navigator: navigator}).localNotification;
 
 
 const manager = ( function () {
@@ -82,7 +83,6 @@ export default class Router extends Component {
 			VerticalDownSwipeJump
 			VerticalUpSwipeJump
 		*/
-		console.log(Navigator.SceneConfigs);
 	    return route.animationType || Navigator.SceneConfigs.FloatFromBottomAndroid;
 	}
 

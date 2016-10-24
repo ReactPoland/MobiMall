@@ -14,6 +14,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.magus.fblogin.FacebookLoginPackage; 
 import com.brentvatne.react.ReactVideoPackage;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage; 
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +36,8 @@ public class MainApplication extends Application implements ReactApplication {
             new ImagePickerPackage(),
             new ReactMaterialKitPackage(),
           new FacebookLoginPackage(),
-          new ReactVideoPackage()
+          new ReactVideoPackage(),
+          new ReactNativePushNotificationPackage()
       );
     }
   };

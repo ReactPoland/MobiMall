@@ -12,6 +12,7 @@ import ThemeUi from '../components/ThemeUi';
 import DashboardSeller from './DashboardSeller';
 import ProfileChanging from './ProfileChanging';
 import PageList from './PageList';
+import Checkout from './Checkout';
 
 export default routes = {
 
@@ -25,6 +26,12 @@ export default routes = {
 		title: 'New product',
 		themeUi: true,
 		key: 'newproduct',
+	},
+	checkout: {
+		Page: Checkout,
+		title: 'Checkout',
+		themeUi: true,
+		key: 'checkout',
 	}, 
 	pageList: {
 		Page: PageList,

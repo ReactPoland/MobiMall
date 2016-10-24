@@ -26,6 +26,7 @@ export default class Login extends Component {
 		this.state = {
 			fogVisibility: false
 		}
+
 		// this.state = {
 			// mainImageSize: {
 				// width: 360,

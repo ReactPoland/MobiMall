@@ -24,7 +24,8 @@ export default class NewProductSeller extends Component {
 		bindMethods(this);
 
 		this.state = {
-			productData: {}
+			productData: {},
+			fogVisibility: false,
 		};
 
 	}
@@ -58,20 +59,38 @@ export default class NewProductSeller extends Component {
 		// data.append('foo', 'bar');
         // data.append('file', this.state.productData.img);
 
+		this.showFog();
+        // let this = that;
+
 
 		api.checkNewProduct( this.props.manager.getDataFB().id, this.state.productData ).then( ({ data }) => {
+        	
 
 			if ( data.status === 'ok' ) {
+				this.hideFog();
 				this.props.manager.setPostProductData( data.productInfo );
 				this.props.navigator.push( routes.postProductToIG );
 			}
 			else {
 				Alert.alert( data.mess );
+				this.hideFog();
 			}
-
 		})
 		.catch((err) => {
+			this.hideFog();
 			Alert.alert(err.message);
+		})
+	}
+
+	showFog() {
+		this.setState({
+			fogVisibility: true
+		})
+	}
+
+	hideFog() {
+		this.setState({
+			fogVisibility: false
 		})
 	}
 
@@ -96,13 +115,15 @@ export default class NewProductSeller extends Component {
 			costPrice,
 			vat,
 			supplier } = this.state.productData;
+		const { Fog } = this.props;
 
+		/*if ( this.state.fogVisibility ) return (
+			<Fog />
+		);*/
 
-		
-			
 		return (
 			<View style={st.container}>
-
+			
 				<ScrollView>
 
 					<View style={ st.titleView } >
@@ -268,13 +289,15 @@ export default class NewProductSeller extends Component {
 								underlineColorAndroid="#edb4ff" 
 								placeholderTextColor='#cccccc'
 								value={ supplier } />
-						
-							<TouchableNativeFeedback
-							  onPress={this.onSendProduct} >
-								<View style={st.purpleButtonView} >
-							    	<Text style={st.purpleButtonName} >SAVE PRODUCT</Text>
-								</View>
-							</TouchableNativeFeedback>
+
+							{ this.state.fogVisibility ? (<Fog />) : (
+								<TouchableNativeFeedback
+								  onPress={this.onSendProduct} >
+									<View style={st.purpleButtonView} >
+								    	<Text style={st.purpleButtonName} >SAVE PRODUCT</Text>
+									</View>
+								</TouchableNativeFeedback>
+							) }						
 
 						</Card.Body>
 					</Card>

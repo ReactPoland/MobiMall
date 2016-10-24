@@ -13,6 +13,7 @@ import { Navigator, Text, ScrollView, StyleSheet, View, BackAndroid } from 'reac
 // import DashboardBuyer from './DashboardBuyer';
 // import Setting from './Setting';
 import ThemeUi from '../components/ThemeUi';
+import Fog from '../components/Fog';
 // import DashboardSeller from './DashboardSeller';
 // import ProfileChanging from './ProfileChanging';
 
@@ -85,10 +86,13 @@ export default class Router extends Component {
 	static renderScene (route, navigator) {
 
 		let retComponent = (
-			<route.Page
-				route={ route }
-				navigator={ navigator }
-				manager={ manager } />
+			<View style={ {flex: 1 } } >
+				<route.Page
+					Fog={Fog}
+					route={ route }
+					navigator={ navigator }
+					manager={ manager } />
+			</View>
 		);
 
 		if (route.themeUi)

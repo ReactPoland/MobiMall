@@ -23,12 +23,27 @@ export default class Login extends Component {
 		super(prop);
 		this.onLayout = this.onLayout.bind(this);
 		this.loginFB = this.loginFB.bind(this);
+		this.state = {
+			fogVisibility: false
+		}
 		// this.state = {
 			// mainImageSize: {
 				// width: 360,
 				// height: 360
 			// }
 		// }
+	}
+
+	showFog() {
+		this.setState({
+			fogVisibility: true
+		})
+	}
+
+	hideFog() {
+		this.setState({
+			fogVisibility: false
+		})
 	}
 
 	onLayout(event) {
@@ -47,20 +62,27 @@ export default class Login extends Component {
 	}
 
 	loginFB() {
+
 		let that = this;
+		this.showFog();
 
 
 		FBLoginManager.setLoginBehavior( FBLoginManager.LoginBehaviors.Native );
 		FBLoginManager.loginWithPermissions(["email","user_friends", "user_about_me", 'public_profile'], async function(error, data) {
 
-			if (that.props.manager.getDataFB() ) return;
-
+			if (that.props.manager.getDataFB() ) {
+				that.hideFog();
+				return;
+			}
+			
 			if ( error ) {
+				that.hideFog();
 				Alert.alert('error');
 				console.log(error);
 				return;
 			}
 			if ( ! ( data.type === 'success' ) ) {
+				that.hideFog();
 				Alert.alert('Bad response');
 				return;
 			}
@@ -84,16 +106,26 @@ export default class Login extends Component {
 
 			that.props.manager.authFB && that.props.manager.authFB( profile );
 			api.createUser( profile ).then(() => {
-				that.props.navigator.push( routes.profileChanging );
-			}).catch(e => console.log('e', e));
+				that.hideFog();
+				that.props.navigator.replace( routes.profileChanging );
+			}).catch(e => {
+				that.hideFog();
+				Alert.alert('server error');
+				console.log('e', e)
+			});
 
 		});
 	}
 
 	render() {
+		
+		const { Fog } = this.props;
+
+		// console.log(fog);
 
 		return (
 			<View style={loginStyle.container} onLayout={this.onLayout}>
+			{ this.state.fogVisibility ? (<Fog />) : null }	
 
 			<Image 
 				source={ { uri: 'http://bestanimations.com/Animals/Birds/Penguins/Penguin-cartoon-animation.gif' } }
@@ -130,31 +162,44 @@ export default class Login extends Component {
 
 					</View>
 
-				<View style={loginStyle.buttonBlock}>
 
-					<TouchableNativeFeedback onPress={ this.loginFB }>
-						<View style={loginStyle.button}>
-							<Text style={loginStyle.buttonText} >CONNECT WITH FACEBOOK</Text>
-							{/*<FBLogin
-							    ref={(fbLogin) => { this.fbLogin = fbLogin }}
-							    loginBehavior={FBLoginManager.LoginBehaviors.Native}
-							    permissions={["email","user_friends"]}
-							    onLogin={function(e) {
-							    	if ( ! ( e.type === 'success' ) ) return;
-							    	that.props.manager.authFB && that.props.manager.authFB( e.profile );
-							    	console.log(e)
-							    } }
-							    onLoginFound={function(e){console.log(e)}}
-							    onLoginNotFound={function(e){console.log(e)}}
-							    onLogout={function(e){console.log(e)}}
-							    onCancel={ function(e) { } }
-							    onError={ function(e) {
-							    	console.log(e);
-							    } }
-							    onPermissionsMissing={ function(e) { console.log(e) } }
-							  />*/}
+					{ this.state.fogVisibility ? (<Fog />) : (
+
+						<View style={loginStyle.buttonBlock}>
+
+							<TouchableNativeFeedback onPress={ this.loginFB }>
+								<View style={loginStyle.button}>
+									<Text style={loginStyle.buttonText} >CONNECT WITH FACEBOOK</Text>
+									{/*<FBLogin
+									    ref={(fbLogin) => { this.fbLogin = fbLogin }}
+									    loginBehavior={FBLoginManager.LoginBehaviors.Native}
+									    permissions={["email","user_friends"]}
+									    onLogin={function(e) {
+									    	if ( ! ( e.type === 'success' ) ) return;
+									    	that.props.manager.authFB && that.props.manager.authFB( e.profile );
+									    	console.log(e)
+									    } }
+									    onLoginFound={function(e){console.log(e)}}
+									    onLoginNotFound={function(e){console.log(e)}}
+									    onLogout={function(e){console.log(e)}}
+									    onCancel={ function(e) { } }
+									    onError={ function(e) {
+									    	console.log(e);
+									    } }
+									    onPermissionsMissing={ function(e) { console.log(e) } }
+									  />*/}
+								</View>
+							</TouchableNativeFeedback>
+						
+							<TouchableNativeFeedback onPress={ () => { this.props.navigator.push( routes.signUp ); } }>
+								<View style={loginStyle.button}>
+									<Text style={loginStyle.buttonText} >SIGN UP</Text>
+								</View>
+							</TouchableNativeFeedback>
+						
 						</View>
-					</TouchableNativeFeedback>
+
+					) }
 
 
 
@@ -165,14 +210,6 @@ export default class Login extends Component {
 						</View>
 
 					</View>*/}
-
-					<TouchableNativeFeedback onPress={ () => { this.props.navigator.push( routes.signUp ); } }>
-						<View style={loginStyle.button}>
-							<Text style={loginStyle.buttonText} >SIGN UP</Text>
-						</View>
-					</TouchableNativeFeedback>
-
-				</View>
 
 
 			</View>

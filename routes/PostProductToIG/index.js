@@ -17,12 +17,14 @@ export default class NewProductSeller extends Component {
 
 	constructor(prop) {
 		super(prop);
-		this.onLayout = this.onLayout.bind(this);
+		bindMethods(this);
+		// this.onLayout = this.onLayout.bind(this);
 		this.state = {
 			mainImageSize: {
 				width: 360,
 				height: 360
-			} 
+			},
+			fogVisibility: false
 		}
 	}
 
@@ -44,21 +46,54 @@ export default class NewProductSeller extends Component {
 			}
 		});
 		this.refs['scrolView'].scrollTo({x: 0,y :0, animated: false});
-
-
 	}
+
+	showFog() {
+		this.setState({
+			fogVisibility: true
+		})
+	}
+
+	hideFog() {
+		this.setState({
+			fogVisibility: false
+		})
+	}
+
+	postToIG() {
+		
+		let product = this.props.manager.getPostProductData();
+
+
+		this.showFog();
+		api
+			.addNewProduct(this.props.manager.getDataFB().id, product)
+			.then( ({data}) => { 
+			
+				this.hideFog();
+			
+				if (data.status && data.status === 'ok' ){
+					Alert.alert("Done!"); 
+					navigator.popToRoute( routes.dashboardSeller );
+					// navigator.push( routes.dashboardSeller );
+					return;
+				}
+
+				Alert.alert(data.mess);
+			})
+			.catch( (err) => {Alert.alert(err.message); this.hideFog(); } );
+	}
+
+
 
 	render() {
 
 		let product = this.props.manager.getPostProductData();
-		const { navigator } = this.props;
-
-
+		const { navigator, Fog } = this.props;
 
 
 		return (
 			<View style={postStyle.container} onLayout={this.onLayout}>
-
 					<ScrollView ref='scrolView' >
 
 						<Image source={{uri: 'https://unsplash.it/400/400?image=149'}} style={{
@@ -82,27 +117,15 @@ export default class NewProductSeller extends Component {
 
 							</Text>
 
-							<TouchableNativeFeedback
-								onPress={() => {
+							{ this.state.fogVisibility ? ( <Fog /> ) : (
+								<TouchableNativeFeedback
+									onPress={() => { this.postToIG() }} > 
+									<View style={postStyle.postButtonView} >
+										<Text style={postStyle.buttName} >POST TO INSTAGRAM</Text>
+									</View>
+								</TouchableNativeFeedback>
+							) }
 
-									api
-										.addNewProduct(this.props.manager.getDataFB().id, product)
-										.then( ({data}) => { 
-											if (data.status && data.status === 'ok' ){
-												Alert.alert("Done!"); 
-												navigator.popToRoute( routes.dashboardSeller );
-												// navigator.push( routes.dashboardSeller );
-												return;
-											}
-
-											Alert.alert(data.mess);
-										})
-										.catch( (err) => {Alert.alert(err.message); } );
-								}} > 
-								<View style={postStyle.postButtonView} >
-									<Text style={postStyle.buttName} >POST TO INSTAGRAM</Text>
-								</View>
-							</TouchableNativeFeedback>
 						</View>
 					</ScrollView>
 

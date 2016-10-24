@@ -2,7 +2,8 @@ import React from 'react';
 import {
   View,
   Text,
-  TouchableNativeFeedback
+  TouchableNativeFeedback,
+  TextInput
 } from 'react-native';
 import { Button, Card } from 'react-native-material-design';
 

@@ -70,7 +70,20 @@ const manager = ( function () {
 export default class Router extends Component {
 
 	static configureScene(route) {
-	    return route.animationType || Navigator.SceneConfigs.FloatFromBottom;
+		/*
+			FadeAndroid
+			FloatFromBottom
+			FloatFromBottomAndroid
+			FloatFromLeft
+			FloatFromRight
+			HorizontalSwipeJump
+			HorizontalSwipeJumpFromRight
+			PushFromRight
+			VerticalDownSwipeJump
+			VerticalUpSwipeJump
+		*/
+		console.log(Navigator.SceneConfigs);
+	    return route.animationType || Navigator.SceneConfigs.FloatFromBottomAndroid;
 	}
 
 	constructor(props) {

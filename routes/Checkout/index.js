@@ -4,6 +4,7 @@ import {
 	View,
 	StyleSheet
 } from 'react-native';
+import { api, bindMethods } from '../../utils';
 
 export default class Checkout extends Component {
 
@@ -15,17 +16,15 @@ export default class Checkout extends Component {
 
 	render() {
 
-		const { fields } = this.state;
-
 		return (
-			<View style={setting.container} >
+			<View style={checkout.container} >
 				<Text>Checkout view</Text>
 			</View>
 		)
 	}
 }
 
-const setting = StyleSheet.create({
+const checkout = StyleSheet.create({
 	
 	container: {
 		flex: 1,

@@ -20,8 +20,6 @@ import Fog from '../components/Fog';
 import { COLOR, ThemeProvider } from 'react-native-material-ui';
 
 import routes from './routes';
-import PushNotification from '../components/PushNotification'
-PushNotification({navigator: navigator}).localNotification;
 
 
 const manager = ( function () {

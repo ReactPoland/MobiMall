@@ -78,8 +78,10 @@ PushNotification.configure({
 // var pushNotificObj = null;
 
 const PushNotific = ( navigator ) => {
+    if (navigator) {
+        handler['navigator'] = navigator;    
+    }
 
-    handler['navigator'] = navigator;
     // if ( params && params.navigator && params.navigator.push ) {
         // handler['checkout'] = function() {
             // params.navigator.push(routes.checkout);

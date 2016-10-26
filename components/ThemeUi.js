@@ -10,7 +10,7 @@ import { COLOR, ThemeProvider, ActionButton, Toolbar } from 'react-native-materi
 // import { Drawer } from 'react-native-material-design';
 import { Avatar, Drawer, Divider, COLOR as cc, TYPO } from 'react-native-material-design';
 import Setting from '../routes/Setting'
-import { bindMethods } from '../utils'
+import { bindMethods, api } from '../utils'
 import { createIconSet } from 'react-native-vector-icons';
 import routes from '../routes/routes'
 
@@ -22,8 +22,10 @@ export default class ThemeUi extends Component {
 
     this.state = {
       drawer: null,
-      navigator: null
+      navigator: null,
+      showBasket: false,
     };
+
     bindMethods(this);
 
     this.uiTheme = {
@@ -58,6 +60,10 @@ export default class ThemeUi extends Component {
       order     :59679
     };
 
+    this.isExsistRouteInStack = (route) => {
+      return this.props.navigator.getCurrentRoutes().some(item => item.key === route.key );
+    }
+
     this.Icon = createIconSet(this.iconsMap, 'icomoon' );
 
   }
@@ -81,32 +87,30 @@ export default class ThemeUi extends Component {
   backClickHandler() {
     this.props.navigator.pop();
   };
+ 
 
   actionButtonClickHandler(name) {
 
-    let isExsistRouteInStack = (route) => {
-      return this.props.navigator.getCurrentRoutes().some(item => item.key === route.key );
-    } 
 
 
     switch( name ) {
       case "wallet" :
-        isExsistRouteInStack( routes.shopperProfileView ) ? 
+        this.isExsistRouteInStack( routes.shopperProfileView ) ? 
         this.props.navigator.popToRoute( routes.shopperProfileView ) : this.props.navigator.push( routes.shopperProfileView );
         break;
     
       case "news" :
-        isExsistRouteInStack( routes.sellerProfileView ) ? 
+        this.isExsistRouteInStack( routes.sellerProfileView ) ? 
         this.props.navigator.popToRoute( routes.sellerProfileView ) : this.props.navigator.push( routes.sellerProfileView );
         break;
 
       case "heart" :
-        isExsistRouteInStack( routes.newProduct ) ? 
+        this.isExsistRouteInStack( routes.newProduct ) ? 
         this.props.navigator.popToRoute( routes.newProduct ) : this.props.navigator.push( routes.newProduct );
         break;
 
       case "search" :
-        isExsistRouteInStack( routes.dashboardBuyer ) ? 
+        this.isExsistRouteInStack( routes.dashboardBuyer ) ? 
         this.props.navigator.popToRoute( routes.dashboardBuyer ) : this.props.navigator.push( routes.dashboardBuyer );
         break;
 
@@ -115,7 +119,30 @@ export default class ThemeUi extends Component {
         break;
 
     };
+  }
 
+  toCheckoutHandler() {
+    if ( this.state.showBasket ) {
+
+      this.isExsistRouteInStack(routes.checkout) ?
+      this.props.navigator.popToRoute( routes.checkout ) : this.props.navigator.push( routes.checkout );
+
+    }
+  }
+
+  changeBasketState( nextState ) {
+    // if ( nextState != this.state.showBasket ) {
+      this.setState({ showBasket: nextState });
+    // };
+  }
+
+  componentDidMount() {
+    this.changeBasketState( this.props.manager.getTransAvail() );
+    this.props.manager.setTransListeners( this.changeBasketState );
+  }
+
+  componentWillUnmount() {
+    this.props.manager.removeTransListeners( this.changeBasketState );
   }
 
   render() {
@@ -142,14 +169,15 @@ export default class ThemeUi extends Component {
             <Toolbar 
               leftElement="arrow-back"
               onLeftElementPress={this.backClickHandler}
+              onRightElementPress={this.toCheckoutHandler}
               centerElement={this.props.route.title ? this.props.route.title.toUpperCase() : "None" }
-              rightElement="arrow-back"
+              rightElement="shopping-basket"
               style={{
                 container: {
                   backgroundColor: 'white',
                 },
                 leftElement: {
-                  color: 'black',
+                  color:  this.props.navigator.getCurrentRoutes().length ? 'black': 'white',
                 },
                 titleText: {
                   color: 'purple',
@@ -158,6 +186,7 @@ export default class ThemeUi extends Component {
                   fontWeight: '100',
                 },
                 rightElement: {
+                  color: this.state.showBasket ? 'black' : 'white',
                 }
               }}
             />

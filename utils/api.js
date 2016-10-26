@@ -69,7 +69,12 @@ const api = {
 
   getBankAccountData (fbId) {
     return createRequest(['users', 'getBankAccountData'], { fbId });
+  },
+
+  checkOpenTransaction (fbId) {
+    return createRequest(['users', 'checkOpenTransaction'], { fbId });
   }
+  
 }
 
 export default api;

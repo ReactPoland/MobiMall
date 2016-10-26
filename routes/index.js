@@ -14,12 +14,14 @@ import { Navigator, Text, ScrollView, StyleSheet, View, BackAndroid } from 'reac
 // import Setting from './Setting';
 import ThemeUi from '../components/ThemeUi';
 import Fog from '../components/Fog';
+import PushNotification from '../components/PushNotification';
 // import DashboardSeller from './DashboardSeller';
 // import ProfileChanging from './ProfileChanging';
 
 import { COLOR, ThemeProvider } from 'react-native-material-ui';
 
 import routes from './routes';
+import { api } from '../utils';
 
 
 const manager = ( function () {
@@ -27,6 +29,11 @@ const manager = ( function () {
 	let userDataFB = null;
 	let userDataInst = null;
 	let productData = null;
+	
+
+	let isExistTrans = false;
+	let transListeners = [];
+	let timerTransaction = null;
 
 	return({
 		authFB: function( data ) {
@@ -61,7 +68,86 @@ const manager = ( function () {
 
 		getPostProductData: function() {
 			return productData;
+		},
+		
+		setTimerTransaction: function() {
+			if (!timerTransaction) {
+				timerTransaction = setInterval(() => {
+
+					if ( manager.getDataFB() ) {
+						this.requestHandler( manager.getDataFB().id )
+					}
+				
+				}, 10000);
+			}
+		},
+
+		getTransAvail: function() {
+			return isExistTrans;
+		},
+
+		requestHandler: function(fbId) {
+			api.checkOpenTransaction( fbId ).then( ( { data } ) => {
+
+				if ( data.status == 'ok' ) {
+					let newValue = !!data.value;
+					
+
+					if ( isExistTrans != newValue ) {
+
+						isExistTrans = newValue;
+						transListeners.map( item => item( isExistTrans ) );
+
+						if ( isExistTrans ) {
+							PushNotification().localNotification({
+								autoCancel: true, // (optional) default: true
+								largeIcon: "ic_launcher", // (optional) default: "ic_launcher"
+
+								// bigText: "My big text that will be shown when notification is expanded", // (optional) default: "message" prop
+
+								vibrate: true, // (optional) default: true
+								vibration: 300, // vibration length in milliseconds, ignored if vibrate=false, default: 1000
+								tag: 'checkout', // (optional) add tag to message
+								group: "group", // (optional) add group to message
+								ongoing: false, // (optional) set whether this is an "ongoing" notification
+
+								title: "Accept buying", // (optional, for iOS this is only used in apple watch, the title will be the app name on other iOS devices)
+								message: "You buyed in the IG store", // (required)
+								soundName: 'default', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
+
+							});
+							// push notification
+						}
+
+					};
+
+				}
+				else {
+					console.log( data.mess );
+				}
+
+			})
+			.catch(e => {
+				console.log('error server check transaction');
+			})
+
+		},
+
+		removeTimerTransaction: function() {
+			clearInterval(timerTransaction);
+		},
+
+		setTransListeners: function(handler) {
+			transListeners.push(handler);
+		},
+
+		removeTransListeners: function(handler) {
+			let index = transListeners.findIndex( elem => elem === handler );
+			if ( index ){
+				transListeners.splice(index, 1);
+			}
 		}
+
 	})
 })();
 
@@ -86,6 +172,11 @@ export default class Router extends Component {
 
 	constructor(props) {
 		super(props);
+		manager.setTimerTransaction();
+	}
+
+	componentWillUnmount() {
+		manager.removeTimerTransaction();
 	}
 
 	componentDidMount() {
@@ -95,6 +186,8 @@ export default class Router extends Component {
 	}
 
 	static renderScene (route, navigator) {
+
+		PushNotification(navigator);
 
 		let retComponent = (
 			<View style={ {flex: 1 } } >
@@ -110,7 +203,8 @@ export default class Router extends Component {
 			retComponent = ( 
 				<ThemeUi
 					route = { route } 
-					navigator={ navigator } >
+					navigator={ navigator } 
+					manager={ manager } >
 					{retComponent}
 				</ThemeUi> 
 			);

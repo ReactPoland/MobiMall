@@ -25,7 +25,7 @@ PushNotification.configure({
             if (handler['navigator'].getCurrentRoutes().some(item => item.key === routes.checkout.key ) ) {
                 handler['navigator'].popToRoute( routes.checkout );
             } else {
-                handler['navigator'].push(routes.checkout);
+                handler['navigator'].push( routes.checkout );
             }
         };
 

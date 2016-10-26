@@ -111,7 +111,7 @@ export default class ShopperProfileView extends Component {
   }
 
 	render() {
-  	const { phone, about } = this.state.profileData;
+  	const { phone, igId, about } = this.state.profileData;
 		const { buyerAddresses, addressToEdit, loading, newAddress, saving } = this.state;
 		const fbData = this.props.manager.getDataFB();
 		const { name, id, firstName, lastName, email } = fbData;
@@ -193,6 +193,18 @@ export default class ShopperProfileView extends Component {
 										multiline={true}
 										numberOfLines={4}
 								  />
+
+								    <Sae
+								      label={'igId'}
+								      iconClass={FontAwesomeIcon}
+								      iconName={'pencil'}
+								      iconColor={'gray'}
+								      inputStyle={st.textInputGrey}
+								      autoCapitalize={'none'}
+								      autoCorrect={false}
+								      onEndEditing={this.onPersonalInfoChange.bind(this, 'igId')}
+								      value={igId}
+								    />
 
 									<PurpleButton text={saving ? 'SAVING...' : 'SAVE'} onPress={this.onPersonalInfoSave} />
 								</Card.Body>

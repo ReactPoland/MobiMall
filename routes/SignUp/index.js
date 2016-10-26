@@ -67,7 +67,7 @@ export default class SignUp extends Component {
 
 
 					<View style={signUpStyle.headerBlock}>
-						<TouchableNativeFeedback onPress={ () => { this.props.navigator.toBack() } }>
+						<TouchableNativeFeedback onPress={ () => { this.props.navigator.pop() } }>
 							<View style={signUpStyle.cancelButton} >
 								<Text style={signUpStyle.cancelButtonText}>cancel</Text>
 							</View>

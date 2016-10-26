@@ -73,6 +73,10 @@ const api = {
 
   checkOpenTransaction (fbId) {
     return createRequest(['users', 'checkOpenTransaction'], { fbId });
+  },
+
+  transactionProductList (fbId) {
+    return createRequest(['users', 'transactionProductList'], { fbId });
   }
   
 }

@@ -17,6 +17,69 @@ export default class Checkout extends Component {
 	constructor(prop) {
 		super(prop);
 		bindMethods(this);
+		this.state = {
+			transaction: null,
+		}
+	}
+
+	componentDidMount() {
+		api.transactionProductList(this.props.manager.getDataFB().id)
+		.then( ({data}) => {
+			if (data.status == 'ok') {
+				
+				if (!data.value) {
+					Alert.alert('Opened transactions don\'t exist');
+					this.props.navigator.pop();
+					return;
+				}
+
+				this.setState({
+					transaction: data.value
+				});
+
+			}
+			else {
+				Alert.alert(data.mess);
+				this.props.navigator.pop();
+			}
+
+		} )
+		.catch( e => {
+			Alert.alert('Server error');
+			this.props.navigator.pop();
+		});
+	}
+
+	countProduct( id, operation = '+' ) {
+		let { transaction } = this.state;
+		let currProductIndex = transaction.products.findIndex( product => product.productId == id );
+
+		if ( currProductIndex >= 0 ) {
+
+			if (operation == "+") {
+				if (transaction.products[currProductIndex].orderedQuantity < transaction.products[currProductIndex].maxQuantity )
+					transaction.products[currProductIndex].orderedQuantity++;
+			}
+			else {
+				if (transaction.products[currProductIndex].orderedQuantity > 1)
+					transaction.products[currProductIndex].orderedQuantity--;
+			};
+
+			this.setState({ transaction: transaction });
+		}
+
+	}
+
+
+	removeProduct( id ) {
+		let { transaction } = this.state;
+		let currProductIndex = transaction.products.findIndex( product => product.productId == id );
+
+		if ( currProductIndex >= 0 ) {
+
+			transaction.products.splice( currProductIndex, 1 );
+			this.setState({ transaction: transaction });
+		}
 	}
 
 	renderProducts(products) {
@@ -32,22 +95,22 @@ export default class Checkout extends Component {
 
 					<View style={checkout.prodDescCol} >
 						<View>
-							<Text style={checkout.prodTitle} >Black T-shift</Text>
-							<Text style={checkout.prodDesc} >New Season T-shift</Text>
+							<Text style={checkout.prodTitle} >{ item.name }</Text>
+							<Text style={checkout.prodDesc} >{ item.description }</Text>
 
 							<View style={checkout.quantityCol}>
 
 								<View style={checkout.quantTextCol} >
-									<Text style={checkout.quantText} >2</Text> 
+									<Text style={checkout.quantText} >{item.orderedQuantity}</Text> 
 								</View>
 
-								<TouchableNativeFeedback onPress={() => { Alert.alert('+ triggered ') }} >
+								<TouchableNativeFeedback onPress={ this.countProduct.bind(this, item.productId, '+' ) } >
 									<View style={checkout.quantAction} >
 										<Text style={checkout.quantText} >+</Text>
 									</View> 
 								</TouchableNativeFeedback>
 
-								<TouchableNativeFeedback onPress={() => { Alert.alert('- triggered ') }} >
+								<TouchableNativeFeedback onPress={ this.countProduct.bind(this, item.productId, '-' ) } >
 									<View style={checkout.quantAction} >
 										<Text style={checkout.quantText} >-</Text>
 									</View> 
@@ -55,13 +118,13 @@ export default class Checkout extends Component {
 
 							</View>
 
-							<Text style={checkout.prodPrice} >$89.99</Text>
+							<Text style={checkout.prodPrice} >${item.costPrice}</Text>
 						</View>
 					</View>
 
 					<View style={checkout.prodActCol} >
 						
-						<TouchableNativeFeedback onPress={() => { Alert.alert('remove') }} >
+						<TouchableNativeFeedback onPress={ this.removeProduct.bind(this, item.productId) } >
 							<View>
 								<FontAwesomeIcon 
 									name="pencil"
@@ -92,96 +155,135 @@ export default class Checkout extends Component {
 
 	}
 
+	renderGreyStrips(products) {
 
-	render() {
+		let totalPrice = 0;
+
+		products.map( product => {
+			totalPrice += product.costPrice * product.orderedQuantity;
+		});
 
 		return (
-			<View style={ checkout.container } >
-
-				<ScrollView style={{marginBottom: 60}} contentContainerStyle={{backgroundColor: '#eee'}}>
-
-				{/*item*/}
-
-					{ this.renderProducts([ 1, 1, 1 ]) }
-				
-				{/*end item*/}
-
-					<View style={checkout.greyLine} >
-
-						<View style={ { width: 30 } }>					
-							<FontAwesomeIcon 
-								name="pencil"
-								style={ { textAlign: 'center', fontSize: 22, padding: 5, color: '#555', } } 
-							/>
-						</View>					
-						
-						<View style={ { flex: 1 } } >
-							<Text style={checkout.greyLineDesc} >Delivery charges</Text>
-						</View> 
-						
-						<View style={ { flex: 1 } } >
-							<Text style={checkout.greyLinePrice} >$7.95</Text>
-						</View> 
-
-					</View>
-
-					<View style={checkout.greyLine}>
+			<View>
+				<View style={checkout.greyLine} >
 
 					<View style={ { width: 30 } }>					
 						<FontAwesomeIcon 
 							name="pencil"
-							style={ { textAlign: 'center', fontSize: 22, padding: 5, color: '#800080', } } 
+							style={ { textAlign: 'center', fontSize: 22, padding: 5, color: '#555', } } 
 						/>
 					</View>					
+					
+					<View style={ { flex: 1 } } >
+						<Text style={checkout.greyLineDesc} >Delivery charges</Text>
+					</View> 
+					
+					<View style={ { flex: 1 } } >
+						<Text style={checkout.greyLinePrice} >$7.95</Text>
+					</View> 
+
+				</View>
+
+				<View style={checkout.greyLine}>
+
+					<View style={ { width: 30 } }>
+						<FontAwesomeIcon 
+							name="pencil"
+							style={ { textAlign: 'center', fontSize: 22, padding: 5, color: '#800080', } } 
+						/>
+					</View>
 					
 					<View style={ { flex: 1 } } >
 						<Text style={checkout.greyLineDescPurple} >Total</Text>
 					</View> 
 					
 					<View style={ { flex: 1 } } >
-						<Text style={checkout.greyLinePricePurple} >$107.85</Text>
+						<Text style={checkout.greyLinePricePurple} >${ totalPrice }</Text>
 					</View>
 
-					</View>
-
-					<View style={checkout.greyLine} >
-
-						<View style={ { width: 30 } }>					
-							<FontAwesomeIcon 
-								name="pencil"
-								style={ { textAlign: 'center', fontSize: 22, padding: 5, color: '#555', } } 
-							/>
-						</View>					
-						
-						<View style={ { flex: 1 } } >
-							<Text style={checkout.greyLineDesc} >Your Savings</Text>
-						</View> 
-						
-						<View style={ { flex: 1 } } >
-							<Text style={checkout.greyLinePrice} >$58.00</Text>
-						</View> 
-
-					</View>
-
-
-
-				</ScrollView>
-
-				<View style={checkout.acceptRow}>
-
-					<Button 
-						text='CHECKOUT' 
-						raised={true}
-						overrides={ {
-							backgroundColor: '#0ac600',
-							textColor: '#ffffff'
-						} }
-						onPress={ () => Alert.alert("checkout view") }
-						 />
 				</View>
 
+				<View style={checkout.greyLine} >
+
+					<View style={ { width: 30 } }>					
+						<FontAwesomeIcon 
+							name="pencil"
+							style={ { textAlign: 'center', fontSize: 22, padding: 5, color: '#555', } } 
+						/>
+					</View>					
+					
+					<View style={ { flex: 1 } } >
+						<Text style={checkout.greyLineDesc} >Your Savings</Text>
+					</View> 
+					
+					<View style={ { flex: 1 } } >
+						<Text style={checkout.greyLinePrice} >$58.00</Text>
+					</View> 
+
+				</View>
 			</View>
 		)
+
+	}
+
+	renderEmptyContainer( isSetTimeout = false ) {
+
+		if (isSetTimeout) {
+			setTimeout(() => this.props.navigator.pop(), 1000 );
+		};
+
+		return (
+			<View style={ checkout.container } >
+
+			</View>
+		);
+	}
+
+
+	render() {
+
+		if (this.state.transaction) {
+
+			if (!this.state.transaction.products.length) {
+
+				return (this.renderEmptyContainer(true) )
+
+			}
+
+
+			return (
+				<View style={ checkout.container } >
+
+					<ScrollView style={{marginBottom: 60}} contentContainerStyle={{backgroundColor: '#eee'}}>
+
+					{/*item*/}
+
+						{ this.renderProducts( this.state.transaction.products ) }
+						{ this.renderGreyStrips( this.state.transaction.products ) }
+					
+					{/*end item*/}
+
+
+					</ScrollView>
+
+					<View style={checkout.acceptRow}>
+
+						<Button 
+							text='CHECKOUT' 
+							raised={true}
+							overrides={ {
+								backgroundColor: '#0ac600',
+								textColor: '#ffffff'
+							} }
+							onPress={ () => Alert.alert("checkout view") }
+							 />
+					</View>
+
+				</View>
+			);
+		}
+
+		return ( this.renderEmptyContainer() );
 	}
 }
 

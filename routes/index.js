@@ -143,7 +143,7 @@ const manager = ( function () {
 
 		removeTransListeners: function(handler) {
 			let index = transListeners.findIndex( elem => elem === handler );
-			if ( index ){
+			if ( index >= 0 ){
 				transListeners.splice(index, 1);
 			}
 		}

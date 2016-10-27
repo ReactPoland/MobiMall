@@ -9,6 +9,7 @@ import {
 	Alert
 } from 'react-native';
 import { api, bindMethods } from '../../utils';
+import routes from '../routes';
 import { Card, Button } from 'react-native-material-design';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
@@ -19,6 +20,7 @@ export default class Checkout extends Component {
 		bindMethods(this);
 		this.state = {
 			transaction: null,
+			checkoutButtonReady: true,
 		}
 	}
 
@@ -240,16 +242,37 @@ export default class Checkout extends Component {
 	}
 
 	acceptList() {
+		this.setState({checkoutButtonReady: false});
 		api.acceptProductList( this.props.manager.getDataFB().id, this.state.transaction ).then( ( { data } ) => {
 
 			if (data.status == 'ok') {
-				console.log(data.value);
+				this.setState({checkoutButtonReady: true});
+				let alertText = `Payed: $ ${data.value.price}${'\n'}from card: ...${data.value.source.last4}`;
+				// `Was made charge from your card: $${totalPrice}`
+				Alert.alert(alertText);
+				// dashboardRoute = routes.profileChanging;
+				// this.props.navigator.getCurrentRoutes(item => {
+
+				// 	if ( item.key == routes.dashboardSeller.key ) {
+				// 		dashboardRoute = routes.dashboardSeller;
+				// 	}
+
+				// 	if ( item.key == routes.dashboardBuyer.key ) {
+				// 		dashboardRoute = routes.dashboardBuyer;
+				// 	}
+
+				// });
+
+				this.props.navigator.pop();
+
 			} else {
+				this.setState({checkoutButtonReady: true});
 				Alert.alert(data.mess);
 			}
 
 		})
 		.catch( e => {
+			this.setState({checkoutButtonReady: true});
 			Alert.alert(e.message);
 		})
 	}
@@ -283,6 +306,7 @@ export default class Checkout extends Component {
 
 					<View style={checkout.acceptRow}>
 
+					{ this.state.checkoutButtonReady ? (
 						<Button 
 							text='CHECKOUT' 
 							raised={true}
@@ -290,8 +314,11 @@ export default class Checkout extends Component {
 								backgroundColor: '#0ac600',
 								textColor: '#ffffff'
 							} }
-							onPress={ () => Alert.alert("checkout view") }
+							onPress={ this.acceptList }
 							 />
+						) : null
+					}
+
 					</View>
 
 				</View>

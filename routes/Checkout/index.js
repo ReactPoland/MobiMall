@@ -239,6 +239,21 @@ export default class Checkout extends Component {
 		);
 	}
 
+	acceptList() {
+		api.acceptProductList( this.props.manager.getDataFB().id, this.state.transaction ).then( ( { data } ) => {
+
+			if (data.status == 'ok') {
+				console.log(data.value);
+			} else {
+				Alert.alert(data.mess);
+			}
+
+		})
+		.catch( e => {
+			Alert.alert(e.message);
+		})
+	}
+
 
 	render() {
 

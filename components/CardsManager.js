@@ -60,25 +60,40 @@ export default class CardsManager extends Component {
 				cvc
 			}
 			this.setState({ cardData });
-		}
-	}
+		} else{
+      // Alert.alert('Cannot save the card, check the data and try again!');
+    }
+  }
 
   async _onCardSave() {
-    this.setState({ saving: true });
-		const { cardData } = this.state;
+    const { cardData } = this.state;
     const { fbId } = this.props;
-		const { cardNumber, expMonth, expYear, cvc } = cardData;
-		if(cardData) {
-			const cardToken = await Stripe
-				.createToken(cardNumber, expMonth, expYear, cvc)
-        .catch(() => Alert.alert('Error', 'Cannot save the card, check the data and try again!'));
-			if(cardToken.id) {
-				const apiResp = await api.saveCard(fbId, cardToken.id);
-				if(!apiResp.data.error) {
-					this._fetchData();
-				}
-			}
-		}
+    if (!cardData) {
+      Alert.alert('Error', 'Ivalid data');
+      return;
+    }
+    const { cardNumber, expMonth, expYear, cvc } = cardData;
+    if(cardData && cardNumber && expMonth && expYear && cvc) {
+      this.setState({ saving: true });
+      const cardToken = await Stripe
+        .createToken(cardNumber, expMonth, expYear, cvc)
+        .catch(() => {
+          Alert.alert('Error', 'Cannot save the card, check the data and try again!') 
+          this.setState({ saving: false });
+        });
+      if(cardToken && cardToken.id) {
+        const apiResp = await api.saveCard(fbId, cardToken.id);
+        if(!apiResp.data.error) {
+          this._fetchData();
+        }
+      } else {
+        this.setState({ saving: false });
+        Alert.alert('Error', `Can't get token`);
+      }
+    } else {
+      this.setState({ saving: false });
+      Alert.alert('Error','Cannot save the card, check the data and try again!');
+    }
 	}
 
   _onCardDelete (id) {

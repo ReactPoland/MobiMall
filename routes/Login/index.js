@@ -24,7 +24,7 @@ export default class Login extends Component {
 		this.onLayout = this.onLayout.bind(this);
 		this.loginFB = this.loginFB.bind(this);
 		this.state = {
-			fogVisibility: false
+			loginButtonReady: true
 		}
 
 		// this.state = {
@@ -35,15 +35,15 @@ export default class Login extends Component {
 		// }
 	}
 
-	showFog() {
+	showButton() {
 		this.setState({
-			fogVisibility: true
+			loginButtonReady: true
 		})
 	}
 
-	hideFog() {
+	hideButton() {
 		this.setState({
-			fogVisibility: false
+			loginButtonReady: false
 		})
 	}
 
@@ -65,25 +65,25 @@ export default class Login extends Component {
 	loginFB() {
 
 		let that = this;
-		this.showFog();
+		this.hideButton();
 
 
 		FBLoginManager.setLoginBehavior( FBLoginManager.LoginBehaviors.Native );
 		FBLoginManager.loginWithPermissions(["email","user_friends", "user_about_me", 'public_profile'], async function(error, data) {
 
 			if (that.props.manager.getDataFB() ) {
-				that.hideFog();
+				that.showButton();
 				return;
 			}
 			
 			if ( error ) {
-				that.hideFog();
+				that.showButton();
 				Alert.alert('error');
 				console.log(error);
 				return;
 			}
 			if ( ! ( data.type === 'success' ) ) {
-				that.hideFog();
+				that.showButton();
 				Alert.alert('Bad response');
 				return;
 			}
@@ -107,10 +107,10 @@ export default class Login extends Component {
 
 			that.props.manager.authFB && that.props.manager.authFB( profile );
 			api.createUser( profile ).then(() => {
-				that.hideFog();
+				that.showButton();
 				that.props.navigator.replace( routes.profileChanging );
 			}).catch(e => {
-				that.hideFog();
+				that.showButton();
 				Alert.alert('server error');
 				console.log('e', e)
 			});
@@ -126,7 +126,6 @@ export default class Login extends Component {
 
 		return (
 			<View style={loginStyle.container} onLayout={this.onLayout}>
-			{ this.state.fogVisibility ? (<Fog />) : null }	
 
 			<Image 
 				source={ { uri: 'http://bestanimations.com/Animals/Birds/Penguins/Penguin-cartoon-animation.gif' } }
@@ -164,8 +163,7 @@ export default class Login extends Component {
 					</View>
 
 
-					{ this.state.fogVisibility ? (<Fog />) : (
-
+					{ this.state.loginButtonReady ? (
 						<View style={loginStyle.buttonBlock}>
 
 							<TouchableNativeFeedback onPress={ this.loginFB }>
@@ -199,8 +197,8 @@ export default class Login extends Component {
 							</TouchableNativeFeedback>
 						
 						</View>
-
-					) }
+						) : null
+					}
 
 
 

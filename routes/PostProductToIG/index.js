@@ -64,11 +64,11 @@ export default class NewProductSeller extends Component {
 		
 		let product = this.props.manager.getPostProductData();
 
-
 		this.showFog();
 		api
-			.addNewProduct(this.props.manager.getDataFB().id, product)
-			.then( ({data}) => { 
+			.bodyAddNewProduct(this.props.manager.getDataFB().id, product)
+			.then(response => response.json() )
+			.then( data => {
 			
 				this.hideFog();
 			
@@ -105,7 +105,7 @@ export default class NewProductSeller extends Component {
 							<Text style={postStyle.blockTitle} >{ product.productName }</Text>
 
 							<Text style={postStyle.textInput} >
-								{ product.id }{'\n'}
+								{ product.productId }{'\n'}
 								Category:{ product.category }{'\n'}
 								{ product.description }{'\n'}{'\n'}
 								Quantity:{ product.quantity }{'\n'}

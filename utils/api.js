@@ -1,7 +1,7 @@
 import axios from 'axios';
 // const host = 'http://10.0.2.2:3000';  // local server
-const host = 'http://testmobimall2.herokuapp.com'; // heroku server
-// const host = 'http://192.168.1.244:3000' // server to use when running on physical device;
+// const host = 'http://testmobimall2.herokuapp.com'; // heroku server
+const host = 'http://192.168.1.244:3000' // server to use when running on physical device;
 const createUrl = pathArray => `${host ? host : ''}/api/${pathArray.join('/')}`;
 
 const createRequest = (pathArray, data) => axios({
@@ -81,7 +81,29 @@ const api = {
 
   acceptProductList (fbId, transaction ) {
     return createRequest(['users', 'acceptProductList'], { fbId, transaction });
+  },
+
+  bodyAddNewProduct( fbId, productInfo ) {
+
+    // let request = new XMLHttpRequest();
+    let formdata = new FormData();
+
+    formdata.append('fbId', fbId);
+    
+    Object.entries( productInfo ).map(item => {
+      formdata.append(item[0], item[1]);
+    });
+
+    // console.log(formdata);
+
+    return fetch( createUrl(['users', 'addNewProduct']), {
+    // return fetch( 'http://192.168.1.244:3000/upload', {
+      method: 'POST',
+      body: formdata
+    } );
   }
+
+
   
 }
 

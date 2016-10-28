@@ -74,7 +74,7 @@ export default class NewProductSeller extends Component {
 			
 				if (data.status && data.status === 'ok' ){
 					Alert.alert("Done!"); 
-					navigator.popToRoute( routes.dashboardSeller );
+					this.props.navigator.popToRoute( routes.dashboardSeller );
 					// navigator.push( routes.dashboardSeller );
 					return;
 				}
@@ -96,9 +96,10 @@ export default class NewProductSeller extends Component {
 			<View style={postStyle.container} onLayout={this.onLayout}>
 					<ScrollView ref='scrolView' >
 
-						<Image source={{uri: 'https://unsplash.it/400/400?image=149'}} style={{
+						<Image source={product.img} style={{
 							width: this.state.mainImageSize.width,
 							height: this.state.mainImageSize.height,
+							resizeMode: 'cover',
 						}}/>
 							
 						<View style={postStyle.postPageDescView} >

@@ -47,7 +47,7 @@ export default class NewProductSeller extends Component {
 
 		// return;
 
-		
+
 
 		// let formdata = new FormData();
 		// formdata.append("product[name]", 'test');
@@ -254,7 +254,11 @@ export default class NewProductSeller extends Component {
 
 									}} >
 									<View style={st.squareBorderButton} >
-										<Text style={st.buttName} >{ (this.state.productImg ) ? this.state.productImg.name : `UPLOAD IMAGE` }</Text>
+										{ this.state.productImg ? (
+											<Image source={this.state.productImg} style={st.buttonPickerImg} />
+										) : (
+											<Text style={st.buttName} >UPLOAD IMAGE</Text>
+										) }
 									</View>
 								</TouchableNativeFeedback>
 							</View>

@@ -205,5 +205,14 @@ export default {
 	},
 	chboxCardVertContainer: {
 		flexDirection: 'row',
+	},
+	buttonPickerImg: {
+		resizeMode: 'cover',
+		bottom: 0,
+		left: 0,
+		top: 0,
+		right: 0,
+		position: 'absolute',
+		borderRadius: 10,
 	}
 }

@@ -65,12 +65,14 @@ export default routes = {
 		title: 'Home',
 		themeUi: true,
 		key: 'dashboardbuyer',
+		stripLinks: [ 'shopperProfileView' ],
 	},
 	dashboardSeller: {
 		Page: DashboardSeller,
 		title: 'Home',
 		themeUi: true,
 		key: 'dashboardseller',
+		stripLinks: [ 'sellerProfileView', 'newProduct' ],
 	},
 	profileChanging: {
 		Page: ProfileChanging,

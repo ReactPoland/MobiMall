@@ -92,7 +92,7 @@ export default class Checkout extends Component {
 				<View style={ checkout.product } >
 
 					<View style={checkout.prodPictCol} >
-						<Image source={{uri: `https://unsplash.it/200/200?image=5` }} style={checkout.prodImg}/>
+						<Image source={{uri: item.imgUrl  }} style={checkout.prodImg}/>
 					</View>
 
 					<View style={checkout.prodDescCol} >

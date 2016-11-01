@@ -8,7 +8,8 @@ import {
 	TouchableNativeFeedback,
 	ScrollView,
 	Alert,
-	Dimensions
+	Dimensions,
+	Clipboard
 } from 'react-native';
 import { bindMethods, api } from '../../utils';
 import routes from '../routes'
@@ -76,7 +77,7 @@ export default class NewProductSeller extends Component {
 			
 				this.hideFog();
 			
-				if (data.status && data.status === 'ok' ){
+				if (data.status && data.status === 'ok' ) {
 					this.showWarning();
 					// Alert.alert("Done!"); 
 					// this.props.navigator.popToRoute( routes.dashboardSeller );
@@ -103,10 +104,9 @@ export default class NewProductSeller extends Component {
         this.hideWarning();
 
         let dashboardRoute = routes.profileChanging;
-        console.log(this.props.navigator);
-        console.log(this.props.navigator.getCurrentRoutes);
 
 		this.props.navigator.popN( 2 );
+		Clipboard.setString( this.buildDesc( product, product.productName + "\n\n" ) );
         SendIntentAndroid.openChooserWithOptions({imageUrl: product.img.uri, package: 'com.instagram.android' }, 'Share to');
 	}
 
@@ -115,6 +115,7 @@ export default class NewProductSeller extends Component {
 			<View style={postStyle.warningBg}>
 				<Text style={postStyle.warnPopText} >Warning{'\n'}</Text>
 				<Text style={postStyle.warnPopDesc} >Are you logged in on IG app as seller? {'\n'}Please check out and then press button</Text>
+				<Text style={postStyle.warnPopNotify} >*Your product description was writed in clipboard</Text>
 
 				<TouchableNativeFeedback onPress={this.makeRedirect}>
 					<View style={postStyle.warnButtView} >
@@ -124,6 +125,22 @@ export default class NewProductSeller extends Component {
 
 			</View> 
 		);
+	}
+
+	buildDesc(product, descBefore = '') {
+
+//  !!!! DON'T ADD TAB !!!!
+
+		return descBefore + `${ product.productId }
+Category:${ product.category }
+${ product.description }
+
+
+Quantity:${ product.quantity }
+Retail Price:${ product.reatilPrice }
+Cost Price:${ product.costPrice }
+Vat:${ product.vat }
+Supplier:${ product.supplier }`;
 	}
 
 
@@ -154,16 +171,7 @@ export default class NewProductSeller extends Component {
 							<Text style={postStyle.blockTitle} >{ product.productName }</Text>
 
 							<Text style={postStyle.textInput} >
-								{ product.productId }{'\n'}
-								Category:{ product.category }{'\n'}
-								{ product.description }{'\n'}{'\n'}
-								Quantity:{ product.quantity }{'\n'}
-								Retail Price:{ product.reatilPrice }{'\n'}
-								Cost Price:{ product.costPrice }{'\n'}
-								Vat:{ product.vat }{'\n'}
-								Supplier:{ product.supplier }{'\n'}
-
-
+								{ this.buildDesc(product) }
 							</Text>
 
 							<TouchableNativeFeedback
@@ -194,6 +202,12 @@ const postStyle = StyleSheet.create({
 		textAlign: 'left',
 		fontSize: 17,
 		fontStyle: 'italic',
+	},
+	warnPopNotify: {
+		color: 'white',
+		textAlign: 'left',
+		fontStyle: 'italic',
+		fontSize: 12,
 	},
 	warnButtView: {
 		position: 'absolute',

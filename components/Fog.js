@@ -5,7 +5,7 @@ import {
   Modal
 } from 'react-native';
 
-const Fog = ({visible, onRequestClose, children}) => {
+const Fog = ( {visible, onRequestClose, children} ) => {
   return (
     <Modal 
       visible={ visible }
@@ -13,7 +13,7 @@ const Fog = ({visible, onRequestClose, children}) => {
       transparent={ true }
       onRequestClose={ () => { if (onRequestClose) onRequestClose(); } } >
 
-      { children && children.length ? (children) : (
+      { children ? (children) : (
 
         <View style={{
             flex: 1,
@@ -26,6 +26,8 @@ const Fog = ({visible, onRequestClose, children}) => {
             color: 'white',
             textAlign: 'center',
             fontSize: 30,
+            fontWeight: 'bold',
+            fontStyle: 'italic',
           }} >LOADING...</Text>
 
         </View>

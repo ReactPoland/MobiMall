@@ -230,6 +230,11 @@ export default class NewProductSeller extends Component {
 										    console.log('User tapped custom button: ', response.customButton);
 										  }
 										  else {
+
+										  	if ( response.fileSize > 3145728 ) {
+										  		Alert.alert('File is too big');
+										  		return;
+										  	}
 										    // You can display the image using either data...
 										    // const source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true, name:response.fileName };
 										    let source;

@@ -2,6 +2,7 @@ package com.burnweb.rnsendintent;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.ComponentName;
 import android.provider.CalendarContract;
 import android.provider.CalendarContract.Calendars;
@@ -188,6 +189,22 @@ public class RNSendIntentModule extends ReactContextBaseJavaModule {
           this.reactContext.startActivity(sendIntent);
       }
     }
+
+    @ReactMethod
+    public void isExistPackage(String packageName, final Callback callback) {
+        PackageManager pm = this.reactContext.getPackageManager();
+        boolean app_installed = false;
+
+        try {
+            pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+            app_installed = true;
+        }
+        catch (PackageManager.NameNotFoundException e) {
+            app_installed = false;
+        }
+
+        callback.invoke(app_installed);
+    } 
 
     @ReactMethod
     public void openCalendar() {

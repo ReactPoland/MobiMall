@@ -64,9 +64,20 @@ export default class NewProductSeller extends Component {
 		})
 	}
 
-	postToIG() {
-		let product = this.props.manager.getPostProductData();
+	isInstalledIG() {
+		return new Promise((resolve, reject) => {
+			SendIntentAndroid.isExistPackage('com.instagram.android', (res) => resolve(res) );
+		});
+	}
 
+	async postToIG() {
+		let product = this.props.manager.getPostProductData();
+		let isIGExists = await this.isInstalledIG();
+
+		if (!isIGExists) {
+			Alert.alert('Please install IG app and log in');
+			return;
+		}
 		// check out is exist IG app on your phone
 
 		this.showFog();
@@ -153,36 +164,36 @@ Supplier:${ product.supplier }`;
 		return (
 			<View style={postStyle.container} onLayout={this.onLayout}>
 
-					<Fog visible={ this.state.redirectWarningVisibility } >
-						{ this.renderFogWarningBody() }
-					</Fog>
-	
-					<Fog visible={ this.state.fogVisibility } />
-					
-					<ScrollView ref='scrolView' >
+				<Fog visible={ this.state.redirectWarningVisibility } >
+					{ this.renderFogWarningBody() }
+				</Fog>
 
-						<Image source={product.img} style={{
-							width: this.state.mainImageSize.width,
-							height: this.state.mainImageSize.height,
-							resizeMode: 'cover',
-						}}/>
-							
-						<View style={postStyle.postPageDescView} >
-							<Text style={postStyle.blockTitle} >{ product.productName }</Text>
+				<Fog visible={ this.state.fogVisibility } />
+				
+				<ScrollView ref='scrolView' >
 
-							<Text style={postStyle.textInput} >
-								{ this.buildDesc(product) }
-							</Text>
+					<Image source={product.img} style={{
+						width: this.state.mainImageSize.width,
+						height: this.state.mainImageSize.height,
+						resizeMode: 'cover',
+					}}/>
+						
+					<View style={postStyle.postPageDescView} >
+						<Text style={postStyle.blockTitle} >{ product.productName }</Text>
 
-							<TouchableNativeFeedback
-								onPress={() => { this.postToIG() }} > 
-								<View style={postStyle.postButtonView} >
-									<Text style={postStyle.buttName} >POST TO INSTAGRAM</Text>
-								</View>
-							</TouchableNativeFeedback>
+						<Text style={postStyle.textInput} >
+							{ this.buildDesc(product) }
+						</Text>
 
-						</View>
-					</ScrollView>
+						<TouchableNativeFeedback
+							onPress={() => { this.postToIG() }} > 
+							<View style={postStyle.postButtonView} >
+								<Text style={postStyle.buttName} >POST TO INSTAGRAM</Text>
+							</View>
+						</TouchableNativeFeedback>
+
+					</View>
+				</ScrollView>
 
 			</View>
 		)

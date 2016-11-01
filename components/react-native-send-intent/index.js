@@ -41,6 +41,10 @@ var SendIntentAndroid = {
     openChooserWithOptions(options: Object, title: string) {
       RNSendIntentAndroid.openChooserWithOptions(options, title);
     },
+    isExistPackage(packageName, callback) {
+        return RNSendIntentAndroid.isExistPackage(packageName, callback);
+    }
+
 };
 
 module.exports = SendIntentAndroid;

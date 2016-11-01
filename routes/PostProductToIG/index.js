@@ -12,6 +12,8 @@ import {
 } from 'react-native';
 import { bindMethods, api } from '../../utils';
 import routes from '../routes'
+var SendIntentAndroid = require('../../components/react-native-send-intent');
+
 
 export default class NewProductSeller extends Component {
 
@@ -61,8 +63,10 @@ export default class NewProductSeller extends Component {
 	}
 
 	postToIG() {
-		
 		let product = this.props.manager.getPostProductData();
+        SendIntentAndroid.openChooserWithOptions({imageUrl: product.img.uri, package: 'com.instagram.android' }, 'Share to');
+		
+		return;
 
 		this.showFog();
 		api

@@ -148,6 +148,7 @@ dependencies {
     compile "com.facebook.react:react-native:+"  // From node_modules
     compile project(':react-native-facebook-login')
     compile project(':react-native-push-notification')
+    compile project(':RNSendIntentModule')
     compile ('com.google.android.gms:play-services-gcm:8.1.0') {
         force = true;
     }

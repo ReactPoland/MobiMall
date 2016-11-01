@@ -98,6 +98,8 @@ export default class NewProductSeller extends Component {
 
 		return (
 			<View style={postStyle.container} onLayout={this.onLayout}>
+
+					<Fog visible={ this.state.fogVisibility } />
 					<ScrollView ref='scrolView' >
 
 						<Image source={product.img} style={{
@@ -122,14 +124,12 @@ export default class NewProductSeller extends Component {
 
 							</Text>
 
-							{ this.state.fogVisibility ? ( <Fog /> ) : (
-								<TouchableNativeFeedback
-									onPress={() => { this.postToIG() }} > 
-									<View style={postStyle.postButtonView} >
-										<Text style={postStyle.buttName} >POST TO INSTAGRAM</Text>
-									</View>
-								</TouchableNativeFeedback>
-							) }
+							<TouchableNativeFeedback
+								onPress={() => { this.postToIG() }} > 
+								<View style={postStyle.postButtonView} >
+									<Text style={postStyle.buttName} >POST TO INSTAGRAM</Text>
+								</View>
+							</TouchableNativeFeedback>
 
 						</View>
 					</ScrollView>

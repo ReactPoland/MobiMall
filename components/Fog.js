@@ -2,26 +2,38 @@ import React from 'react';
 import {
   View,
   Text,
+  Modal
 } from 'react-native';
 
-const Fog = () => {
+const Fog = ({visible, onRequestClose, children}) => {
   return (
-    <View style={{
-        // position: 'absolute',
-        // zIndex: 300,
-        // top: 0,
-        // bottom: 0,
-        // left: 0,
-        // right: 0,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }} >
-      <Text style={{
-        textAlign: 'center',
-        fontSize: 20,
-      }}>LOADING...</Text>
+    <Modal 
+      visible={ visible }
+      animationType = { 'fade' } 
+      transparent={ true }
+      onRequestClose={ () => { if (onRequestClose) onRequestClose(); } } >
 
-    </View>
+      { children && children.length ? (children) : (
+
+        <View style={{
+            flex: 1,
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            justifyContent: 'center',
+            alignItems: 'center',
+          }} >
+
+          <Text style={{
+            color: 'white',
+            textAlign: 'center',
+            fontSize: 30,
+          }} >LOADING...</Text>
+
+        </View>
+
+      )}
+
+
+    </Modal>
   )
 }
 

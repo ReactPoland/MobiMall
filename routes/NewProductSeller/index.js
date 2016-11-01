@@ -144,6 +144,8 @@ export default class NewProductSeller extends Component {
 
 		return (
 			<View style={st.container}>
+
+				<Fog visible={ this.state.fogVisibility } />
 			
 				<ScrollView>
 
@@ -319,14 +321,12 @@ export default class NewProductSeller extends Component {
 								placeholderTextColor='#cccccc'
 								value={ supplier } />
 
-							{ this.state.fogVisibility ? (<Fog />) : (
-								<TouchableNativeFeedback
-								  onPress={this.onSendProduct} >
-									<View style={st.purpleButtonView} >
-								    	<Text style={st.purpleButtonName} >SAVE PRODUCT</Text>
-									</View>
-								</TouchableNativeFeedback>
-							) }						
+							<TouchableNativeFeedback
+							  onPress={this.onSendProduct} >
+								<View style={st.purpleButtonView} >
+							    	<Text style={st.purpleButtonName} >SAVE PRODUCT</Text>
+								</View>
+							</TouchableNativeFeedback>
 
 						</Card.Body>
 					</Card>

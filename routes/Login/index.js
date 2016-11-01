@@ -127,6 +127,8 @@ export default class Login extends Component {
 		return (
 			<View style={loginStyle.container} onLayout={this.onLayout}>
 
+			<Fog visible={ !this.state.loginButtonReady } />
+
 			<Image 
 				source={ { uri: 'http://bestanimations.com/Animals/Birds/Penguins/Penguin-cartoon-animation.gif' } }
 				style={{
@@ -160,46 +162,42 @@ export default class Login extends Component {
 					{/*https://video-fra3-1.xx.fbcdn.net/v/t42.4659-2/14495702_916960405076035_385499260713435136_n.mp4?oh=c1a63d2be4e961155ec8d047a24fbf43&oe=57FD25A3*/}
 
 
-					</View>
+				</View>
 
 
-					{ this.state.loginButtonReady ? (
-						<View style={loginStyle.buttonBlock}>
+				<View style={loginStyle.buttonBlock}>
 
-							<TouchableNativeFeedback onPress={ this.loginFB }>
-								<View style={loginStyle.button}>
-									<Text style={loginStyle.buttonText} >CONNECT WITH FACEBOOK</Text>
-									{/*<FBLogin
-									    ref={(fbLogin) => { this.fbLogin = fbLogin }}
-									    loginBehavior={FBLoginManager.LoginBehaviors.Native}
-									    permissions={["email","user_friends"]}
-									    onLogin={function(e) {
-									    	if ( ! ( e.type === 'success' ) ) return;
-									    	that.props.manager.authFB && that.props.manager.authFB( e.profile );
-									    	console.log(e)
-									    } }
-									    onLoginFound={function(e){console.log(e)}}
-									    onLoginNotFound={function(e){console.log(e)}}
-									    onLogout={function(e){console.log(e)}}
-									    onCancel={ function(e) { } }
-									    onError={ function(e) {
-									    	console.log(e);
-									    } }
-									    onPermissionsMissing={ function(e) { console.log(e) } }
-									  />*/}
-								</View>
-							</TouchableNativeFeedback>
-						
-							<TouchableNativeFeedback onPress={ () => { this.props.navigator.push( routes.signUp ); } }>
-								<View style={loginStyle.button}>
-									<Text style={loginStyle.buttonText} >SIGN UP</Text>
-								</View>
-							</TouchableNativeFeedback>
-						
+					<TouchableNativeFeedback onPress={ this.loginFB }>
+						<View style={loginStyle.button}>
+							<Text style={loginStyle.buttonText} >CONNECT WITH FACEBOOK</Text>
+							{/*<FBLogin
+							    ref={(fbLogin) => { this.fbLogin = fbLogin }}
+							    loginBehavior={FBLoginManager.LoginBehaviors.Native}
+							    permissions={["email","user_friends"]}
+							    onLogin={function(e) {
+							    	if ( ! ( e.type === 'success' ) ) return;
+							    	that.props.manager.authFB && that.props.manager.authFB( e.profile );
+							    	console.log(e)
+							    } }
+							    onLoginFound={function(e){console.log(e)}}
+							    onLoginNotFound={function(e){console.log(e)}}
+							    onLogout={function(e){console.log(e)}}
+							    onCancel={ function(e) { } }
+							    onError={ function(e) {
+							    	console.log(e);
+							    } }
+							    onPermissionsMissing={ function(e) { console.log(e) } }
+							  />*/}
 						</View>
-						) : null
-					}
-
+					</TouchableNativeFeedback>
+				
+					<TouchableNativeFeedback onPress={ () => { this.props.navigator.push( routes.signUp ); } }>
+						<View style={loginStyle.button}>
+							<Text style={loginStyle.buttonText} >SIGN UP</Text>
+						</View>
+					</TouchableNativeFeedback>
+				
+				</View>
 
 
 					{/*<View style={loginStyle.buttonVertBlock}>

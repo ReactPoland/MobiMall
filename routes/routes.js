@@ -67,10 +67,19 @@ export default routes = {
 		key: 'dashboardBuyer',
 		stripLinks: [ { 
 			route: 'dashboardBuyer',
-			iconName: 'store',
+			iconName: 'home',
+		}, { 
+			route: 'profileChanging',
+			iconName: 'heart',
+		}, {
+			route: 'profileChanging',
+			iconName: 'search',
+		}, {
+			route: 'setting',
+			iconName: 'setting',
 		}, {
 			route: 'shopperProfileView',
-			iconName: 'dashboard',
+			iconName: 'user',
 		} ],
 	},
 	dashboardSeller: {
@@ -80,13 +89,19 @@ export default routes = {
 		key: 'dashboardSeller',
 		stripLinks: [ {
 			route: 'dashboardSeller',
-			iconName: 'store',
-		}, {
-			route: 'sellerProfileView',
-			iconName: 'dashboard',
+			iconName: 'home',
 		}, {
 			route: 'newProduct',
-			iconName: 'heart'
+			iconName: 'plus2'
+		}, {
+			route: 'profileChanging',
+			iconName: 'orders',
+		}, {
+			route: 'sellerProfileView',
+			iconName: 'user',
+		}, {
+			route: 'setting',
+			iconName: 'setting',
 		} ],
 	},
 	profileChanging: {
@@ -98,6 +113,8 @@ export default routes = {
 		key: 'signUp',
 	},
 	setting: {
+		title: 'Setting',
+		themeUi: true,
 		Page: Setting,
 		key: 'setting',
 	}

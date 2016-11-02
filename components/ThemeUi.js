@@ -45,33 +45,54 @@ export default class ThemeUi extends Component {
         }
     };
 
+    // icomoon 1
+
+    // this.iconsMap = {
+    //   wallet    :59651,
+    //   news      :59652,
+    //   coupon    :59653,
+    //   backarrow :59671,
+    //   search    :59672,
+    //   heart     :59673,
+    //   orders    :59674,
+    //   dashboard :59675,
+    //   home      :59648,
+    //   cart      :59676,
+    //   store     :59677,
+    //   order     :59679
+    // };
+
+    // 59638 - 59728
+
     this.iconsMap = {
-      wallet    :59651,
-      news      :59652,
-      coupon    :59653,
-      backarrow :59671,
-      search    :59672,
-      heart     :59673,
-      orders    :59674,
-      dashboard :59675,
-      home      :59648,
-      cart      :59676,
-      store     :59677,
-      order     :59679
-    };
+      home    :59648,
+      plus2   :59700,
+      orders  :59674,
+      user    :59705,
+      setting :59703,
+      heart   :59673,
+      search  :59672,
+    }
 
     this.isExsistRouteInStack = (route) => {
       return this.props.navigator.getCurrentRoutes().some(item => item.key === route.key );
     }
 
-    this.Icon = createIconSet(this.iconsMap, 'icomoon' );
+    this.Icon = createIconSet(this.iconsMap, 'icomoon2' );
 
   }
 
   renderIcon(source) {
     const Icon = this.Icon;
-    return <Icon size={40} name={source} />
+    return <Icon size={30} name={source} />
   }
+
+  // renderIcons() {
+  //   for (var i = 59638; i < 59690; i++) {
+
+  //     Things[i]
+  //   }
+  // }
 
 
 
@@ -193,7 +214,7 @@ export default class ThemeUi extends Component {
                 }
               }}
             />
-           
+
             { this.props.children }
 
             {this.renderActionButton(this.props.route.stripLinks, this.props.navigator) }

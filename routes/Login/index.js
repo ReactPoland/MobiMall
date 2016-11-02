@@ -13,7 +13,8 @@ import {
 } from 'react-native';
 var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
 import Video from 'react-native-video';
-import { api } from '../../utils';
+import { api, bindMethods } from '../../utils';
+import IGLoginPopup from '../../components/IGLoginPopup';
 import axios from 'axios';
 import routes from '../routes'
 
@@ -21,10 +22,12 @@ export default class Login extends Component {
 
 	constructor(prop) {
 		super(prop);
-		this.onLayout = this.onLayout.bind(this);
-		this.loginFB = this.loginFB.bind(this);
+		bindMethods(this);
+		// this.onLayout = this.onLayout.bind(this);
+		// this.loginFB = this.loginFB.bind(this);
 		this.state = {
-			loginButtonReady: true
+			loginButtonReady: true,
+			popupIGVisibility: false,
 		}
 
 		// this.state = {
@@ -118,14 +121,23 @@ export default class Login extends Component {
 		});
 	}
 
+	showIGPopup() {
+		this.setState({popupIGVisibility: true});
+	}
+
+	hideIGPopup() {
+		this.setState({popupIGVisibility: false});
+	}
+
 	render() {
 		
 		const { Fog } = this.props;
-
-		// console.log(fog);
+		const { popupIGVisibility } = this.state;
 
 		return (
 			<View style={loginStyle.container} onLayout={this.onLayout}>
+
+			<IGLoginPopup visible={popupIGVisibility} />
 
 			<Fog visible={ !this.state.loginButtonReady } />
 

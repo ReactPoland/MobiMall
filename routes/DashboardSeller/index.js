@@ -202,16 +202,6 @@ export default class DashboardSeller extends Component {
 							</View>
 						</View>
 
-						<View  icon={ <FontAwesomeIcon 
-								name="pencil" 
-								style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } }/> } 
-
-							iconActive={ <FontAwesomeIcon 
-								name="pencil" 
-								style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } } /> } >
-							<Text>tab 3</Text>
-						</View>
-
 					</TabIcons>
 					
 				</ScrollView>

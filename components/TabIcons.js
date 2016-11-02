@@ -12,7 +12,7 @@ export default class Tabs extends Component {
 		super(props);
 		this.state = {
 			currentPage: 0,
-			tabTitleWidth: Math.floor(360 / 3)
+			tabTitleWidth: Math.floor(360 / this.props.children.length )
 		};
 		
 		this.onLayoutView = this.onLayoutView.bind(this);
@@ -23,7 +23,7 @@ export default class Tabs extends Component {
 		let { width, height } = ev.nativeEvent.layout;
 
 		this.setState({
-			tabTitleWidth: Math.floor(width / 3)
+			tabTitleWidth: Math.floor(width / this.props.children.length )
 		});
 	}
 

@@ -25,7 +25,7 @@ export default routes = {
 		Page: NewProductSeller,
 		title: 'New product',
 		themeUi: true,
-		key: 'newproduct',
+		key: 'newProduct',
 	},
 	checkout: {
 		Page: Checkout,
@@ -35,19 +35,19 @@ export default routes = {
 	}, 
 	pageList: {
 		Page: PageList,
-		key: 'pagelist',
+		key: 'pageList',
 	},
 	postProductToIG: {
 		Page: PostProductToIG,
 		title: "Post product to Instagram",
 		themeUi: true,
-		key: 'posttoig',
+		key: 'postProductToIG',
 	}, 
 	shopperProfileView: {
 		Page: ShopperProfileView,
 		themeUi: true,
 		title: 'Profile',
-		key: 'posttoig',
+		key: 'shopperProfileView',
 	}, 
 	dashboard: {
 		Page: Dashboard,
@@ -58,29 +58,44 @@ export default routes = {
 		Page: SellerProfileView,
 		themeUi: true,
 		title: 'Profile',
-		key: 'sellerprofileview',
+		key: 'sellerProfileView',
 	},
 	dashboardBuyer: {
 		Page: DashboardBuyer,
 		title: 'Home',
 		themeUi: true,
-		key: 'dashboardbuyer',
-		stripLinks: [ 'shopperProfileView' ],
+		key: 'dashboardBuyer',
+		stripLinks: [ { 
+			route: 'dashboardBuyer',
+			iconName: 'store',
+		}, {
+			route: 'shopperProfileView',
+			iconName: 'dashboard',
+		} ],
 	},
 	dashboardSeller: {
 		Page: DashboardSeller,
 		title: 'Home',
 		themeUi: true,
-		key: 'dashboardseller',
-		stripLinks: [ 'sellerProfileView', 'newProduct' ],
+		key: 'dashboardSeller',
+		stripLinks: [ {
+			route: 'dashboardSeller',
+			iconName: 'store',
+		}, {
+			route: 'sellerProfileView',
+			iconName: 'dashboard',
+		}, {
+			route: 'newProduct',
+			iconName: 'heart'
+		} ],
 	},
 	profileChanging: {
 		Page: ProfileChanging,
-		key: 'profilechanging',
+		key: 'profileChanging',
 	},
 	signUp: {
 		Page: SignUp,
-		key: 'signup',
+		key: 'signUp',
 	},
 	setting: {
 		Page: Setting,

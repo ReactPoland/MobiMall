@@ -231,7 +231,7 @@ export default class NewProductSeller extends Component {
 										  }
 										  else {
 
-										  	if ( response.fileSize > 3145728 ) {
+										  	if ( response.fileSize > 3145728 ) { // 1024 * 1024 * 3
 										  		Alert.alert('File is too big');
 										  		return;
 										  	}

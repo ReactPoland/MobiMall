@@ -70,9 +70,8 @@ export default class ThemeUi extends Component {
 
   renderIcon(source) {
     const Icon = this.Icon;
-    return <Icon size={30} name={source} />
+    return <Icon size={40} name={source} />
   }
-
 
 
 
@@ -89,36 +88,12 @@ export default class ThemeUi extends Component {
   };
  
 
-  actionButtonClickHandler(name) {
+  actionButtonClickHandler(route) {
+    let nextRoute = routes[route];
 
+    this.isExsistRouteInStack( nextRoute ) ? 
+      this.props.navigator.popToRoute( nextRoute ) : this.props.navigator.push( nextRoute );
 
-
-    switch( name ) {
-      case "wallet" :
-        this.isExsistRouteInStack( routes.shopperProfileView ) ? 
-        this.props.navigator.popToRoute( routes.shopperProfileView ) : this.props.navigator.push( routes.shopperProfileView );
-        break;
-    
-      case "news" :
-        this.isExsistRouteInStack( routes.sellerProfileView ) ? 
-        this.props.navigator.popToRoute( routes.sellerProfileView ) : this.props.navigator.push( routes.sellerProfileView );
-        break;
-
-      case "heart" :
-        this.isExsistRouteInStack( routes.newProduct ) ? 
-        this.props.navigator.popToRoute( routes.newProduct ) : this.props.navigator.push( routes.newProduct );
-        break;
-
-      case "search" :
-        this.isExsistRouteInStack( routes.dashboardBuyer ) ? 
-        this.props.navigator.popToRoute( routes.dashboardBuyer ) : this.props.navigator.push( routes.dashboardBuyer );
-        break;
-
-      case "backarrow" :
-        this.props.navigator.pop();
-        break;
-
-    };
   }
 
   toCheckoutHandler() {
@@ -131,18 +106,46 @@ export default class ThemeUi extends Component {
   }
 
   changeBasketState( nextState ) {
-    // if ( nextState != this.state.showBasket ) {
-      this.setState({ showBasket: nextState });
-    // };
+    this.setState({ showBasket: nextState });
   }
+
 
   componentDidMount() {
     this.changeBasketState( this.props.manager.getTransAvail() );
     this.props.manager.setTransListeners( this.changeBasketState );
+
+    this.stripLinks =  this.props.route.stripLinks;  
   }
 
   componentWillUnmount() {
     this.props.manager.removeTransListeners( this.changeBasketState );
+  }
+
+
+  renderActionButton(links, navigator) {
+
+    let stripLinks = [];
+
+    if (links) {
+      stripLinks = links;
+    } else {
+      navigator.getCurrentRoutes().map( ( route ) => {
+        if ( route.stripLinks ) stripLinks = route.stripLinks;
+      } );
+
+      if ( ! stripLinks.length ) return null;
+    }
+
+    let actionIcons = stripLinks.map(item => ( { source: this.renderIcon(item.iconName), route: item.route  } ) );
+
+
+    return (
+      <ActionButton 
+        actions={ actionIcons }
+        transition='toolbar'
+        onPress={ ( action ) => { if (action && action.route) this.actionButtonClickHandler( action.route ) } } />
+    );
+
   }
 
   render() {
@@ -190,31 +193,11 @@ export default class ThemeUi extends Component {
                 }
               }}
             />
-
-          
-
-
            
             { this.props.children }
-            <ActionButton 
-              actions={ [ {
-                source: this.renderIcon('wallet'),
-                name: 'wallet'
-              }, {
-                source: this.renderIcon('news'),
-                name: 'news'
-              }, {
-                source: this.renderIcon('heart'),
-                name: 'heart'
-              }, {
-                source: this.renderIcon('backarrow'),
-                name: 'backarrow'
-              }, {
-                source: this.renderIcon('search'),
-                name: 'search'
-              } ] }
-              transition='toolbar'
-              onPress={ ( action ) => { if (action && action.name) this.actionButtonClickHandler(action.name) } } />
+
+            {this.renderActionButton(this.props.route.stripLinks, this.props.navigator) }
+
           </View>
         </ThemeProvider>
 

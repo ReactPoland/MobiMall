@@ -83,6 +83,10 @@ const api = {
     return createRequest(['users', 'acceptProductList'], { fbId, transaction });
   },
 
+  getTokenMark () {
+    return createRequest(['access', 'getToken']);
+  },
+
   bodyAddNewProduct( fbId, productInfo ) {
 
     // let request = new XMLHttpRequest();

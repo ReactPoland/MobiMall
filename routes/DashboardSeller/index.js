@@ -15,6 +15,7 @@ import { bindMethods } from '../../utils';
 import st from '../../assets/style';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import SellerProfileHeader from '../../components/SellerProfileHeader'
+import { createIconSet } from 'react-native-vector-icons';
 import TabIcons from '../../components/TabIcons'
 
 
@@ -38,6 +39,14 @@ export default class DashboardSeller extends Component {
 			fields: {},
 			activeTab: 0,
 		}
+
+		this.iconsMap = {
+			store		:59677,
+			dashboard 	:59675
+		};
+
+    	this.Icon = createIconSet(this.iconsMap, 'icomoon2' );
+
 	}
 
 	renderTabBody( bodyArr ) {
@@ -49,6 +58,7 @@ export default class DashboardSeller extends Component {
 	render() {
 
 		const { fields } = this.state;
+		const { Icon } = this;
 
 
 		return (
@@ -58,12 +68,12 @@ export default class DashboardSeller extends Component {
 					<SellerProfileHeader />
 
 					<TabIcons active={this.state.activeTab }>
-						<View style={dashSellerStyle.contentRow} icon={ <FontAwesomeIcon 
-								name="pencil" 
+						<View style={dashSellerStyle.contentRow} icon={ <Icon 
+								name="store" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } }/> } 
 
-							iconActive={ <FontAwesomeIcon 
-								name="pencil" 
+							iconActive={ <Icon 
+								name="store" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } } /> } >
 
 							<View style={dashSellerStyle.prodListRow}>
@@ -158,12 +168,12 @@ export default class DashboardSeller extends Component {
 
 						</View>
 
-						<View style={dashSellerStyle.contentRow} icon={ <FontAwesomeIcon 
-								name="pencil" 
+						<View style={dashSellerStyle.contentRow} icon={ <Icon 
+								name="dashboard" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } }/> } 
 
-							iconActive={ <FontAwesomeIcon 
-								name="pencil" 
+							iconActive={ <Icon 
+								name="dashboard" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } } /> } >
 							<View style={dashSellerStyle.prodListRow}>
 								<View style={dashSellerStyle.prodBlock}>

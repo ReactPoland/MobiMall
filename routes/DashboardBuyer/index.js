@@ -16,66 +16,7 @@ import st from '../../assets/style';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import TabIcons from '../../components/TabIcons'
 import BuyerProfileHeader from '../../components/BuyerProfileHeader';
-
-
-// class Switcher extends Component {
-
-// 	constructor(props) {
-// 		super(props);
-		
-// 		this.state = {
-// 			activeTab: 0
-// 		};
-
-// 	}
-
-// 	renderTabHeaders() {
-
-// 		var tabs = [ 'IC1', 'IC2', 'IC3'];
-
-// 		return (
-// 			tabs.map((item, i) => {
-// 					let styleObj = {
-// 						textAlign: 'center', 
-// 						fontSize: 23,
-// 						padding: 5,
-// 					};
-// 					if ( i === this.state.activeTab ) {
-// 						styleObj.color = "purple";
-// 					}
-
-// 					return (
-// 						<TouchableNativeFeedback onPress={ () => { let currKey = i; this.setState({activeTab: currKey}) } } key={i} >
-							
-// 							<View style={dashSellerStyle.tabItem} >
-// 								<FontAwesomeIcon
-// 									name="pencil"
-// 									style={ styleObj }/>
-// 							</View>
-
-// 						</TouchableNativeFeedback>
-// 					);
-// 			})
-// 		);
-// 	}
-
-// 	render() {
-// 		let { active } = this.props;
-
-// 		return (
-// 			<View> 
-// 				<View style={dashSellerStyle.tabList}>
-// 					{ this.renderTabHeaders() }
-// 				</View>
-
-// 				{ this.props.children[this.state.activeTab] }
-			
-// 			</View> 
-// 		);
-// 	}
-// }
-import PushNotification from '../../components/PushNotification'
-
+import { createIconSet } from 'react-native-vector-icons';
 
 
 export default class DashboardBuyer extends Component {
@@ -83,6 +24,15 @@ export default class DashboardBuyer extends Component {
 	constructor(prop) {
 		super(prop);
 		bindMethods(this);
+
+		this.iconsMap = {
+			news	 	:59652,
+			coupons 	:59653,
+			stores	 	:59677,
+		};
+
+    	this.Icon = createIconSet(this.iconsMap, 'icomoon2' );
+
 
 		// console.log(this.props.localNotification);
 
@@ -133,6 +83,8 @@ export default class DashboardBuyer extends Component {
 	}
 
 	render() {
+
+		let { Icon } = this;
 
 
 
@@ -241,12 +193,12 @@ export default class DashboardBuyer extends Component {
 				  	</View>*/}
 
 					<TabIcons >
-						<View style={dashSellerStyle.tabContent} icon={ <FontAwesomeIcon 
-								name="pencil" 
+						<View style={dashSellerStyle.tabContent} icon={ <Icon 
+								name="news" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } }/> } 
 
-							iconActive={ <FontAwesomeIcon 
-								name="pencil" 
+							iconActive={ <Icon 
+								name="news" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } } /> } >
 
 							<View style={dashSellerStyle.contentRow} >
@@ -423,22 +375,22 @@ export default class DashboardBuyer extends Component {
 
 						</View>
 
-						<View style={dashSellerStyle.tabContent} icon={ <FontAwesomeIcon 
-								name="pencil" 
+						<View style={dashSellerStyle.tabContent} icon={ <Icon 
+								name="coupons" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } }/> } 
 
-							iconActive={ <FontAwesomeIcon 
-								name="pencil" 
+							iconActive={ <Icon 
+								name="coupons" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } }  /> } > 
 							<Text>tab 2 </Text>
 						</View>
 
-						<View style={dashSellerStyle.tabContent} icon={ <FontAwesomeIcon 
-								name="pencil" 
+						<View style={dashSellerStyle.tabContent} icon={ <Icon 
+								name="stores" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } }/> } 
 
-							iconActive={ <FontAwesomeIcon 
-								name="pencil" 
+							iconActive={ <Icon 
+								name="stores" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } } /> } >
 
 							<Text>tab 3</Text>

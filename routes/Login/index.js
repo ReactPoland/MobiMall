@@ -28,6 +28,7 @@ export default class Login extends Component {
 		this.state = {
 			loginButtonReady: true,
 			popupIGVisibility: false,
+			tokenMark: null,
 		}
 
 		// this.state = {
@@ -121,8 +122,21 @@ export default class Login extends Component {
 		});
 	}
 
-	showIGPopup() {
-		this.setState({popupIGVisibility: true});
+	// get token mark from IG
+
+	async showIGPopup() {
+
+		this.hideButton();
+		let respData = await api.getTokenMark().then( resp => resp.data ).catch( e => { Alert.alert( 'Server error', e.message ) } );
+
+		if (respData) {
+			if (respData.status == 'ok') {
+				this.setState( { popupIGVisibility: true, tokenMark: respData.value } );
+			} else {
+				Alert.alert( 'Response error', respData.mess );
+			}
+		}
+		this.showButton();
 	}
 
 	hideIGPopup() {
@@ -132,12 +146,12 @@ export default class Login extends Component {
 	render() {
 		
 		const { Fog } = this.props;
-		const { popupIGVisibility } = this.state;
+		const { popupIGVisibility, tokenMark } = this.state;
 
 		return (
 			<View style={loginStyle.container} onLayout={this.onLayout}>
 
-			<IGLoginPopup visible={popupIGVisibility} />
+			<IGLoginPopup visible={ popupIGVisibility } tokenMark={ tokenMark } />
 
 			<Fog visible={ !this.state.loginButtonReady } />
 
@@ -181,7 +195,7 @@ export default class Login extends Component {
 
 					<TouchableNativeFeedback onPress={ this.loginFB }>
 						<View style={loginStyle.button}>
-							<Text style={loginStyle.buttonText} >CONNECT WITH FACEBOOK</Text>
+							<Text style={loginStyle.buttonText} >CONNECT WITH IG</Text>
 							{/*<FBLogin
 							    ref={(fbLogin) => { this.fbLogin = fbLogin }}
 							    loginBehavior={FBLoginManager.LoginBehaviors.Native}

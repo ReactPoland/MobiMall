@@ -247,7 +247,7 @@ export default class Checkout extends Component {
 
 			if (data.status == 'ok') {
 				this.setState({checkoutButtonReady: true});
-				let alertText = `Payed: $ ${data.value.price}${'\n'}from card: ...${data.value.source.last4}`;
+				let alertText = `Paid: $ ${data.value.price}${'\n'}from card: ...${data.value.source.last4}`;
 				// `Was made charge from your card: $${totalPrice}`
 				Alert.alert(alertText);
 				// dashboardRoute = routes.profileChanging;

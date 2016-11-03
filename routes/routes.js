@@ -13,6 +13,7 @@ import DashboardSeller from './DashboardSeller';
 import ProfileChanging from './ProfileChanging';
 import PageList from './PageList';
 import Checkout from './Checkout';
+import Empty from './Empty';
 
 export default routes = {
 
@@ -69,10 +70,10 @@ export default routes = {
 			route: 'dashboardBuyer',
 			iconName: 'home',
 		}, { 
-			route: 'profileChanging',
+			route: 'empty',
 			iconName: 'heart',
 		}, {
-			route: 'profileChanging',
+			route: 'empty',
 			iconName: 'search',
 		}, {
 			route: 'setting',
@@ -94,7 +95,7 @@ export default routes = {
 			route: 'newProduct',
 			iconName: 'plus2'
 		}, {
-			route: 'profileChanging',
+			route: 'empty',
 			iconName: 'orders',
 		}, {
 			route: 'sellerProfileView',
@@ -117,6 +118,13 @@ export default routes = {
 		themeUi: true,
 		Page: Setting,
 		key: 'setting',
+	},
+	empty: {
+		title: 'Empty route',
+		themeUi: true,
+		Page: Empty,
+		key: 'empty',
+
 	}
 
 

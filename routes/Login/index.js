@@ -25,7 +25,7 @@ export default class Login extends Component {
 
 	constructor(prop) {
 		super(prop);
-		this.auth0lock = new Auth0Lock({clientId: 'fa0xnnwLAuWD5581tciLSR5u9jNKDK0E', domain: 'mwp.eu.auth0.com'});
+		this.auth0lock = new Auth0Lock({clientId: 'fa0xnnwLAuWD5581tciLSR5u9jNKDK0E', domain: 'mwp.eu.auth0.com', });
 
 		bindMethods(this);
 		// this.onLayout = this.onLayout.bind(this);
@@ -181,7 +181,12 @@ export default class Login extends Component {
 
 		this.hideButton();
 
-		this.auth0lock.show({}, (err, profile, token) => {
+		this.auth0lock.show({ 
+				rememberLastLogin: false, 
+				returnUrl: "http://testmobimall2.herokuapp.com/",
+				returnTo: "http://testmobimall2.herokuapp.com/" 
+			}, (err, profile, token) => {
+				console.log(token);
 			if (err) {
 				console.log( err );
 				this.showButton()
@@ -206,7 +211,6 @@ export default class Login extends Component {
 				// name: profile.name,
 				profileImgUri: profile.picture
 			};
-
 
 
 			api.createUser( newProfile )

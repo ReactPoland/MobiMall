@@ -87,6 +87,10 @@ const api = {
     return createRequest(['users', 'saveUserType'], { fbId, type });
   },
 
+  removeUser (fbId ) {
+    return createRequest(['users', 'removeUser'], { fbId });
+  },
+
   getTokenMark () {
     return createRequest(['access', 'getToken']);
   },

@@ -177,14 +177,18 @@ export default class ThemeUi extends Component {
     this.props.navigator.resetTo(routes.login);
   }
 
+  async removeAccount() {
+    await api.removeUser(this.props.manager.getDataFB().id);
+    await AsyncStorage.removeItem( 'logged-igId' );
+    this.props.navigator.resetTo(routes.login);
+  }
+
   render() {
 
 
     const emptyFunc = () => { };
     const { drawer, navigator } = this.state;
-    const navView = React.createElement(Setting, { logoutHandler: () => { this.logout() } } );
-
-    console.log(this.props.navigator.getCurrentRoutes());
+    const navView = React.createElement(Setting, { logoutHandler: () => { this.logout() }, removeAccountHandler: () => { this.removeAccount() } } );
 
 
     return (

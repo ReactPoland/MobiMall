@@ -9,6 +9,7 @@ import {
 	ScrollView,
 	Alert,
 	Dimensions,
+	AsyncStorage,
 	NativeModules
 } from 'react-native';
 var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
@@ -17,11 +18,15 @@ import { api, bindMethods } from '../../utils';
 import IGLoginPopup from '../../components/IGLoginPopup';
 import axios from 'axios';
 import routes from '../routes'
+var Auth0Lock = require('react-native-lock');
+
 
 export default class Login extends Component {
 
 	constructor(prop) {
 		super(prop);
+		this.auth0lock = new Auth0Lock({clientId: 'fa0xnnwLAuWD5581tciLSR5u9jNKDK0E', domain: 'mwp.eu.auth0.com'});
+
 		bindMethods(this);
 		// this.onLayout = this.onLayout.bind(this);
 		// this.loginFB = this.loginFB.bind(this);
@@ -29,6 +34,7 @@ export default class Login extends Component {
 			loginButtonReady: true,
 			popupIGVisibility: false,
 			tokenMark: null,
+			readyLoginView: false,
 		}
 
 		// this.state = {
@@ -139,14 +145,102 @@ export default class Login extends Component {
 		this.showButton();
 	}
 
+	async componentDidMount() {
+
+		let loggedId = await AsyncStorage.getItem( 'logged-igId' );
+		if ( loggedId != null ) {
+			api.createUser( { id: loggedId } )
+			.then( async ( { data } ) => {
+
+				if (data.status == 'ok') {
+					this.props.manager.authFB && this.props.manager.authFB(data.value);
+
+					if (data.value.type && data.value.type.length ) {
+						if ( data.value.type == "seller" ) this.props.navigator.replace( routes.dashboardSeller );
+						else this.props.navigator.replace( routes.dashboardBuyer );
+					} else {
+						this.props.navigator.replace( routes.profileChanging );
+					}
+				} else {
+					await AsyncStorage.removeItem('logged-igId');
+					this.setState({readyLoginView: true})
+				}
+			})
+			.catch(er => { Alert.alert(er.message); this.showButton(); })
+		} else {
+			this.setState({readyLoginView: true});
+		}
+		
+	}
+
 	hideIGPopup() {
 		this.setState({popupIGVisibility: false});
+	}
+
+	async showAuth () {
+
+		this.hideButton();
+
+		this.auth0lock.show({}, (err, profile, token) => {
+			if (err) {
+				console.log( err );
+				this.showButton()
+				Alert.alert(err.message);
+				return;
+			};
+
+			let igProfileId = 0;
+
+			profile.identities.map(connItem => {
+				if (connItem.provider == 'instagram') {
+					igProfileId = connItem.userId;
+				}
+			});
+
+			let newProfile = {
+				id: igProfileId,
+				about: profile.bio,
+				email: profile.email,
+				firstName: profile.name,
+				lastName: `__${profile.name}__`,
+				// name: profile.name,
+				profileImgUri: profile.picture
+			};
+
+
+
+			api.createUser( newProfile )
+				.then( async ( { data } ) => {
+					this.showButton();
+
+					if (data.status == 'ok') {
+						this.props.manager.authFB && this.props.manager.authFB(data.value);
+						await AsyncStorage.setItem('logged-igId', data.value.id );
+						if (data.value.type && data.value.type.length ) {
+							if ( data.value.type == "seller" ) this.props.navigator.replace( routes.dashboardSeller );
+							else this.props.navigator.replace( routes.dashboardBuyer );
+						} else {
+							this.props.navigator.replace( routes.profileChanging );
+						}
+					} else {
+						Alert.alert('Error', data.mess);
+					}
+				})
+				.catch(er => { Alert.alert(er.message); this.showButton(); })
+
+		});
 	}
 
 	render() {
 		
 		const { Fog } = this.props;
-		const { popupIGVisibility, tokenMark } = this.state;
+		const { popupIGVisibility, tokenMark, readyLoginView } = this.state;
+
+		if ( !readyLoginView ) return (
+			<View>
+				<Fog visible={ true } />			
+			</View>
+		);
 
 		return (
 			<View style={loginStyle.container} onLayout={this.onLayout}>
@@ -193,7 +287,7 @@ export default class Login extends Component {
 
 				<View style={loginStyle.buttonBlock}>
 
-					<TouchableNativeFeedback onPress={ this.loginFB }>
+					<TouchableNativeFeedback onPress={ this.showAuth }>
 						<View style={loginStyle.button}>
 							<Text style={loginStyle.buttonText} >CONNECT WITH IG</Text>
 							{/*<FBLogin
@@ -217,11 +311,11 @@ export default class Login extends Component {
 						</View>
 					</TouchableNativeFeedback>
 				
-					<TouchableNativeFeedback onPress={ () => { this.props.navigator.push( routes.signUp ); } }>
+					{/*<TouchableNativeFeedback onPress={ () => { this.props.navigator.push( routes.signUp ); } }>
 						<View style={loginStyle.button}>
 							<Text style={loginStyle.buttonText} >SIGN UP</Text>
 						</View>
-					</TouchableNativeFeedback>
+					</TouchableNativeFeedback>*/}
 				
 				</View>
 

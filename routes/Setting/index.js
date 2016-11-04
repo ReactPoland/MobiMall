@@ -9,7 +9,8 @@ import {
 	ScrollView,
 	Alert,
 	Dimensions,
-	NativeModules
+	NativeModules,
+	AsyncStorage
 } from 'react-native';
 import { bindMethods } from '../../utils';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -36,6 +37,7 @@ export default class Setting extends Component {
 
 	render() {
 
+		const { logoutHandler } = this.props;
 		const { fields } = this.state;
 
 		return (
@@ -80,7 +82,7 @@ export default class Setting extends Component {
 
 					<SettingsList.Header headerStyle={{marginTop:50}}/>
 
-	                <SettingsList.Item hasNavArrow={false} title="Sign Out" />
+	                <SettingsList.Item hasNavArrow={false} title="Sign Out" onPress={ logoutHandler } />
 	                <SettingsList.Item hasNavArrow={false} title="Sign Out of all accounts" />
 
 

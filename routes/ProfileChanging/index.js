@@ -11,12 +11,14 @@ import {
 } from 'react-native';
 import { COLOR, ThemeProvider, Button } from 'react-native-material-ui';
 import routes from '../routes'
+import { api, bindMethods } from '../../utils';
 
 
 export default class NewProductSeller extends Component {
 
 	constructor(prop) {
 		super(prop);
+		bindMethods(this);
 		this.uiTheme = {
 		    palette: {
 		        primaryColor: COLOR.green500,
@@ -27,6 +29,10 @@ export default class NewProductSeller extends Component {
 		        },
 		    },
 		};
+	}
+
+	saveUserType(type) {
+		return api.saveUserType(this.props.manager.getDataFB().id, type);
 	}
 
 	render() {
@@ -51,7 +57,7 @@ export default class NewProductSeller extends Component {
 								color: 'white' 
 							} 
 						}} 
-						onPress={ () => this.props.navigator.push(routes.dashboardBuyer) } />
+						onPress={ () => { this.saveUserType('buyer').then( resp => { this.props.navigator.replace(routes.dashboardBuyer) }); } } />
 				</View>
 		
 				<View style={ { flex: 1, padding: 30 } } >
@@ -68,7 +74,7 @@ export default class NewProductSeller extends Component {
 								color: 'white' 
 							} 
 						}} 
-						onPress={ () => this.props.navigator.push(routes.dashboardSeller) } />
+						onPress={ () => { this.saveUserType('seller').then( resp => { this.props.navigator.replace(routes.dashboardSeller) } ); } } />
 				</View>
 
 			</View>

@@ -6,14 +6,14 @@ import {
   Text,
 } from 'react-native';
 
-const BuyerProfileHeader = ( ) => {
+const BuyerProfileHeader = ( { pictureSource } ) => {
 
 	return (
 			<View style={ st.shopTitleView } >
 				<View style={st.shopTitleProfileBlock}>
 
 				    <View style={st.shopperImgProfile}>
-				    	<Image source={{uri: `http://graph.facebook.com/298288423897442/picture?type=large` }} style={st.shopProfileImg}/>
+				    	<Image source={pictureSource} style={st.shopProfileImg}/>
 				    	<Text style={ st.shopperName } >FirstName LastName</Text>
 				    </View>
 

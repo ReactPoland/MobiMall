@@ -133,9 +133,15 @@ android {
             }
         }
     }
+
+    packagingOptions { 
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
 }
 
 dependencies {
+    compile project(':react-native-lock')
     compile project(':react-native-svg')
     compile project(':react-native-video')
     compile 'com.facebook.fresco:animated-gif:0.11.0'

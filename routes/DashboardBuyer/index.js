@@ -85,6 +85,7 @@ export default class DashboardBuyer extends Component {
 	render() {
 
 		let { Icon } = this;
+		const fbData = this.props.manager.getDataFB();
 
 
 
@@ -154,7 +155,7 @@ export default class DashboardBuyer extends Component {
 					  	</View>
 				  	</View>*/}
 
-				  	<BuyerProfileHeader />
+				  	<BuyerProfileHeader pictureSource={ { uri: fbData.profileImgUri } } />
 
 					{/*<View style={ dashSellerStyle.shopTitleView } >
 						<View style={dashSellerStyle.shopTitleProfileBlock}>

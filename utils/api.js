@@ -83,6 +83,10 @@ const api = {
     return createRequest(['users', 'acceptProductList'], { fbId, transaction });
   },
 
+  saveUserType (fbId, type ) {
+    return createRequest(['users', 'saveUserType'], { fbId, type });
+  },
+
   getTokenMark () {
     return createRequest(['access', 'getToken']);
   },

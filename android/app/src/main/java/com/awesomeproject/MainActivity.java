@@ -1,6 +1,7 @@
 package com.awesomeproject;
 
 import com.facebook.react.ReactActivity;
+import com.auth0.lock.react.LockReactPackage;
 import com.brentvatne.react.ReactVideoPackage;
 
 public class MainActivity extends ReactActivity {

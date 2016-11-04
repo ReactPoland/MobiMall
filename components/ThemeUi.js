@@ -4,7 +4,8 @@ import {
   UIManager,
   Text,
   DrawerLayoutAndroid,
-  Alert
+  Alert,
+  AsyncStorage
 } from 'react-native';
 import { COLOR, ThemeProvider, ActionButton, Toolbar } from 'react-native-material-ui';
 // import { Drawer } from 'react-native-material-design';
@@ -169,11 +170,21 @@ export default class ThemeUi extends Component {
 
   }
 
+  // SIDE MENU methods
+
+  async logout() {
+    await AsyncStorage.removeItem( 'logged-igId' );
+    this.props.navigator.resetTo(routes.login);
+  }
+
   render() {
+
 
     const emptyFunc = () => { };
     const { drawer, navigator } = this.state;
-    const navView = React.createElement(Setting);
+    const navView = React.createElement(Setting, { logoutHandler: () => { this.logout() } } );
+
+    console.log(this.props.navigator.getCurrentRoutes());
 
 
     return (
@@ -201,7 +212,7 @@ export default class ThemeUi extends Component {
                   backgroundColor: 'white',
                 },
                 leftElement: {
-                  color:  this.props.navigator.getCurrentRoutes().length ? 'black': 'white',
+                  color:  this.props.navigator.getCurrentRoutes().length > 1 ? 'black': 'white',
                 },
                 titleText: {
                   color: 'purple',

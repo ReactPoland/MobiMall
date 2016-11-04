@@ -17,6 +17,10 @@ import com.brentvatne.react.ReactVideoPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage; 
 import com.burnweb.rnsendintent.RNSendIntentPackage;
 
+
+import com.auth0.lock.react.LockReactPackage;
+
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,7 +43,8 @@ public class MainApplication extends Application implements ReactApplication {
           new FacebookLoginPackage(),
           new ReactVideoPackage(),
           new RNSendIntentPackage(),
-          new ReactNativePushNotificationPackage()
+          new ReactNativePushNotificationPackage(),
+          new LockReactPackage()
       );
     }
   };

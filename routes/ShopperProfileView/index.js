@@ -119,7 +119,7 @@ export default class ShopperProfileView extends Component {
 			<View style={st.container}>
 				<ScrollView>
 				  	
-				  	<BuyerProfileHeader />
+				  	<BuyerProfileHeader pictureSource={ { uri: fbData.profileImgUri } } />
 					
 					<Tabs>
 						<View name={'PERSONAL'} >
@@ -193,18 +193,6 @@ export default class ShopperProfileView extends Component {
 										multiline={true}
 										numberOfLines={4}
 								  />
-
-								    <Sae
-								      label={'igId'}
-								      iconClass={FontAwesomeIcon}
-								      iconName={'pencil'}
-								      iconColor={'gray'}
-								      inputStyle={st.textInputGrey}
-								      autoCapitalize={'none'}
-								      autoCorrect={false}
-								      onEndEditing={this.onPersonalInfoChange.bind(this, 'igId')}
-								      value={igId}
-								    />
 
 									<PurpleButton text={saving ? 'SAVING...' : 'SAVE'} onPress={this.onPersonalInfoSave} />
 								</Card.Body>

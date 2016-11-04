@@ -150,7 +150,7 @@ export default class NewProductSeller extends Component {
 				<ScrollView>
 
 					<View style={ st.titleView } >
-						<Image source={{uri: 'https://unsplash.it/600/100?image=147'}} style={st.imgTitle}/>
+						<Image source={{uri: 'http://pipsum.com/600x400.jpg'}} style={st.imgTitle}/>
 						<Text style={ st.titleText } >SHOP NAME</Text>
 					</View>
 						

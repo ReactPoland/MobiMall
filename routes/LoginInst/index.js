@@ -95,7 +95,7 @@ export default class NewProductSeller extends Component {
 		return (
 			<View style={loginStyle.container} >
 
-				<Image source={{uri: 'https://unsplash.it/400/400?image=140'}} style={loginStyle.bgImage}/>
+				<Image source={{uri: 'http://pipsum.com/400x400.jpg'}} style={loginStyle.bgImage}/>
 
 				<View style={loginStyle.purpleShadow}>
 					<Image source={require('../../assets/img/mobimall-icon.png')} style={loginStyle.logo}/>

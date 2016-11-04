@@ -209,7 +209,7 @@ export default class DashboardBuyer extends Component {
 								</View>
 
 								<View style={dashSellerStyle.dealDay} >
-								   	<Image source={{uri: `https://unsplash.it/600/200?image=232` }} style={dashSellerStyle.dealDayImg}/>
+								   	<Image source={{uri: `http://pipsum.com/435x310.jpg` }} style={dashSellerStyle.dealDayImg}/>
 
 								   	<View style={dashSellerStyle.dealDayContent} >
 								   		<Text style={ { color: 'white', fontSize: 18 } } >AN ICON REMASTERED</Text>
@@ -243,7 +243,7 @@ export default class DashboardBuyer extends Component {
 
 										
 										<View style={dashSellerStyle.productItem} >
-										   		<Image source={{uri: `https://unsplash.it/150/150?image=25` }} style={dashSellerStyle.productImg}/>
+										   		<Image source={{uri: `http://pipsum.com/435x311.jpg` }} style={dashSellerStyle.productImg}/>
 											<View style={dashSellerStyle.productDesc} >
 												<View>
 													<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
@@ -253,7 +253,7 @@ export default class DashboardBuyer extends Component {
 										</View>
 
 										<View style={dashSellerStyle.productItem} >
-										   		<Image source={{uri: `https://unsplash.it/150/150?image=26` }} style={dashSellerStyle.productImg}/>
+										   		<Image source={{uri: `http://pipsum.com/435x312.jpg` }} style={dashSellerStyle.productImg}/>
 											<View style={dashSellerStyle.productDesc} >
 												<View>
 													<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
@@ -263,7 +263,7 @@ export default class DashboardBuyer extends Component {
 										</View>
 
 										<View style={dashSellerStyle.productItem} >
-										   		<Image source={{uri: `https://unsplash.it/150/150?image=27` }} style={dashSellerStyle.productImg}/>
+										   		<Image source={{uri: `http://pipsum.com/435x313.jpg` }} style={dashSellerStyle.productImg}/>
 											<View style={dashSellerStyle.productDesc} >
 												<View>
 													<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
@@ -273,7 +273,7 @@ export default class DashboardBuyer extends Component {
 										</View>
 
 										<View style={dashSellerStyle.productItem} >
-										   		<Image source={{uri: `https://unsplash.it/150/150?image=28` }} style={dashSellerStyle.productImg}/>
+										   		<Image source={{uri: `http://pipsum.com/435x314.jpg` }} style={dashSellerStyle.productImg}/>
 											<View style={dashSellerStyle.productDesc} >
 												<View>
 													<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
@@ -283,7 +283,7 @@ export default class DashboardBuyer extends Component {
 										</View>
 
 										<View style={dashSellerStyle.productItem} >
-										   		<Image source={{uri: `https://unsplash.it/150/150?image=29` }} style={dashSellerStyle.productImg}/>
+										   		<Image source={{uri: `http://pipsum.com/435x315.jpg` }} style={dashSellerStyle.productImg}/>
 											<View style={dashSellerStyle.productDesc} >
 												<View>
 													<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
@@ -311,7 +311,7 @@ export default class DashboardBuyer extends Component {
 									</View>
 				
 									<View style={dashSellerStyle.featuredImgBlock}>
-										<Image source={{uri: `https://unsplash.it/250/250?image=39` }} style={dashSellerStyle.featuredImg}/>
+										<Image source={{uri: `http://pipsum.com/435x316.jpg` }} style={dashSellerStyle.featuredImg}/>
 									</View>
 
 								</View>
@@ -326,7 +326,7 @@ export default class DashboardBuyer extends Component {
 								<View style={dashSellerStyle.likeProductList } >
 
 									<View style={dashSellerStyle.likeProductItem}>
-										<Image source={{uri: `https://unsplash.it/100/100?image=40` }} style={dashSellerStyle.likeProductImg}/>
+										<Image source={{uri: `http://pipsum.com/435x317.jpg?2` }} style={dashSellerStyle.likeProductImg}/>
 										<View style={dashSellerStyle.likeProductDescBlock}>
 											<Text style={dashSellerStyle.likeProdName}>Boost Band Black Portable Charger Wristband Phone...</Text>
 
@@ -341,7 +341,7 @@ export default class DashboardBuyer extends Component {
 									</View>
 
 									<View style={dashSellerStyle.likeProductItem}>
-										<Image source={{uri: `https://unsplash.it/100/100?image=41` }} style={dashSellerStyle.likeProductImg}/>
+										<Image source={{uri: `http://pipsum.com/435x317.jpg?1` }} style={dashSellerStyle.likeProductImg}/>
 										<View style={dashSellerStyle.likeProductDescBlock}>
 											<Text style={dashSellerStyle.likeProdName}>Stella 7-speed Internally-geared Luxury Step-through Bicycle...</Text>
 
@@ -356,7 +356,7 @@ export default class DashboardBuyer extends Component {
 									</View>
 
 									<View style={dashSellerStyle.likeProductItem}>
-										<Image source={{uri: `https://unsplash.it/100/100?image=42` }} style={dashSellerStyle.likeProductImg}/>
+										<Image source={{uri: `http://pipsum.com/435x319.jpg` }} style={dashSellerStyle.likeProductImg}/>
 										<View style={dashSellerStyle.likeProductDescBlock}>
 											<Text style={dashSellerStyle.likeProdName}>Nomader BPA Free Collapsible Sports Water Bottle - Foldable...</Text>
 

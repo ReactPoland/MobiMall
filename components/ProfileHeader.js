@@ -8,7 +8,7 @@ import {
 
 const ProfileHeader = ({ name, fbId }) => (
   <View style={ st.shopTitleView } >
-    <Image source={{uri: 'https://unsplash.it/600/100?image=147'}} style={st.imgTitle}/>
+    <Image source={{uri: 'http://pipsum.com/600x100.jpg'}} style={st.imgTitle}/>
     <View style={st.shopTitleProfileBlock}>
 
       <View style={st.shopperTitleIcon}>

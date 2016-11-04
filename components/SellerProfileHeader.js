@@ -10,7 +10,7 @@ const SellerProfileHeader = ( ) => {
 
 	return (
 		<View style={st.profileView} >
-		   	<Image source={{uri: `https://unsplash.it/600/200?image=231` }} style={st.dealDayImg}/>
+		   	<Image source={{uri: `http://pipsum.com/600x100.jpg` }} style={st.dealDayImg}/>
 
 		   	<View style={st.profileContent}>
 			   	<View style={st.profileBgBlock}>

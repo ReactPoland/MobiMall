@@ -79,35 +79,17 @@ export default class DashboardSeller extends Component {
 							<View style={dashSellerStyle.prodListRow}>
 								<View style={dashSellerStyle.prodBlock}>
 									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/250/200?image=30` }} style={dashSellerStyle.productImg}/>
+									   	<Image source={{uri: `http://pipsum.com/435x310.jpg` }} style={dashSellerStyle.productImg}/>
 									</View>
 								</View>
 								<View style={dashSellerStyle.prodBlock}>
 									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/200/150?image=31` }} style={dashSellerStyle.productImg}/>
+									   	<Image source={{uri: `http://pipsum.com/435x311.jpg` }} style={dashSellerStyle.productImg}/>
 									</View>
 								</View>
 								<View style={dashSellerStyle.prodBlock}>
 									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/150/100?image=32` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-							</View>
-
-							<View style={dashSellerStyle.prodListRow}>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/250/100?image=33` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/250/150?image=34` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/100/100?image=35` }} style={dashSellerStyle.productImg}/>
+									   	<Image source={{uri: `http://pipsum.com/435x312.jpg` }} style={dashSellerStyle.productImg}/>
 									</View>
 								</View>
 							</View>
@@ -115,35 +97,17 @@ export default class DashboardSeller extends Component {
 							<View style={dashSellerStyle.prodListRow}>
 								<View style={dashSellerStyle.prodBlock}>
 									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/250/50?image=36` }} style={dashSellerStyle.productImg}/>
+									   	<Image source={{uri: `http://pipsum.com/435x313.jpg` }} style={dashSellerStyle.productImg}/>
 									</View>
 								</View>
 								<View style={dashSellerStyle.prodBlock}>
 									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/200/150?image=37` }} style={dashSellerStyle.productImg}/>
+									   	<Image source={{uri: `http://pipsum.com/435x314.jpg` }} style={dashSellerStyle.productImg}/>
 									</View>
 								</View>
 								<View style={dashSellerStyle.prodBlock}>
 									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/150/100?image=38` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-							</View>
-
-							<View style={dashSellerStyle.prodListRow}>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/250/200?image=39` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/200/150?image=40` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/150/100?image=41` }} style={dashSellerStyle.productImg}/>
+									   	<Image source={{uri: `http://pipsum.com/435x315.jpg` }} style={dashSellerStyle.productImg}/>
 									</View>
 								</View>
 							</View>
@@ -151,17 +115,53 @@ export default class DashboardSeller extends Component {
 							<View style={dashSellerStyle.prodListRow}>
 								<View style={dashSellerStyle.prodBlock}>
 									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/250/200?image=30` }} style={dashSellerStyle.productImg}/>
+									   	<Image source={{uri: `http://pipsum.com/435x316.jpg` }} style={dashSellerStyle.productImg}/>
 									</View>
 								</View>
 								<View style={dashSellerStyle.prodBlock}>
 									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/200/150?image=31` }} style={dashSellerStyle.productImg}/>
+									   	<Image source={{uri: `http://pipsum.com/435x317.jpg` }} style={dashSellerStyle.productImg}/>
 									</View>
 								</View>
 								<View style={dashSellerStyle.prodBlock}>
 									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/150/100?image=32` }} style={dashSellerStyle.productImg}/>
+									   	<Image source={{uri: `http://pipsum.com/435x318.jpg` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+							</View>
+
+							<View style={dashSellerStyle.prodListRow}>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `http://pipsum.com/435x319.jpg` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `http://pipsum.com/435x320.jpg?1` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `http://pipsum.com/435x321.jpg?2` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+							</View>
+
+							<View style={dashSellerStyle.prodListRow}>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?3` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?4` }} style={dashSellerStyle.productImg}/>
+									</View>
+								</View>
+								<View style={dashSellerStyle.prodBlock}>
+									<View style={dashSellerStyle.prodItem}>
+									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?5` }} style={dashSellerStyle.productImg}/>
 									</View>
 								</View>
 							</View>
@@ -178,17 +178,17 @@ export default class DashboardSeller extends Component {
 							<View style={dashSellerStyle.prodListRow}>
 								<View style={dashSellerStyle.prodBlock}>
 									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/250/200?image=30` }} style={dashSellerStyle.productImg}/>
+									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?6` }} style={dashSellerStyle.productImg}/>
 									</View>
 								</View>
 								<View style={dashSellerStyle.prodBlock}>
 									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/200/150?image=31` }} style={dashSellerStyle.productImg}/>
+									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?7` }} style={dashSellerStyle.productImg}/>
 									</View>
 								</View>
 								<View style={dashSellerStyle.prodBlock}>
 									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/150/100?image=32` }} style={dashSellerStyle.productImg}/>
+									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?8` }} style={dashSellerStyle.productImg}/>
 									</View>
 								</View>
 							</View>
@@ -196,17 +196,17 @@ export default class DashboardSeller extends Component {
 							<View style={dashSellerStyle.prodListRow}>
 								<View style={dashSellerStyle.prodBlock}>
 									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/250/200?image=30` }} style={dashSellerStyle.productImg}/>
+									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?9` }} style={dashSellerStyle.productImg}/>
 									</View>
 								</View>
 								<View style={dashSellerStyle.prodBlock}>
 									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/200/150?image=31` }} style={dashSellerStyle.productImg}/>
+									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?10` }} style={dashSellerStyle.productImg}/>
 									</View>
 								</View>
 								<View style={dashSellerStyle.prodBlock}>
 									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `https://unsplash.it/150/100?image=32` }} style={dashSellerStyle.productImg}/>
+									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?11` }} style={dashSellerStyle.productImg}/>
 									</View>
 								</View>
 							</View>

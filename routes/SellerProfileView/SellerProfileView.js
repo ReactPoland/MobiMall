@@ -7,18 +7,20 @@ import {
 	Image,
 	TextInput,
 	TouchableNativeFeedback,
+	Alert,
 	ScrollView
 } from 'react-native';
 
 import ProfileHeader from '../../components/ProfileHeader';
 import Tabs from '../../components/Tabs';
-import { api, bindMethods } from '../../utils';
+import { api, bindMethods, auth0lock } from '../../utils';
 
 import PersonalTab from './PersonalTab';
 import StoreTab from './StoreTab';
 import AccountsTab from './AccountsTab';
 import LogisticsTab from './LogisticsTab';
 import SellerProfileHeader from '../../components/SellerProfileHeader'
+var CookieManager = require('react-native-cookies');
 
 export default class SellerProfileView extends Component {
 	constructor (props) {
@@ -72,11 +74,67 @@ export default class SellerProfileView extends Component {
 			.catch(e => console.log(e));
 	}
 
+	_onLoginStore() {
+		auth0lock.show({}, (err, profile, token) => {
+			if (err) {
+				console.log( err );
+				Alert.alert(err.message);
+				return;
+			};
+
+			CookieManager.clearAll((err, res) => {} );
+
+			let igStoreId = 0;
+
+			profile.identities.map(connItem => {
+				if (connItem.provider == 'instagram') {
+					igStoreId = connItem.userId;
+				}
+			});
+
+			let newStoreProfile = {
+				id: igStoreId,
+				description: profile.bio,
+				companyName: profile.name,
+				igHandle: `@${profile.nickname}`,
+				storeImgUri: profile.picture
+			};
+
+			api.updatePersonalStore(this.state.fbId, newStoreProfile )
+				.then( ( {data} ) => {
+
+					if (data.status == 'ok') {
+						let dataFB = this.props.manager.getDataFB();
+						dataFB.store = newStoreProfile;
+						this.props.manager.authFB(dataFB);
+						this.forceUpdate();
+					} else {
+						Alert.alert(data.mess);
+					}
+				} )
+				.catch((e) => console.log(e));
+		})
+	}
+
+	_onLogoutStore() {
+		api.updatePersonalStore(this.state.fbId, null)
+			.then( ( {data} ) => {
+				if (data.status == 'ok') {
+					let dataFB = this.props.manager.getDataFB();
+					dataFB.store = null;
+					this.props.manager.authFB( dataFB );
+					this.forceUpdate();
+				} else {
+					Alert.alert( data.mess );
+				}
+			} )
+			.catch((e) => console.log(e));
+	}
+
   render () {
 		const { fbId, bankAccountData, saving } = this.state;
 		const { firstName } = this.state.personalData;
-		const { name } = this.props.manager.getDataFB();
-		console.log()
+		const { name, store } = this.props.manager.getDataFB();
     return (
 			<View style={st.container}>
 				<ScrollView>
@@ -96,7 +154,7 @@ export default class SellerProfileView extends Component {
 							saving={saving}
 							onSave={this._onPersonalInfoSave}
 						/>
-						<StoreTab name='STORE' />
+						<StoreTab name='STORE' storeItem={store} onLogin={this._onLoginStore} onLogout={this._onLogoutStore} />
 						<AccountsTab
 							name='ACCOUNTS'
 							fbId={fbId}

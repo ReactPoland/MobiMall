@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
 import Video from 'react-native-video';
-import { api, bindMethods } from '../../utils';
+import { api, bindMethods, auth0lock } from '../../utils';
 import IGLoginPopup from '../../components/IGLoginPopup';
 import axios from 'axios';
 import routes from '../routes'
@@ -25,8 +25,6 @@ export default class Login extends Component {
 
 	constructor(prop) {
 		super(prop);
-		this.auth0lock = new Auth0Lock({clientId: 'fa0xnnwLAuWD5581tciLSR5u9jNKDK0E', domain: 'mwp.eu.auth0.com', });
-
 		bindMethods(this);
 		// this.onLayout = this.onLayout.bind(this);
 		// this.loginFB = this.loginFB.bind(this);
@@ -153,6 +151,8 @@ export default class Login extends Component {
 			.then( async ( { data } ) => {
 
 				if (data.status == 'ok') {
+					// console.log(data.value);
+
 					this.props.manager.authFB && this.props.manager.authFB(data.value);
 
 					if (data.value.type && data.value.type.length ) {
@@ -181,12 +181,12 @@ export default class Login extends Component {
 
 		this.hideButton();
 
-		this.auth0lock.show({ 
+		auth0lock.show({ 
 				rememberLastLogin: false, 
 				returnUrl: "http://testmobimall2.herokuapp.com/",
 				returnTo: "http://testmobimall2.herokuapp.com/" 
 			}, (err, profile, token) => {
-				console.log(token);
+				// console.log(token);
 			if (err) {
 				console.log( err );
 				this.showButton()
@@ -213,9 +213,9 @@ export default class Login extends Component {
 			};
 
 			CookieManager.clearAll((err, res) => {
-			  console.log('cookies cleared!');
-			  console.log(err);
-			  console.log(res);
+			  // console.log('cookies cleared!');
+			  // console.log(err);
+			  // console.log(res);
 			});
 
 
@@ -224,6 +224,7 @@ export default class Login extends Component {
 					this.showButton();
 
 					if (data.status == 'ok') {
+
 						this.props.manager.authFB && this.props.manager.authFB(data.value);
 						await AsyncStorage.setItem('logged-igId', data.value.id );
 						if (data.value.type && data.value.type.length ) {

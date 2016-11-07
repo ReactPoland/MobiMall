@@ -95,6 +95,10 @@ const api = {
     return createRequest(['access', 'getToken']);
   },
 
+  updatePersonalStore ( fbId, store ) {
+    return createRequest(['users', 'updatePersonalStore'], { fbId, store });
+  },
+
   bodyAddNewProduct( fbId, productInfo ) {
 
     // let request = new XMLHttpRequest();

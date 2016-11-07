@@ -74,7 +74,7 @@ const manager = ( function () {
 			if (!timerTransaction) {
 				timerTransaction = setInterval(() => {
 
-					if ( manager.getDataFB() ) {
+					if ( manager.getDataFB() && manager.getDataFB().type == 'buyer' ) {
 						this.requestHandler( manager.getDataFB().id )
 					}
 				

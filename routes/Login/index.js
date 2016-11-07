@@ -19,7 +19,7 @@ import IGLoginPopup from '../../components/IGLoginPopup';
 import axios from 'axios';
 import routes from '../routes'
 var Auth0Lock = require('react-native-lock');
-
+var CookieManager = require('react-native-cookies');
 
 export default class Login extends Component {
 
@@ -166,7 +166,7 @@ export default class Login extends Component {
 					this.setState({readyLoginView: true})
 				}
 			})
-			.catch(er => { Alert.alert(er.message); this.showButton(); })
+			.catch(er => { Alert.alert(er.message); this.showButton(); this.setState({readyLoginView: true}); })
 		} else {
 			this.setState({readyLoginView: true});
 		}
@@ -211,6 +211,12 @@ export default class Login extends Component {
 				// name: profile.name,
 				profileImgUri: profile.picture
 			};
+
+			CookieManager.clearAll((err, res) => {
+			  console.log('cookies cleared!');
+			  console.log(err);
+			  console.log(res);
+			});
 
 
 			api.createUser( newProfile )

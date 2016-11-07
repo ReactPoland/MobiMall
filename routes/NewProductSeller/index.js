@@ -8,6 +8,7 @@ import {
 	TextInput,
 	Alert,
 	TouchableNativeFeedback,
+	TouchableWithoutFeedback,
 	ScrollView,
 	Platform
 } from 'react-native';
@@ -15,6 +16,7 @@ import { bindMethods, api } from '../../utils';
 import { Card } from 'react-native-material-design';
 var ImagePicker = require('react-native-image-picker');
 import routes from '../routes'
+// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 
 export default class NewProductSeller extends Component {
@@ -147,7 +149,7 @@ export default class NewProductSeller extends Component {
 
 				<Fog visible={ this.state.fogVisibility } />
 			
-				<ScrollView>
+				<ScrollView >
 
 					<View style={ st.titleView } >
 						<Image source={{uri: 'http://pipsum.com/600x400.jpg'}} style={st.imgTitle}/>
@@ -160,8 +162,11 @@ export default class NewProductSeller extends Component {
 							
 
 							<Text style={st.textInput} >Product name</Text>
+
 							<TextInput 
+								ref={'testInput'}
 								style={st.input}
+
 								onChange={ this.changeProductData.bind(this, 'productName') }
 								placeholder={'Mens Brogue Shoe'} 
 								underlineColorAndroid="#edb4ff" 
@@ -171,13 +176,14 @@ export default class NewProductSeller extends Component {
 
 							<Text style={st.textInput} >Category</Text>
 							
-							<TextInput 
-								style={st.input} 
+							<TextInput
+								onFocus={ () => {console.log('onFocus')} } 
+								style={{zIndex: 10}} 
 								onChange={ this.changeProductData.bind(this, 'category') }
 								placeholder={'Shoes'} 
 								placeholderTextColor='#cccccc'
 								value={ category }
-								underlineColorAndroid="#edb4ff" 
+								underlineColorAndroid="#edb4ff"
 								/>
 
 							<Text style={st.textInput} >Description</Text>
@@ -281,6 +287,7 @@ export default class NewProductSeller extends Component {
 							<TextInput 
 								style={st.input}
 								onChange={ this.changeProductData.bind(this, 'quantity') }
+								keyboardType={'numeric'}
 								placeholder={'456'} 
 								underlineColorAndroid="#edb4ff" 
 								placeholderTextColor='#cccccc'
@@ -291,6 +298,7 @@ export default class NewProductSeller extends Component {
 							<TextInput 
 								style={st.input}
 								onChange={ this.changeProductData.bind(this, 'reatilPrice') }
+								keyboardType={'numeric'}
 								placeholder={'89'} 
 								underlineColorAndroid="#edb4ff" 
 								placeholderTextColor='#cccccc'
@@ -301,6 +309,7 @@ export default class NewProductSeller extends Component {
 							<TextInput 
 								style={st.input}
 								onChange={ this.changeProductData.bind(this, 'costPrice') }
+								keyboardType={'numeric'}
 								placeholder={'56'} 
 								underlineColorAndroid="#edb4ff" 
 								placeholderTextColor='#cccccc'
@@ -311,6 +320,7 @@ export default class NewProductSeller extends Component {
 							<TextInput 
 								style={st.input}
 								onChange={ this.changeProductData.bind(this, 'vat') }
+								keyboardType={'numeric'}
 								placeholder={'4.5'} 
 								underlineColorAndroid="#edb4ff" 
 								placeholderTextColor='#cccccc'
@@ -321,6 +331,7 @@ export default class NewProductSeller extends Component {
 							<TextInput 
 								style={st.input}
 								onChange={ this.changeProductData.bind(this, 'supplier') }
+								keyboardType={'numeric'}
 								placeholder={'Bescot Shoes'} 
 								underlineColorAndroid="#edb4ff" 
 								placeholderTextColor='#cccccc'

@@ -17,7 +17,7 @@ import com.brentvatne.react.ReactVideoPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage; 
 import com.burnweb.rnsendintent.RNSendIntentPackage;
 
-
+import com.psykar.cookiemanager.CookieManagerPackage;
 import com.auth0.lock.react.LockReactPackage;
 
 
@@ -42,6 +42,7 @@ public class MainApplication extends Application implements ReactApplication {
             new ReactMaterialKitPackage(),
           new FacebookLoginPackage(),
           new ReactVideoPackage(),
+          new CookieManagerPackage(),
           new RNSendIntentPackage(),
           new ReactNativePushNotificationPackage(),
           new LockReactPackage()

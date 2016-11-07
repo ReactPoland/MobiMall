@@ -87,6 +87,8 @@ export default class DashboardBuyer extends Component {
 		let { Icon } = this;
 		const fbData = this.props.manager.getDataFB();
 
+		console.log(fbData);
+
 
 
 		return (

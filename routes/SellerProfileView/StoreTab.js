@@ -65,7 +65,7 @@ const StoreTab = ({ storeItem, onLogin, onLogout }) => {
           autoCapitalize={'none'}
           editable={false}
           autoCorrect={false}
-          value={""}
+          value={storeItem.website}
         />
 
         <PurpleButton text={'LOGOUT'} onPress={onLogout} />

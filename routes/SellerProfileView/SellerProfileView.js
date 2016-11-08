@@ -92,12 +92,15 @@ export default class SellerProfileView extends Component {
 				}
 			});
 
+
+
 			let newStoreProfile = {
 				id: igStoreId,
 				description: profile.bio,
 				companyName: profile.name,
 				igHandle: `@${profile.nickname}`,
-				storeImgUri: profile.picture
+				storeImgUri: profile.picture,
+				website: profile.website
 			};
 
 			api.updatePersonalStore(this.state.fbId, newStoreProfile )

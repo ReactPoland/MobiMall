@@ -8,7 +8,8 @@ import {
 
 const SellerProfileHeader = ({ name, pictSource, followers }) => {
 
-	let followersText = followers ? `${followers} FOLLOWERS` : null;
+
+	let followersText = followers ?  followers > 1 ? `${followers} FOLLOWERS` : `${followers} FOLLOWER` : null;
 
 	return (
 		<View style={st.profileView} >

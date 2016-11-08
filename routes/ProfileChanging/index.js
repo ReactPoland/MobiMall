@@ -57,7 +57,10 @@ export default class NewProductSeller extends Component {
 								color: 'white' 
 							} 
 						}} 
-						onPress={ () => { this.saveUserType('buyer').then( resp => { this.props.navigator.replace(routes.dashboardBuyer) }); } } />
+						onPress={ () => { 
+							// this.saveUserType('buyer').then( resp => { this.props.navigator.replace(routes.dashboardBuyer) }); 
+							this.props.navigator.push(routes.dashboardBuyer) ; 
+						} } />
 				</View>
 		
 				<View style={ { flex: 1, padding: 30 } } >
@@ -74,7 +77,10 @@ export default class NewProductSeller extends Component {
 								color: 'white' 
 							} 
 						}} 
-						onPress={ () => { this.saveUserType('seller').then( resp => { this.props.navigator.replace(routes.dashboardSeller) } ); } } />
+						onPress={ () => {
+						 // this.saveUserType('seller').then( resp => { this.props.navigator.replace(routes.dashboardSeller) } ); 
+						 this.props.navigator.push(routes.dashboardSeller); 
+						} } />
 				</View>
 
 			</View>

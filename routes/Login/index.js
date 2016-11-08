@@ -157,12 +157,12 @@ export default class Login extends Component {
 
 					this.props.manager.authFB && this.props.manager.authFB(data.value);
 
-					if (data.value.type && data.value.type.length ) {
-						if ( data.value.type == "seller" ) this.props.navigator.replace( routes.dashboardSeller );
-						else this.props.navigator.replace( routes.dashboardBuyer );
-					} else {
+					// if (data.value.type && data.value.type.length ) {
+						// if ( data.value.type == "seller" ) this.props.navigator.replace( routes.dashboardSeller );
+						// else this.props.navigator.replace( routes.dashboardBuyer );
+					// } else {
 						this.props.navigator.replace( routes.profileChanging );
-					}
+					// }
 				} else {
 					await AsyncStorage.removeItem('logged-igId');
 					this.setState({readyLoginView: true})
@@ -229,12 +229,12 @@ export default class Login extends Component {
 
 						this.props.manager.authFB && this.props.manager.authFB(data.value);
 						await AsyncStorage.setItem('logged-igId', data.value.id );
-						if (data.value.type && data.value.type.length ) {
-							if ( data.value.type == "seller" ) this.props.navigator.replace( routes.dashboardSeller );
-							else this.props.navigator.replace( routes.dashboardBuyer );
-						} else {
+						// if (data.value.type && data.value.type.length ) {
+							// if ( data.value.type == "seller" ) this.props.navigator.replace( routes.dashboardSeller );
+							// else this.props.navigator.replace( routes.dashboardBuyer );
+						// } else {
 							this.props.navigator.replace( routes.profileChanging );
-						}
+						// }
 					} else {
 						Alert.alert('Error', data.mess);
 					}

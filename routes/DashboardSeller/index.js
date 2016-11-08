@@ -47,8 +47,6 @@ export default class DashboardSeller extends Component {
 		};
 
     	this.Icon = createIconSet(this.iconsMap, 'icomoon2' );
-    	this.loadSellerFeed(this.props.manager.getDataFB().id);
-
 	}
 
 	renderTabBody( bodyArr ) {
@@ -57,16 +55,18 @@ export default class DashboardSeller extends Component {
 		);
 	}
 
-	loadSellerFeed(id) {
-		api.getSellerDashboard(id)
-			.then( ({ data }) => {
-				if (data.status == 'ok') {
-					this.setState( { productList: data.value } );
-				} else {
-					Alert.alert(data.mess);
-				}
-			})
-			.catch(e => Alert.alert(e.message))
+	componentDidMount() {
+		// if (this.props.manager.getSellerProductList() == null ) {
+			// this.api.getSellerDashboard( this.props.manager.getDataFB().id ).then( ({data}) => {
+
+				// if (data.status == 'ok') {
+					// this.props.manager.setSellerProductList(data.value);
+					// this.forceUpdate();
+				// } else {
+					// Alert.alert(data.mess);
+				// }
+			// } )
+		// }
 	}
 
 	renderProductGrid(productList) {
@@ -116,11 +116,26 @@ export default class DashboardSeller extends Component {
 		return gridView;		
 	}
 
+	updateProductList() {
+		if (this.props.manager.getSellerProductList() == null ) {
+			api.getSellerDashboard( this.props.manager.getDataFB().id ).then( ({data}) => {
+
+				if (data.status == 'ok') {
+					this.props.manager.setSellerProductList(data.value);
+					this.forceUpdate();
+				} else {
+					Alert.alert(data.mess);
+				}
+			} )
+		}
+	}
+
 	render() {
 
-		const { fields, productList } = this.state;
+		const { fields } = this.state;
 		const { Icon } = this;
 		const { store, id } = this.props.manager.getDataFB();
+		const productList = this.props.manager.getSellerProductList();
 
 		if ( !store ) {
 			return (
@@ -137,7 +152,10 @@ export default class DashboardSeller extends Component {
 					<SellerProfileHeader name={store.igHandle} pictSource={{ uri: store.storeImgUri }}  />
 
 					<TabIcons active={this.state.activeTab }>
-						<View style={dashSellerStyle.contentRow} onActive={ this.loadSellerFeed.bind(this, id) } icon={ <Icon 
+						<View 
+							onLayout={ this.updateProductList } 
+							style={dashSellerStyle.contentRow} 
+							icon={ <Icon 
 								name="store" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } }/> } 
 

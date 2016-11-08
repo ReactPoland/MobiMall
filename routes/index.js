@@ -29,6 +29,7 @@ const manager = ( function () {
 	let userDataFB = null;
 	let userDataInst = null;
 	let productData = null;
+	let sellerProductList = null;
 	
 
 	let isExistTrans = false;
@@ -57,6 +58,15 @@ const manager = ( function () {
 				// });
 			// }
 		},
+
+		setSellerProductList: (productList) => {
+			sellerProductList = productList;
+		},
+
+		getSellerProductList: () => {
+			return sellerProductList;
+		},
+
 
 		getDataInst: function() {
 			return userDataInst;

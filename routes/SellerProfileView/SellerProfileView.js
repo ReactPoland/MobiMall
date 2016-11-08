@@ -123,6 +123,7 @@ export default class SellerProfileView extends Component {
 					let dataFB = this.props.manager.getDataFB();
 					dataFB.store = null;
 					this.props.manager.authFB( dataFB );
+					this.props.manager.setSellerProductList( null );
 					this.forceUpdate();
 				} else {
 					Alert.alert( data.mess );
@@ -139,7 +140,7 @@ export default class SellerProfileView extends Component {
 			<View style={st.container}>
 				<ScrollView>
 				
-					<SellerProfileHeader />
+					{store ? (<SellerProfileHeader name={store.igHandle} />) : null } 
 
           {/*<ProfileHeader
 						name={name}

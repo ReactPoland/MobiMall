@@ -99,6 +99,10 @@ const api = {
     return createRequest(['users', 'updatePersonalStore'], { fbId, store });
   },
 
+  getSellerDashboard ( fbId ) {
+    return createRequest(['users', 'getSellerDashboard'], { fbId });
+  },
+
   bodyAddNewProduct( fbId, productInfo ) {
 
     // let request = new XMLHttpRequest();

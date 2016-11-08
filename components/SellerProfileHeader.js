@@ -6,7 +6,7 @@ import {
   Text,
 } from 'react-native';
 
-const SellerProfileHeader = ( ) => {
+const SellerProfileHeader = ({ name, pictSource }) => {
 
 	return (
 		<View style={st.profileView} >
@@ -14,7 +14,7 @@ const SellerProfileHeader = ( ) => {
 
 		   	<View style={st.profileContent}>
 			   	<View style={st.profileBgBlock}>
-			   		<Text style={{color: 'white', textAlign: 'center', fontSize: 26, fontStyle: 'italic', fontWeight: '600'}}>@SNEAKERHEAVEN</Text>
+			   		<Text style={{color: 'white', textAlign: 'center', fontSize: 26, fontStyle: 'italic', fontWeight: '600'}}>{name}</Text>
 			   		<Text style={{color: 'white', textAlign: 'center', fontSize: 18, fontStyle: 'italic'}}>5K FOLLOWERS</Text>
 			   	</View>
 		   	</View>

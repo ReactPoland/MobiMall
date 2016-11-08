@@ -37,8 +37,8 @@ export default class Tabs extends Component {
 		let tabs = this.props.children.map((component, index) =>  {
 
 			if (index === this.state.currentPage) {
-
-			}
+				// if (component.props.onActive) component.props.onActive.call(); 
+			};
 
 			return (
 				<TouchableNativeFeedback key={index} onPress={() => {

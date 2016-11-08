@@ -11,7 +11,7 @@ import {
 	Dimensions,
 	NativeModules
 } from 'react-native';
-import { bindMethods } from '../../utils';
+import { bindMethods, api } from '../../utils';
 import st from '../../assets/style';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import SellerProfileHeader from '../../components/SellerProfileHeader'
@@ -38,6 +38,7 @@ export default class DashboardSeller extends Component {
 		this.state = {
 			fields: {},
 			activeTab: 0,
+			productList: null
 		}
 
 		this.iconsMap = {
@@ -46,6 +47,7 @@ export default class DashboardSeller extends Component {
 		};
 
     	this.Icon = createIconSet(this.iconsMap, 'icomoon2' );
+    	this.loadSellerFeed(this.props.manager.getDataFB().id);
 
 	}
 
@@ -55,116 +57,95 @@ export default class DashboardSeller extends Component {
 		);
 	}
 
+	loadSellerFeed(id) {
+		api.getSellerDashboard(id)
+			.then( ({ data }) => {
+				if (data.status == 'ok') {
+					this.setState( { productList: data.value } );
+				} else {
+					Alert.alert(data.mess);
+				}
+			})
+			.catch(e => Alert.alert(e.message))
+	}
+
+	renderProductGrid(productList) {
+		let gridView = (
+			<View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+				<Text style={{textAlign: 'center', fontSize: 20}}>
+					Loading
+				</Text>
+			</View>
+		);
+
+		if (productList) {
+
+			if (!productList.length) 
+				gridView = (
+					<View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+						<Text style={{textAlign: 'center', fontSize: 20}}>
+							Products not found
+						</Text>
+					</View>
+				);
+
+			let productsView = productList.map( ( imageUrl, i ) => (
+				<View style={dashSellerStyle.prodBlock} key={i}>
+					<View style={dashSellerStyle.prodItem}>
+					   	<Image source={{uri: imageUrl }} style={dashSellerStyle.productImg}/>
+					</View>
+				</View>
+			) );
+
+			let wrappedProducts = [];
+
+			let rowQuantity = 3;
+			for (let i = 0; i < productsView.length; i+= rowQuantity ) {
+
+				wrappedProducts.push(
+					<View style={dashSellerStyle.prodListRow} key={ i - rowQuantity }>
+						{productsView.slice( i, i + rowQuantity )}
+					</View>
+				);
+			};
+
+			gridView = wrappedProducts;
+
+		} 
+
+		return gridView;		
+	}
+
 	render() {
 
-		const { fields } = this.state;
+		const { fields, productList } = this.state;
 		const { Icon } = this;
+		const { store, id } = this.props.manager.getDataFB();
 
+		if ( !store ) {
+			return (
+				<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', margin: 15 }} >
+					<Text style={{ textAlign: 'center', fontSize: 20 }} >Please attach your store on personal page</Text>
+				</View>
+			);
+		}
 
 		return (
 			<View style={dashSellerStyle.container} >
 				<ScrollView>
 
-					<SellerProfileHeader />
+					<SellerProfileHeader name={store.igHandle} pictSource={{ uri: store.storeImgUri }}  />
 
 					<TabIcons active={this.state.activeTab }>
-						<View style={dashSellerStyle.contentRow} icon={ <Icon 
+						<View style={dashSellerStyle.contentRow} onActive={ this.loadSellerFeed.bind(this, id) } icon={ <Icon 
 								name="store" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } }/> } 
 
 							iconActive={ <Icon 
 								name="store" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } } /> } >
-
-							<View style={dashSellerStyle.prodListRow}>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x310.jpg` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x311.jpg` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x312.jpg` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-							</View>
-
-							<View style={dashSellerStyle.prodListRow}>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x313.jpg` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x314.jpg` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x315.jpg` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-							</View>
-
-							<View style={dashSellerStyle.prodListRow}>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x316.jpg` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x317.jpg` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x318.jpg` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-							</View>
-
-							<View style={dashSellerStyle.prodListRow}>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x319.jpg` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x320.jpg?1` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x321.jpg?2` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-							</View>
-
-							<View style={dashSellerStyle.prodListRow}>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?3` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?4` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?5` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-							</View>
+							
+							{ this.renderProductGrid(productList) }
 
 						</View>
 
@@ -231,7 +212,7 @@ const dashSellerStyle = StyleSheet.create({
 		flex: 1,
 		position: 'absolute',
 		zIndex: 10,
-		resizeMode: 'contain',
+		resizeMode: 'cover',
 		top: 0,
 		left: 0,
 		right: 0,

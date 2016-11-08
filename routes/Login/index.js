@@ -35,6 +35,8 @@ export default class Login extends Component {
 			readyLoginView: false,
 		}
 
+		CookieManager.clearAll((err, res) => {});
+
 		// this.state = {
 			// mainImageSize: {
 				// width: 360,

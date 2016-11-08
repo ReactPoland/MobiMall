@@ -2,12 +2,14 @@ import React from 'react';
 import {
   View,
   Text,
-  TouchableNativeFeedback
+  TouchableNativeFeedback,
+  Image
 } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
 import { Card } from 'react-native-material-design';
 
+import PurpleButton from '../../components/PurpleButton';
 import st from '../../assets/style';
 
 const StoreTab = ({ storeItem, onLogin, onLogout }) => {
@@ -66,22 +68,26 @@ const StoreTab = ({ storeItem, onLogin, onLogout }) => {
           value={""}
         />
 
-        <TouchableNativeFeedback onPress={onLogout}>
-          <View style={{backgroundColor: '#aaa', borderRadius: 5, paddingVertical: 10, paddingHorizontal: 5, marginVertical: 10 }} >
-            <Text>logout</Text>
-          </View>
-        </TouchableNativeFeedback>
+        <PurpleButton text={'LOGOUT'} onPress={onLogout} />
 
       </View>
     );
 
   } else {
     storeCardBody = (
-      <TouchableNativeFeedback onPress={onLogin}>
-        <View style={{backgroundColor: '#aaa', borderRadius: 5, paddingVertical: 10, paddingHorizontal: 5 }} >
-          <Text>Register your store</Text>
-        </View>
-      </TouchableNativeFeedback>
+      <View>
+        <Text style={{color: 'purple', padding: 10 }}>Login with Instagram to link and retrieve you Instagram shop details</Text>
+        <TouchableNativeFeedback onPress={onLogin}>
+          <View style={{borderRadius: 5, paddingVertical: 10, paddingHorizontal: 20, alignItems: 'center' }} >
+            <Image 
+              style={{
+                width: 197,
+                height: 31,
+              }} 
+              source={require('../../assets/img/ig_sign-in.png')} />
+          </View>
+        </TouchableNativeFeedback>
+      </View>
     );
   }
 

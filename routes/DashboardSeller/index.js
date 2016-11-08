@@ -241,7 +241,6 @@ const dashSellerStyle = StyleSheet.create({
 		flex: 1,
 	},
 	prodBlock: {
-		flex: 1,
 		paddingVertical: 5,
 		paddingHorizontal: 5,
 	},

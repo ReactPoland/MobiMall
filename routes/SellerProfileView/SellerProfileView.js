@@ -136,11 +136,13 @@ export default class SellerProfileView extends Component {
 		const { fbId, bankAccountData, saving } = this.state;
 		const { firstName } = this.state.personalData;
 		const { name, store } = this.props.manager.getDataFB();
+		let igHandle = store ? store.igHandle : null;
+
     return (
 			<View style={st.container}>
 				<ScrollView>
 				
-					{store ? (<SellerProfileHeader name={store.igHandle} />) : null } 
+					<SellerProfileHeader name={ igHandle } /> 
 
           {/*<ProfileHeader
 						name={name}

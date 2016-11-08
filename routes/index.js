@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navigator, Text, ScrollView, StyleSheet, View, BackAndroid } from 'react-native';
+import { Navigator, Text, ScrollView, StyleSheet, View, BackAndroid, Alert } from 'react-native';
 
 // import NewProductSeller from './NewProductSeller';
 // import PageList from './PageList';
@@ -21,7 +21,7 @@ import PushNotification from '../components/PushNotification';
 import { COLOR, ThemeProvider } from 'react-native-material-ui';
 
 import routes from './routes';
-import { api } from '../utils';
+import { api, auth0lock } from '../utils';
 
 
 const manager = ( function () {
@@ -191,6 +191,7 @@ export default class Router extends Component {
 
 	componentDidMount() {
 		BackAndroid.addEventListener('hardwareBackPress', function() {
+			// Alert.alert('', 'backButton');
 			return true;
 		});
 	}

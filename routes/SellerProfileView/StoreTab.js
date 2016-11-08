@@ -79,7 +79,7 @@ const StoreTab = ({ storeItem, onLogin, onLogout }) => {
     storeCardBody = (
       <TouchableNativeFeedback onPress={onLogin}>
         <View style={{backgroundColor: '#aaa', borderRadius: 5, paddingVertical: 10, paddingHorizontal: 5 }} >
-          <Text>Register you store</Text>
+          <Text>Register your store</Text>
         </View>
       </TouchableNativeFeedback>
     );

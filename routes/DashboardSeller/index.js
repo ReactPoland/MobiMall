@@ -117,7 +117,7 @@ export default class DashboardSeller extends Component {
 	}
 
 	updateProductList() {
-		if (this.props.manager.getSellerProductList() == null ) {
+		// if (this.props.manager.getSellerProductList() == null ) {
 			api.getSellerDashboard( this.props.manager.getDataFB().id ).then( ({data}) => {
 
 				if (data.status == 'ok') {
@@ -127,7 +127,7 @@ export default class DashboardSeller extends Component {
 					Alert.alert(data.mess);
 				}
 			} )
-		}
+		// }
 	}
 
 	render() {
@@ -243,12 +243,12 @@ const dashSellerStyle = StyleSheet.create({
 	prodBlock: {
 		flex: 1,
 		paddingVertical: 5,
-		paddingHorizontal: 2,
+		paddingHorizontal: 5,
 	},
 	prodItem: {
 		backgroundColor: 'black',
 		height: 110,
-		flex: 1,
+		width: 110,
 	},
 	tabItem: {
 		flex: 2,

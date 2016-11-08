@@ -6,17 +6,21 @@ import {
   Text,
 } from 'react-native';
 
-const SellerProfileHeader = ({ name, pictSource }) => {
+const SellerProfileHeader = ({ name, pictSource, followers }) => {
+
+	let followersText = followers ? `${followers} FOLLOWERS` : null;
 
 	return (
 		<View style={st.profileView} >
 		   	<Image source={{uri: `http://pipsum.com/600x100.jpg` }} style={st.dealDayImg}/>
 
 		   	<View style={st.profileContent}>
-			   	<View style={st.profileBgBlock}>
-			   		<Text style={{color: 'white', textAlign: 'center', fontSize: 26, fontStyle: 'italic', fontWeight: '600'}}>{name}</Text>
-			   		<Text style={{color: 'white', textAlign: 'center', fontSize: 18, fontStyle: 'italic'}}>5K FOLLOWERS</Text>
-			   	</View>
+		   		{ name && followersText && (
+				   	<View style={st.profileBgBlock}>
+				   		<Text style={{color: 'white', textAlign: 'center', fontSize: 26, fontStyle: 'italic', fontWeight: '600'}}>{name}</Text>
+				   		<Text style={{color: 'white', textAlign: 'center', fontSize: 18, fontStyle: 'italic'}}>{followersText}</Text>
+				   	</View>
+		   		) }
 		   	</View>
 
 		</View>

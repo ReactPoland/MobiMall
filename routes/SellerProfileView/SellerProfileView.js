@@ -105,7 +105,7 @@ export default class SellerProfileView extends Component {
 
 					if (data.status == 'ok') {
 						let dataFB = this.props.manager.getDataFB();
-						dataFB.store = newStoreProfile;
+						dataFB.store = data.value;
 						this.props.manager.authFB(dataFB);
 						this.forceUpdate();
 					} else {
@@ -136,13 +136,14 @@ export default class SellerProfileView extends Component {
 		const { fbId, bankAccountData, saving } = this.state;
 		const { firstName } = this.state.personalData;
 		const { name, store } = this.props.manager.getDataFB();
-		let igHandle = store ? store.igHandle : null;
+		const igHandle = store ? store.igHandle : null;
+		const followers = store ? store.follower_count : null;
 
     return (
 			<View style={st.container}>
 				<ScrollView>
 				
-					<SellerProfileHeader name={ igHandle } /> 
+					<SellerProfileHeader name={ igHandle } followers={followers } /> 
 
           {/*<ProfileHeader
 						name={name}

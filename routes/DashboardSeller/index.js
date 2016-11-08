@@ -136,6 +136,7 @@ export default class DashboardSeller extends Component {
 		const { Icon } = this;
 		const { store, id } = this.props.manager.getDataFB();
 		const productList = this.props.manager.getSellerProductList();
+		const followers = store ? store.follower_count : null;
 
 		if ( !store ) {
 			return (
@@ -149,7 +150,7 @@ export default class DashboardSeller extends Component {
 			<View style={dashSellerStyle.container} >
 				<ScrollView>
 
-					<SellerProfileHeader name={store.igHandle} pictSource={{ uri: store.storeImgUri }}  />
+					<SellerProfileHeader name={store.igHandle} pictSource={{ uri: store.storeImgUri }} followers={followers}  />
 
 					<TabIcons active={this.state.activeTab }>
 						<View 

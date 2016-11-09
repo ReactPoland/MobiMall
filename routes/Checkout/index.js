@@ -246,6 +246,9 @@ export default class Checkout extends Component {
 		api.acceptProductList( this.props.manager.getDataFB().id, this.state.transaction ).then( ( { data } ) => {
 
 			if (data.status == 'ok') {
+
+				this.props.manager.requestHandler(this.props.manager.getDataFB().id);
+
 				this.setState({checkoutButtonReady: true});
 				let alertText = `Paid: $ ${data.value.price}${'\n'}from card: ...${data.value.source.last4}`;
 				// `Was made charge from your card: $${totalPrice}`

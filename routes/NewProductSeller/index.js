@@ -331,7 +331,6 @@ export default class NewProductSeller extends Component {
 							<TextInput 
 								style={st.input}
 								onChange={ this.changeProductData.bind(this, 'supplier') }
-								keyboardType={'numeric'}
 								placeholder={'Bescot Shoes'} 
 								underlineColorAndroid="#edb4ff" 
 								placeholderTextColor='#cccccc'

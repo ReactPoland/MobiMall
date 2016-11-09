@@ -116,6 +116,8 @@ export default class NewProductSeller extends Component {
 
         let dashboardRoute = routes.profileChanging;
 
+        this.props.manager.setSellerProductList(null);
+
 		this.props.navigator.popN( 2 );
 		Clipboard.setString( this.buildDesc( product, product.productName + "\n\n" ) );
         SendIntentAndroid.openChooserWithOptions({imageUrl: product.img.uri, package: 'com.instagram.android' }, 'Share to');

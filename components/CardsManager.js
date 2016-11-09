@@ -5,7 +5,7 @@ import {
   TouchableNativeFeedback,
   Alert
 } from 'react-native';
-import { CreditCardInput } from "react-native-credit-card-input";
+import { CreditCardInput } from "./react-native-credit-card-input";
 import { Button, Card, Subheader } from 'react-native-material-design';
 
 import { bindMethods, api } from '../utils';

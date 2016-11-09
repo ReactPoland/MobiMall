@@ -1,0 +1,92 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "react-native-credit-card@github:sbycrosz/react-native-credit-card#disable-clickable",
+        "scope": null,
+        "escapedName": "react-native-credit-card",
+        "name": "react-native-credit-card",
+        "rawSpec": "github:sbycrosz/react-native-credit-card#disable-clickable",
+        "spec": "github:sbycrosz/react-native-credit-card#disable-clickable",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:sbycrosz/react-native-credit-card.git#disable-clickable",
+          "sshUrl": "git+ssh://git@github.com/sbycrosz/react-native-credit-card.git#disable-clickable",
+          "httpsUrl": "git+https://github.com/sbycrosz/react-native-credit-card.git#disable-clickable",
+          "gitUrl": "git://github.com/sbycrosz/react-native-credit-card.git#disable-clickable",
+          "shortcut": "github:sbycrosz/react-native-credit-card#disable-clickable",
+          "directUrl": "https://raw.githubusercontent.com/sbycrosz/react-native-credit-card/disable-clickable/package.json"
+        }
+      },
+      "/home/anatolii/Desktop/hardwork/proj/mobiMall/client-app/node_modules/react-native-credit-card-input"
+    ]
+  ],
+  "_from": "sbycrosz/react-native-credit-card#disable-clickable",
+  "_id": "react-native-credit-card@0.1.9",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/react-native-credit-card",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "react-native-credit-card@github:sbycrosz/react-native-credit-card#disable-clickable",
+    "scope": null,
+    "escapedName": "react-native-credit-card",
+    "name": "react-native-credit-card",
+    "rawSpec": "github:sbycrosz/react-native-credit-card#disable-clickable",
+    "spec": "github:sbycrosz/react-native-credit-card#disable-clickable",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:sbycrosz/react-native-credit-card.git#disable-clickable",
+      "sshUrl": "git+ssh://git@github.com/sbycrosz/react-native-credit-card.git#disable-clickable",
+      "httpsUrl": "git+https://github.com/sbycrosz/react-native-credit-card.git#disable-clickable",
+      "gitUrl": "git://github.com/sbycrosz/react-native-credit-card.git#disable-clickable",
+      "shortcut": "github:sbycrosz/react-native-credit-card#disable-clickable",
+      "directUrl": "https://raw.githubusercontent.com/sbycrosz/react-native-credit-card/disable-clickable/package.json"
+    }
+  },
+  "_requiredBy": [
+    "/react-native-credit-card-input"
+  ],
+  "_resolved": "git://github.com/sbycrosz/react-native-credit-card.git#137c1dc1ffb7941d61f501227af7f182f41e494f",
+  "_shasum": "fb66aa2f2b405c6a89c6bd29a8a3e870cd741b21",
+  "_shrinkwrap": null,
+  "_spec": "react-native-credit-card@github:sbycrosz/react-native-credit-card#disable-clickable",
+  "_where": "/home/anatolii/Desktop/hardwork/proj/mobiMall/client-app/node_modules/react-native-credit-card-input",
+  "author": {
+    "name": "sonnylazuardi"
+  },
+  "bugs": {
+    "url": "https://github.com/sonnylazuardi/react-native-credit-card/issues"
+  },
+  "dependencies": {
+    "payment": "^2.0.3",
+    "react-native-flip-card": "^3.3.0"
+  },
+  "description": "React native credit card input component",
+  "devDependencies": {},
+  "gitHead": "137c1dc1ffb7941d61f501227af7f182f41e494f",
+  "homepage": "https://github.com/sonnylazuardi/react-native-credit-card#readme",
+  "keywords": [
+    "react-native",
+    "credit-card",
+    "flip",
+    "card",
+    "component"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "react-native-credit-card",
+  "optionalDependencies": {},
+  "readme": "# React Native Credit Card 💳\n\n### A better credit card form for React Native\n\nReact native port of the display of Card by [@jessepollak](https://github.com/jessepollak/card)\n\n![rn-credit-card](http://i.giphy.com/26gJznmOI4qQSA2UE.gif) ![rn-ios](http://i.giphy.com/l0MYFGQxfygHtBN84.gif)\n\n#### Background\n\nThis is a react native port of Card. There is a [react port of Card](https://github.com/JohnyDays/react-credit-card), but it still renders on browser DOM (which is not as good as native view), so this library will take advantage of both.\n\n#### Goals\n\n- Look like Card.\n- Provide a react interface for displaying credit card information.\n\n#### Design Resources\n\nI got the design resources from the [Ramakrishna V's dribbble](https://dribbble.com/shots/2177105-Checkout-Flow-Card)\n\n![design](https://d13yacurqjgara.cloudfront.net/users/484057/screenshots/2177105/checkout_generic.gif)\n\n\n#### Usage\n\n- `npm install --save react-native-credit-card`\n- In your react native script add these lines\n\n```jsx\nimport CreditCard from 'react-native-credit-card';\n\n\n<CreditCard \n    type={this.state.type}\n    imageFront={require('./images/card-front.png')}\n    imageBack={require('./images/card-back.png')}\n    shiny={false}\n    bar={false}\n    focused={this.state.focused}\n    number={this.state.number}\n    name={this.state.name}\n    expiry={this.state.expiry}\n    cvc={this.state.cvc}/>\n```\n\n### Available props\n  \n- `cvc`: number(max 4 characters, will cut the rest)(The \"/\" will be automatically added)\n- `name`: string (max 2 lines)\n- `number`: credit card number(max 16 characters, will cut the rest)\n- `expiry`: number(max 4 characters, will cut the rest) \n- `imageFront`: image(image file for the card front card background -- with require) \n- `imageBack`: image(image file for the card back card background -- with require) \n- `shiny`: boolean(show sticker) \n- `bar`: boolean(show bar on the back) \n- `focused`: one of the above fields\n  - type\n  - name\n  - number\n  - expiry\n  - cvc (Upon focusing cvc, the form will be rotated until this is changed.)\n  - null\n- `type`: Available in case you need to explicitly specify the card type. In most cases this will be inferred for you as the user fills the form, so you won't need to use it. One of the following:\n  - dankort\n  - discover\n  - mastercard\n  - visa\n  - amex\n\n#### Todo\n\n- Automated test \n- More credit card type variations\n\n#### Examples\n\ntodo.\n\nMost of the credit goes to [@jessepollak](http://github.com/jessepollak) and [@JohnyDays](http://github.com/JohnyDays) for creating and mantaining [Card](http://github.com/jessepollak/card) and [React Credit Card](https://github.com/JohnyDays/react-credit-card), I just ported it over to React Native.\n\n\n",
+  "readmeFilename": "readme.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sonnylazuardi/react-native-credit-card.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.1.9"
+}

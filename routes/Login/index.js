@@ -35,7 +35,6 @@ export default class Login extends Component {
 			readyLoginView: false,
 		}
 
-		CookieManager.clearAll((err, res) => {});
 
 		// this.state = {
 			// mainImageSize: {
@@ -145,33 +144,36 @@ export default class Login extends Component {
 		this.showButton();
 	}
 
-	async componentDidMount() {
+	componentDidMount() {
 
-		let loggedId = await AsyncStorage.getItem( 'logged-igId' );
-		if ( loggedId != null ) {
-			api.createUser( { id: loggedId } )
-			.then( async ( { data } ) => {
+		CookieManager.clearAll( async (err, res) => {
 
-				if (data.status == 'ok') {
-					// console.log(data.value);
+			let loggedId = await AsyncStorage.getItem( 'logged-igId' );
+			if ( loggedId != null ) {
+				api.createUser( { id: loggedId } )
+				.then( async ( { data } ) => {
 
-					this.props.manager.authFB && this.props.manager.authFB(data.value);
+					if (data.status == 'ok') {
+						// console.log(data.value);
 
-					// if (data.value.type && data.value.type.length ) {
-						// if ( data.value.type == "seller" ) this.props.navigator.replace( routes.dashboardSeller );
-						// else this.props.navigator.replace( routes.dashboardBuyer );
-					// } else {
-						this.props.navigator.replace( routes.profileChanging );
-					// }
-				} else {
-					await AsyncStorage.removeItem('logged-igId');
-					this.setState({readyLoginView: true})
-				}
-			})
-			.catch(er => { Alert.alert(er.message); this.showButton(); this.setState({readyLoginView: true}); })
-		} else {
-			this.setState({readyLoginView: true});
-		}
+						this.props.manager.authFB && this.props.manager.authFB(data.value);
+
+						// if (data.value.type && data.value.type.length ) {
+							// if ( data.value.type == "seller" ) this.props.navigator.replace( routes.dashboardSeller );
+							// else this.props.navigator.replace( routes.dashboardBuyer );
+						// } else {
+							this.props.navigator.replace( routes.profileChanging );
+						// }
+					} else {
+						await AsyncStorage.removeItem('logged-igId');
+						this.setState({readyLoginView: true})
+					}
+				})
+				.catch(er => { Alert.alert(er.message); this.showButton(); this.setState({readyLoginView: true}); })
+			} else {
+				this.setState({readyLoginView: true});
+			}
+		});
 		
 	}
 
@@ -214,11 +216,11 @@ export default class Login extends Component {
 				profileImgUri: profile.picture
 			};
 
-			CookieManager.clearAll((err, res) => {
+			// CookieManager.clearAll((err, res) => {
 			  // console.log('cookies cleared!');
 			  // console.log(err);
 			  // console.log(res);
-			});
+			// });
 
 
 			api.createUser( newProfile )

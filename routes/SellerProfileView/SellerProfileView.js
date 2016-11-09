@@ -75,48 +75,52 @@ export default class SellerProfileView extends Component {
 	}
 
 	_onLoginStore() {
-		auth0lock.show({}, (err, profile, token) => {
-			if (err) {
-				console.log( err );
-				Alert.alert(err.message);
-				return;
-			};
+		CookieManager.clearAll((err, res) => {
 
-			CookieManager.clearAll((err, res) => {} );
-
-			let igStoreId = 0;
-
-			profile.identities.map(connItem => {
-				if (connItem.provider == 'instagram') {
-					igStoreId = connItem.userId;
-				}
-			});
+			auth0lock.show({}, (err, profile, token) => {
+				if (err) {
+					console.log( err );
+					Alert.alert(err.message);
+					return;
+				};
 
 
+				let igStoreId = 0;
 
-			let newStoreProfile = {
-				id: igStoreId,
-				description: profile.bio,
-				companyName: profile.name,
-				igHandle: `@${profile.nickname}`,
-				storeImgUri: profile.picture,
-				website: profile.website
-			};
-
-			api.updatePersonalStore(this.state.fbId, newStoreProfile )
-				.then( ( {data} ) => {
-
-					if (data.status == 'ok') {
-						let dataFB = this.props.manager.getDataFB();
-						dataFB.store = data.value;
-						this.props.manager.authFB(dataFB);
-						this.forceUpdate();
-					} else {
-						Alert.alert(data.mess);
+				profile.identities.map(connItem => {
+					if (connItem.provider == 'instagram') {
+						igStoreId = connItem.userId;
 					}
-				} )
-				.catch((e) => console.log(e));
-		})
+				});
+
+
+
+				let newStoreProfile = {
+					id: igStoreId,
+					description: profile.bio,
+					companyName: profile.name,
+					igHandle: `@${profile.nickname}`,
+					storeImgUri: profile.picture,
+					website: profile.website
+				};
+
+				api.updatePersonalStore(this.state.fbId, newStoreProfile )
+					.then( ( {data} ) => {
+
+						if (data.status == 'ok') {
+							let dataFB = this.props.manager.getDataFB();
+							dataFB.store = data.value;
+							this.props.manager.authFB(dataFB);
+							this.forceUpdate();
+						} else {
+							Alert.alert(data.mess);
+						}
+					} )
+					.catch((e) => console.log(e));
+			})
+
+		} );
+
 	}
 
 	_onLogoutStore() {

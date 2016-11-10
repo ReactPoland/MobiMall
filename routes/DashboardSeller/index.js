@@ -9,7 +9,8 @@ import {
 	ScrollView,
 	Alert,
 	Dimensions,
-	NativeModules
+	NativeModules,
+	WebView
 } from 'react-native';
 import { bindMethods, api } from '../../utils';
 import st from '../../assets/style';
@@ -37,7 +38,6 @@ export default class DashboardSeller extends Component {
 
 		this.state = {
 			fields: {},
-			activeTab: 0,
 			productList: null
 		}
 
@@ -47,12 +47,6 @@ export default class DashboardSeller extends Component {
 		};
 
     	this.Icon = createIconSet(this.iconsMap, 'icomoon2' );
-	}
-
-	renderTabBody( bodyArr ) {
-		return ( 
-			bodyArr[ this.state.activeTab ] 
-		);
 	}
 
 	componentDidMount() {
@@ -148,11 +142,14 @@ export default class DashboardSeller extends Component {
 
 		return (
 			<View style={dashSellerStyle.container} >
+
+			
+			
 				<ScrollView>
 
 					<SellerProfileHeader name={store.igHandle} pictSource={{ uri: store.storeImgUri }} followers={followers}  />
 
-					<TabIcons active={this.state.activeTab }>
+					<TabIcons >
 						<View 
 							onLayout={ this.updateProductList } 
 							style={dashSellerStyle.contentRow} 
@@ -175,41 +172,19 @@ export default class DashboardSeller extends Component {
 							iconActive={ <Icon 
 								name="dashboard" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } } /> } >
-							<View style={dashSellerStyle.prodListRow}>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?6` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?7` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?8` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-							</View>
 
-							<View style={dashSellerStyle.prodListRow}>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?9` }} style={dashSellerStyle.productImg}/>
-									</View>
+								<View style={{flex: 1}}>
+									<Text>Begin</Text>
+									<WebView
+										// automaticallyAdjustContentInsets={false}
+										source={{
+											uri: `https://github.com/`
+										}} style={{
+											// width: 360,
+											height: 400,
+										}} />
+									<Text>end</Text>
 								</View>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?10` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-								<View style={dashSellerStyle.prodBlock}>
-									<View style={dashSellerStyle.prodItem}>
-									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?11` }} style={dashSellerStyle.productImg}/>
-									</View>
-								</View>
-							</View>
 						</View>
 
 					</TabIcons>

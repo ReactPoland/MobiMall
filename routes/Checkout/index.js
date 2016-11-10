@@ -12,6 +12,7 @@ import { api, bindMethods } from '../../utils';
 import routes from '../routes';
 import { Card, Button } from 'react-native-material-design';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import Swipeout from '../../components/react-native-swipeout';
 
 export default class Checkout extends Component {
 
@@ -47,6 +48,7 @@ export default class Checkout extends Component {
 
 		} )
 		.catch( e => {
+			console.log(e.message);
 			Alert.alert('Server error');
 			this.props.navigator.pop();
 		});
@@ -85,75 +87,92 @@ export default class Checkout extends Component {
 	}
 
 	renderProducts(products) {
-		return products.map(( item, k ) => (
-			<Card style={checkout.cardProduct} key={k} >
-			<Card.Body>
+		return products.map(( item, k ) => {
 
-				<View style={ checkout.product } >
-
-					<View style={checkout.prodPictCol} >
-						<Image source={{uri: item.imgUrl  }} style={checkout.prodImg}/>
-					</View>
-
-					<View style={checkout.prodDescCol} >
+			let actionView = (
+				<View style={checkout.prodActCol} >
+					
+					<TouchableNativeFeedback onPress={ this.removeProduct.bind(this, item.productId) } >
 						<View>
-							<Text style={checkout.prodTitle} >{ item.name }</Text>
-							<Text style={checkout.prodDesc} >{ item.description }</Text>
-
-							<View style={checkout.quantityCol}>
-
-								<View style={checkout.quantTextCol} >
-									<Text style={checkout.quantText} >{item.orderedQuantity}</Text> 
-								</View>
-
-								<TouchableNativeFeedback onPress={ this.countProduct.bind(this, item.productId, '+' ) } >
-									<View style={checkout.quantAction} >
-										<Text style={checkout.quantText} >+</Text>
-									</View> 
-								</TouchableNativeFeedback>
-
-								<TouchableNativeFeedback onPress={ this.countProduct.bind(this, item.productId, '-' ) } >
-									<View style={checkout.quantAction} >
-										<Text style={checkout.quantText} >-</Text>
-									</View> 
-								</TouchableNativeFeedback>
-
-							</View>
-
-							<Text style={checkout.prodPrice} >${item.costPrice}</Text>
+							<FontAwesomeIcon 
+								name="pencil"
+								style={ { textAlign: 'center', fontSize: 25, padding: 5, color: '#efdfef', } } 
+							/>
 						</View>
-					</View>
+					</TouchableNativeFeedback>
+					
+{/*					<View style={{height: 30}}></View>
+					
 
-					<View style={checkout.prodActCol} >
-						
-						<TouchableNativeFeedback onPress={ this.removeProduct.bind(this, item.productId) } >
-							<View>
-								<FontAwesomeIcon 
-									name="pencil"
-									style={ { textAlign: 'center', fontSize: 25, padding: 5, color: '#efdfef', } } 
-								/>
-							</View>
-						</TouchableNativeFeedback>
-						
-						<View style={{height: 30}}></View>
-						
-
-						<TouchableNativeFeedback onPress={() => { Alert.alert('unknown action') }} >
-							<View>
-								<FontAwesomeIcon 
-									name="pencil"
-									style={ { textAlign: 'center', fontSize: 25, padding: 5, color: '#efdfef', } } 
-								/>
-							</View>
-						</TouchableNativeFeedback>
-
-					</View>
+					<TouchableNativeFeedback onPress={() => { Alert.alert('unknown action') }} >
+						<View>
+							<FontAwesomeIcon 
+								name="pencil"
+								style={ { textAlign: 'center', fontSize: 25, padding: 5, color: '#efdfef', } } 
+							/>
+						</View>
+					</TouchableNativeFeedback>*/}
 
 				</View>
+			);
 
-			</Card.Body>
-			</Card>
-		));
+			return (
+				<Card style={checkout.cardProduct} key={k} >
+				<Card.Body>
+				<Swipeout
+					right={[ { component: actionView } ]}
+					rowID={1}
+					sectionID={1}
+					autoClose={true}
+					close={true}
+					// onOpen={(sectionID, rowID) => this._handleSwipeout(sectionID, rowID) }
+					// scroll={event => this._allowScroll(event)}
+				>
+
+					<View style={ checkout.product } >
+
+						<View style={checkout.prodPictCol} >
+							<Image source={{uri: item.imgUrl  }} style={checkout.prodImg}/>
+						</View>
+
+						<View style={checkout.prodDescCol} >
+							<View>
+								<Text style={checkout.prodTitle} >{ item.name }</Text>
+								<Text style={checkout.prodDesc} >{ item.description }</Text>
+
+								<View style={checkout.quantityCol}>
+
+									<View style={checkout.quantTextCol} >
+										<Text style={checkout.quantText} >{item.orderedQuantity}</Text> 
+									</View>
+
+									<TouchableNativeFeedback onPress={ this.countProduct.bind(this, item.productId, '+' ) } >
+										<View style={checkout.quantAction} >
+											<Text style={checkout.quantText} >+</Text>
+										</View> 
+									</TouchableNativeFeedback>
+
+									<TouchableNativeFeedback onPress={ this.countProduct.bind(this, item.productId, '-' ) } >
+										<View style={checkout.quantAction} >
+											<Text style={checkout.quantText} >-</Text>
+										</View> 
+									</TouchableNativeFeedback>
+
+								</View>
+
+								<Text style={checkout.prodPrice} >${item.costPrice}</Text>
+							</View>
+						</View>
+
+
+
+					</View>
+
+				</Swipeout>
+				</Card.Body>
+				</Card>
+			)
+		});
 
 	}
 
@@ -422,11 +441,7 @@ const checkout = StyleSheet.create({
 	},
 
 	prodImg: {
-		position: 'absolute',
-		top: 0,
-		left: 0,
-		right: 0,
-		bottom: 0,
+		flex: 1,
 		resizeMode: 'contain',
 	},
 

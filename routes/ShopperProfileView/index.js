@@ -127,60 +127,29 @@ export default class ShopperProfileView extends Component {
 								<Card.Body>
 									<Text style={st.blockSubtitle} >PERSONAL DETAILS</Text>
 
-									<Sae
-								    label={'First name'}
-								    iconClass={FontAwesomeIcon}
-								    iconName={'pencil'}
-								    iconColor={'gray'}
+									<Text style={st.textInput2} >First name</Text>
+
+									<View>
+										<Text style={[st.textInputGrey, {paddingTop: 5, paddingBottom: 9}]} >{firstName}</Text>
+									</View>
+
+									{/*<TextInput
 										inputStyle={st.textInputGrey}
-								    // TextInput props
-								    autoCapitalize={'none'}
-								    autoCorrect={false}
-								    value={firstName}
-										editable={false}
-								  />
+									    autoCorrect={false}
+									    value={firstName}
+										editable={false} />*/}
 
-									<Sae
-								    label={'Last name'}
-								    iconClass={FontAwesomeIcon}
-								    iconName={'pencil'}
-								    iconColor={'gray'}
+								  <Text style={st.textInput2} >About</Text>
+
+								  <TextInput
 										inputStyle={st.textInputGrey}
+									    autoCorrect={false}
+									    value={about}
+								    	onChange={this.onPersonalInfoChange.bind(this, 'about')}
+										multiline={true}
+										 />
 
-								    // TextInput props
-								    autoCapitalize={'none'}
-								    autoCorrect={false}
-								    value={lastName}
-										editable={false}
-								  />
-
-									<Sae
-								    label={'Email Address'}
-								    iconClass={FontAwesomeIcon}
-								    iconName={'pencil'}
-								    iconColor={'gray'}
-										inputStyle={st.textInputGrey}
-								    // TextInput props
-								    autoCapitalize={'none'}
-								    autoCorrect={false}
-								    value={email}
-										editable={false}
-								  />
-
-									<Sae
-								    label={'Phone number'}
-								    iconClass={FontAwesomeIcon}
-								    iconName={'pencil'}
-								    iconColor={'gray'}
-										inputStyle={st.textInputGrey}
-								    // TextInput props
-								    autoCapitalize={'none'}
-	        					onEndEditing={this.onPersonalInfoChange.bind(this, 'phone')}
-								    value={phone}
-								    autoCorrect={false}
-								  />
-
-								  <Sae
+								  {/*<Sae
 								    label={'About'}
 								    iconClass={FontAwesomeIcon}
 								    iconName={'pencil'}
@@ -192,7 +161,7 @@ export default class ShopperProfileView extends Component {
 								    value={about}
 										multiline={true}
 										numberOfLines={4}
-								  />
+								  />*/}
 
 									<PurpleButton text={saving ? 'SAVING...' : 'SAVE'} onPress={this.onPersonalInfoSave} />
 								</Card.Body>

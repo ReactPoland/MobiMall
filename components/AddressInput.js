@@ -5,7 +5,8 @@ import {
   TouchableNativeFeedback,
   TextInput
 } from 'react-native';
-import { Button, Card } from 'react-native-material-design';
+import { Card } from 'react-native-material-design';
+import { Button } from 'react-native-material-ui';
 
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
@@ -27,13 +28,10 @@ const AddressInput = ({ onChange, addressToEdit, onSave, shouldDisplay, isNew })
     <Card>
       <Card.Body>
         <Text style={st.blockSubtitle}>{isNew ? 'ADD' : 'EDIT'} ADDRESS</Text>
-        <Sae
-          label={'Country'}
-          labelStyle={{ fontSize: 15 }}
-          style={{ height: 20 }}
-          iconClass={FontAwesomeIcon}
-          iconName={'pencil'}
-          iconColor={'gray'}
+
+        <Text style={st.textInput2} >Country</Text>
+
+        <TextInput
           inputStyle={st.textInputGrey}
           autoCapitalize={'none'}
           autoCorrect={false}
@@ -41,11 +39,9 @@ const AddressInput = ({ onChange, addressToEdit, onSave, shouldDisplay, isNew })
           value={country}
         />
 
-        <Sae
-          label={'Address'}
-          iconClass={FontAwesomeIcon}
-          iconName={'pencil'}
-          iconColor={'gray'}
+        <Text style={st.textInput2} >Address</Text>
+
+        <TextInput
           inputStyle={st.textInputGrey}
           autoCapitalize={'none'}
           autoCorrect={false}
@@ -53,23 +49,19 @@ const AddressInput = ({ onChange, addressToEdit, onSave, shouldDisplay, isNew })
           value={address}
         />
 
-        <Sae
-          label={'ZIP / Postal Code'}
-          iconClass={FontAwesomeIcon}
-          iconName={'pencil'}
-          iconColor={'gray'}
+        <Text style={st.textInput2} >ZIP / Postal Code</Text>
+        
+        <TextInput
           inputStyle={st.textInputGrey}
           autoCapitalize={'none'}
           autoCorrect={false}
           onChange={handler('postalCode')}
           value={postalCode}
         />
+ 
+        <Text style={st.textInput2} >City</Text>
 
-        <Sae
-          label={'City'}
-          iconClass={FontAwesomeIcon}
-          iconName={'pencil'}
-          iconColor={'gray'}
+        <TextInput
           inputStyle={st.textInputGrey}
           autoCapitalize={'none'}
           autoCorrect={false}
@@ -77,11 +69,9 @@ const AddressInput = ({ onChange, addressToEdit, onSave, shouldDisplay, isNew })
           value={city}
         />
 
-        <Sae
-          label={'Best Time of Day to Deliver'}
-          iconClass={FontAwesomeIcon}
-          iconName={'pencil'}
-          iconColor={'gray'}
+        <Text style={st.textInput2} >Best Time of Day to Deliver</Text>
+
+        <TextInput
           inputStyle={st.textInputGrey}
           autoCapitalize={'none'}
           autoCorrect={false}
@@ -89,12 +79,18 @@ const AddressInput = ({ onChange, addressToEdit, onSave, shouldDisplay, isNew })
           value={bestTimeToDeliver}
         />
 
-        <Button text='SAVE ADDRESS'
-          raised={true}
-          overrides={{
-          backgroundColor: '#9100be',
-          textColor: '#ffffff' }}
-        onPress={onSave}
+        <Button 
+          text='SAVE ADDRESS'
+          raised
+          style={{
+            container: {
+              backgroundColor: '#9100be',
+            },
+            text: {
+              color: '#ffffff'
+            }
+          }}
+          onPress={onSave}
         />
       </Card.Body>
     </Card>

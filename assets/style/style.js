@@ -76,6 +76,11 @@ export default {
 		fontSize: 10,
 		color: '#9100be'
 	},
+	textInput2: {
+		fontSize: 11,
+		fontWeight: 'bold',	
+		color: '#7b77b0'
+	},
 	textInputGrey: {
 		fontSize: 15,
 		color: '#888888'

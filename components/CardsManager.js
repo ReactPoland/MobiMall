@@ -6,7 +6,8 @@ import {
   Alert
 } from 'react-native';
 import { CreditCardInput } from "./react-native-credit-card-input";
-import { Button, Card, Subheader } from 'react-native-material-design';
+import { Card, Subheader } from 'react-native-material-design';
+import { Button } from 'react-native-material-ui';
 
 import { bindMethods, api } from '../utils';
 import st from '../assets/style';
@@ -119,11 +120,18 @@ export default class CardsManager extends Component {
           <Card.Body>
             <Text style={st.blockSubtitle} >NEW PAYMENT DETAILS</Text>
             <CreditCardInput onChange={this._onCardInputChange} />
-            <Button text={saving ? 'SAVING...' : 'SAVE CARD'}
+            <Button 
+              text={saving ? 'SAVING...' : 'SAVE CARD'}
               raised={true}
-              overrides={{
-              backgroundColor: '#9100be',
-              textColor: '#ffffff' }}
+              style={{
+                container: {
+                  marginTop: 20, 
+                  backgroundColor: '#9100be',
+                },
+                text: {
+                  color: '#ffffff' 
+                }
+              }}
               onPress={this._onCardSave}
             />
           </Card.Body>

@@ -1,12 +1,18 @@
 import React from 'react';
-import { Button } from 'react-native-material-design';
+import { Button } from 'react-native-material-ui';
 
 const PurpleButton = ({ text, onPress }) => (
-  <Button text={text}
+  <Button 
+  	text={text}
     raised={true}
-    overrides={{
-    backgroundColor: '#9100be',
-    textColor: '#ffffff' }}
+    style={{
+    	container: {
+    		backgroundColor: '#9100be',
+    	},
+    	text: {
+		    color: '#ffffff' 
+    	}
+	}}
     onPress={onPress}
   />
 );

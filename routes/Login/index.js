@@ -186,9 +186,6 @@ export default class Login extends Component {
 		this.hideButton();
 
 		auth0lock.show({ 
-				rememberLastLogin: false, 
-				returnUrl: "http://testmobimall2.herokuapp.com/",
-				returnTo: "http://testmobimall2.herokuapp.com/" 
 			}, (err, profile, token) => {
 				// console.log(token);
 			if (err) {

@@ -96,7 +96,7 @@ export default class Checkout extends Component {
 					<TouchableNativeFeedback onPress={ this.removeProduct.bind(this, item.productId) } >
 						<View>
 							<FontAwesomeIcon 
-								name="pencil"
+								name="times"
 								style={ { textAlign: 'center', fontSize: 25, padding: 5, color: '#efdfef', } } 
 							/>
 						</View>
@@ -191,7 +191,7 @@ export default class Checkout extends Component {
 
 					<View style={ { width: 30 } }>					
 						<FontAwesomeIcon 
-							name="pencil"
+							name="subway"
 							style={ { textAlign: 'center', fontSize: 22, padding: 5, color: '#555', } } 
 						/>
 					</View>					
@@ -210,7 +210,7 @@ export default class Checkout extends Component {
 
 					<View style={ { width: 30 } }>
 						<FontAwesomeIcon 
-							name="pencil"
+							name="usd"
 							style={ { textAlign: 'center', fontSize: 22, padding: 5, color: '#800080', } } 
 						/>
 					</View>
@@ -229,7 +229,7 @@ export default class Checkout extends Component {
 
 					<View style={ { width: 30 } }>					
 						<FontAwesomeIcon 
-							name="pencil"
+							name="sign-language"
 							style={ { textAlign: 'center', fontSize: 22, padding: 5, color: '#555', } } 
 						/>
 					</View>					

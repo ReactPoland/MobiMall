@@ -458,7 +458,7 @@ const checkout = StyleSheet.create({
 
 	prodDescCol: {
 		padding: 20,
-		alignItems: 'center',
+		alignItems: 'flex-start',
 		justifyContent: 'center',
 		flex: 1,
 		flexDirection: 'column',

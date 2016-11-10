@@ -10,9 +10,10 @@ import {
 } from 'react-native';
 import { api, bindMethods } from '../../utils';
 import routes from '../routes';
-import { Card, Button } from 'react-native-material-design';
+import { Card } from 'react-native-material-design';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import Swipeout from '../../components/react-native-swipeout';
+import { Button } from 'react-native-material-ui';
 
 export default class Checkout extends Component {
 
@@ -332,10 +333,14 @@ export default class Checkout extends Component {
 						<Button 
 							text='CHECKOUT' 
 							raised={true}
-							overrides={ {
-								backgroundColor: '#0ac600',
-								textColor: '#ffffff'
-							} }
+							style={ {
+								container: {
+									backgroundColor: '#0ac600',
+								},
+								text: {
+									color: '#ffffff'
+								}
+							}}
 							onPress={ this.acceptList }
 							 />
 						) : null
@@ -355,7 +360,7 @@ const checkout = StyleSheet.create({
 
 	acceptRow: {
 		position: 'absolute',
-		bottom: 0,
+		bottom: 10,
 		left: 0,
 		right: 0,
 		backgroundColor: '#777',
@@ -465,7 +470,8 @@ const checkout = StyleSheet.create({
 		backgroundColor: 'purple',
 		flexDirection: 'column',
 		width: 70,
-		height: 140,
+		flex: 1,
+		// height: 140,
 	},
 	
 	container: {

@@ -46,7 +46,7 @@ export default class NewProductSeller extends Component {
 				<View style={ { flex: 1, padding: 30 } } >
 					<Button 
 						raised 
-						text="SHOP" 
+						text="BUY" 
 						style={{ 
 							container: { 
 								flex: 1, 

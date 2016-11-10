@@ -95,11 +95,11 @@ export default class NewProductSeller extends Component {
 					return;
 				}
 
-				Alert.alert(data.mess);
+				Alert.alert("Response err", data.mess);
 				this.props.navigator.pop();
 
 			})
-			.catch( (err) => {Alert.alert(err.message); this.hideFog(); this.props.navigator.pop(); } );
+			.catch( (err) => {Alert.alert('Server err', err.message); this.hideFog(); this.props.navigator.pop(); } );
 	}
 
 	showWarning() {
@@ -123,11 +123,14 @@ export default class NewProductSeller extends Component {
         SendIntentAndroid.openChooserWithOptions({imageUrl: product.img.uri, package: 'com.instagram.android' }, 'Share to');
 	}
 
-	renderFogWarningBody() {
+	renderFogWarningBody(store) {
+
+		let warnStoreName = store && store.companyName ? `as "${store.companyName}"` : 'to proper shop';
+
 		return ( 
 			<View style={postStyle.warningBg}>
 				<Text style={postStyle.warnPopText} >Warning{'\n'}</Text>
-				<Text style={postStyle.warnPopDesc} >Are you logged in on IG app as seller? {'\n'}Please check out and then press button</Text>
+				<Text style={postStyle.warnPopDesc} >You need to be logged in { warnStoreName } on Instagram app</Text>
 				<Text style={postStyle.warnPopNotify} >*Your product description was writed in clipboard</Text>
 
 				<TouchableNativeFeedback onPress={this.makeRedirect}>
@@ -161,13 +164,14 @@ Supplier:${ product.supplier }`;
 	render() {
 
 		let product = this.props.manager.getPostProductData();
+		let { store } = this.props.manager.getDataFB();
 		const { navigator, Fog } = this.props;
 
 		return (
 			<View style={postStyle.container} onLayout={this.onLayout}>
 
 				<Fog visible={ this.state.redirectWarningVisibility } >
-					{ this.renderFogWarningBody() }
+					{ this.renderFogWarningBody(store) }
 				</Fog>
 
 				<Fog visible={ this.state.fogVisibility } />
@@ -212,7 +216,7 @@ const postStyle = StyleSheet.create({
 	},
 	warnPopDesc: {
 		color: 'white',
-		textAlign: 'left',
+		textAlign: 'center',
 		fontSize: 17,
 		fontStyle: 'italic',
 	},

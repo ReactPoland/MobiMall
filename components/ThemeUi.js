@@ -14,7 +14,7 @@ import Setting from '../routes/Setting'
 import { bindMethods, api } from '../utils'
 import { createIconSet } from 'react-native-vector-icons';
 import routes from '../routes/routes'
-
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 export default class ThemeUi extends Component {
 
@@ -84,8 +84,22 @@ export default class ThemeUi extends Component {
   }
 
   renderIcon(source) {
+
+    let iconView;
     const Icon = this.Icon;
-    return <Icon size={30} name={source} />
+
+    switch( source.type ) {
+      case 'awesome' : 
+        iconView = ( <AwesomeIcon size={30} name={source.name} /> );
+      break;
+      case 'text':
+        iconView = ( <Text style={{fontSize: 30}}>{source.name}</Text> );
+      break;
+      default:
+        iconView = (<Icon size={30} name={source.name} />);
+      break;
+    }
+    return iconView;
   }
 
   // renderIcons() {
@@ -158,7 +172,7 @@ export default class ThemeUi extends Component {
       if ( ! stripLinks.length ) return null;
     }
 
-    let actionIcons = stripLinks.map(item => ( { source: this.renderIcon(item.iconName), route: item.route  } ) );
+    let actionIcons = stripLinks.map(item => ( { source: this.renderIcon(item.icon), route: item.route  } ) );
 
 
     return (

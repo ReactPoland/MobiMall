@@ -3,7 +3,8 @@ import {
   View,
   Text,
   TouchableNativeFeedback,
-  Image
+  Image,
+  TextInput
 } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
@@ -19,8 +20,14 @@ const StoreTab = ({ storeItem, onLogin, onLogout }) => {
   if ( storeItem ) {
     storeCardBody = (
       <View>
-        
-        <Sae
+
+        <Text style={st.textInput2} >Company Name</Text>
+
+        <View>
+          <Text style={[st.textInputGrey, {paddingTop: 5, paddingBottom: 9}]} >{storeItem.companyName}</Text>
+        </View>
+              
+        {/*<TextInput
           label={'Company Name'}
           iconClass={FontAwesomeIcon}
           iconName={'pencil'}
@@ -30,9 +37,15 @@ const StoreTab = ({ storeItem, onLogin, onLogout }) => {
           editable={false}
           autoCorrect={false}
           value={storeItem.companyName}
-        />
+        />*/}
 
-        <Sae
+        <Text style={st.textInput2} >Instagram Handle</Text>
+
+        <View>
+          <Text style={[st.textInputGrey, {paddingTop: 5, paddingBottom: 9}]} >{storeItem.igHandle}</Text>
+        </View>
+
+        {/*<TextInput
           label={'Instagram Handle'}
           iconClass={FontAwesomeIcon}
           iconName={'pencil'}
@@ -42,9 +55,14 @@ const StoreTab = ({ storeItem, onLogin, onLogout }) => {
           editable={false}
           autoCorrect={false}
           value={storeItem.igHandle}
-        />  
+        />*/}  
 
-        <Sae
+        <Text style={st.textInput2} >Description</Text>
+        
+        <View>
+          <Text style={[st.textInputGrey, {paddingTop: 5, paddingBottom: 9}]} >{storeItem.description}</Text>
+        </View>
+        {/*<TextInput
           label={'Description'}
           iconClass={FontAwesomeIcon}
           iconName={'pencil'}
@@ -54,9 +72,14 @@ const StoreTab = ({ storeItem, onLogin, onLogout }) => {
           editable={false}
           autoCorrect={false}
           value={storeItem.description}
-        />
+        />*/}
 
-        <Sae
+        <Text style={st.textInput2} >Website</Text>
+
+        <View>
+          <Text style={[st.textInputGrey, {paddingTop: 5, paddingBottom: 9}]} >{storeItem.website}</Text>
+        </View>
+        {/*<TextInput
           label={'Website'}
           iconClass={FontAwesomeIcon}
           iconName={'pencil'}
@@ -66,7 +89,7 @@ const StoreTab = ({ storeItem, onLogin, onLogout }) => {
           editable={false}
           autoCorrect={false}
           value={storeItem.website}
-        />
+        />*/}
 
         <PurpleButton text={'LOGOUT'} onPress={onLogout} />
 

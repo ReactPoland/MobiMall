@@ -54,22 +54,29 @@ export default class SellerProfileView extends Component {
 	}
 
 	_onBankAccountDataChange (property, event) {
-		console.log('property', property);
-		console.log('event text', event.nativeEvent.text);
+		// console.log('property', property);
+		// console.log('event text', event.nativeEvent.text);
 		const bankAccountData = Object.assign({}, this.state.bankAccountData);
+		
 		bankAccountData[property] = event.nativeEvent.text;
+		this.setState({ bankAccountData });
+
+		// console.log('bAD after change', bankAccountData);
+	}
+	_onBankAccountDataSave() {
+		const { bankAccountData } = this.state; 
+		this.setState({saving: true});
 		api
 			.saveBankAccountData(this.state.fbId, bankAccountData)
+			.then(() => this.setState({ saving: false }))
 			.catch(e => console.log(e));
-		console.log('bAD after change', bankAccountData);
-		this.setState({ bankAccountData });
 	}
 
 	_onPersonalInfoSave () {
-		const { profileData } = this.state;
+		const { personalData } = this.state;
 		this.setState({ saving: true });
 		api
-			.updatePersonalInfo(this.state.fbId, profileData)
+			.updatePersonalInfo(this.state.fbId, personalData)
 			.then(() => this.setState({ saving: false }))
 			.catch(e => console.log(e));
 	}
@@ -166,9 +173,12 @@ export default class SellerProfileView extends Component {
 							onSave={this._onPersonalInfoSave}
 						/>
 						<StoreTab name='STORE' storeItem={store} onLogin={this._onLoginStore} onLogout={this._onLogoutStore} />
+
 						<AccountsTab
 							name='ACCOUNTS'
 							fbId={fbId}
+							saving={saving}
+							onSave={this._onBankAccountDataSave}
 							bankAccountData={bankAccountData}
 							onBankAccountDataChange={this._onBankAccountDataChange}
 						/>

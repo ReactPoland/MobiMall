@@ -1,16 +1,18 @@
 import React from 'react';
 import {
   View,
-  Text
+  Text,
+  TextInput
 } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Sae } from 'react-native-textinput-effects';
 import { Card } from 'react-native-material-design';
+import PurpleButton from '../../components/PurpleButton';
 
 import CardsManager from '../../components/CardsManager';
 import st from '../../assets/style';
 
-const AccountsTab = ({ fbId, onBankAccountDataChange, bankAccountData }) => {
+const AccountsTab = ({ fbId, onBankAccountDataChange, bankAccountData, onSave, saving }) => {
   const { bankName = '', softCode = '', accountNumber = '', accountName = '' } = bankAccountData;
 
   return (
@@ -18,53 +20,49 @@ const AccountsTab = ({ fbId, onBankAccountDataChange, bankAccountData }) => {
       <Card >
         <Card.Body>
           <Text style={st.blockSubtitle}>PAY SALE FROM MY STORE INTO</Text>
-          <Sae
-            label={'Bank Name'}
-            iconClass={FontAwesomeIcon}
-            iconName={'pencil'}
-            iconColor={'gray'}
+
+          <Text style={st.textInput2} >Bank Name</Text>
+
+          <TextInput
             inputStyle={st.textInputGrey}
             autoCapitalize={'none'}
             autoCorrect={false}
-            onEndEditing={onBankAccountDataChange.bind(this, 'bankName')}
+            onChange={onBankAccountDataChange.bind(this, 'bankName')}
             value={bankName}
           />
 
-          <Sae
-            label={'Soft Code'}
-            iconClass={FontAwesomeIcon}
-            iconName={'pencil'}
-            iconColor={'gray'}
+          <Text style={st.textInput2} >Soft Code</Text>
+
+          <TextInput
             inputStyle={st.textInputGrey}
             autoCapitalize={'none'}
             autoCorrect={false}
-            onEndEditing={onBankAccountDataChange.bind(this, 'softCode')}
+            onChange={onBankAccountDataChange.bind(this, 'softCode')}
             value={softCode}
           />
 
-          <Sae
-            label={'Account Number'}
-            iconClass={FontAwesomeIcon}
-            iconName={'pencil'}
-            iconColor={'gray'}
+          <Text style={st.textInput2} >Account Number</Text>
+
+          <TextInput
             inputStyle={st.textInputGrey}
             autoCapitalize={'none'}
             autoCorrect={false}
-            onEndEditing={onBankAccountDataChange.bind(this, 'accountNumber')}
+            onChange={onBankAccountDataChange.bind(this, 'accountNumber')}
             value={accountNumber}
           />
 
-          <Sae
-            label={'Account Name'}
-            iconClass={FontAwesomeIcon}
-            iconName={'pencil'}
-            iconColor={'gray'}
+          <Text style={st.textInput2} >Account Name</Text>
+
+          <TextInput
             inputStyle={st.textInputGrey}
             autoCapitalize={'none'}
             autoCorrect={false}
-            onEndEditing={onBankAccountDataChange.bind(this, 'accountName')}
+            onChange={onBankAccountDataChange.bind(this, 'accountName')}
             value={accountName}
           />
+
+          <PurpleButton text={ saving ? 'SAVING...' : 'SAVE'} onPress={onSave} />
+
         </Card.Body>
       </Card>
       <CardsManager fbId={fbId} />

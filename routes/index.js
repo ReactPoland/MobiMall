@@ -111,7 +111,7 @@ const manager = ( function () {
 						if ( isExistTrans ) {
 							PushNotification().localNotification({
 								autoCancel: true, // (optional) default: true
-								largeIcon: "ic_launcher", // (optional) default: "ic_launcher"
+								largeIcon: "mobimall_launcher", // (optional) default: "ic_launcher"
 
 								// bigText: "My big text that will be shown when notification is expanded", // (optional) default: "message" prop
 

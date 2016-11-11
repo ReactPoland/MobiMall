@@ -268,8 +268,17 @@ export default class Checkout extends Component {
 			if (data.status == 'ok') {
 
 				this.props.manager.requestHandler(this.props.manager.getDataFB().id);
+				let newUserData = Object.assign({}, this.props.manager.getDataFB() );
 
-				this.setState({checkoutButtonReady: true});
+				
+				let countBought = 0;
+				this.state.transaction.products.map( product => {
+					countBought += product.orderedQuantity;
+				})
+				newUserData.itemsBought += countBought;
+				this.props.manager.authFB(newUserData);
+
+				this.setState({ checkoutButtonReady: true, transaction: null });
 				let alertText = `Paid: $ ${data.value.price}${'\n'}from card: ...${data.value.source.last4}`;
 				// `Was made charge from your card: $${totalPrice}`
 				Alert.alert(alertText);

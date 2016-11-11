@@ -6,7 +6,7 @@ import {
   Text,
 } from 'react-native';
 
-const BuyerProfileHeader = ( { pictureSource } ) => {
+const BuyerProfileHeader = ( { pictureSource, name, itemsBought } ) => {
 
 	return (
 			<View style={ st.shopTitleView } >
@@ -14,12 +14,12 @@ const BuyerProfileHeader = ( { pictureSource } ) => {
 
 				    <View style={st.shopperImgProfile}>
 				    	<Image source={pictureSource} style={st.shopProfileImg}/>
-				    	<Text style={ st.shopperName } >FirstName LastName</Text>
+				    	<Text style={ st.shopperName } >{name}</Text>
 				    </View>
 
 				    <View style={st.shopperPropsProfile} >
 					    <View style={st.alignCenter} >
-					    	<Text style={st.textPropValue } >106</Text>
+					    	<Text style={st.textPropValue } >{itemsBought}</Text>
 					    </View>
 					    
 				    	<Text style={st.textPropDesc} >Items Bought</Text>
@@ -30,7 +30,7 @@ const BuyerProfileHeader = ( { pictureSource } ) => {
 					    	<Text style={st.textPropValue } >47</Text>
 					    </View>
 					    
-					    <Text style={st.textPropDesc} >Items Bought</Text>
+					    <Text style={st.textPropDesc} >MobiMall Points</Text>
 				    </View>
 
 			        <View style={st.shopperPropsProfile} >
@@ -38,7 +38,7 @@ const BuyerProfileHeader = ( { pictureSource } ) => {
 			    	    	<Text style={st.textPropValue } >23</Text>
 					    </View>
 			    	    
-			    	    <Text style={st.textPropDesc} >Items Bought</Text>
+			    	    <Text style={st.textPropDesc} >Stores Following</Text>
 			        </View>
 
 

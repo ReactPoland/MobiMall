@@ -154,16 +154,9 @@ export default class Login extends Component {
 				.then( async ( { data } ) => {
 
 					if (data.status == 'ok') {
-						// console.log(data.value);
 
-						this.props.manager.authFB && this.props.manager.authFB(data.value);
+						this.authUser(data.value);
 
-						// if (data.value.type && data.value.type.length ) {
-							// if ( data.value.type == "seller" ) this.props.navigator.replace( routes.dashboardSeller );
-							// else this.props.navigator.replace( routes.dashboardBuyer );
-						// } else {
-							this.props.navigator.replace( routes.profileChanging );
-						// }
 					} else {
 						await AsyncStorage.removeItem('logged-igId');
 						this.setState({readyLoginView: true})
@@ -175,6 +168,16 @@ export default class Login extends Component {
 			}
 		});
 		
+	}
+
+	async authUser(profile) {
+		profile.itemsBought = profile.itemsBought ? profile.itemsBought : 0;
+
+		this.props.manager.authFB && this.props.manager.authFB(profile);
+		await AsyncStorage.setItem('logged-igId', profile.id );
+		this.props.manager.requestHandler(this.props.manager.getDataFB().id);
+		this.props.navigator.replace( routes.profileChanging );
+
 	}
 
 	hideIGPopup() {
@@ -226,14 +229,8 @@ export default class Login extends Component {
 
 					if (data.status == 'ok') {
 
-						this.props.manager.authFB && this.props.manager.authFB(data.value);
-						await AsyncStorage.setItem('logged-igId', data.value.id );
-						// if (data.value.type && data.value.type.length ) {
-							// if ( data.value.type == "seller" ) this.props.navigator.replace( routes.dashboardSeller );
-							// else this.props.navigator.replace( routes.dashboardBuyer );
-						// } else {
-							this.props.navigator.replace( routes.profileChanging );
-						// }
+						this.authUser(data.value);
+
 					} else {
 						Alert.alert('Error', data.mess);
 					}

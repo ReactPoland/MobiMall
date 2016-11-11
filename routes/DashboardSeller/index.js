@@ -153,37 +153,42 @@ export default class DashboardSeller extends Component {
 						<View 
 							onLayout={ this.updateProductList } 
 							style={dashSellerStyle.contentRow} 
-							icon={ <Icon 
-								name="store" 
-								style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } }/> } 
-
-							iconActive={ <Icon 
-								name="store" 
-								style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } } /> } >
+							icon={ 
+								<Icon 
+									name="store" 
+									style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } }/> 
+							} iconActive={ 
+								<Icon 
+									name="store" 
+									style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } } /> 
+							} >
 							
 							{ this.renderProductGrid(productList) }
 
 						</View>
 
-						<View style={dashSellerStyle.contentRow} icon={ <Icon 
-								name="dashboard" 
-								style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } }/> } 
-
-							iconActive={ <Icon 
-								name="dashboard" 
-								style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } } /> } >
+						<View 
+							style={dashSellerStyle.contentRow} 
+							icon={ 
+								<Icon 
+									name="dashboard" 
+									style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } } /> 
+							}
+							iconActive={ 
+								<Icon 
+									name="dashboard" 
+									style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } } /> 
+							} >
 
 								<View style={{flex: 1}}>
-									<Text>Begin</Text>
 									<WebView
 										// automaticallyAdjustContentInsets={false}
 										source={{
 											uri: `https://github.com/`
 										}} style={{
 											// width: 360,
-											height: 400,
+											height: 269,
 										}} />
-									<Text>end</Text>
 								</View>
 						</View>
 

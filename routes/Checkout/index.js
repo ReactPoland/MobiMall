@@ -55,9 +55,9 @@ export default class Checkout extends Component {
 		});
 	}
 
-	countProduct( id, operation = '+' ) {
+	countProduct( code, operation = '+' ) {
 		let { transaction } = this.state;
-		let currProductIndex = transaction.products.findIndex( product => product.productId == id );
+		let currProductIndex = transaction.products.findIndex( product => product.productCode == code );
 
 		if ( currProductIndex >= 0 ) {
 
@@ -76,9 +76,9 @@ export default class Checkout extends Component {
 	}
 
 
-	removeProduct( id ) {
+	removeProduct( code ) {
 		let { transaction } = this.state;
-		let currProductIndex = transaction.products.findIndex( product => product.productId == id );
+		let currProductIndex = transaction.products.findIndex( product => product.productCode == code );
 
 		if ( currProductIndex >= 0 ) {
 
@@ -93,7 +93,7 @@ export default class Checkout extends Component {
 			let actionView = (
 				<View style={checkout.prodActCol} >
 					
-					<TouchableNativeFeedback onPress={ this.removeProduct.bind(this, item.productId) } >
+					<TouchableNativeFeedback onPress={ this.removeProduct.bind(this, item.productCode) } >
 						<View>
 							<FontAwesomeIcon 
 								name="times"
@@ -147,13 +147,13 @@ export default class Checkout extends Component {
 										<Text style={checkout.quantText} >{item.orderedQuantity}</Text> 
 									</View>
 
-									<TouchableNativeFeedback onPress={ this.countProduct.bind(this, item.productId, '+' ) } >
+									<TouchableNativeFeedback onPress={ this.countProduct.bind(this, item.productCode, '+' ) } >
 										<View style={checkout.quantAction} >
 											<Text style={checkout.quantText} >+</Text>
 										</View> 
 									</TouchableNativeFeedback>
 
-									<TouchableNativeFeedback onPress={ this.countProduct.bind(this, item.productId, '-' ) } >
+									<TouchableNativeFeedback onPress={ this.countProduct.bind(this, item.productCode, '-' ) } >
 										<View style={checkout.quantAction} >
 											<Text style={checkout.quantText} >-</Text>
 										</View> 

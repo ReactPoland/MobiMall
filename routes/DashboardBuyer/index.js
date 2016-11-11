@@ -9,6 +9,7 @@ import {
 	ScrollView,
 	Alert,
 	Dimensions,
+	WebView,
 	NativeModules
 } from 'react-native';
 import { bindMethods } from '../../utils';
@@ -386,130 +387,14 @@ export default class DashboardBuyer extends Component {
 								name="coupons" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } }  /> } > 
 
-								<View style={dashSellerStyle.contentRow} >
-									
-									<View>
-										<Text style={dashSellerStyle.blockName}>DEAL OF THE DAY</Text>
-									</View>
-
-									<View style={dashSellerStyle.dealDay} >
-									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?2` }} style={dashSellerStyle.dealDayImg}/>
-
-									   	<View style={dashSellerStyle.dealDayContent} >
-									   		<Text style={ { color: 'white', fontSize: 18 } } >AN ICON REMASTERED</Text>
-									   		<Text style={ { color: 'white',  fontSize: 12 } } >THE BEATS BY DR DRE STUDIO 2 OVER-EAR HEADPHONES</Text>
-
-											<TouchableNativeFeedback onPress={ () => { Alert.alert('buy now') } }>
-
-										   		<View style={ dashSellerStyle.dealDayButtonRow } >
-											   		<View style={ dashSellerStyle.dealDayButton } >
-											   			<Text style={ { color: 'white', fontSize: 10 } } >BUY NOW 20% OFF</Text>
-											   		</View>
-										   		</View>
-											
-											</TouchableNativeFeedback>
-
-									   	</View>
-									</View>
-
-								</View>
-
-								<View style={dashSellerStyle.contentRow}>
-									
-									<View>
-										<Text style={dashSellerStyle.blockName}>BEST SELLERS</Text>
-									</View>
-
-									<View style={dashSellerStyle.productList}>
-
-										<ScrollView horizontal={true}>
-
-											
-											<View style={dashSellerStyle.productItem} >
-											   		<Image source={{uri: `http://pipsum.com/435x311.jpg?1` }} style={dashSellerStyle.productImg}/>
-												<View style={dashSellerStyle.productDesc} >
-													<View>
-														<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
-													</View>
-													<Text style= { dashSellerStyle.productPrice } >$299.00</Text>
-												</View>
-											</View>
-
-											<View style={dashSellerStyle.productItem} >
-											   		<Image source={{uri: `http://pipsum.com/435x312.jpg?2` }} style={dashSellerStyle.productImg}/>
-												<View style={dashSellerStyle.productDesc} >
-													<View>
-														<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
-													</View>
-													<Text style= { dashSellerStyle.productPrice } >$199.00</Text>
-												</View>
-											</View>
-
-											<View style={dashSellerStyle.productItem} >
-											   		<Image source={{uri: `http://pipsum.com/435x313.jpg?3` }} style={dashSellerStyle.productImg}/>
-												<View style={dashSellerStyle.productDesc} >
-													<View>
-														<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
-													</View>
-													<Text style= { dashSellerStyle.productPrice } >$399.00</Text>
-												</View>
-											</View>
-
-											<View style={dashSellerStyle.productItem} >
-											   		<Image source={{uri: `http://pipsum.com/435x314.jpg?4` }} style={dashSellerStyle.productImg}/>
-												<View style={dashSellerStyle.productDesc} >
-													<View>
-														<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
-													</View>
-													<Text style= { dashSellerStyle.productPrice } >$299.00</Text>
-												</View>
-											</View>
-
-											<View style={dashSellerStyle.productItem} >
-											   		<Image source={{uri: `http://pipsum.com/435x315.jpg?5` }} style={dashSellerStyle.productImg}/>
-												<View style={dashSellerStyle.productDesc} >
-													<View>
-														<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
-													</View>
-													<Text style= { dashSellerStyle.productPrice } >$299.00</Text>
-												</View>
-											</View>
-
-										
-										</ScrollView>
-
-									</View>
-								</View>
-
-								<View style={dashSellerStyle.contentRow} >
-									
-									<View>
-										<Text style={dashSellerStyle.blockName}>DEAL OF THE DAY</Text>
-									</View>
-
-									<View style={dashSellerStyle.dealDay} >
-									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?1` }} style={dashSellerStyle.dealDayImg}/>
-
-									   	<View style={dashSellerStyle.dealDayContent} >
-									   		<Text style={ { color: 'white', fontSize: 18 } } >AN ICON REMASTERED</Text>
-									   		<Text style={ { color: 'white',  fontSize: 12 } } >THE BEATS BY DR DRE STUDIO 2 OVER-EAR HEADPHONES</Text>
-
-											<TouchableNativeFeedback onPress={ () => { Alert.alert('buy now') } }>
-
-										   		<View style={ dashSellerStyle.dealDayButtonRow } >
-											   		<View style={ dashSellerStyle.dealDayButton } >
-											   			<Text style={ { color: 'white', fontSize: 10 } } >BUY NOW 20% OFF</Text>
-											   		</View>
-										   		</View>
-											
-											</TouchableNativeFeedback>
-
-									   	</View>
-									</View>
-
-								</View>
-
-								
+								<WebView
+									// automaticallyAdjustContentInsets={false}
+									source={{
+										uri: `https://github.com/`
+									}} style={{
+										// width: 360,
+										height: 330,
+									}} />
 
 						</View>
 
@@ -521,132 +406,14 @@ export default class DashboardBuyer extends Component {
 								name="stores" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } } /> } >
 
-								<View style={dashSellerStyle.contentRow} >
-									
-									<View>
-										<Text style={dashSellerStyle.blockName}>DEAL OF THE DAY</Text>
-									</View>
-
-									<View style={dashSellerStyle.dealDay} >
-									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?3` }} style={dashSellerStyle.dealDayImg}/>
-
-									   	<View style={dashSellerStyle.dealDayContent} >
-									   		<Text style={ { color: 'white', fontSize: 18 } } >AN ICON REMASTERED</Text>
-									   		<Text style={ { color: 'white',  fontSize: 12 } } >THE BEATS BY DR DRE STUDIO 2 OVER-EAR HEADPHONES</Text>
-
-											<TouchableNativeFeedback onPress={ () => { Alert.alert('buy now') } }>
-
-										   		<View style={ dashSellerStyle.dealDayButtonRow } >
-											   		<View style={ dashSellerStyle.dealDayButton } >
-											   			<Text style={ { color: 'white', fontSize: 10 } } >BUY NOW 20% OFF</Text>
-											   		</View>
-										   		</View>
-											
-											</TouchableNativeFeedback>
-
-									   	</View>
-									</View>
-
-								</View>
-								
-
-								<View style={dashSellerStyle.contentRow}>
-									
-									<View>
-										<Text style={dashSellerStyle.blockName}>BEST SELLERS</Text>
-									</View>
-
-									<View style={dashSellerStyle.productList}>
-
-										<ScrollView horizontal={true}>
-
-											
-											<View style={dashSellerStyle.productItem} >
-											   		<Image source={{uri: `http://pipsum.com/435x311.jpg?6` }} style={dashSellerStyle.productImg}/>
-												<View style={dashSellerStyle.productDesc} >
-													<View>
-														<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
-													</View>
-													<Text style= { dashSellerStyle.productPrice } >$299.00</Text>
-												</View>
-											</View>
-
-											<View style={dashSellerStyle.productItem} >
-											   		<Image source={{uri: `http://pipsum.com/435x312.jpg?7` }} style={dashSellerStyle.productImg}/>
-												<View style={dashSellerStyle.productDesc} >
-													<View>
-														<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
-													</View>
-													<Text style= { dashSellerStyle.productPrice } >$199.00</Text>
-												</View>
-											</View>
-
-											<View style={dashSellerStyle.productItem} >
-											   		<Image source={{uri: `http://pipsum.com/435x313.jpg?8` }} style={dashSellerStyle.productImg}/>
-												<View style={dashSellerStyle.productDesc} >
-													<View>
-														<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
-													</View>
-													<Text style= { dashSellerStyle.productPrice } >$399.00</Text>
-												</View>
-											</View>
-
-											<View style={dashSellerStyle.productItem} >
-											   		<Image source={{uri: `http://pipsum.com/435x314.jpg?9` }} style={dashSellerStyle.productImg}/>
-												<View style={dashSellerStyle.productDesc} >
-													<View>
-														<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
-													</View>
-													<Text style= { dashSellerStyle.productPrice } >$299.00</Text>
-												</View>
-											</View>
-
-											<View style={dashSellerStyle.productItem} >
-											   		<Image source={{uri: `http://pipsum.com/435x315.jpg?10` }} style={dashSellerStyle.productImg}/>
-												<View style={dashSellerStyle.productDesc} >
-													<View>
-														<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
-													</View>
-													<Text style= { dashSellerStyle.productPrice } >$299.00</Text>
-												</View>
-											</View>
-
-										
-										</ScrollView>
-
-									</View>
-								</View>
-
-								
-
-								<View style={dashSellerStyle.contentRow} >
-									
-									<View>
-										<Text style={dashSellerStyle.blockName}>DEAL OF THE DAY</Text>
-									</View>
-
-									<View style={dashSellerStyle.dealDay} >
-									   	<Image source={{uri: `http://pipsum.com/435x310.jpg?4` }} style={dashSellerStyle.dealDayImg}/>
-
-									   	<View style={dashSellerStyle.dealDayContent} >
-									   		<Text style={ { color: 'white', fontSize: 18 } } >AN ICON REMASTERED</Text>
-									   		<Text style={ { color: 'white',  fontSize: 12 } } >THE BEATS BY DR DRE STUDIO 2 OVER-EAR HEADPHONES</Text>
-
-											<TouchableNativeFeedback onPress={ () => { Alert.alert('buy now') } }>
-
-										   		<View style={ dashSellerStyle.dealDayButtonRow } >
-											   		<View style={ dashSellerStyle.dealDayButton } >
-											   			<Text style={ { color: 'white', fontSize: 10 } } >BUY NOW 20% OFF</Text>
-											   		</View>
-										   		</View>
-											
-											</TouchableNativeFeedback>
-
-									   	</View>
-									</View>
-
-								</View>
-
+								<WebView
+									// automaticallyAdjustContentInsets={false}
+									source={{
+										uri: `https://github.com/mwp-io/`
+									}} style={{
+										// width: 360,
+										height: 330,
+									}} />
 						</View>
 
 					</TabIcons>

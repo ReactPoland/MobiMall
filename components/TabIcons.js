@@ -33,8 +33,9 @@ export default class Tabs extends Component {
 		});
 	}
 
-	render() {
-		let tabs = this.props.children.map((component, index) =>  {
+	renderHeader(items) {
+		
+		return items.map((component, index) =>  {
 
 			if (index === this.state.currentPage) {
 				// if (component.props.onActive) component.props.onActive.call(); 
@@ -54,12 +55,17 @@ export default class Tabs extends Component {
 				</TouchableNativeFeedback>
 			)
 		});
+	}
+
+	render() {
+
+		let { containerStyle } = this.props.children[this.state.currentPage].props;
 
 
 		return (
-			<View onLayout={this.onLayoutView}>
+			<View onLayout={this.onLayoutView} style={containerStyle} >
 				<ScrollView horizontal={ true } contentContainerStyle={st.tabTitlesView}>
-					{ tabs }
+					{ this.renderHeader( this.props.children ) }
 				</ScrollView>
 				{ this.props.children[this.state.currentPage] }
 			</View>

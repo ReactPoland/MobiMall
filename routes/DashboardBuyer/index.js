@@ -32,6 +32,10 @@ export default class DashboardBuyer extends Component {
 			stores	 	:59677,
 		};
 
+		this.state = {
+			webViewHeight: 0,
+		}
+
     	this.Icon = createIconSet(this.iconsMap, 'icomoon2' );
 
 
@@ -83,17 +87,34 @@ export default class DashboardBuyer extends Component {
 		*/
 	}
 
+	updateWebViewTab(refName) {
+		let containerHeight,
+			webViewOffset;
+
+		if ( !this.state.webViewHeight ) {
+
+			this.refs.containerDashboardBuyer.measure((fx, fy, width, height, px, py) => {
+				containerHeight = height;
+
+				this.refs[refName].measure( (fx, fy, width, height, px, py) => {
+					webViewOffset = py;
+					console.log('set height',containerHeight, webViewOffset );
+					this.setState({
+						webViewHeight: Math.floor(containerHeight - webViewOffset ) + 50
+					});
+				} );
+			});
+		}
+	}
+
 	render() {
 
 		let { Icon } = this;
 		const fbData = this.props.manager.getDataFB();
 
-		console.log(fbData);
-
-
 
 		return (
-			<View style={dashSellerStyle.container} >
+			<View style={dashSellerStyle.container} ref={'containerDashboardBuyer'} >
 				<ScrollView>
 
 				
@@ -382,38 +403,39 @@ export default class DashboardBuyer extends Component {
 						<View style={dashSellerStyle.tabContent} icon={ <Icon 
 								name="coupons" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } }/> } 
+								ref={'BuyerWebviewWrapTab2'}
+								onLayout={ () => this.updateWebViewTab('BuyerWebviewWrapTab2') }
+
 
 							iconActive={ <Icon 
 								name="coupons" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } }  /> } > 
 
-								<WebView
-									// automaticallyAdjustContentInsets={false}
-									source={{
-										uri: `https://github.com/`
-									}} style={{
-										// width: 360,
-										height: 330,
-									}} />
-
+									<WebView
+										source={{
+											uri: `https://github.com/`
+										}} style={{
+											height: this.state.webViewHeight,
+										}} />
+									
 						</View>
 
 						<View style={dashSellerStyle.tabContent} icon={ <Icon 
 								name="stores" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } }/> } 
+								ref={'BuyerWebviewWrapTab3'} 
+								onLayout={ () => this.updateWebViewTab('BuyerWebviewWrapTab3') } 
 
 							iconActive={ <Icon 
 								name="stores" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } } /> } >
 
-								<WebView
-									// automaticallyAdjustContentInsets={false}
-									source={{
-										uri: `https://github.com/mwp-io/`
-									}} style={{
-										// width: 360,
-										height: 330,
-									}} />
+									<WebView
+										source={{
+											uri: `https://github.com/mwp-io/`
+										}} style={{
+											height: this.state.webViewHeight,
+										}} />
 						</View>
 
 					</TabIcons>

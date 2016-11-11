@@ -10,7 +10,7 @@ import {
 	Alert,
 	Dimensions,
 	NativeModules,
-	WebView
+	WebView,
 } from 'react-native';
 import { bindMethods, api } from '../../utils';
 import st from '../../assets/style';
@@ -37,6 +37,7 @@ export default class DashboardSeller extends Component {
 		bindMethods(this);
 
 		this.state = {
+			webViewHeight: 0,
 			fields: {},
 			productList: null
 		}
@@ -124,6 +125,26 @@ export default class DashboardSeller extends Component {
 		// }
 	}
 
+	updateWebViewTab(ev) {
+		let containerHeight,
+			webViewOffset;
+
+		if ( !this.state.webViewHeight ) {
+
+			this.refs.containerDashboardSeller.measure((fx, fy, width, height, px, py) => {
+				containerHeight = height;
+				this.refs.dashboardWebviewWrap.measure( (fx, fy, width, height, px, py) => {
+					webViewOffset = py;
+					this.setState({
+						webViewHeight: Math.floor(containerHeight - webViewOffset ) + 50
+					});
+				} );
+			});
+
+		}
+
+	}
+
 	render() {
 
 		const { fields } = this.state;
@@ -141,7 +162,7 @@ export default class DashboardSeller extends Component {
 		}
 
 		return (
-			<View style={dashSellerStyle.container} >
+			<View style={dashSellerStyle.container} ref={'containerDashboardSeller'} >
 
 			
 			
@@ -174,22 +195,19 @@ export default class DashboardSeller extends Component {
 									name="dashboard" 
 									style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } } /> 
 							}
+							onLayout={ this.updateWebViewTab }
+							ref={'dashboardWebviewWrap'}
 							iconActive={ 
 								<Icon 
 									name="dashboard" 
 									style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } } /> 
 							} >
 
-								<View style={{flex: 1}}>
-									<WebView
-										// automaticallyAdjustContentInsets={false}
-										source={{
-											uri: `https://github.com/`
-										}} style={{
-											// width: 360,
-											height: 269,
-										}} />
-								</View>
+								<WebView
+									style={{height: this.state.webViewHeight}}
+									source={{
+										uri: `https://github.com/`
+									}} />
 						</View>
 
 					</TabIcons>

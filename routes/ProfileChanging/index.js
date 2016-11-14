@@ -14,6 +14,26 @@ import routes from '../routes'
 import { api, bindMethods } from '../../utils';
 
 
+const ChangingButton = ({onPress, text}) => {
+	return (
+		<Button 
+			raised 
+			text={text} 
+			style={{ 
+				container: { 
+					height: 60,
+					backgroundColor: `#9100be`,
+				}, 
+				text: {
+					fontWeight: '100', 
+					fontSize: 25, 
+					color: 'white' 
+				} 
+			}} 
+			onPress={ onPress } />
+	);
+}
+
 export default class NewProductSeller extends Component {
 
 	constructor(prop) {
@@ -25,7 +45,7 @@ export default class NewProductSeller extends Component {
 		    },
 		    toolbar: {
 		        container: {
-		            height: 50,
+		            height: 40,
 		        },
 		    },
 		};
@@ -35,6 +55,8 @@ export default class NewProductSeller extends Component {
 		return api.saveUserType(this.props.manager.getDataFB().id, type);
 	}
 
+
+
 	render() {
 
 
@@ -43,44 +65,24 @@ export default class NewProductSeller extends Component {
 
 			<View style={loginStyle.container} >
 
-				<View style={ { flex: 1, padding: 30 } } >
-					<Button 
-						raised 
-						text="BUY" 
-						style={{ 
-							container: { 
-								flex: 1, 
-								backgroundColor: `rgba(84, 70, 184, 0.7)`,
-							}, 
-							text: { 
-								fontSize: 40, 
-								color: 'white' 
-							} 
-						}} 
-						onPress={ () => { 
-							// this.saveUserType('buyer').then( resp => { this.props.navigator.replace(routes.dashboardBuyer) }); 
-							this.props.navigator.push(routes.dashboardBuyer) ; 
-						} } />
+				<View style={loginStyle.logoImage} >
+					<Image source={ require('../../assets/img/mobimall-icon.png') } style={{ width: 60, height: 60, resizeMode: 'contain' }} />
 				</View>
-		
-				<View style={ { flex: 1, padding: 30 } } >
-					<Button 
-						raised 
-						text="SELL" 
-						style={{ 
-							container: { 
-								flex: 1, 
-								backgroundColor: `rgba(84, 70, 184, 0.7)`,
-							}, 
-							text: { 
-								fontSize: 40, 
-								color: 'white' 
-							} 
-						}} 
-						onPress={ () => {
-						 // this.saveUserType('seller').then( resp => { this.props.navigator.replace(routes.dashboardSeller) } ); 
-						 this.props.navigator.push(routes.dashboardSeller); 
-						} } />
+
+				<View style={{ marginBottom: 20 }}>
+					<Text style={[loginStyle.textCenter]}>Please choose one{'\n'}of the following options</Text>
+				</View>
+
+
+				<ChangingButton text="BUYER" onPress={ () => { this.props.navigator.push( routes.dashboardBuyer ) } } />
+				<View style={{ marginVertical: 20 }}>
+					<Text style={[loginStyle.textCenter]}>or</Text>
+				</View>
+
+				<ChangingButton text="SELLER" onPress={ () => { this.props.navigator.push( routes.dashboardSeller ) } } />
+
+				<View style={{ marginVertical: 20 }}>
+					<Text style={[loginStyle.textCenter]}>and don't worry you can{'\n'}always change your mind later</Text>
 				</View>
 
 			</View>
@@ -90,9 +92,23 @@ export default class NewProductSeller extends Component {
 }
 
 const loginStyle = StyleSheet.create({
+	logoImage: {
+		marginVertical: 45,
+		justifyContent: 'center',
+		alignItems: 'center',
+		// borderWidth: 2,
+	},
 	container: {
 		backgroundColor: '#eee',
 		flex: 1,
+		paddingHorizontal: 40,
+		// alignItems: 'center',
+		// justifyContent: 'center',
 		overflow: 'hidden',
 	},
+	textCenter: {
+		fontSize: 18,
+		color: '#000',
+		textAlign: 'center',
+	}
 });

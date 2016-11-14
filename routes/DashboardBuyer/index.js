@@ -454,6 +454,10 @@ const dashSellerStyle = StyleSheet.create({
 		fontSize: 24,
 		color: 'purple',
 	},
+	tabContent: {
+		borderTopWidth: 0.5,
+		borderColor: '#aaa',
+	},
 	buttBack: {
 		justifyContent: 'center',
 		flex: 1,

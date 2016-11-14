@@ -43,11 +43,15 @@ export default class DashboardSeller extends Component {
 		}
 
 		this.iconsMap = {
-			store		:59677,
-			dashboard 	:59675
+			dashboard 	:59648
 		};
 
-    	this.Icon = createIconSet(this.iconsMap, 'icomoon2' );
+		this.iconsMap2 = {
+			store		:59677,
+		};
+
+    	this.Icon = createIconSet(this.iconsMap, 'icomoon' );
+    	this.Icon2 = createIconSet(this.iconsMap2, 'icomoon2' );
 	}
 
 	componentDidMount() {
@@ -148,7 +152,7 @@ export default class DashboardSeller extends Component {
 	render() {
 
 		const { fields } = this.state;
-		const { Icon } = this;
+		const { Icon2, Icon } = this;
 		const { store, id } = this.props.manager.getDataFB();
 		const productList = this.props.manager.getSellerProductList();
 		const followers = store ? store.follower_count : null;
@@ -175,11 +179,11 @@ export default class DashboardSeller extends Component {
 							onLayout={ this.updateProductList } 
 							style={dashSellerStyle.contentRow} 
 							icon={ 
-								<Icon 
+								<Icon2 
 									name="store" 
 									style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } }/> 
 							} iconActive={ 
-								<Icon 
+								<Icon2
 									name="store" 
 									style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } } /> 
 							} >
@@ -191,7 +195,7 @@ export default class DashboardSeller extends Component {
 						<View 
 							style={dashSellerStyle.contentRow} 
 							icon={ 
-								<Icon 
+								<Icon
 									name="dashboard" 
 									style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } } /> 
 							}
@@ -252,7 +256,9 @@ const dashSellerStyle = StyleSheet.create({
 		flex: 2,
 	},
 	contentRow: {
-		marginTop: 10,
+		borderTopWidth: 0.5,
+		borderColor: '#aaa',
+		// marginTop: 10,
 	},
 	container: {
 		flex: 1,

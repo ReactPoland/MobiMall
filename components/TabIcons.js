@@ -64,7 +64,7 @@ export default class Tabs extends Component {
 
 		return (
 			<View onLayout={this.onLayoutView} style={containerStyle} >
-				<ScrollView horizontal={ true } contentContainerStyle={st.tabTitlesView}>
+				<ScrollView horizontal={ true } contentContainerStyle={[st.tabTitlesView, {paddingTop: 0, paddingBottom: 0}]}>
 					{ this.renderHeader( this.props.children ) }
 				</ScrollView>
 				{ this.props.children[this.state.currentPage] }

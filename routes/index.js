@@ -33,6 +33,8 @@ const manager = ( function () {
 	
 
 	let isExistTrans = false;
+	let transProdProps = [];
+
 	let transListeners = [];
 	let timerTransaction = null;
 
@@ -96,45 +98,66 @@ const manager = ( function () {
 			return isExistTrans;
 		},
 
+		isHasNewProducts: function(basketProducts) {
+			let isNewProducts = false;
+
+			basketProducts.map( basketProduct => {
+				let prod = transProdProps.find(lastRequestProduct => lastRequestProduct.productCode == basketProduct.productCode );
+				if (prod) {
+					if (prod.quantity !== basketProduct.quantity ) 
+						isNewProducts = true;
+				} else {
+					isNewProducts = true;
+				}
+				
+			} ); 
+
+			console.log(isNewProducts)
+
+			transProdProps = basketProducts;
+
+			return isNewProducts;
+		},
+
 		requestHandler: function(fbId) {
 			api.checkOpenTransaction( fbId ).then( ( { data } ) => {
 
 				if ( data.status == 'ok' ) {
 					let newValue = !!data.value;
-					
 
 					if ( isExistTrans != newValue ) {
 
 						isExistTrans = newValue;
 						transListeners.map( item => item( isExistTrans ) );
 
-						if ( isExistTrans ) {
-							// PushNotification().cancelLocalNotifications({id: '123'});
-							PushNotification().localNotification({
-								id: '123',
-								autoCancel: true, // (optional) default: true
-								largeIcon: "mobimall_launcher", // (optional) default: "ic_launcher"
-
-								// bigText: "My big text that will be shown when notification is expanded", // (optional) default: "message" prop
-
-								vibrate: true, // (optional) default: true
-								vibration: 300, // vibration length in milliseconds, ignored if vibrate=false, default: 1000
-								tag: 'checkout', // (optional) add tag to message
-								group: "group", // (optional) add group to message
-								ongoing: false, // (optional) set whether this is an "ongoing" notification
-
-								title: "Accept buying", // (optional, for iOS this is only used in apple watch, the title will be the app name on other iOS devices)
-								message: "You buyed in the IG store", // (required)
-								soundName: 'default', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
-
-							});
-							// push notification
-						} else {
-							// PushNotification.cancelAllLocalNotifications();
-							// PushNotification().cancelLocalNotifications({id: '123'});
-						}
-
 					};
+
+
+					if ( data.value && data.value.products && this.isHasNewProducts(data.value.products) ) {
+						// PushNotification().cancelLocalNotifications({id: '123'});
+						PushNotification().localNotification({
+							id: '123',
+							autoCancel: true, // (optional) default: true
+							largeIcon: "mobimall_launcher", // (optional) default: "ic_launcher"
+
+							// bigText: "My big text that will be shown when notification is expanded", // (optional) default: "message" prop
+
+							vibrate: true, // (optional) default: true
+							vibration: 300, // vibration length in milliseconds, ignored if vibrate=false, default: 1000
+							tag: 'checkout', // (optional) add tag to message
+							group: "group", // (optional) add group to message
+							ongoing: false, // (optional) set whether this is an "ongoing" notification
+
+							title: "Accept buying", // (optional, for iOS this is only used in apple watch, the title will be the app name on other iOS devices)
+							message: "You buyed in the IG store", // (required)
+							soundName: 'default', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
+
+						});
+						// push notification
+					} else {
+						// PushNotification.cancelAllLocalNotifications();
+						// PushNotification().cancelLocalNotifications({id: '123'});
+					}
 
 				}
 				else {

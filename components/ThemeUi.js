@@ -66,11 +66,11 @@ export default class ThemeUi extends Component {
     // 59638 - 59728
 
     this.iconsMap = {
-      home    :59648,
+      home    :59701,
       plus2   :59700,
       orders  :59674,
       user    :59705,
-      setting :59703,
+      setting :59649,
       heart   :59673,
       search  :59672,
     }
@@ -79,7 +79,7 @@ export default class ThemeUi extends Component {
       return this.props.navigator.getCurrentRoutes().some(item => item.key === route.key );
     }
 
-    this.Icon = createIconSet(this.iconsMap, 'icomoon2' );
+    this.Icon = createIconSet(this.iconsMap, 'icomoon' );
 
   }
 

@@ -70,7 +70,6 @@ export default routes = {
 			route: 'dashboardBuyer',
 			icon: {
 				name: 'home',
-				type: 'awesome'
 			}
 		}, { 
 			route: 'empty',
@@ -103,13 +102,11 @@ export default routes = {
 			route: 'dashboardSeller',
 			icon: {
 				name: 'home',
-				type: 'awesome'
 			}
 		}, {
 			route: 'newProduct',
 			icon: {
-				name: 'plus',
-				type: 'awesome'
+				name: 'plus2',
 			}
 		}, {
 			route: 'empty',

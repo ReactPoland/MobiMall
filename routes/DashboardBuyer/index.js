@@ -28,15 +28,15 @@ export default class DashboardBuyer extends Component {
 
 		this.iconsMap = {
 			news	 	:59652,
-			coupons 	:59653,
-			stores	 	:59677,
+			coupons 	:59650,
+			stores	 	:59685,
 		};
 
 		this.state = {
 			webViewHeight: 0,
 		}
 
-    	this.Icon = createIconSet(this.iconsMap, 'icomoon2' );
+    	this.Icon = createIconSet(this.iconsMap, 'icomoon' );
 
 
 		// console.log(this.props.localNotification);

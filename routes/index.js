@@ -112,8 +112,6 @@ const manager = ( function () {
 				
 			} ); 
 
-			console.log(isNewProducts)
-
 			transProdProps = basketProducts;
 
 			return isNewProducts;

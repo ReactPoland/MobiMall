@@ -83,20 +83,28 @@ export default class ThemeUi extends Component {
 
   }
 
-  renderIcon(source) {
+  renderIcon(source, isActive) {
 
     let iconView;
     const Icon = this.Icon;
+    let style = {},
+        fontSize = 30;
+    if (isActive) {
+      fontSize = 35;
+      style = {
+        color: 'purple',
+      }
+    }
 
     switch( source.type ) {
       case 'awesome' : 
-        iconView = ( <AwesomeIcon size={30} name={source.name} /> );
+        iconView = ( <AwesomeIcon style={style} size={ fontSize } name={source.name} /> );
       break;
       case 'text':
-        iconView = ( <Text style={{fontSize: 30}}>{source.name}</Text> );
+        iconView = ( <Text style={[{fontSize: fontSize}, style]}>{source.name}</Text> );
       break;
       default:
-        iconView = (<Icon size={30} name={source.name} />);
+        iconView = (<Icon style={style} size={fontSize} name={source.name} />);
       break;
     }
     return iconView;
@@ -172,7 +180,7 @@ export default class ThemeUi extends Component {
       if ( ! stripLinks.length ) return null;
     }
 
-    let actionIcons = stripLinks.map(item => ( { source: this.renderIcon(item.icon), route: item.route  } ) );
+    let actionIcons = stripLinks.map(item => ( { source: this.renderIcon(item.icon, this.props.route.key == item.route ), route: item.route  } ) );
 
 
     return (

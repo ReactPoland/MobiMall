@@ -188,13 +188,15 @@ export default class Login extends Component {
 
 		this.hideButton();
 
-		auth0lock.show({ 
+		auth0lock.show({
+			closable: true,
 			}, (err, profile, token) => {
 				// console.log(token);
 			if (err) {
 				console.log( err );
 				this.showButton()
-				Alert.alert(err.message);
+				if (err.message )
+					Alert.alert(err.message);
 				return;
 			};
 

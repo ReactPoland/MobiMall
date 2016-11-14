@@ -84,10 +84,13 @@ export default class SellerProfileView extends Component {
 	_onLoginStore() {
 		CookieManager.clearAll((err, res) => {
 
-			auth0lock.show({}, (err, profile, token) => {
+			auth0lock.show({
+				closable: true,
+			}, (err, profile, token) => {
 				if (err) {
 					console.log( err );
-					Alert.alert(err.message);
+					if (err.message )
+						Alert.alert(err.message);
 					return;
 				};
 

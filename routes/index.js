@@ -109,7 +109,9 @@ const manager = ( function () {
 						transListeners.map( item => item( isExistTrans ) );
 
 						if ( isExistTrans ) {
+							// PushNotification().cancelLocalNotifications({id: '123'});
 							PushNotification().localNotification({
+								id: '123',
 								autoCancel: true, // (optional) default: true
 								largeIcon: "mobimall_launcher", // (optional) default: "ic_launcher"
 
@@ -127,6 +129,9 @@ const manager = ( function () {
 
 							});
 							// push notification
+						} else {
+							// PushNotification.cancelAllLocalNotifications();
+							// PushNotification().cancelLocalNotifications({id: '123'});
 						}
 
 					};

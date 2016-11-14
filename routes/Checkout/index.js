@@ -14,6 +14,7 @@ import { Card } from 'react-native-material-design';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import Swipeout from '../../components/react-native-swipeout';
 import { Button } from 'react-native-material-ui';
+import PushNotification from '../../components/PushNotification';
 
 export default class Checkout extends Component {
 
@@ -294,6 +295,8 @@ export default class Checkout extends Component {
 				// 	}
 
 				// });
+				PushNotification().cancelLocalNotifications({id: '123'});
+
 
 				this.props.navigator.pop();
 

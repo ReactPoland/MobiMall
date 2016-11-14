@@ -179,7 +179,9 @@ export default class DashboardBuyer extends Component {
 					  	</View>
 				  	</View>*/}
 
-				  	<BuyerProfileHeader pictureSource={ { uri: fbData.profileImgUri } } name={ fbData.firstName } itemsBought={ fbData.itemsBought } />
+				  	<View style={{backgroundColor: '#fff'}}>
+				  		<BuyerProfileHeader pictureSource={ { uri: fbData.profileImgUri } } name={ fbData.firstName } itemsBought={ fbData.itemsBought } />
+				  	</View>
 
 					{/*<View style={ dashSellerStyle.shopTitleView } >
 						<View style={dashSellerStyle.shopTitleProfileBlock}>

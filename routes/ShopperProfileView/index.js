@@ -119,8 +119,10 @@ export default class ShopperProfileView extends Component {
 			<View style={st.container}>
 				<ScrollView>
 				  	
-				  	<BuyerProfileHeader pictureSource={ { uri: fbData.profileImgUri } } name={ fbData.firstName } itemsBought={ fbData.itemsBought } />
-					
+				  	<View style={{backgroundColor: '#fff'}}>
+					  	<BuyerProfileHeader pictureSource={ { uri: fbData.profileImgUri } } name={ fbData.firstName } itemsBought={ fbData.itemsBought } />
+				  	</View>
+
 					<Tabs>
 						<View name={'PERSONAL'} >
 							<Card>

@@ -38,14 +38,14 @@ export default class Tabs extends Component {
 			let textViewStyles = {
 				position: 'absolute',
 				top: 0,
-				left: 12,
+				left: 17,
 				bottom: 0,
-				right: 12,
+				right: 17,
 			};
 
 			if (index === this.state.currentPage) {
-				textViewStyles['borderBottomColor'] = 'white';
-				textViewStyles['borderBottomWidth'] = 3;
+				textViewStyles['borderBottomColor'] = '#9100be';
+				textViewStyles['borderBottomWidth'] = 1;
 				textViewStyles['borderStyle'] = 'solid';
 			}
 
@@ -54,18 +54,18 @@ export default class Tabs extends Component {
 					let curIndex = index;
 					this.selectTab(curIndex);
 				}}>
-					<View style={{paddingBottom: 5}} >
+					<View style={{ paddingBottom: 5, width:this.state.tabTitleWidth }} >
 
 						<View style={textViewStyles} ></View>
-						<Text
-							style={{
-								width:this.state.tabTitleWidth,
-								fontSize: 19,
-								color: 'white',
-								textAlign: 'center',
-							}} >
-							{ component.props.name ? component.props.name : 'unnamed' }
-						</Text>
+							<Text
+								style={{
+									fontSize: 17,
+									color: '#9100be',
+									textAlign: 'center',
+
+								}} >
+								{ component.props.name ? component.props.name : 'unnamed' }
+							</Text>
 					</View>
 				</TouchableNativeFeedback>
 			)

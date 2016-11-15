@@ -147,6 +147,7 @@ export default class ShopperProfileView extends Component {
 										inputStyle={st.textInputGrey}
 									    autoCorrect={false}
 									    value={about}
+									    underlineColorAndroid={'#ccc'}
 								    	onChange={this.onPersonalInfoChange.bind(this, 'about')}
 										multiline={true}
 										 />

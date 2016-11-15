@@ -23,7 +23,7 @@ const CardRow = ({ cardData, onDelete }) => {
 			<Text style={st.cardTextNumber}>**** {last4}</Text>
       <TouchableNativeFeedback onPress={() => onDelete(id)}>
         <View>
-          <Text style={{ fontSize: 30 }}>&#10005;</Text>
+          <Text style={{ fontSize: 20 }}>&#10005;</Text>
         </View>
       </TouchableNativeFeedback>
 		</View>

@@ -15,6 +15,7 @@ const AddressBox = ({ addresses, loading, onPress, onDelete, mode }) => {
   const getContent = () => {
     if(loading) return <Text>Loading...</Text>;
     if(addressesNumber === 0) return <Text>No address added yet!</Text>;
+
     if(addressesNumber > 0) return addresses.map(({ address, postalCode, city, country }, i) => (
       <TouchableNativeFeedback onPress={handler(i)} key={i}>
         <View>
@@ -38,15 +39,22 @@ const AddressBox = ({ addresses, loading, onPress, onDelete, mode }) => {
               : null
             : null
           }
-          <View style={{ flexDirection: 'row', position: 'relative' }}>
-            <View style={{ borderBottomColor: '#D3D3D3', borderBottomWidth: 1, marginRight: 30, flex: 1, marginLeft: 5 }}>
-              <View style={{ marginRight: 50 }}>
-                <Text style={{ paddingBottom: 5, fontSize: 15, flex: 1 }}>{address}, {postalCode} {city}, {country}</Text>
-              </View>
-            </View>
+          <View style={{ 
+            borderBottomColor: '#D3D3D3', 
+            borderBottomWidth: 1, 
+            flexDirection:'row', 
+            flex: 1, 
+            marginLeft: 5, 
+            justifyContent: 'center', 
+            alignItems: 'center',
+            paddingBottom: 5,
+          }} >
+            
+            <Text style={{ fontSize: 15, flex: 1 }}>{address}, {postalCode} {city}, {country}</Text>
+
             <TouchableNativeFeedback onPress={deleteHandler(i)}>
-              <View style={{ width: 30, position: 'absolute', right: 0, alignItems: 'center', flexDirection: 'column', top: -10 }}>
-                <Text style={{ fontSize: 30 }}>&#10005;</Text>
+              <View>
+                <Text style={{ fontSize: 20 }}>&#10005;</Text>
               </View>
             </TouchableNativeFeedback>
           </View>

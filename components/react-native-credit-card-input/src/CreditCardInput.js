@@ -120,8 +120,15 @@ export default class CreditCardInput extends Component {
             scrollEnabled={false}
             showsHorizontalScrollIndicator={false}
             style={s.form}>
+          { requiresName &&
+            <CCInput {...this._inputProps("name")}
+                keyboardType="default"
+                containerStyle={[inputContainerStyle, { width: DEFAULT_INPUT_WIDTH }]} /> }
+
+          <View style={{marginTop: 10}}>
           <CCInput {...this._inputProps("number")}
               containerStyle={[inputContainerStyle, { width: DEFAULT_INPUT_WIDTH } ]} />
+          </View>
           <View style={[s.inputRow, {marginTop: 10}]}>
             <CCInput {...this._inputProps("expiry")}
                 containerStyle={[inputContainerStyle, { width: CVC_INPUT_WIDTH } ]} />
@@ -131,10 +138,6 @@ export default class CreditCardInput extends Component {
                   containerStyle={[inputContainerStyle, { width: CVC_INPUT_WIDTH }]} /> }
           </View>
           
-          { requiresName &&
-            <CCInput {...this._inputProps("name")}
-                keyboardType="default"
-                containerStyle={[inputContainerStyle, { width: DEFAULT_INPUT_WIDTH }]} /> }
           { requiresPostalCode &&
             <CCInput {...this._inputProps("postalCode")}
                 containerStyle={[inputContainerStyle, { width: DEFAULT_INPUT_WIDTH }]} /> }
@@ -147,7 +150,7 @@ export default class CreditCardInput extends Component {
 CreditCardInput.defaultProps = {
   cardViewSize: {},
   labels: {
-    name: "CARDHOLDER'S NAME",
+    name: "NAME ON CARD",
     number: "CARD NUMBER",
     expiry: "EXPIRY",
     cvc: "CVC/CCV",

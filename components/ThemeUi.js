@@ -5,7 +5,8 @@ import {
   Text,
   DrawerLayoutAndroid,
   Alert,
-  AsyncStorage
+  AsyncStorage,
+  Image
 } from 'react-native';
 import { COLOR, ThemeProvider, ActionButton, Toolbar } from 'react-native-material-ui';
 // import { Drawer } from 'react-native-material-design';
@@ -185,6 +186,7 @@ export default class ThemeUi extends Component {
 
     return (
       <ActionButton 
+        mainIconElement={ (<View style={{ flex:1, alignItems: 'center', justifyContent: 'center' }}><Image source={require('../assets/img/mobimall-icon-button.png')} style={{width: 50, resizeMode: 'contain'}} /></View>) }
         actions={ actionIcons }
         transition='toolbar'
         onPress={ ( action ) => { if (action && action.route) this.actionButtonClickHandler( action.route ) } } />

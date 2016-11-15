@@ -119,7 +119,7 @@ export default class CardsManager extends Component {
         <Card >
           <Card.Body>
             <Text style={st.blockSubtitle} >NEW PAYMENT DETAILS</Text>
-            <CreditCardInput inputContainerStyle={{borderColor: '#ccc', borderBottomWidth: 1}} onChange={this._onCardInputChange} />
+            <CreditCardInput imageBack={{uri: 'http://pipsum.com/435x314.jpg?imgBack'}} imageFront={{uri: 'http://pipsum.com/435x314.jpg?imgFront'}} inputContainerStyle={{borderColor: '#ccc', borderBottomWidth: 1}} onChange={this._onCardInputChange} />
             <Button 
               text={saving ? 'SAVING...' : 'SAVE CARD'}
               raised={true}

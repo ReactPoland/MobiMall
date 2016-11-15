@@ -38,8 +38,8 @@ export default class CreditCardInput extends Component {
     placeholders: PropTypes.object,
 
     cardViewSize: PropTypes.object,
-    imageFront: PropTypes.number,
-    imageBack: PropTypes.number,
+    // imageFront: PropTypes.number,
+    // imageBack: PropTypes.number,
     labelStyle: Text.propTypes.style,
     inputStyle: Text.propTypes.style,
     inputContainerStyle: View.propTypes.style,

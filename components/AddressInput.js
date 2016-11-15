@@ -32,6 +32,7 @@ const AddressInput = ({ onChange, addressToEdit, onSave, shouldDisplay, isNew })
         <Text style={st.textInput2} >Country</Text>
 
         <TextInput
+          underlineColorAndroid={'#ccc'}
           inputStyle={st.textInputGrey}
           autoCapitalize={'none'}
           autoCorrect={false}
@@ -42,6 +43,7 @@ const AddressInput = ({ onChange, addressToEdit, onSave, shouldDisplay, isNew })
         <Text style={st.textInput2} >Address</Text>
 
         <TextInput
+          underlineColorAndroid={'#ccc'}
           inputStyle={st.textInputGrey}
           autoCapitalize={'none'}
           autoCorrect={false}
@@ -52,6 +54,7 @@ const AddressInput = ({ onChange, addressToEdit, onSave, shouldDisplay, isNew })
         <Text style={st.textInput2} >ZIP / Postal Code</Text>
         
         <TextInput
+          underlineColorAndroid={'#ccc'}
           inputStyle={st.textInputGrey}
           autoCapitalize={'none'}
           autoCorrect={false}
@@ -62,6 +65,7 @@ const AddressInput = ({ onChange, addressToEdit, onSave, shouldDisplay, isNew })
         <Text style={st.textInput2} >City</Text>
 
         <TextInput
+          underlineColorAndroid={'#ccc'}
           inputStyle={st.textInputGrey}
           autoCapitalize={'none'}
           autoCorrect={false}
@@ -72,6 +76,7 @@ const AddressInput = ({ onChange, addressToEdit, onSave, shouldDisplay, isNew })
         <Text style={st.textInput2} >Best Time of Day to Deliver</Text>
 
         <TextInput
+          underlineColorAndroid={'#ccc'}
           inputStyle={st.textInputGrey}
           autoCapitalize={'none'}
           autoCorrect={false}

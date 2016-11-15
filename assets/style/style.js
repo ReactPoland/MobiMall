@@ -162,7 +162,7 @@ export default {
 	cardRow: {
 		marginBottom: 10,
 		flexDirection: 'row',
-		borderBottomColor: '#edb4ff',
+		borderBottomColor: '#ccc',
 		borderBottomWidth: 1,
 		borderStyle: 'solid',
 	},
@@ -219,5 +219,9 @@ export default {
 		right: 0,
 		position: 'absolute',
 		borderRadius: 10,
-	}
+	},
+	profileTabView: {
+		borderTopWidth: 0.5,
+		borderColor: '#aaa',
+	},
 }

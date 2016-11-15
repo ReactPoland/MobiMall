@@ -16,7 +16,7 @@ const AccountsTab = ({ fbId, onBankAccountDataChange, bankAccountData, onSave, s
   const { bankName = '', softCode = '', accountNumber = '', accountName = '' } = bankAccountData;
 
   return (
-    <View>
+    <View style={st.profileTabView}>
       <Card >
         <Card.Body>
           <Text style={st.blockSubtitle}>PAY SALE FROM MY STORE INTO</Text>
@@ -25,6 +25,7 @@ const AccountsTab = ({ fbId, onBankAccountDataChange, bankAccountData, onSave, s
 
           <TextInput
             inputStyle={st.textInputGrey}
+            underlineColorAndroid={'#ccc'}
             autoCapitalize={'none'}
             autoCorrect={false}
             onChange={onBankAccountDataChange.bind(this, 'bankName')}
@@ -36,6 +37,7 @@ const AccountsTab = ({ fbId, onBankAccountDataChange, bankAccountData, onSave, s
           <TextInput
             inputStyle={st.textInputGrey}
             autoCapitalize={'none'}
+            underlineColorAndroid={'#ccc'}
             autoCorrect={false}
             onChange={onBankAccountDataChange.bind(this, 'softCode')}
             value={softCode}
@@ -45,6 +47,7 @@ const AccountsTab = ({ fbId, onBankAccountDataChange, bankAccountData, onSave, s
 
           <TextInput
             inputStyle={st.textInputGrey}
+            underlineColorAndroid={'#ccc'}
             autoCapitalize={'none'}
             autoCorrect={false}
             onChange={onBankAccountDataChange.bind(this, 'accountNumber')}
@@ -55,6 +58,7 @@ const AccountsTab = ({ fbId, onBankAccountDataChange, bankAccountData, onSave, s
 
           <TextInput
             inputStyle={st.textInputGrey}
+            underlineColorAndroid={'#ccc'}
             autoCapitalize={'none'}
             autoCorrect={false}
             onChange={onBankAccountDataChange.bind(this, 'accountName')}

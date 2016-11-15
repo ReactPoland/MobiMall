@@ -124,7 +124,7 @@ export default class ShopperProfileView extends Component {
 				  	</View>
 
 					<Tabs>
-						<View name={'PERSONAL'} >
+						<View style={st.profileTabView} name={'PERSONAL'} >
 							<Card>
 								<Card.Body>
 									<Text style={st.blockSubtitle} >PERSONAL DETAILS</Text>
@@ -169,8 +169,8 @@ export default class ShopperProfileView extends Component {
 								</Card.Body>
 							</Card>
 						</View>
-						<CardsManager name='PAYMENT' fbId={this.state.fbId} />
-						<View name={'SHIPPING'}>
+						<CardsManager style={st.profileTabView} name='PAYMENT' fbId={this.state.fbId} />
+						<View style={st.profileTabView} name={'SHIPPING'}>
 							<AddressBox
 								addresses={buyerAddresses}
 								loading={loading}
@@ -187,7 +187,7 @@ export default class ShopperProfileView extends Component {
 							/>
 						</View>
 
-						<View name={'HISTORY'}>
+						<View style={st.profileTabView} name={'HISTORY'}>
 							<Card >
 								<Card.Body>
 									<Text>test block 4</Text>

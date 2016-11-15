@@ -15,30 +15,33 @@ const PersonalTab = ({ personalData, onPersonalInfoChange, saving, onSave, fbDat
   const { email2, phone, about } = personalData;
   const { firstName, lastName, email } = fbData;
   return (
-    <Card >
-      <Card.Body>
-        <Text style={st.blockSubtitle} >PERSONAL DETAILS</Text>
-        
-        <Text style={st.textInput2} >First name</Text>
+    <View style={st.profileTabView}>
+      <Card >
+        <Card.Body>
+          <Text style={st.blockSubtitle} >PERSONAL DETAILS</Text>
+          
+          <Text style={st.textInput2} >First name</Text>
 
-        <View>
-          <Text style={[st.textInputGrey, {paddingTop: 5, paddingBottom: 9}]} >{firstName}</Text>
-        </View>
+          <View>
+            <Text style={[st.textInputGrey, {paddingTop: 5, paddingBottom: 9}]} >{firstName}</Text>
+          </View>
 
-        <Text style={st.textInput2} >About</Text>
+          <Text style={st.textInput2} >About</Text>
 
-        <TextInput
-          inputStyle={st.textInputGrey}
-          autoCapitalize={'none'}
-          autoCorrect={false}
-          onChange={onPersonalInfoChange.bind(this, 'about')}
-          value={about}
-          multiline={true}
-        />
+          <TextInput
+            inputStyle={st.textInputGrey}
+            autoCapitalize={'none'}
+            underlineColorAndroid={'#ccc'}
+            autoCorrect={false}
+            onChange={onPersonalInfoChange.bind(this, 'about')}
+            value={about}
+            multiline={true}
+          />
 
-        <PurpleButton text={saving ? 'SAVING...' : 'SAVE'} onPress={onSave} />
-      </Card.Body>
-    </Card>
+          <PurpleButton text={saving ? 'SAVING...' : 'SAVE'} onPress={onSave} />
+        </Card.Body>
+      </Card>
+    </View>
   );
 }
 

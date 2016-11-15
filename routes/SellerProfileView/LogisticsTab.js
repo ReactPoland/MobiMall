@@ -79,7 +79,7 @@ export default class LogisticsTab extends Component {
 
   render () {
     return (
-      <View>
+      <View style={st.profileTabView} >
         <AddressBox
           addresses={this.state.addresses}
           onPress={this._setAddressToEdit}

@@ -160,7 +160,7 @@ export default class SellerProfileView extends Component {
 			<View style={st.container}>
 				<ScrollView>
 				
-					<SellerProfileHeader name={ igHandle } followers={followers } /> 
+					<SellerProfileHeader style={st.profileTabView} name={ igHandle } followers={followers } /> 
 
           {/*<ProfileHeader
 						name={name}
@@ -173,9 +173,13 @@ export default class SellerProfileView extends Component {
 							fbData={this.props.manager.getDataFB()}
 							onPersonalInfoChange={this._onPersonalInfoChange}
 							saving={saving}
-							onSave={this._onPersonalInfoSave}
-						/>
-						<StoreTab name='STORE' storeItem={store} onLogin={this._onLoginStore} onLogout={this._onLogoutStore} />
+							onSave={this._onPersonalInfoSave} />
+						
+						<StoreTab 
+							name='STORE' 
+							storeItem={store} 
+							onLogin={this._onLoginStore} 
+							onLogout={this._onLogoutStore} />
 
 						<AccountsTab
 							name='ACCOUNTS'
@@ -183,8 +187,8 @@ export default class SellerProfileView extends Component {
 							saving={saving}
 							onSave={this._onBankAccountDataSave}
 							bankAccountData={bankAccountData}
-							onBankAccountDataChange={this._onBankAccountDataChange}
-						/>
+							onBankAccountDataChange={this._onBankAccountDataChange} />
+
 						<LogisticsTab
 							name='LOGISTICS'
 							fbId={fbId}

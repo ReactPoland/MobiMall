@@ -108,7 +108,7 @@ export default class CardsManager extends Component {
   render () {
     const { saving } = this.state;
     return (
-      <View>
+      <View style={this.props.style} >
         <Card>
           <Card.Body>
             <Text style={st.blockSubtitle} >MY CARDS</Text>
@@ -119,7 +119,7 @@ export default class CardsManager extends Component {
         <Card >
           <Card.Body>
             <Text style={st.blockSubtitle} >NEW PAYMENT DETAILS</Text>
-            <CreditCardInput onChange={this._onCardInputChange} />
+            <CreditCardInput inputContainerStyle={{borderColor: '#ccc', borderBottomWidth: 1}} onChange={this._onCardInputChange} />
             <Button 
               text={saving ? 'SAVING...' : 'SAVE CARD'}
               raised={true}

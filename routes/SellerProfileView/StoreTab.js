@@ -118,11 +118,13 @@ const StoreTab = ({ storeItem, onLogin, onLogout }) => {
 
 
   return (
-    <Card>
-      <Card.Body>
-        { storeCardBody }
-      </Card.Body>
-    </Card>
+    <View style={st.profileTabView} >
+      <Card>
+        <Card.Body>
+          { storeCardBody }
+        </Card.Body>
+      </Card>
+    </View>
   ) 
 
 };

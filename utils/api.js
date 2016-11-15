@@ -15,8 +15,8 @@ const api = {
     return createRequest(['users', 'getCards'], { fbId });
   },
 
-  saveCard (fbId, cardToken) {
-    return createRequest(['users', 'saveCard'], { fbId, cardToken });
+  saveCard (fbId, cardToken, name) {
+    return createRequest(['users', 'saveCard'], { fbId, cardToken, name });
   },
 
   createUser (profileData) {

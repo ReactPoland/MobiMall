@@ -50,7 +50,8 @@ export default class CardsManager extends Component {
 
   _onCardInputChange (card) {
 		if(card.valid) {
-			const { number, expiry, cvc } = card.values;
+      console.log(card.values);
+			const { number, expiry, cvc, name } = card.values;
 			const cardNumber = number.split(' ').join('');
 			const expMonth = expiry.split('/')[0];
 			const expYear = expiry.split('/')[1];
@@ -58,7 +59,8 @@ export default class CardsManager extends Component {
 				cardNumber,
 				expMonth,
 				expYear,
-				cvc
+				cvc,
+        name
 			}
 			this.setState({ cardData });
 		} else{
@@ -73,8 +75,8 @@ export default class CardsManager extends Component {
       Alert.alert('Error', 'Ivalid data');
       return;
     }
-    const { cardNumber, expMonth, expYear, cvc } = cardData;
-    if(cardData && cardNumber && expMonth && expYear && cvc) {
+    const { cardNumber, expMonth, expYear, cvc, name } = cardData;
+    if(cardData && cardNumber && expMonth && expYear && cvc && name) {
       this.setState({ saving: true });
       const cardToken = await Stripe
         .createToken(cardNumber, expMonth, expYear, cvc)
@@ -83,7 +85,7 @@ export default class CardsManager extends Component {
           this.setState({ saving: false });
         });
       if(cardToken && cardToken.id) {
-        const apiResp = await api.saveCard(fbId, cardToken.id);
+        const apiResp = await api.saveCard(fbId, cardToken.id, name);
         if(!apiResp.data.error) {
           this._fetchData();
         }

@@ -20,6 +20,11 @@ const s = StyleSheet.create({
   form: {
     marginTop: 20,
   },
+  inputRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flex: 1,
+  }
 });
 
 const CVC_INPUT_WIDTH = 70;
@@ -29,6 +34,7 @@ const CARD_NUMBER_INPUT_WIDTH = Dimensions.get("window").width - EXPIRY_INPUT_WI
 const NAME_INPUT_WIDTH = CARD_NUMBER_INPUT_WIDTH;
 const PREVIOUS_FIELD_OFFSET = 40;
 const POSTAL_CODE_INPUT_WIDTH = 120;
+const DEFAULT_INPUT_WIDTH = 300;
 
 /* eslint react/prop-types: 0 */ // https://github.com/yannickcr/eslint-plugin-react/issues/106
 export default class CreditCardInput extends Component {
@@ -115,19 +121,23 @@ export default class CreditCardInput extends Component {
             showsHorizontalScrollIndicator={false}
             style={s.form}>
           <CCInput {...this._inputProps("number")}
-              containerStyle={[inputContainerStyle, { width: CARD_NUMBER_INPUT_WIDTH }]} />
-          <CCInput {...this._inputProps("expiry")}
-              containerStyle={[inputContainerStyle, { width: EXPIRY_INPUT_WIDTH }]} />
-          { requiresCVC &&
-            <CCInput {...this._inputProps("cvc")}
-                containerStyle={[inputContainerStyle, { width: CVC_INPUT_WIDTH }]} /> }
+              containerStyle={[inputContainerStyle, { width: DEFAULT_INPUT_WIDTH } ]} />
+          <View style={[s.inputRow, {marginTop: 10}]}>
+            <CCInput {...this._inputProps("expiry")}
+                containerStyle={[inputContainerStyle, { width: CVC_INPUT_WIDTH } ]} />
+            { requiresCVC &&
+              <CCInput {...this._inputProps("cvc")}
+                  inputStyle = {{textAlign:'center'}}
+                  containerStyle={[inputContainerStyle, { width: CVC_INPUT_WIDTH }]} /> }
+          </View>
+          
           { requiresName &&
             <CCInput {...this._inputProps("name")}
                 keyboardType="default"
-                containerStyle={[inputContainerStyle, { width: NAME_INPUT_WIDTH }]} /> }
+                containerStyle={[inputContainerStyle, { width: DEFAULT_INPUT_WIDTH }]} /> }
           { requiresPostalCode &&
             <CCInput {...this._inputProps("postalCode")}
-                containerStyle={[inputContainerStyle, { width: POSTAL_CODE_INPUT_WIDTH }]} /> }
+                containerStyle={[inputContainerStyle, { width: DEFAULT_INPUT_WIDTH }]} /> }
         </ScrollView>
       </View>
     );

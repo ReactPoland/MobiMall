@@ -9,7 +9,7 @@ import {
 
 const ss = StyleSheet.create({
   container: {
-    marginLeft: 20,
+    // marginLeft: 20,
   },
   label: {
     fontWeight: "bold",

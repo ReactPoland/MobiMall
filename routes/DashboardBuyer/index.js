@@ -235,7 +235,7 @@ export default class DashboardBuyer extends Component {
 								</View>
 
 								<View style={dashSellerStyle.dealDay} >
-								   	<Image source={{uri: `http://pipsum.com/435x310.jpg` }} style={dashSellerStyle.dealDayImg}/>
+								   	<Image source={{uri: `https://cloud.githubusercontent.com/assets/1250781/20308845/e894d92a-ab45-11e6-847e-96c1de0f5875.jpg` }} style={dashSellerStyle.dealDayImg}/>
 
 								   	<View style={dashSellerStyle.dealDayContent} >
 								   		<Text style={ { color: 'white', fontSize: 18 } } >AN ICON REMASTERED</Text>
@@ -269,7 +269,7 @@ export default class DashboardBuyer extends Component {
 
 										
 										<View style={dashSellerStyle.productItem} >
-										   		<Image source={{uri: `http://pipsum.com/435x311.jpg` }} style={dashSellerStyle.productImg}/>
+										   		<Image source={{uri: `https://cloud.githubusercontent.com/assets/1250781/20308843/e87d56e2-ab45-11e6-9a69-3fc400c68c7b.png` }} style={dashSellerStyle.productImg}/>
 											<View style={dashSellerStyle.productDesc} >
 												<View>
 													<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
@@ -279,7 +279,7 @@ export default class DashboardBuyer extends Component {
 										</View>
 
 										<View style={dashSellerStyle.productItem} >
-										   		<Image source={{uri: `http://pipsum.com/435x312.jpg` }} style={dashSellerStyle.productImg}/>
+										   		<Image source={{uri: `https://cloud.githubusercontent.com/assets/1250781/20308842/e87b126a-ab45-11e6-8c26-fde5cfce5fe7.jpg` }} style={dashSellerStyle.productImg}/>
 											<View style={dashSellerStyle.productDesc} >
 												<View>
 													<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
@@ -289,7 +289,7 @@ export default class DashboardBuyer extends Component {
 										</View>
 
 										<View style={dashSellerStyle.productItem} >
-										   		<Image source={{uri: `http://pipsum.com/435x313.jpg` }} style={dashSellerStyle.productImg}/>
+										   		<Image source={ require('../../assets/img/prod1.jpg') } style={dashSellerStyle.productImg}/>
 											<View style={dashSellerStyle.productDesc} >
 												<View>
 													<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
@@ -299,7 +299,7 @@ export default class DashboardBuyer extends Component {
 										</View>
 
 										<View style={dashSellerStyle.productItem} >
-										   		<Image source={{uri: `http://pipsum.com/435x314.jpg` }} style={dashSellerStyle.productImg}/>
+										   		<Image source={require('../../assets/img/prod2.jpg')} style={dashSellerStyle.productImg}/>
 											<View style={dashSellerStyle.productDesc} >
 												<View>
 													<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
@@ -309,7 +309,7 @@ export default class DashboardBuyer extends Component {
 										</View>
 
 										<View style={dashSellerStyle.productItem} >
-										   		<Image source={{uri: `http://pipsum.com/435x315.jpg` }} style={dashSellerStyle.productImg}/>
+										   		<Image source={require('../../assets/img/prod3.jpg')} style={dashSellerStyle.productImg}/>
 											<View style={dashSellerStyle.productDesc} >
 												<View>
 													<Text style= { dashSellerStyle.productName } >Backpack Black</Text>
@@ -337,7 +337,7 @@ export default class DashboardBuyer extends Component {
 									</View>
 				
 									<View style={dashSellerStyle.featuredImgBlock}>
-										<Image source={{uri: `http://pipsum.com/435x316.jpg` }} style={dashSellerStyle.featuredImg}/>
+										<Image source={{uri: `https://cloud.githubusercontent.com/assets/1250781/20308840/e87614fe-ab45-11e6-9837-612e33b19f50.jpg` }} style={dashSellerStyle.featuredImg}/>
 									</View>
 
 								</View>
@@ -352,7 +352,7 @@ export default class DashboardBuyer extends Component {
 								<View style={dashSellerStyle.likeProductList } >
 
 									<View style={dashSellerStyle.likeProductItem}>
-										<Image source={{uri: `http://pipsum.com/435x317.jpg?2` }} style={dashSellerStyle.likeProductImg}/>
+										<Image source={{uri: `https://cloud.githubusercontent.com/assets/1250781/20308839/e872fa44-ab45-11e6-9961-74150f1751d9.jpg` }} style={dashSellerStyle.likeProductImg}/>
 										<View style={dashSellerStyle.likeProductDescBlock}>
 											<Text style={dashSellerStyle.likeProdName}>Boost Band Black Portable Charger Wristband Phone...</Text>
 
@@ -367,7 +367,7 @@ export default class DashboardBuyer extends Component {
 									</View>
 
 									<View style={dashSellerStyle.likeProductItem}>
-										<Image source={{uri: `http://pipsum.com/435x317.jpg?1` }} style={dashSellerStyle.likeProductImg}/>
+										<Image source={{uri: `https://cloud.githubusercontent.com/assets/1250781/20308840/e87614fe-ab45-11e6-9837-612e33b19f50.jpg` }} style={dashSellerStyle.likeProductImg}/>
 										<View style={dashSellerStyle.likeProductDescBlock}>
 											<Text style={dashSellerStyle.likeProdName}>Stella 7-speed Internally-geared Luxury Step-through Bicycle...</Text>
 
@@ -382,7 +382,7 @@ export default class DashboardBuyer extends Component {
 									</View>
 
 									<View style={dashSellerStyle.likeProductItem}>
-										<Image source={{uri: `http://pipsum.com/435x319.jpg` }} style={dashSellerStyle.likeProductImg}/>
+										<Image source={{uri: `https://cloud.githubusercontent.com/assets/1250781/20308841/e8797dba-ab45-11e6-888e-255854f1d190.jpg` }} style={dashSellerStyle.likeProductImg}/>
 										<View style={dashSellerStyle.likeProductDescBlock}>
 											<Text style={dashSellerStyle.likeProdName}>Nomader BPA Free Collapsible Sports Water Bottle - Foldable...</Text>
 

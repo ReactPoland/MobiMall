@@ -169,7 +169,7 @@ export default class NewProductSeller extends Component {
 
 								onChange={ this.changeProductData.bind(this, 'productName') }
 								placeholder={'Mens Brogue Shoe'} 
-								underlineColorAndroid="#edb4ff" 
+								underlineColorAndroid="#ccc" 
 								placeholderTextColor='#cccccc'
 								value={ productName }
 								/>
@@ -183,7 +183,7 @@ export default class NewProductSeller extends Component {
 								placeholder={'Shoes'} 
 								placeholderTextColor='#cccccc'
 								value={ category }
-								underlineColorAndroid="#edb4ff"
+								underlineColorAndroid="#ccc" 
 								/>
 
 							<Text style={st.textInput} >Description</Text>
@@ -289,7 +289,7 @@ export default class NewProductSeller extends Component {
 								onChange={ this.changeProductData.bind(this, 'quantity') }
 								keyboardType={'numeric'}
 								placeholder={'456'} 
-								underlineColorAndroid="#edb4ff" 
+								underlineColorAndroid="#ccc" 
 								placeholderTextColor='#cccccc'
 								value={ quantity } />
 
@@ -300,7 +300,7 @@ export default class NewProductSeller extends Component {
 								onChange={ this.changeProductData.bind(this, 'reatilPrice') }
 								keyboardType={'numeric'}
 								placeholder={'89'} 
-								underlineColorAndroid="#edb4ff" 
+								underlineColorAndroid="#ccc" 
 								placeholderTextColor='#cccccc'
 								value={ reatilPrice } />
 
@@ -311,7 +311,7 @@ export default class NewProductSeller extends Component {
 								onChange={ this.changeProductData.bind(this, 'costPrice') }
 								keyboardType={'numeric'}
 								placeholder={'56'} 
-								underlineColorAndroid="#edb4ff" 
+								underlineColorAndroid="#ccc" 
 								placeholderTextColor='#cccccc'
 								value={ costPrice } />
 
@@ -322,7 +322,7 @@ export default class NewProductSeller extends Component {
 								onChange={ this.changeProductData.bind(this, 'vat') }
 								keyboardType={'numeric'}
 								placeholder={'4.5'} 
-								underlineColorAndroid="#edb4ff" 
+								underlineColorAndroid="#ccc" 
 								placeholderTextColor='#cccccc'
 								value={ vat } />
 
@@ -332,7 +332,7 @@ export default class NewProductSeller extends Component {
 								style={st.input}
 								onChange={ this.changeProductData.bind(this, 'supplier') }
 								placeholder={'Bescot Shoes'} 
-								underlineColorAndroid="#edb4ff" 
+								underlineColorAndroid="#ccc" 
 								placeholderTextColor='#cccccc'
 								value={ supplier } />
 

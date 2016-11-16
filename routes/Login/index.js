@@ -35,6 +35,7 @@ export default class Login extends Component {
 			tokenMark: null,
 			readyLoginView: false,
 			playing: true,
+			viewHeight: 0,
 		}
 
 
@@ -58,8 +59,11 @@ export default class Login extends Component {
 		})
 	}
 
-	onLayout(event) {
-		console.log('layout');
+	onLayout(ev) {
+		let { width, height } = ev.nativeEvent.layout
+		this.setState({ viewHeight: height });
+		// console.log(height);
+		// console.log('layout');
 
 		// let { width, height } = event.nativeEvent.layout;
 
@@ -295,6 +299,18 @@ export default class Login extends Component {
 					resizeMode: 'cover'
 				}} />*/}
 
+				<Image 
+					source={ require('../../assets/img/login_img.jpg') }
+
+					style={{
+						position: 'absolute',
+						width: 360,
+						height: this.state.viewHeight,
+						top: 0,
+						left: 0,
+						resizeMode: 'cover'
+					}} />
+
 				<Video source={ {uri: 'http://testmobimall2.herokuapp.com/loginbackground.mp4'  } }   // Can be a URL or a local file.
 					ref={(ref) => {
 			        	this.player = ref
@@ -388,6 +404,7 @@ const loginStyle = StyleSheet.create({
     	left: 0,
     	bottom: 0,
     	right: 0,
+    	zIndex: 15,
     	// width: 300,
     	// height: 100,
 	},

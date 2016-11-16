@@ -123,8 +123,8 @@ export default class CardsManager extends Component {
             <Text style={st.blockSubtitle} >NEW PAYMENT DETAILS</Text>
             <CreditCardInput 
               requiresName
-              imageBack={{uri: 'http://pipsum.com/435x314.jpg?imgBack'}} 
-              imageFront={{uri: 'http://pipsum.com/435x314.jpg?imgFront'}} 
+              imageFront={ require('../assets/img/front-paycard.jpg') } 
+              imageBack={ require('../assets/img/back-paycard.jpg') } 
               inputContainerStyle={{borderColor: '#ccc', borderBottomWidth: 1}} 
               onChange={this._onCardInputChange} />
             <Button 

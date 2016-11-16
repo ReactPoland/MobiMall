@@ -10,7 +10,8 @@ import {
 	Alert,
 	Dimensions,
 	AsyncStorage,
-	NativeModules
+	NativeModules,
+	AppState
 } from 'react-native';
 var {FBLogin, FBLoginManager} = require('react-native-facebook-login');
 import Video from 'react-native-video';
@@ -33,6 +34,7 @@ export default class Login extends Component {
 			popupIGVisibility: false,
 			tokenMark: null,
 			readyLoginView: false,
+			playing: true,
 		}
 
 
@@ -146,6 +148,7 @@ export default class Login extends Component {
 	}
 
 	componentDidMount() {
+		AppState.addEventListener('change', this.changeAppStateHandler);
 
 		CookieManager.clearAll( async (err, res) => {
 
@@ -169,6 +172,25 @@ export default class Login extends Component {
 			}
 		});
 		
+	}
+
+	changeAppStateHandler(state) {
+		switch (state) {
+			case "active" :
+				this.setState( { playing: true } );
+				break;
+
+			case "background" :
+				this.setState( { playing: false } );
+				break;
+
+			default: 
+				break;
+		}
+	}
+
+	componentWillUnmount() {
+		AppState.removeEventListener('change', this.changeAppStateHandler);
 	}
 
 	async authUser(profile) {
@@ -274,21 +296,29 @@ export default class Login extends Component {
 				}} />*/}
 
 				<Video source={ {uri: 'http://testmobimall2.herokuapp.com/loginbackground.mp4'  } }   // Can be a URL or a local file.
+					ref={(ref) => {
+			        	this.player = ref
+				       }}  
 				       rate={1.0}                     // 0 is paused, 1 is normal.
 				       volume={1.0}                   // 0 is muted, 1 is normal.
 				       muted={false}                  // Mutes the audio entirely.
-				       paused={false}                 // Pauses playback entirely.
+				       paused={!this.state.playing}                 // Pauses playback entirely.
 				       resizeMode="cover"             // Fill the whole screen at aspect ratio.
 				       repeat={true}                  // Repeat forever.
-				       playInBackground={true}       // Audio continues to play when app entering background.
+				       playInBackground={false}       // Audio continues to play when app entering background.
 				       playWhenInactive={false}       // [iOS] Video continues to play when control or notification center are shown.
 				       progressUpdateInterval={250.0} // [iOS] Interval to fire onProgress (default to ~250ms)
+				       // onLoadStart={ () => console.log('onLoadStart') }
+				       // onLoad={ () => console.log('onLoadStart') }
+				       // onError={ ({error}) => console.log('onError', error) }
+				       // onEnd={ () => console.log('onEnd') }
 				       style={loginStyle.backgroundVideo} />
 
 				<View style={loginStyle.purpleShadow}>
+
 					<View style={loginStyle.logoWrap}>
-							<Image source={require('../../assets/img/mobimall-icon.png')} style={loginStyle.logo}/>						
-							<Text style={loginStyle.logoText} >MOBIMALL</Text>
+						<Image source={require('../../assets/img/mobimall-icon.png')} style={loginStyle.logo}/>						
+						<Text style={loginStyle.logoText} >MOBIMALL</Text>
 					</View>
 
 					{/*https://video-fra3-1.xx.fbcdn.net/v/t42.4659-2/14495702_916960405076035_385499260713435136_n.mp4?oh=c1a63d2be4e961155ec8d047a24fbf43&oe=57FD25A3*/}

@@ -14,6 +14,7 @@ import ProfileChanging from './ProfileChanging';
 import PageList from './PageList';
 import Checkout from './Checkout';
 import Empty from './Empty';
+import Orders from './Orders';
 
 export default routes = {
 
@@ -54,6 +55,12 @@ export default routes = {
 		Page: Dashboard,
 		themeUi: true,
 		key: 'dashboard',
+	},
+	orders: {
+		Page: Orders,
+		title: 'Orders',
+		themeUi: true,
+		key: 'orders',
 	},
 	sellerProfileView: {
 		Page: SellerProfileView,
@@ -109,7 +116,7 @@ export default routes = {
 				name: 'plus2',
 			}
 		}, {
-			route: 'empty',
+			route: 'orders',
 			icon: { 
 				name: 'orders',
 			}

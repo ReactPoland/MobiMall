@@ -210,7 +210,7 @@ export default class DashboardSeller extends Component {
 								<WebView
 									style={{height: this.state.webViewHeight}}
 									source={{
-										uri: `https://github.com/`
+										uri: `https://adminmobimall.herokuapp.com/dashboardv2`
 									}} />
 						</View>
 

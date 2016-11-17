@@ -179,7 +179,11 @@ export default class DashboardBuyer extends Component {
 					  	</View>
 				  	</View>*/}
 
-				  	<View style={{backgroundColor: '#fff'}}>
+				  	<View style={{
+				  		backgroundColor: '#fff',
+				  		borderBottomWidth: 0.5,
+				  		borderColor: '#aaa', 
+				  	}} >
 				  		<BuyerProfileHeader pictureSource={ { uri: fbData.profileImgUri } } name={ fbData.firstName } itemsBought={ fbData.itemsBought } />
 				  	</View>
 
@@ -415,7 +419,7 @@ export default class DashboardBuyer extends Component {
 
 									<WebView
 										source={{
-											uri: `https://github.com/`
+											uri: `https://adminmobimall.herokuapp.com/dashboardv2`
 										}} style={{
 											height: this.state.webViewHeight,
 										}} />
@@ -434,7 +438,7 @@ export default class DashboardBuyer extends Component {
 
 									<WebView
 										source={{
-											uri: `https://github.com/mwp-io/`
+											uri: `https://adminmobimall.herokuapp.com/invoice`
 										}} style={{
 											height: this.state.webViewHeight,
 										}} />

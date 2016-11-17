@@ -280,9 +280,10 @@ export default class Checkout extends Component {
 				this.props.manager.authFB(newUserData);
 
 				this.setState({ checkoutButtonReady: true, transaction: null });
-				let alertText = `Paid: $ ${data.value.price}${'\n'}from card: ...${data.value.source.last4}`;
+				// let alertText = `Paid: $ ${data.value.price}${'\n'}from card: ...${data.value.source.last4}`;
 				// `Was made charge from your card: $${totalPrice}`
-				Alert.alert(alertText);
+				// Alert.alert(alertText);
+				Alert.alert("Thank You for your order", "We will notify you once your order has been processed");
 				// dashboardRoute = routes.profileChanging;
 				// this.props.navigator.getCurrentRoutes(item => {
 

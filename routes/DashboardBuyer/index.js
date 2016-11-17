@@ -34,6 +34,7 @@ export default class DashboardBuyer extends Component {
 
 		this.state = {
 			webViewHeight: 0,
+			showFog: 0,
 		}
 
     	this.Icon = createIconSet(this.iconsMap, 'icomoon' );
@@ -107,14 +108,25 @@ export default class DashboardBuyer extends Component {
 		}
 	}
 
+	hideFog() {
+		this.setState({showFog: this.state.showFog - 1 });
+	}
+
+	showFog() {
+		this.setState({showFog: this.state.showFog + 1 });
+	}
+
 	render() {
 
+		let { Fog } = this.props;
 		let { Icon } = this;
 		const fbData = this.props.manager.getDataFB();
 
 
 		return (
 			<View style={dashSellerStyle.container} ref={'containerDashboardBuyer'} >
+				<Fog visible={this.state.showFog > 0 } />
+
 				<ScrollView>
 
 				
@@ -418,6 +430,8 @@ export default class DashboardBuyer extends Component {
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } }  /> } > 
 
 									<WebView
+										startInLoadingState= {true}
+										domStorageEnabled={true}
 										source={{
 											uri: `https://adminmobimall.herokuapp.com/dashboardv2`
 										}} style={{
@@ -426,7 +440,7 @@ export default class DashboardBuyer extends Component {
 									
 						</View>
 
-						<View style={dashSellerStyle.tabContent} icon={ <Icon 
+						<View style={ dashSellerStyle.tabContent } icon={ <Icon 
 								name="stores" 
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, flex: 1 } }/> } 
 								ref={'BuyerWebviewWrapTab3'} 
@@ -437,6 +451,8 @@ export default class DashboardBuyer extends Component {
 								style={ { textAlign: 'center', fontSize: 23, padding: 5, color: 'purple', flex: 1 } } /> } >
 
 									<WebView
+										startInLoadingState= {true}										
+										domStorageEnabled={true}
 										source={{
 											uri: `https://adminmobimall.herokuapp.com/invoice`
 										}} style={{

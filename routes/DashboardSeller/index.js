@@ -39,7 +39,8 @@ export default class DashboardSeller extends Component {
 		this.state = {
 			webViewHeight: 0,
 			fields: {},
-			productList: null
+			productList: null,
+			showFog: 0,
 		}
 
 		this.iconsMap = {
@@ -149,6 +150,16 @@ export default class DashboardSeller extends Component {
 
 	}
 
+
+	hideFog() {
+		this.setState({showFog: this.state.showFog - 1 });
+	}
+
+	showFog() {
+		this.setState({showFog: this.state.showFog + 1 });
+	}
+
+
 	render() {
 
 		const { fields } = this.state;
@@ -156,6 +167,7 @@ export default class DashboardSeller extends Component {
 		const { store, id } = this.props.manager.getDataFB();
 		const productList = this.props.manager.getSellerProductList();
 		const followers = store ? store.follower_count : null;
+		let { Fog } = this.props;
 
 		if ( !store ) {
 			return (
@@ -167,8 +179,9 @@ export default class DashboardSeller extends Component {
 
 		return (
 			<View style={dashSellerStyle.container} ref={'containerDashboardSeller'} >
-
 			
+				<Fog visible={this.state.showFog > 0 } />
+
 			
 				<ScrollView>
 
@@ -208,6 +221,8 @@ export default class DashboardSeller extends Component {
 							} >
 
 								<WebView
+									startInLoadingState= {true}
+									domStorageEnabled={true}
 									style={{height: this.state.webViewHeight}}
 									source={{
 										uri: `https://adminmobimall.herokuapp.com/dashboardv2`

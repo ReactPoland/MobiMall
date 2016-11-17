@@ -74,12 +74,20 @@ export default class NewProductSeller extends Component {
 				</View>
 
 
-				<ChangingButton text="BUYER" onPress={ () => { this.props.navigator.push( routes.dashboardBuyer ) } } />
+				<ChangingButton text="BUYER" onPress={ () => { 
+					// set buyer status
+					this.props.manager.setUserProfile('buyer');
+					this.props.navigator.replace( routes.dashboardBuyer ) 
+				} } />
 				<View style={{ marginVertical: 20 }}>
 					<Text style={[loginStyle.textCenter]}>or</Text>
 				</View>
 
-				<ChangingButton text="SELLER" onPress={ () => { this.props.navigator.push( routes.dashboardSeller ) } } />
+				<ChangingButton text="SELLER" onPress={ () => {
+					// set seller status
+					this.props.manager.setUserProfile('seller');
+					this.props.navigator.replace( routes.dashboardSeller ) 
+				} } />
 
 				<View style={{ marginVertical: 20 }}>
 					<Text style={[loginStyle.textCenter]}>and don't worry you can{'\n'}always change your mind later</Text>

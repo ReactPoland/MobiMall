@@ -33,6 +33,7 @@ const manager = ( function () {
 	
 
 	let isExistTrans = false;
+	let userState = null;
 	let transProdProps = [];
 
 	let transListeners = [];
@@ -167,6 +168,14 @@ const manager = ( function () {
 				console.log('error server check transaction');
 			})
 
+		},
+
+		setUserProfile: function(userType) {
+			userState = userType;
+		},
+
+		getUserProfile: function() {
+			return userState;
 		},
 
 		removeTimerTransaction: function() {

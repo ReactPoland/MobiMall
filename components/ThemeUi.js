@@ -11,7 +11,7 @@ import {
 import { COLOR, ThemeProvider, ActionButton, Toolbar } from 'react-native-material-ui';
 // import { Drawer } from 'react-native-material-design';
 import { Avatar, Drawer, Divider, COLOR as cc, TYPO } from 'react-native-material-design';
-import Setting from '../routes/Setting'
+import SideMenu from '../routes/SideMenu'
 import { bindMethods, api } from '../utils'
 import { createIconSet } from 'react-native-vector-icons';
 import routes from '../routes/routes'
@@ -212,7 +212,11 @@ export default class ThemeUi extends Component {
 
     const emptyFunc = () => { };
     const { drawer, navigator } = this.state;
-    const navView = React.createElement(Setting, { logoutHandler: () => { this.logout() }, removeAccountHandler: () => { this.removeAccount() } } );
+    const navView = React.createElement(SideMenu, { 
+      navigator: this.props.navigator,
+      manager: this.props.manager, 
+      logoutHandler: () => { this.logout() }, 
+      removeAccountHandler: () => { this.removeAccount() } } );
 
 
     return (

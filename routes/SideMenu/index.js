@@ -51,15 +51,9 @@ export default class Setting extends Component {
 		this.props.navigator.replaceAtIndex(routes.dashboardSeller, 0, () => { this.props.navigator.popToTop() } );
 	}
 
-	async logout() {
-	  await AsyncStorage.removeItem( 'logged-igId' );
-	  this.props.navigator.resetTo(routes.login);
-	}
-
-
 	render() {
 
-		const { manager } = this.props;
+		const { logoutHandler, removeAccountHandler, manager } = this.props;
 		const { fields } = this.state;
 
 		return (
@@ -90,7 +84,7 @@ export default class Setting extends Component {
 	                    switchState={ manager.getUserProfile() == 'seller' }
 	                    hasSwitch={true}
 	                    title='Buyer/Seller'
-	                    switchOnValueChange={(ev) => { this.changeUserProfile() } }
+	                    switchOnValueChange={(ev) => { this.changeUserProfile() }}
 	                    />
 
 	                <SettingsList.Item hasNavArrow={false} title="Upgrade Account" />
@@ -104,9 +98,9 @@ export default class Setting extends Component {
 
 					<SettingsList.Header headerStyle={{marginTop:50}}/>
 
-	                <SettingsList.Item hasNavArrow={false} title="Sign Out" onPress={ this.logout } />
+	                <SettingsList.Item hasNavArrow={false} title="Sign Out" onPress={ logoutHandler } />
 	                <SettingsList.Item hasNavArrow={false} title="Sign Out of all accounts" />
-	                <SettingsList.Item hasNavArrow={false} title="Remove account" />
+	                <SettingsList.Item hasNavArrow={false} title="Remove account" onPress={ removeAccountHandler } />
 
 
 					<SettingsList.Header headerText='Support' headerStyle={{marginTop:50}}/>

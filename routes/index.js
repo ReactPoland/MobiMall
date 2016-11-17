@@ -22,7 +22,7 @@ import { COLOR, ThemeProvider } from 'react-native-material-ui';
 
 import routes from './routes';
 import { api, auth0lock } from '../utils';
-
+import BackgroundTimer from 'react-native-background-timer';
 
 const manager = ( function () {
 
@@ -84,13 +84,14 @@ const manager = ( function () {
 		
 		setTimerTransaction: function() {
 			if (!timerTransaction) {
-				timerTransaction = setInterval(() => {
+				timerTransaction = BackgroundTimer.setInterval(() => {
 
 					if ( manager.getDataFB() ) {
 						this.requestHandler( manager.getDataFB().id )
 					}
-				
-				}, 10000);
+					console.log('check basket');
+
+				}, 1000 * 10 );
 			}
 		},
 
@@ -170,7 +171,8 @@ const manager = ( function () {
 		},
 
 		removeTimerTransaction: function() {
-			clearInterval(timerTransaction);
+			BackgroundTimer.clearInterval(timerTransaction);
+			// clearInterval(timerTransaction);
 		},
 
 		setTransListeners: function(handler) {

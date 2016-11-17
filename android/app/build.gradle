@@ -141,6 +141,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-background-timer')
     compile project(':react-native-cookies')
     compile project(':react-native-lock')
     compile project(':react-native-svg')

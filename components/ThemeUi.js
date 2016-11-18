@@ -201,6 +201,11 @@ export default class ThemeUi extends Component {
     this.props.navigator.resetTo(routes.login);
   }
 
+  async logoutFromAllAccounts() {
+    await api.updatePersonalStore(this.props.manager.getDataFB().id, null );
+    await this.logout();
+  }
+
   async removeAccount() {
     await api.removeUser(this.props.manager.getDataFB().id);
     await AsyncStorage.removeItem( 'logged-igId' );
@@ -213,6 +218,7 @@ export default class ThemeUi extends Component {
     const emptyFunc = () => { };
     const { drawer, navigator } = this.state;
     const navView = React.createElement(SideMenu, { 
+      logoutFromAllAccounts: this.logoutFromAllAccounts,
       navigator: this.props.navigator,
       manager: this.props.manager, 
       logoutHandler: () => { this.logout() }, 

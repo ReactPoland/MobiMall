@@ -53,7 +53,7 @@ export default class Setting extends Component {
 
 	render() {
 
-		const { logoutHandler, removeAccountHandler, manager } = this.props;
+		const { logoutHandler, removeAccountHandler, manager, logoutFromAllAccounts } = this.props;
 		const { fields } = this.state;
 
 		return (
@@ -99,7 +99,7 @@ export default class Setting extends Component {
 					<SettingsList.Header headerStyle={{marginTop:50}}/>
 
 	                <SettingsList.Item hasNavArrow={false} title="Sign Out" onPress={ logoutHandler } />
-	                <SettingsList.Item hasNavArrow={false} title="Sign Out of all accounts" />
+	                <SettingsList.Item hasNavArrow={false} title="Sign Out of all accounts" onPress={ logoutFromAllAccounts } />
 	                <SettingsList.Item hasNavArrow={false} title="Remove account" onPress={ removeAccountHandler } />
 
 

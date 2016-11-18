@@ -16,6 +16,7 @@ import { bindMethods } from '../../utils';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import SettingsList from 'react-native-settings-list';
 import routes from '../routes'
+import { api } from '../../utils';
 
 export default class Setting extends Component {
 
@@ -54,6 +55,11 @@ export default class Setting extends Component {
 	async logout() {
 	  await AsyncStorage.removeItem( 'logged-igId' );
 	  this.props.navigator.resetTo(routes.login);
+	}
+
+	async logoutFromAllAccounts() {
+		await api.updatePersonalStore(this.props.manager.getDataFB().id, null );
+		await this.logout();
 	}
 
 
@@ -105,7 +111,7 @@ export default class Setting extends Component {
 					<SettingsList.Header headerStyle={{marginTop:50}}/>
 
 	                <SettingsList.Item hasNavArrow={false} title="Sign Out" onPress={ this.logout } />
-	                <SettingsList.Item hasNavArrow={false} title="Sign Out of all accounts" />
+	                <SettingsList.Item hasNavArrow={false} title="Sign Out of all accounts" onPress={ this.logoutFromAllAccounts } />
 	                <SettingsList.Item hasNavArrow={false} title="Remove account" />
 
 

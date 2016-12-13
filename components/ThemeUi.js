@@ -105,7 +105,7 @@ export default class ThemeUi extends Component {
         iconView = ( <Text style={[{fontSize: fontSize}, style]}>{source.name}</Text> );
       break;
       case 'img':
-        iconView = ( <Image style={{height: fontSize, width: fontSize}} source={{uri: source.uri}} /> );
+        iconView = ( <Image style={{height: fontSize, width: fontSize, resizeMode: 'contain'}} source={isActive ? source.srcActive : source.src} /> );
       break;
       default:
         iconView = (<Icon style={style} size={fontSize} name={source.name} />);

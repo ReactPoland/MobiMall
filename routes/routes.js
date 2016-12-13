@@ -88,7 +88,9 @@ export default routes = {
 		}, {
 			route: 'chat',
 			icon: {
-				name: 'heart',
+				type: 'img',
+				src: require('../assets/img/robot-smile.png'),
+				srcActive: require('../assets/img/robot-smile-active.png')
 			}
 		}, {
 			route: 'empty',

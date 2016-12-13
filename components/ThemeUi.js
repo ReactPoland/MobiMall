@@ -8,7 +8,7 @@ import {
   AsyncStorage,
   Image
 } from 'react-native';
-import { COLOR, ThemeProvider, ActionButton, Toolbar } from 'react-native-material-ui';
+import { COLOR, ThemeProvider, ActionButton, Toolbar } from './react-native-material-ui';
 // import { Drawer } from 'react-native-material-design';
 import { Avatar, Drawer, Divider, COLOR as cc, TYPO } from 'react-native-material-design';
 import SideMenu from '../routes/SideMenu'
@@ -98,7 +98,7 @@ export default class ThemeUi extends Component {
     }
 
     switch( source.type ) {
-      case 'awesome' : 
+      case 'awesome' :
         iconView = ( <AwesomeIcon style={style} size={ fontSize } name={source.name} /> );
       break;
       case 'text':
@@ -131,12 +131,12 @@ export default class ThemeUi extends Component {
   backClickHandler() {
     this.props.navigator.pop();
   };
- 
+
 
   actionButtonClickHandler(route) {
     let nextRoute = routes[route];
 
-    this.isExsistRouteInStack( nextRoute ) ? 
+    this.isExsistRouteInStack( nextRoute ) ?
       this.props.navigator.popToRoute( nextRoute ) : this.props.navigator.push( nextRoute );
 
   }
@@ -159,7 +159,7 @@ export default class ThemeUi extends Component {
     this.changeBasketState( this.props.manager.getTransAvail() );
     this.props.manager.setTransListeners( this.changeBasketState );
 
-    this.stripLinks =  this.props.route.stripLinks;  
+    this.stripLinks =  this.props.route.stripLinks;
   }
 
   componentWillUnmount() {
@@ -185,7 +185,7 @@ export default class ThemeUi extends Component {
 
 
     return (
-      <ActionButton 
+      <ActionButton
         mainIconElement={ (<View style={{ flex:1, alignItems: 'center', justifyContent: 'center' }}><Image source={require('../assets/img/mobimall-icon-button.png')} style={{width: 50, resizeMode: 'contain'}} /></View>) }
         actions={ actionIcons }
         transition='toolbar'
@@ -217,29 +217,29 @@ export default class ThemeUi extends Component {
 
     const emptyFunc = () => { };
     const { drawer, navigator } = this.state;
-    const navView = React.createElement(SideMenu, { 
+    const navView = React.createElement(SideMenu, {
       logoutFromAllAccounts: this.logoutFromAllAccounts,
       navigator: this.props.navigator,
-      manager: this.props.manager, 
-      logoutHandler: () => { this.logout() }, 
+      manager: this.props.manager,
+      logoutHandler: () => { this.logout() },
       removeAccountHandler: () => { this.removeAccount() } } );
 
 
     return (
       <DrawerLayoutAndroid
         drawerWidth={300}
-        drawerPosition={DrawerLayoutAndroid.positions.Left} 
+        drawerPosition={DrawerLayoutAndroid.positions.Left}
         renderNavigationView={() => {
           if (drawer) {
               return navView;
           }
           return null;
-        }} 
+        }}
         ref={(drawer) => { !this.state.drawer ? this.setDrawer(drawer) : null }} >
 
         <ThemeProvider uiTheme={ this.uiTheme } >
           <View style={ { flex: 1 } }>
-            <Toolbar 
+            <Toolbar
               leftElement="arrow-back"
               onLeftElementPress={this.backClickHandler}
               onRightElementPress={this.toCheckoutHandler}
@@ -274,7 +274,7 @@ export default class ThemeUi extends Component {
       </DrawerLayoutAndroid>
 
     )
-  
+
   }
 };
 

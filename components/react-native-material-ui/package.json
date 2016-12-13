@@ -1,0 +1,112 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "react-native-material-ui",
+        "scope": null,
+        "escapedName": "react-native-material-ui",
+        "name": "react-native-material-ui",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/home/anatolii/Desktop/hardwork/proj/mobiMall/client-app"
+    ]
+  ],
+  "_from": "react-native-material-ui@latest",
+  "_id": "react-native-material-ui@1.3.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/react-native-material-ui",
+  "_nodeVersion": "5.4.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/react-native-material-ui-1.3.2.tgz_1476258840787_0.12868046597577631"
+  },
+  "_npmUser": {
+    "name": "xotahal",
+    "email": "xotahal@gmail.com"
+  },
+  "_npmVersion": "3.3.12",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "react-native-material-ui",
+    "scope": null,
+    "escapedName": "react-native-material-ui",
+    "name": "react-native-material-ui",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-native-material-ui/-/react-native-material-ui-1.3.2.tgz",
+  "_shasum": "1dd4bb7cfb775af18672948312106ff8ec94ea73",
+  "_shrinkwrap": null,
+  "_spec": "react-native-material-ui",
+  "_where": "/home/anatolii/Desktop/hardwork/proj/mobiMall/client-app",
+  "bugs": {
+    "url": "https://github.com/xotahal/react-native-material-ui/issues"
+  },
+  "dependencies": {
+    "color": "^0.11.3",
+    "lodash.merge": "^4.0.0",
+    "react-native-material-design-styles": "^0.2.6",
+    "react-native-vector-icons": "^2.0.3"
+  },
+  "description": "React Native Material Design Components",
+  "devDependencies": {
+    "babel-core": "^6.14.0",
+    "babel-eslint": "^6.1.2",
+    "babel-jest": "^15.0.0",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react-native": "^1.9.0",
+    "eslint": "^3.6.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^1.15.0",
+    "eslint-plugin-jsx-a11y": "^2.2.0",
+    "eslint-plugin-react": "^6.3.0",
+    "jest-cli": "^15.1.1"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "1dd4bb7cfb775af18672948312106ff8ec94ea73",
+    "tarball": "https://registry.npmjs.org/react-native-material-ui/-/react-native-material-ui-1.3.2.tgz"
+  },
+  "homepage": "https://github.com/xotahal/react-native-material-ui",
+  "jest": {
+    "preset": "jest-react-native"
+  },
+  "keywords": [
+    "react-native",
+    "material",
+    "design",
+    "ui",
+    "components",
+    "react-component",
+    "android"
+  ],
+  "license": "MIT",
+  "main": "./index.js",
+  "maintainers": [
+    {
+      "name": "xotahal",
+      "email": "xotahal@gmail.com"
+    }
+  ],
+  "name": "react-native-material-ui",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xotahal/react-native-material-ui.git"
+  },
+  "scripts": {
+    "lint": "eslint ./",
+    "test": "jest"
+  },
+  "version": "1.3.2"
+}

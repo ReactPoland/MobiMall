@@ -15,9 +15,16 @@ import PageList from './PageList';
 import Checkout from './Checkout';
 import Empty from './Empty';
 import Orders from './Orders';
+import Chat from './Chat'
 
 export default routes = {
 
+	chat: {
+		Page: Chat,
+		title: 'Chat',
+		key: 'chat',
+		themeUi: true,
+	},
 	login: {
 		Page: Login,
 		title: 'login',
@@ -34,7 +41,7 @@ export default routes = {
 		title: 'Checkout',
 		themeUi: true,
 		key: 'checkout',
-	}, 
+	},
 	pageList: {
 		Page: PageList,
 		key: 'pageList',
@@ -44,13 +51,13 @@ export default routes = {
 		title: "Post product to Instagram",
 		themeUi: true,
 		key: 'postProductToIG',
-	}, 
+	},
 	shopperProfileView: {
 		Page: ShopperProfileView,
 		themeUi: true,
 		title: 'Profile',
 		key: 'shopperProfileView',
-	}, 
+	},
 	dashboard: {
 		Page: Dashboard,
 		themeUi: true,
@@ -73,21 +80,21 @@ export default routes = {
 		title: 'Home',
 		themeUi: true,
 		key: 'dashboardBuyer',
-		stripLinks: [ { 
+		stripLinks: [ {
 			route: 'dashboardBuyer',
 			icon: {
 				name: 'home',
 			}
-		}, { 
-			route: 'empty',
-			icon: { 
+		}, {
+			route: 'chat',
+			icon: {
 				name: 'heart',
 			}
 		}, {
 			route: 'empty',
 			icon:{
 				name: 'search',
-			} 
+			}
 		}, {
 			route: 'setting',
 			icon: {
@@ -117,7 +124,7 @@ export default routes = {
 			}
 		}, {
 			route: 'orders',
-			icon: { 
+			icon: {
 				name: 'orders',
 			}
 		}, {
@@ -129,7 +136,7 @@ export default routes = {
 			route: 'setting',
 			icon: {
 				name: 'setting',
-			} 
+			}
 		} ],
 	},
 	profileChanging: {
